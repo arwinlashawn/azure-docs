@@ -22,7 +22,7 @@ Azure Cosmos DB offers several preview features that you can request access to. 
 3. Click on the feature you would like access to in the list of available preview features.
 4. Click the **Register** button at the bottom of the page to join the preview.
 
-:::image type="content" source="./mongodb/media/indexing/unique-reindex-preview.png" alt-text="Screenshot of steps to enable preview feature" lightbox="./mongodb/media/indexing/unique-reindex-preview.png":::
+:::image type="content" source="https://user-images.githubusercontent.com/59852102/207765007-03b117ea-ceb1-4312-b87d-9b5296a41db0.png" alt-text="Screenshot of steps to enable preview feature" lightbox="./mongodb/media/indexing/unique-reindex-preview.png":::
 
 ## Next steps
 
