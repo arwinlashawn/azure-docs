@@ -8,6 +8,7 @@ ms.service: api-management
 ms.topic: how-to
 ms.date: 01/03/2022
 ms.author: danlep
+ms.custom: devx-track-azurepowershell
 ---
 # Connect to a virtual network using Azure API Management
 

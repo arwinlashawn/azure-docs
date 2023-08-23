@@ -2,7 +2,6 @@
 author: alkohli
 ms.service: databox  
 ms.subservice: pod
-ms.custom:
 ms.topic: include
 ms.date: 11/15/2021
 ms.author: alkohli
@@ -198,3 +197,4 @@ Follow these steps to skip certificate validation:
 
 
   
+

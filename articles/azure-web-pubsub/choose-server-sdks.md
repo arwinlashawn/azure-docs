@@ -4,7 +4,6 @@ description: Learn how to choose the server SDKs with this reference doc
 author: yjin81
 ms.author: yajin1
 ms.service: azure-web-pubsub
-ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: reference 
 ms.date: 11/08/2021
 ---

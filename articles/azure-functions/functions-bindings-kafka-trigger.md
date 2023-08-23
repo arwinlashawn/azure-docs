@@ -2,7 +2,6 @@
 title: Apache Kafka trigger for Azure Functions
 description: Use Azure Functions to run your code based on events from an Apache Kafka stream.
 ms.topic: reference
-ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.date: 05/14/2022
 zone_pivot_groups: programming-languages-set-functions-lang-workers
 ---
@@ -25,13 +24,13 @@ An [in-process class library](functions-dotnet-class-library.md) is a compiled C
  
 # [Isolated process](#tab/isolated-process)
 
-An [isolated worker process class library](dotnet-isolated-process-guide.md) compiled C# function runs in a process isolated from the runtime.  
+An [isolated process class library](dotnet-isolated-process-guide.md) compiled C# function runs in a process isolated from the runtime. Isolated process is required to support C# functions running on .NET 5.0.  
 
 ---
 
 The attributes you use depend on the specific event provider.
 
-# [Confluent (in-process)](#tab/confluent/in-process)
+# [Confluent](#tab/confluent/in-process)
 
 The following example shows a C# function that reads and logs the Kafka message as a Kafka event:
 
@@ -63,7 +62,7 @@ In the following function, an instance of `UserRecord` is available in the `Kafk
 
 For a complete set of working .NET examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/dotnet/). 
 
-# [Event Hubs (in-process)](#tab/event-hubs/in-process)
+# [Event Hubs](#tab/event-hubs/in-process)
 
 The following example shows a C# function that reads and logs the Kafka message as a Kafka event:
 
@@ -95,7 +94,7 @@ In the following function, an instance of `UserRecord` is available in the `Kafk
 
 For a complete set of working .NET examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/dotnet/). 
 
-# [Confluent (isolated process)](#tab/confluent/isolated-process)
+# [Confluent](#tab/confluent/isolated-process)
 
 The following example shows a C# function that reads and logs the Kafka message as a Kafka event:
 
@@ -111,7 +110,7 @@ The following function logs the message and headers for the Kafka Event:
 
 For a complete set of working .NET examples, see the [Kafka extension repository](https://github.com/Azure/azure-functions-kafka-extension/blob/dev/samples/dotnet-isolated/). 
 
-# [Event Hubs (isolated process)](#tab/event-hubs/isolated-process)
+# [Event Hubs](#tab/event-hubs/isolated-process)
 
 The following example shows a C# function that reads and logs the Kafka message as a Kafka event:
 
@@ -360,7 +359,7 @@ For a complete set of working Java examples for Event Hubs, see the [Kafka exten
 ::: zone pivot="programming-language-csharp"
 ## Attributes
 
-Both [in-process](functions-dotnet-class-library.md) and [isolated worker process](dotnet-isolated-process-guide.md) C# libraries use the `KafkaTriggerAttribute` to define the function trigger. 
+Both [in-process](functions-dotnet-class-library.md) and [isolated process](dotnet-isolated-process-guide.md) C# libraries use the `KafkaTriggerAttribute` to define the function trigger. 
 
 The following table explains the properties you can set using this trigger attribute:
 

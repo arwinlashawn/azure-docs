@@ -68,4 +68,6 @@ To find or filter results based on specific properties or values, you can create
 
 ## Next steps
 
-* [Tracking schemas for monitoring B2B messages](tracking-schemas-as2-x12-custom.md)
+* [AS2 tracking schemas](../logic-apps/logic-apps-track-integration-account-as2-tracking-schemas.md)
+* [X12 tracking schemas](../logic-apps/logic-apps-track-integration-account-x12-tracking-schema.md)
+* [Custom tracking schemas](../logic-apps/logic-apps-track-integration-account-custom-tracking-schema.md)

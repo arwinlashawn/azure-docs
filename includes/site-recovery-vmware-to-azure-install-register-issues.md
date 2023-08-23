@@ -1,9 +1,9 @@
 ---
-author: ankitaduttaMSFT
+author: rayne-wiselman
 ms.service: site-recovery
 ms.topic: include
 ms.date: 10/26/2018
-ms.author: ankitadutta
+ms.author: raynew
 ---
 
 ### Installation failures

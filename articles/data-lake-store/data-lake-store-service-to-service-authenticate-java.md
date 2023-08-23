@@ -6,8 +6,9 @@ author: normesta
 ms.service: data-lake-store
 ms.topic: how-to
 ms.date: 05/29/2018
-ms.custom: devx-track-java, devx-track-extended-java
+ms.custom: devx-track-java
 ms.author: normesta
+
 ---
 # Service-to-service authentication with Azure Data Lake Storage Gen2 using Java
 

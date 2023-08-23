@@ -5,10 +5,11 @@ ms.topic: article
 ms.service: virtual-machines
 ms.subservice: extensions
 ms.author: gabsta
-author: GabstaMSFT
+author: MsGabsta
 ms.collection: linux
 ms.date: 05/24/2022
-ms.custom: GGAL-freshness822, devx-track-azurepowershell, devx-track-azurecli, devx-track-linux
+ms.custom: GGAL-freshness822
+
 ---
 
 # Virtual machine extensions and features for Linux
@@ -97,7 +98,7 @@ az vm extension set \
 
 When the extension runs correctly, the output is similar to the following example:
 
-```output
+```bash
 info:    Executing command vm extension set
 + Looking up the VM "myVM"
 + Installing extension "CustomScript", VM: "mvVM"
@@ -281,8 +282,8 @@ waagent --version
 
 The output is similar to the following example:
 
-```output
-WALinuxAgent-2.2.45 running on <Linux Distro>
+```bash
+WALinuxAgent-2.2.45 running on ubuntu 18.04
 Python: 3.6.9
 Goal state agent: 2.7.1.0
 ```

@@ -2,8 +2,9 @@
 title: Enable dead lettering for Azure Service Bus queues and subscriptions
 description: This article explains how to enable dead lettering for queues and subscriptions by using Azure portal, PowerShell, CLI, and programming languages (C#, Java, Python, and JavaScript)
 ms.topic: how-to
-ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template, devx-track-python
-ms.date: 11/09/2022 
+ms.date: 04/20/2021 
+ms.custom: devx-track-azurepowershell, devx-track-azurecli 
+ms.devlang: azurecli
 ---
 
 # Enable dead lettering on message expiration for Azure Service Bus queues and subscriptions
@@ -64,16 +65,13 @@ az servicebus topic subscription create \
 To **enable the dead lettering on message expiration setting for a subscription to a topic**, use the [`az servicebus topic subscription update`](/cli/azure/servicebus/topic/subscription#az-servicebus-topic-subscription-update) command with `--enable-dead-lettering-on-message-expiration` set `true`.
 
 ```azurecli-interactive
-az servicebus topic subscription update \
+az servicebus topic subscription create \
     --resource-group myresourcegroup \
     --namespace-name mynamespace \
     --topic-name mytopic \
     --name mysubscription \
     --enable-dead-lettering-on-message-expiration true
 ```
-
-> [!NOTE]
-> If you specify a queue or topic by using the `--forward-dead-lettered-messages-to` parameter, Event Grid automatically forwards dead-lettered messages to that queue or topic. Here's an example: `az servicebus queue create --resource-group mysbusrg --namespace-name mysbusns --name myqueue --enable-dead-lettering-on-message-expiration true --forward-dead-lettered-messages-to myqueue2`.
 
 ## Using Azure PowerShell
 To **create a queue with dead lettering on message expiration enabled**, use the [`New-AzServiceBusQueue`](/powershell/module/az.servicebus/new-azservicebusqueue) command with `-DeadLetteringOnMessageExpiration` set to `$True`. 
@@ -126,9 +124,6 @@ Set-AzServiceBusSubscription -ResourceGroup myresourcegroup `
     -SubscriptionName mysub `
     -SubscriptionObj $subscription 
 ```
-
-> [!NOTE]
-> If you specify a queue or topic by using the `-ForwardDeadLetteredMessagesTo` parameter, Event Grid automatically forwards dead-lettered messages to that queue or topic. 
 
 ## Using Azure Resource Manager template
 To **create a queue with dead lettering on message expiration enabled**, set `deadLetteringOnMessageExpiration` in the queue properties section to `true`. For more information, see [Microsoft.ServiceBus namespaces/queues template reference](/azure/templates/microsoft.servicebus/namespaces/queues?tabs=json). 
@@ -261,8 +256,6 @@ To **create a subscription for a topic with dead lettering on message expiration
 }
 ```
 
-> [!NOTE]
-> If you specify a queue or topic for the `forwardDeadLetteredMessagesTo` property, Event Grid automatically forwards dead-lettered messages to that queue or topic. 
 
 ## Next steps
 Try the samples in the language of your choice to explore Azure Service Bus features. 

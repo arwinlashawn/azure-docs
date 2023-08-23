@@ -1,16 +1,21 @@
 ---
-title: Cannot delete a virtual network in Azure
+title: Cannot delete a virtual network in Azure | Microsoft Docs
 description: Learn how to troubleshoot the issue in which you cannot delete a virtual network in Azure.
 services: virtual-network
-author: asudbring
+documentationcenter: na
+author: chadmath
 manager: dcscontentpm
+editor: ''
 tags: azure-resource-manager
+
 ms.service: virtual-network
 ms.topic: troubleshooting
+ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/31/2018
-ms.author: allensu
+ms.author: genli
 ms.custom: fasttrack-edit
+
 ---
 
 # Troubleshooting: Failed to delete a virtual network in Azure

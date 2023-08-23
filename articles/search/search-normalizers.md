@@ -2,9 +2,10 @@
 title: Text normalization for filters, facets, sort
 titleSuffix: Azure Cognitive Search
 description: Specify normalizers to text fields in an index to customize the strict keyword matching behavior in filtering, faceting and sorting.
-author: HeidiSteen
+
+author: nitinme
 manager: jlembicz
-ms.author: heidist
+ms.author: nitinme
 ms.service: cognitive-search
 ms.topic: how-to
 ms.date: 07/14/2022
@@ -143,7 +144,7 @@ Custom normalizers are [defined within the index schema](/rest/api/searchservice
          "char_filter_name_2"
       ],
       "tokenFilters":[
-         "token_filter_name_1"
+         "token_filter_name_1
       ]
    }
 ],
@@ -151,8 +152,8 @@ Custom normalizers are [defined within the index schema](/rest/api/searchservice
    {
       "name":"char_filter_name_1",
       "@odata.type":"#char_filter_type",
-      "option1": "value1",
-      "option2": "value2",
+      "option1":value1,
+      "option2":value2,
       ...
    }
 ],
@@ -160,8 +161,8 @@ Custom normalizers are [defined within the index schema](/rest/api/searchservice
    {
       "name":"token_filter_name_1",
       "@odata.type":"#token_filter_type",
-      "option1": "value1",
-      "option2": "value2",
+      "option1":value1,
+      "option2":value2,
       ...
    }
 ]
@@ -204,7 +205,7 @@ The example below illustrates a custom normalizer definition with corresponding 
            "charFilters":[
               "map_dash",
               "remove_whitespace"
-           ],
+           ],,
            "tokenFilters":[              
               "my_asciifolding",
               "elision",

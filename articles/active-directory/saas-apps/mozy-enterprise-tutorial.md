@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Azure Active Directory integration with Mozy Enterprise'
+title: 'Tutorial: Azure Active Directory integration with Mozy Enterprise | Microsoft Docs'
 description: Learn how to configure single sign-on between Azure Active Directory and Mozy Enterprise.
 services: active-directory
 author: jeevansd
@@ -9,7 +9,7 @@ ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 03/01/2019
 ms.author: jeedes
 ---
 # Tutorial: Azure Active Directory integration with Mozy Enterprise

@@ -1,5 +1,5 @@
 ---
-title: Manage the Azure integration with Logz.io
+title: Manage the Azure integration with Logz.io - Azure partner solutions
 description: Learn how to manage the Azure integration with Logz.io.
 ms.topic: conceptual
 ms.date: 10/25/2021

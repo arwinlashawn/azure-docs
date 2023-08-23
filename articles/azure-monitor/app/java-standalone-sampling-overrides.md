@@ -2,9 +2,9 @@
 title: Sampling overrides (preview) - Azure Monitor Application Insights for Java
 description: Learn to configure sampling overrides in Azure Monitor Application Insights for Java.
 ms.topic: conceptual
-ms.date: 08/11/2023
+ms.date: 03/22/2021
 ms.devlang: java
-ms.custom: devx-track-java, devx-track-extended-java
+ms.custom: devx-track-java
 ms.reviewer: mmcc
 ---
 
@@ -17,7 +17,7 @@ Sampling overrides allow you to override the [default sampling percentage](./jav
 for example:
  * Set the sampling percentage to 0 (or some small value) for noisy health checks.
  * Set the sampling percentage to 0 (or some small value) for noisy dependency calls.
- * Set the sampling percentage to 100 for an important request type (for example, `/login`)
+ * Set the sampling percentage to 100 for an important request type (e.g. `/login`)
    even though you have the default sampling configured to something lower.
 
 ## Terminology
@@ -48,14 +48,12 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
     "sampling": {
       "overrides": [
         {
-          "telemetryType": "request",
           "attributes": [
             ...
           ],
           "percentage": 0
         },
         {
-          "telemetryType": "request",
           "attributes": [
             ...
           ],
@@ -67,11 +65,41 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
 }
 ```
 
+> [!NOTE]
+> Starting from 3.4.0-BETA, `telemetryKind` of `request`, `dependency`, `trace` (log), or `exception` is supported
+> (and should be set) on all sampling overrides, e.g.
+> ```json
+> {
+>   "connectionString": "...",
+>   "sampling": {
+>     "percentage": 10
+>   },
+>   "preview": {
+>     "sampling": {
+>       "overrides": [
+>         {
+>           "telemetryKind": "request",
+>           "attributes": [
+>             ...
+>           ],
+>           "percentage": 0
+>         },
+>         {
+>           "telemetryKind": "request",
+>           "attributes": [
+>             ...
+>           ],
+>           "percentage": 100
+>         }
+>       ]
+>     }
+>   }
+> }
+> ```
+
 ## How it works
 
-`telemetryType` (`telemetryKind` in Application Insights 3.4.0) must be one of `request`, `dependency`, `trace` (log), or `exception`.
-
-When a span is started, the type of span and the attributes present on it at that time are used to check if any of the sampling
+When a span is started, the attributes present on the span at that time are used to check if any of the sampling
 overrides match.
 
 Matches can be either `strict` or `regexp`. Regular expression matches are performed against the entire attribute value,
@@ -88,13 +116,38 @@ If no sampling overrides match:
 
 * If this is the first span in the trace, then the
   [top-level sampling configuration](./java-standalone-config.md#sampling) is used.
-* If this isn't the first span in the trace, then the parent sampling decision is used.
+* If this is not the first span in the trace, then the parent sampling decision is used.
+
+> [!NOTE]
+> Starting from 3.4.0-BETA, sampling overrides do not apply to "standalone" telemetry by default. Standalone telemetry
+> is any telemetry that is not associated with a request, e.g. startup logs.
+> You can make a sampling override apply to standalone telemetry by including the attribute
+> `includingStandaloneTelemetry` in the sampling override, e.g.
+> ```json
+> {
+>   "connectionString": "...",
+>   "preview": {
+>     "sampling": {
+>       "overrides": [
+>         {
+>           "telemetryKind": "dependency",
+>           "includingStandaloneTelemetry": true,
+>           "attributes": [
+>             ...
+>           ],
+>           "percentage": 0
+>         }
+>       ]
+>     }
+>   }
+> }
+> ```
 
 ## Example: Suppress collecting telemetry for health checks
 
-This example suppresses collecting telemetry for all requests to `/health-checks`.
+This will suppress collecting telemetry for all requests to `/health-checks`.
 
-This example also suppresses collecting any downstream spans (dependencies) that would normally be collected under
+This will also suppress collecting any downstream spans (dependencies) that would normally be collected under
 `/health-checks`.
 
 ```json
@@ -104,7 +157,6 @@ This example also suppresses collecting any downstream spans (dependencies) that
     "sampling": {
       "overrides": [
         {
-          "telemetryType": "request",
           "attributes": [
             {
               "key": "http.url",
@@ -122,7 +174,7 @@ This example also suppresses collecting any downstream spans (dependencies) that
 
 ## Example: Suppress collecting telemetry for a noisy dependency call
 
-This example suppresses collecting telemetry for all `GET my-noisy-key` redis calls.
+This will suppress collecting telemetry for all `GET my-noisy-key` redis calls.
 
 ```json
 {
@@ -131,7 +183,6 @@ This example suppresses collecting telemetry for all `GET my-noisy-key` redis ca
     "sampling": {
       "overrides": [
         {
-          "telemetryType": "dependency",
           "attributes": [
             {
               "key": "db.system",
@@ -152,13 +203,16 @@ This example suppresses collecting telemetry for all `GET my-noisy-key` redis ca
 }
 ```
 
+> [!NOTE]
+> Starting from 3.4.0-BETA, `telemetryKind` is supported (and recommended) on all sampling overrides, e.g.
+
 ## Example: Collect 100% of telemetry for an important request type
 
-This example collects 100% of telemetry for `/login`.
+This will collect 100% of telemetry for `/login`.
 
 Since downstream spans (dependencies) respect the parent's sampling decision
 (absent any sampling override for that downstream span),
-those are also collected for all '/login' requests.
+those will also be collected for all '/login' requests.
 
 ```json
 {
@@ -170,7 +224,6 @@ those are also collected for all '/login' requests.
     "sampling": {
       "overrides": [
         {
-          "telemetryType": "request",
           "attributes": [
             {
               "key": "http.url",
@@ -186,28 +239,28 @@ those are also collected for all '/login' requests.
 }
 ```
 
-## Span attributes available for sampling
+## Common span attributes
 
-Span attribute names are based on the OpenTelemetry semantic conventions:
+This section lists some common span attributes that sampling overrides can use.
 
-* [HTTP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/http.md)
-* [Messaging](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/messaging.md)
-* [Database](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/database.md)
-* [RPC](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/rpc.md)
+### HTTP spans
 
-To see the exact set of attributes captured by Application Insights Java for your application, set the
-[self-diagnostics level to debug](./java-standalone-config.md#self-diagnostics), and look for debug messages starting
-with the text "exporting span".
+| Attribute  | Type | Description | 
+|---|---|---|
+| `http.method` | string | HTTP request method.|
+| `http.url` | string | Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. The fragment isn't usually transmitted over HTTP. But if the fragment is known, it should be included.|
+| `http.flavor` | string | Type of HTTP protocol. |
+| `http.user_agent` | string | Value of the [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3) header sent by the client. |
 
->[!Note]
-> Only attributes set at the start of the span are available for sampling,
-so attributes such as `http.status_code` which are captured later on can't be used for sampling.
+Please note that `http.status_code` cannot be used for sampling decisions because it is not available
+at the start of the span.
 
-## Troubleshooting
+### JDBC spans
 
-If you use `regexp` and the sampling override doesn't work, try with the `.*` regex. If the sampling now works, it means
-you have an issue with the first regex and read [this regex documentation](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html).
-
-If it doesn't work with `.*`, you may have a syntax issue in your `application-insights.json file`. Look at the Application Insights logs and see if you notice
-warning messages.
-
+| Attribute  | Type | Description  |
+|---|---|---|
+| `db.system` | string | Identifier for the database management system (DBMS) product being used. See [list of identifiers](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/semantic_conventions/database.md#connection-level-attributes). |
+| `db.connection_string` | string | Connection string used to connect to the database. It's recommended to remove embedded credentials.|
+| `db.user` | string | Username for accessing the database. |
+| `db.name` | string | String used to report the name of the database being accessed. For commands that switch the database, this string should be set to the target database, even if the command fails.|
+| `db.statement` | string | Database statement that's being run.|

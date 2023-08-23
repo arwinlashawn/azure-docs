@@ -1,12 +1,11 @@
 ---
-title: Automatic device management at scale (Azure portal)
-titleSuffix: Azure IoT Hub
-description: Use Azure IoT Hub automatic configurations to manage multiple IoT devices and modules in the Azure portal
+title: Automatic device management at scale with Azure IoT Hub | Microsoft Docs
+description: Use Azure IoT Hub automatic configurations to manage multiple IoT devices and modules
 author: kgremban
-
 ms.service: iot-hub
-ms.topic: how-to
-ms.date: 09/22/2022
+services: iot-hub
+ms.topic: conceptual
+ms.date: 10/26/2021
 ms.author: kgremban
 ms.custom: ['Role: Cloud Development', 'Role: IoT Device']
 ---
@@ -19,7 +18,7 @@ Automatic device management in Azure IoT Hub automates many of the repetitive an
 
 [!INCLUDE [iot-hub-basic](../../includes/iot-hub-basic-whole.md)]
 
-Automatic device management works by updating a set of device twins or module twins with desired properties and reporting a summary that's based on twin reported properties.  It introduces a new class and JSON document called a _Configuration_ that has three parts:
+Automatic device management works by updating a set of device twins or module twins with desired properties and reporting a summary that's based on twin reported properties.  It introduces a new class and JSON document called a *Configuration* that has three parts:
 
 * The **target condition** defines the scope of device twins or module twins to be updated. The target condition is specified as a query on twin tags and/or reported properties.
 
@@ -54,15 +53,15 @@ You can create a maximum of 100 automatic configurations on standard tier IoT hu
 
 1. In the [Azure portal](https://portal.azure.com), go to your IoT hub.
 
-2. Select **Configurations + Deployments** in the left navigation pane.
+2. Select **Configurations** in the left navigation pane.
 
-3. Select **Add** and choose **Device twin configuration** or **Module twin configuration** from the drop-down list.
+3. Select **Add device configuration** or **Add module configuration**.
 
    :::image type="content" source="./media/iot-hub-automatic-device-management/create-automatic-configuration.png" alt-text="Screenshot showing how to add a configuration." border="true":::
 
-There are five steps to create a configuration. The following sections walk through each one.
+There are five steps to create a configuration. The following sections walk through each one. 
 
-### Name and label
+### Name and Label
 
 1. Give your configuration a unique name that is up to 128 characters long. Lowercase letters and the following special characters are allowed: `-+%_*!'`. Spaces are not allowed.
 
@@ -70,7 +69,7 @@ There are five steps to create a configuration. The following sections walk thro
 
 3. Select **Next** to move to the next step. 
 
-### Twin settings
+### Specify Settings
 
 This section defines the content to be set in targeted device twin or module twin desired properties. There are two inputs for each set of settings. The first is the twin path, which is the path to the JSON section within the twin desired properties that will be set. The second is the JSON content to be inserted in that section. 
 
@@ -83,7 +82,8 @@ For example, you could set the twin path to `properties.desired.chiller-water` a
 }
 ```
 
-:::image type="content" source="./media/iot-hub-automatic-device-management/module-config-twin-settings.png" alt-text="Screenshot of setting the device or module twin property and json content.":::
+![Set the twin path and content](./media/iot-hub-automatic-device-management/module-config-twin-settings.png)
+
 
 You can also set individual settings by specifying the entire twin path and providing the value with no brackets. For example, with the twin path `properties.desired.chiller-water.temperature`, set the content to `66`. Then create a new twin setting for the pressure property. 
 
@@ -93,7 +93,39 @@ If you wish to remove an existing property, specify the property value to `null`
 
 You can add additional settings by selecting **Add Device Twin Setting** or **Add Module Twin Setting**.
 
-### Target devices or modules
+### Specify Metrics (optional)
+
+Metrics provide summary counts of the various states that a device or module may report back after applying configuration content. For example, you may create a metric for pending settings changes, a metric for errors, and a metric for successful settings changes.
+
+Each configuration can have up to five custom metrics. 
+
+1. Enter a name for **Metric Name**.
+
+2. Enter a query for **Metric Criteria**.  The query is based on device twin reported properties.  The metric represents the number of rows returned by the query.
+
+For example:
+
+```sql
+SELECT deviceId FROM devices 
+  WHERE properties.reported.chillerWaterSettings.status='pending'
+```
+
+You can include a clause that the configuration was applied, for example: 
+
+```sql
+/* Include the double brackets. */
+SELECT deviceId FROM devices 
+  WHERE configurations.[[yourconfigname]].status='Applied'
+```
+
+If you're building a metric to report on configured modules, select `moduleId` from `devices.modules`. For example:
+
+```sql
+SELECT deviceId, moduleId FROM devices.modules
+  WHERE properties.reported.lastDesiredStatus.code = 200
+```
+
+### Target Devices
 
 Use the tags property from your twins to target the specific devices or modules that should receive this configuration. You can also target twin reported properties.
 
@@ -109,37 +141,7 @@ Since multiple configurations may target the same device or module, each configu
    
    For automatic module configuration, use a query to specify tags or reported properties from the modules registered to the IoT hub. For example, `from devices.modules where tags.environment='test'` or `from devices.modules where properties.reported.chillerProperties.model='4000x'`. The wildcard cannot be used to target all modules. 
 
-### Metrics
-
-Metrics provide summary counts of the various states that a device or module may report back after applying configuration content. For example, you may create a metric for pending settings changes, a metric for errors, and a metric for successful settings changes.
-
-Each configuration can have up to five custom metrics. 
-
-1. Enter a name for **Metric Name**.
-
-2. Enter a query for **Metric Criteria**.  The query is based on device twin reported properties.  The metric represents the number of rows returned by the query.
-
-   For example:
-
-   ```sql
-   SELECT deviceId FROM devices 
-     WHERE properties.reported.chillerWaterSettings.status='pending'
-   ```
-
-   You can include a clause that the configuration was applied, for example:
-
-   ```sql
-   /* Include the double brackets. */
-   SELECT deviceId FROM devices 
-     WHERE configurations.[[yourconfigname]].status='Applied'
-   ```
-
-   If you're building a metric to report on configured modules, select `moduleId` from `devices.modules`. For example:
-
-   ```sql
-   SELECT deviceId, moduleId FROM devices.modules
-     WHERE properties.reported.lastDesiredStatus.code = 200
-   ```
+3. Select **Next** to move on to the final step.
 
 ### Review Configuration
 
@@ -151,7 +153,7 @@ To view the details of a configuration and monitor the devices running it, use t
 
 1. In the [Azure portal](https://portal.azure.com), go to your IoT hub. 
 
-2. Select **Configurations ** in Device management.
+2. Select **Configurations** in Device management.
 
 3. Inspect the configuration list. For each configuration, you can view the following details:
 
@@ -171,13 +173,13 @@ To view the details of a configuration and monitor the devices running it, use t
 
 5. Inspect the configuration details. You can use tabs to view specific details about the devices that received the configuration.
 
-   * **Target Devices** or **Target Modules** - the devices or modules that match the target condition.
+   * **Target Condition** - the devices or modules that match the target condition. 
 
    * **Metrics** - a list of system metrics and custom metrics.  You can view a list of devices or modules that are counted for each metric by selecting the metric in the drop-down and then selecting **View Devices** or **View Modules**.
 
-   * **Labels** - key-value pairs used to describe a configuration.  Labels have no impact on functionality.
+   * **Device Twin Settings** or **Module Twin Settings** - the twin settings that are set by the configuration. 
 
-   * **Device Twin Settings** or **Module Twin Settings** - the twin settings that are set by the configuration, if any.
+   * **Configuration Labels** - key-value pairs used to describe a configuration.  Labels have no impact on functionality. 
 
 ## Modify a configuration
 
@@ -195,16 +197,16 @@ To modify a configuration, use the following steps:
 
 1. In the [Azure portal](https://portal.azure.com), go to your IoT hub. 
 
-2. Select **Configurations + Deployments** in Device management. 
+2. Select **Configurations** in Device management. 
 
 3. Select the configuration that you want to modify. 
 
-4. You can make updates to the following fields:
+4. Make updates to the following fields: 
 
-   * Priority
+   * Priority 
    * Metrics
-   * Target condition
-   * Labels
+   * Target condition 
+   * Labels 
 
 4. Select **Save**.
 
@@ -216,7 +218,7 @@ When you delete a configuration, any device twins take on their next highest pri
 
 1. In the [Azure portal](https://portal.azure.com), go to your IoT hub. 
 
-2. Select **Configurations + Deployments** in Device management.
+2. Select **Configurations** in Device management.
 
 3. Use the checkbox to select the configuration that you want to delete. 
 
@@ -226,6 +228,16 @@ When you delete a configuration, any device twins take on their next highest pri
 
 ## Next steps
 
-In this article, you learned how to configure and monitor IoT devices at scale.
+In this article, you learned how to configure and monitor IoT devices at scale. Follow these links to learn more about managing Azure IoT Hub:
 
-To learn how to manage IoT Hub device identities in bulk, see [Import and export IoT Hub device identities in bulk](iot-hub-bulk-identity-mgmt.md)
+* [Manage your IoT Hub device identities in bulk](iot-hub-bulk-identity-mgmt.md)
+* [Monitor your IoT hub](monitor-iot-hub.md)
+
+To further explore the capabilities of IoT Hub, see:
+
+* [IoT Hub developer guide](iot-hub-devguide.md)
+* [Deploying AI to edge devices with Azure IoT Edge](../iot-edge/quickstart-linux.md)
+
+To explore using the IoT Hub Device Provisioning Service to enable zero-touch, just-in-time provisioning, see: 
+
+* [Azure IoT Hub Device Provisioning Service](../iot-dps/index.yml)

@@ -4,16 +4,14 @@ description: 'Describes how VNet service endpoints work for your Azure Database 
 ms.service: mysql
 ms.subservice: single-server
 ms.topic: conceptual
-author: SudheeshGH
-ms.author: sunaray
+author: savjani
+ms.author: pariks
 ms.date: 06/20/2022
 ---
 
 # Use Virtual Network service endpoints and rules for Azure Database for MySQL
 
 [!INCLUDE[applies-to-mysql-single-server](../includes/applies-to-mysql-single-server.md)]
-
-[!INCLUDE[azure-database-for-mysql-single-server-deprecation](../includes/azure-database-for-mysql-single-server-deprecation.md)]
 
 *Virtual network rules* are one firewall security feature that controls whether your Azure Database for MySQL server accepts communications that are sent from particular subnets in virtual networks. This article explains why the virtual network rule feature is sometimes your best option for securely allowing communication to your Azure Database for MySQL server.
 

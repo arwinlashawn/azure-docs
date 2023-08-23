@@ -11,7 +11,9 @@ metadata:
   ms.subservice: templates
   ms.topic: landing-page
   ms.collection: na
-  ms.date: 06/22/2023
+  author: mumian
+  ms.author: jgao
+  ms.date: 03/03/2021
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -59,7 +61,7 @@ landingContent:
       - linkListType: learn
         links:
           - text: Deploy with ARM templates
-            url: /training/paths/deploy-manage-resource-manager-templates/
+            url: /learn/paths/deploy-manage-resource-manager-templates/
   # Card
   - title: Develop templates
     linkLists:

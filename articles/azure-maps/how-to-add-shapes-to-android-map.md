@@ -1,12 +1,11 @@
 ---
 title: Add a polygon layer to Android maps | Microsoft Azure Maps
 description: Learn how to add polygons or circles to maps. See how to use the Azure Maps Android SDK to customize geometric shapes and make them easy to update and maintain.
-author: dubiety
-ms.author: yuchungchen 
+author: stevemunk
+ms.author: v-munksteve
 ms.date: 2/26/2021
 ms.topic: conceptual
 ms.service: azure-maps
-ms.custom: devx-track-extended-java
 services: azure-maps
 zone_pivot_groups: azure-maps-android
 ---
@@ -17,7 +16,7 @@ This article shows you how to render the areas of `Polygon` and `MultiPolygon` f
 
 ## Prerequisites
 
-Be sure to complete the steps in the [Quickstart: Create an Android app] document. Code blocks in this article can be inserted into the maps `onReady` event handler.
+Be sure to complete the steps in the [Quickstart: Create an Android app](quick-android-map.md) document. Code blocks in this article can be inserted into the maps `onReady` event handler.
 
 ## Use a polygon layer
 
@@ -254,7 +253,7 @@ For this sample, the following image was loaded into the drawable folder of the 
 |:-----------------------------------------------------------------------:|
 | fill-checker-red.png                                                    |
 
-The following image is a screenshot of the above code rendering a polygon with a fill pattern on the map.
+The following is a screenshot of the above code rendering a polygon with a fill pattern on the map.
 
 ![Polygon with a fill pattern rendered on map](media/how-to-add-shapes-to-android-map/android-polygon-pattern.jpg)
 
@@ -263,19 +262,13 @@ The following image is a screenshot of the above code rendering a polygon with a
 See the following articles for more code samples to add to your maps:
 
 > [!div class="nextstepaction"]
-> [Create a data source]
+> [Create a data source](create-data-source-android-sdk.md)
 
 > [!div class="nextstepaction"]
-> [Use data-driven style expressions]
+> [Use data-driven style expressions](data-driven-style-expressions-android-sdk.md)
 
 > [!div class="nextstepaction"]
-> [Add a line layer]
+> [Add a line layer](android-map-add-line-layer.md)
 
 > [!div class="nextstepaction"]
-> [Add a polygon extrusion layer]
-
-[Add a line layer]: android-map-add-line-layer.md
-[Add a polygon extrusion layer]: map-extruded-polygon-android.md
-[Create a data source]: create-data-source-android-sdk.md
-[Quickstart: Create an Android app]: quick-android-map.md
-[Use data-driven style expressions]: data-driven-style-expressions-android-sdk.md
+> [Add a polygon extrusion layer](map-extruded-polygon-android.md)

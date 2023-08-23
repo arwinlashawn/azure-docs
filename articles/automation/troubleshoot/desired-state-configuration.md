@@ -3,9 +3,9 @@ title: Troubleshoot Azure Automation State Configuration issues
 description: This article tells how to troubleshoot and resolve Azure Automation State Configuration issues.
 services: automation
 ms.subservice:
-ms.date: 10/17/2022
+ms.date: 04/16/2019
 ms.topic: troubleshooting
-ms.custom:
+ms.custom: devx-track-azurepowershell
 ---
 
 # Troubleshoot Azure Automation State Configuration issues
@@ -101,15 +101,9 @@ VM has reported a failure when processing extension 'Microsoft.Powershell.DSC / 
 
 ### Cause
 
-The following are the possible causes:
+This issue is caused by a bad or expired certificate. See [Re-register a node](../automation-dsc-onboarding.md#re-register-a-node).
 
-- A bad or expired certificate. See [Re-register a node](../automation-dsc-onboarding.md#re-register-a-node).
-
-- A proxy configuration that isn't allowing access to ***.azure-automation.net**. For more information, see [Configuration of private networks](../automation-dsc-overview.md#network-planning). 
-
-- When you disable local authentication in Azure Automation. See [Disable local authentication](../disable-local-authentication.md). To fix it, see [re-enable local authentication](../disable-local-authentication.md#re-enable-local-authentication).
-
-- Client computer time is many minutes inaccurate from actual time. (To check time use: *w32tm /stripchart /computer:time.windows.com /samples:6*).
+This issue might also be caused by a proxy configuration not allowing access to ***.azure-automation.net**. For more information, see [Configuration of private networks](../automation-dsc-overview.md#network-planning).
 
 ### Resolution
 

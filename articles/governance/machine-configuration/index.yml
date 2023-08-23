@@ -9,8 +9,8 @@ metadata:
   ms.service: machine-configuration
   ms.topic: landing-page
   ms.collection: collection
-  author: michaeltlombardi
-  ms.author: mlombardi
+  author: timwarner-msft
+  ms.author: timwarner
   ms.date: 08/01/2022
 
 landingContent:
@@ -26,15 +26,15 @@ landingContent:
       - linkListType: quickstart
         links:
           - text: Create a machine configuration assignment using templates
-            url: ./how-to-create-assignment.md
+            url: ./machine-configuration-create-assignment.md
           - text: How to create custom machine configuration policy definitions
-            url: ./how-to-create-policy-definition.md
+            url: ./machine-configuration-create-definition.md
 
   - title: Migration from PowerShell DSC
     linkLists:
       - linkListType: concept
         links:
           - text: Changes in behavior in PowerShell DSC for machine configuration
-            url: ./dsc-in-machine-configuration.md
+            url: ./machine-configuration-custom.md
           - text: Migration planning
-            url: ./migrate-from-azure-automation.md
+            url: ./machine-configuration-azure-automation-migration.md

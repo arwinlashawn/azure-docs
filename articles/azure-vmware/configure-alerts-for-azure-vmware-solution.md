@@ -2,9 +2,8 @@
 title: Configure alerts and work with metrics in Azure VMware Solution 
 description: Learn how to use alerts to receive notifications. Also learn how to work with metrics to gain deeper insights into your Azure VMware Solution private cloud.
 ms.topic: how-to
-ms.custom: engagement-fy23
 ms.service: azure-vmware
-ms.date: 10/26/2022
+ms.date: 07/23/2021
 ---
 
 # Configure Azure Alerts in Azure VMware Solution 

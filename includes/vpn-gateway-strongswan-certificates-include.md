@@ -27,7 +27,7 @@ Generate the user certificate.
 
   ```
   export PASSWORD="password"
-  export USERNAME=$(hostnamectl --static)
+  export USERNAME="client"
 
   ipsec pki --gen --outform pem > "${USERNAME}Key.pem"
   ipsec pki --pub --in "${USERNAME}Key.pem" | ipsec pki --issue --cacert caCert.pem --cakey caKey.pem --dn "CN=${USERNAME}" --san "${USERNAME}" --flag clientAuth --outform pem > "${USERNAME}Cert.pem"

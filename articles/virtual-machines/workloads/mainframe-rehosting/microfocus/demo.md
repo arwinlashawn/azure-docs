@@ -1,15 +1,12 @@
 ---
 title: Set up Micro Focus CICS BankDemo for Micro Focus Enterprise Developer 4.0 on Azure Virtual Machines
 description: Run the Micro Focus BankDemo application on Azure Virtual Machines (VMs) to learn to use Micro Focus Enterprise Server and Enterprise Developer.
-author: swread
+author: sread
 ms.author: sread
-editor: swread
-manager: mamccrea 
 ms.date: 03/30/2020
 ms.topic: article
 ms.service: virtual-machines
 ms.subservice: mainframe-rehosting
-ms.custom: devx-track-dotnet
 ---
 
 # Set up Micro Focus CICS BankDemo for Micro Focus Enterprise Developer 4.0 on Azure

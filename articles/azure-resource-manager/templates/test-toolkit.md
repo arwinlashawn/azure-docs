@@ -2,8 +2,7 @@
 title: ARM template test toolkit
 description: Describes how to run the Azure Resource Manager template (ARM template) test toolkit on your template. The toolkit lets you see if you have implemented recommended practices.
 ms.topic: conceptual
-ms.custom: devx-track-arm-template
-ms.date: 03/21/2023
+ms.date: 07/25/2022
 ms.author: tomfitz
 author: tfitzmac
 ---
@@ -26,13 +25,13 @@ The toolkit contains four sets of tests:
 
 ### Training resources
 
-To learn more about the ARM template test toolkit, and for hands-on guidance, see [Validate Azure resources by using the ARM Template Test Toolkit](/training/modules/arm-template-test).
+To learn more about the ARM template test toolkit, and for hands-on guidance, see [Validate Azure resources by using the ARM Template Test Toolkit](/learn/modules/arm-template-test).
 
 ## Install on Windows
 
 1. If you don't already have PowerShell, [install PowerShell on Windows](/powershell/scripting/install/installing-powershell-core-on-windows).
 
-1. [Download the latest .zip file](https://github.com/Azure/arm-ttk/releases) for the test toolkit and extract it.
+1. [Download the latest .zip file](https://aka.ms/arm-ttk-latest) for the test toolkit and extract it.
 
 1. Start PowerShell.
 
@@ -60,7 +59,7 @@ To learn more about the ARM template test toolkit, and for hands-on guidance, se
 
 1. If you don't already have PowerShell, [install PowerShell on Linux](/powershell/scripting/install/installing-powershell-core-on-linux).
 
-1. [Download the latest .zip file](https://github.com/Azure/arm-ttk/releases) for the test toolkit and extract it.
+1. [Download the latest .zip file](https://aka.ms/arm-ttk-latest) for the test toolkit and extract it.
 
 1. Start PowerShell.
 
@@ -98,7 +97,7 @@ To learn more about the ARM template test toolkit, and for hands-on guidance, se
    brew install coreutils
    ```
 
-1. [Download the latest .zip file](https://github.com/Azure/arm-ttk/releases) for the test toolkit and extract it.
+1. [Download the latest .zip file](https://aka.ms/arm-ttk-latest) for the test toolkit and extract it.
 
 1. Start PowerShell.
 
@@ -134,7 +133,7 @@ Tests that fail are displayed in **red** and prefaced with `[-]`.
 
 Tests with a warning are displayed in **yellow** and prefaced with `[?]`.
 
-:::image type="content" source="./media/template-test-toolkit/view-results.png" alt-text="Screenshot of test results in different colors for pass, fail, and warning.":::
+:::image type="content" source="./media/template-test-toolkit/view-results.png" alt-text="view test results.":::
 
 The text results are:
 
@@ -251,7 +250,7 @@ To publish an offering to Azure Marketplace, use the test toolkit to validate th
 After installing the toolkit and importing the module, run the following cmdlet to test your package:
 
 ```powershell
-Test-AzMarketplacePackage -TemplatePath "Path to the unzipped package folder"
+Test-AzMarketplaceTemplate "Path to the unzipped package folder"
 ```
 
 ### Interpret the results
@@ -312,12 +311,11 @@ You can add the test toolkit to your Azure Pipeline. With a pipeline, you can ru
 
 The easiest way to add the test toolkit to your pipeline is with third-party extensions. The following two extensions are available:
 
-- [Run ARM template TTK Tests](https://marketplace.visualstudio.com/items?itemName=Sam-Cogan.ARMTTKExtensionXPlatform)
+- [Run ARM template TTK Tests](https://marketplace.visualstudio.com/items?itemName=Sam-Cogan.ARMTTKExtension)
 - [ARM Template Tester](https://marketplace.visualstudio.com/items?itemName=maikvandergaag.maikvandergaag-arm-ttk)
 
 Or, you can implement your own tasks. The following example shows how to download the test toolkit.
 
-For Release Pipeline:
 ```json
 {
   "environment": {},
@@ -345,24 +343,9 @@ For Release Pipeline:
   }
 }
 ```
-For Pipeline YAML definition:
-```yaml
-- pwsh: |
-   New-Item '$(ttk.folder)' -ItemType Directory
-   Invoke-WebRequest -uri '$(ttk.uri)' -OutFile "$(ttk.folder)/$(ttk.asset.filename)" -Verbose
-   Get-ChildItem '$(ttk.folder)' -Recurse
-   
-   Write-Host "Expanding files..."
-   Expand-Archive -Path '$(ttk.folder)/*.zip' -DestinationPath '$(ttk.folder)' -Verbose
-   
-   Write-Host "Expanded files found:"
-   Get-ChildItem '$(ttk.folder)' -Recurse
-  displayName: 'Download TTK'
-```
 
 The next example shows how to run the tests.
 
-For Release Pipeline:
 ```json
 {
   "environment": {},
@@ -390,24 +373,6 @@ For Release Pipeline:
   }
 }
 ```
-For Pipeline YAML definition:
-```yaml
-- pwsh: |
-   Import-Module $(ttk.folder)/arm-ttk/arm-ttk.psd1 -Verbose
-   $testOutput = @(Test-AzTemplate -TemplatePath "$(sample.folder)")
-   $testOutput
-   
-   if ($testOutput | ? {$_.Errors }) {
-      exit 1 
-   } else {
-       Write-Host "##vso[task.setvariable variable=result.best.practice]$true"
-       exit 0
-   } 
-  errorActionPreference: continue
-  failOnStderr: true
-  displayName: 'Run Best Practices Tests'
-  continueOnError: true
-```
 
 ## Next steps
 
@@ -415,4 +380,4 @@ For Pipeline YAML definition:
 - To test parameter files, see [Test cases for parameter files](parameters.md).
 - For createUiDefinition tests, see [Test cases for createUiDefinition.json](createUiDefinition-test-cases.md).
 - To learn about tests for all files, see [Test cases for all files](all-files-test-cases.md).
-- For a Learn module that covers using the test toolkit, see [Validate Azure resources by using the ARM Template Test Toolkit](/training/modules/arm-template-test/).
+- For a Learn module that covers using the test toolkit, see [Validate Azure resources by using the ARM Template Test Toolkit](/learn/modules/arm-template-test/).

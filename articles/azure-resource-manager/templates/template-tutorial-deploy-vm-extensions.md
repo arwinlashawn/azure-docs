@@ -1,9 +1,11 @@
 ---
 title: Deploy VM extensions with template
 description: Learn how to deploy virtual machine extensions with Azure Resource Manager templates (ARM templates).
-ms.date: 05/22/2023
+author: mumian
+ms.date: 03/26/2021
 ms.topic: tutorial
-ms.custom: devx-track-arm-template
+ms.author: jgao
+ms.custom: devx-track-azurepowershell
 ---
 
 # Tutorial: Deploy virtual machine extensions with ARM templates
@@ -78,10 +80,10 @@ Add a virtual machine extension resource to the existing template with the follo
 {
   "type": "Microsoft.Compute/virtualMachines/extensions",
   "apiVersion": "2021-04-01",
-  "name": "[format('{0}/{1}', variables('vmName'), 'InstallWebServer')]",
+  "name": "[concat(variables('vmName'),'/', 'InstallWebServer')]",
   "location": "[parameters('location')]",
   "dependsOn": [
-    "[format('Microsoft.Compute/virtualMachines/{0}',variables('vmName'))]"
+    "[concat('Microsoft.Compute/virtualMachines/',variables('vmName'))]"
   ],
   "properties": {
     "publisher": "Microsoft.Compute",
@@ -146,7 +148,7 @@ From the Cloud Shell, run the following command to retrieve the public IP addres
 
 Paste the IP address into a Web browser. The default Internet Information Services (IIS) welcome page opens:
 
-:::image type="content" source="./media/template-tutorial-deploy-vm-extensions/resource-manager-template-deploy-extensions-customer-script-web-server.png" alt-text="Screenshot of the Internet Information Services welcome page.":::
+![The Internet Information Services welcome page](./media/template-tutorial-deploy-vm-extensions/resource-manager-template-deploy-extensions-customer-script-web-server.png)
 
 ## Clean up resources
 

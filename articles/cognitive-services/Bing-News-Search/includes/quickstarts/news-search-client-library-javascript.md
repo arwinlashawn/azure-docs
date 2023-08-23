@@ -1,6 +1,6 @@
 ---
 title: Bing News Search JavaScript client library quickstart 
-titleSuffix: Azure AI services
+titleSuffix: Azure Cognitive Services
 services: cognitive-services
 author: aahill
 manager: nitinme

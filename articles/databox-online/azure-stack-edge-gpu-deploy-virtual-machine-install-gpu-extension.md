@@ -216,7 +216,6 @@ $templateParameterFile = "<Path to addGPUExtWindowsVM.parameters.json>"
 RGName = "<Name of your resource group>"
 New-AzureRmResourceGroupDeployment -ResourceGroupName $RGName -TemplateFile $templateFile -TemplateParameterFile $templateParameterFile -Name "<Name for your deployment>"
 ```
-
 > [!NOTE]
 > The extension deployment is a long running job and takes about 10 minutes to complete.
 
@@ -516,8 +515,7 @@ Follow these steps to verify the driver installation:
     See "man sudo_root" for details.
     
     Administrator@VM1:~$
-    ```
-
+	```
 2. Run the nvidia-smi command-line utility installed with the driver. If the driver is successfully installed, you'll be able to run the utility and see the following output:
 
     ```powershell

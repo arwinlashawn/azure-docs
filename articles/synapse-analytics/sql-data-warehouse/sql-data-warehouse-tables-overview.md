@@ -5,10 +5,11 @@ manager: craigg
 ms.service: synapse-analytics
 ms.topic: conceptual
 ms.subservice: sql-dw 
-ms.date: 07/05/2023
+ms.date: 07/20/2022
 author: WilliamDAssafMSFT
 ms.author: wiassaf
-ms.custom: azure-synapse
+ms.reviewer: 
+ms.custom: seo-lt-2019, azure-synapse
 ---
 
 # Design tables using dedicated SQL pool in Azure Synapse Analytics
@@ -169,9 +170,6 @@ Dedicated SQL pool supports many, but not all, of the table features offered by 
 - [User-Defined Types](/sql/relational-databases/native-client/features/using-user-defined-types?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json&view=azure-sqldw-latest&preserve-view=true)
 
 ## Table size queries
-
-> [!NOTE]
-> For accurate counts from queries in this section, ensure that [index maintenance](sql-data-warehouse-tables-index.md) occurs on a regular basis and after large data changes. 
 
 One simple way to identify space and rows consumed by a table in each of the 60 distributions, is to use [DBCC PDW_SHOWSPACEUSED](/sql/t-sql/database-console-commands/dbcc-pdw-showspaceused-transact-sql?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json&view=azure-sqldw-latest&preserve-view=true).
 

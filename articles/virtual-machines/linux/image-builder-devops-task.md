@@ -3,12 +3,12 @@ title: Azure VM Image Builder service DevOps task (preview)
 description: In this article, you use an Azure DevOps task to inject build artifacts into a VM image so that you can install and configure your application and operating system.
 author: kof-f
 ms.author: kofiforson
-ms.reviewer: erd
-ms.date: 07/31/2023
+ms.reviewer: cynthn
+ms.date: 01/27/2021
 ms.topic: article
 ms.service: virtual-machines
 ms.subservice: image-builder
-ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-linux
+ms.custom: devx-track-azurepowershell, devx-track-azurecli 
 ms.devlang: azurecli
 ---
 
@@ -18,17 +18,14 @@ ms.devlang: azurecli
 
 In this article, you learn how to use an Azure DevOps task to inject build artifacts into a virtual machine (VM) image, so that you can install and configure your application and operating system.
 
-> [!IMPORTANT]
-> Azure DevOps task for VM Image Builder is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 ## DevOps task versions
 
 At this time, there are two Azure VM Image Builder DevOps tasks:
 
-* [*Stable* VM Image Builder task](https://marketplace.visualstudio.com/items?itemName=AzureImageBuilder.devOps-task-for-azure-image-builder): The latest stable build that's been tested, and reports no [General Data Protection Regulation (GDPR)](https://www.microsoft.com/trust-center/privacy/gdpr-overview) issues.
+* [*Stable* VM Image Builder task](https://marketplace.visualstudio.com/items?itemName=AzureImageBuilder.devOps-task-for-azure-image-builder): The latest stable build that's been tested, and reports no [General Data Protection Regulation (GDPR)](https://www.microsoft.com/trust-center/privacy/gdpr-overview) issues. 
 
-* [*Unstable* VM Image Builder task](https://marketplace.visualstudio.com/items?itemName=AzureImageBuilder.devOps-task-for-azure-image-builder-canary): We offer a so-called *unstable* task so that you can test the latest updates and features before we release the task code as *stable*. After about a week, if there are no customer-reported or telemetry issues, we promote the task code to *stable*.
+
+* [*Unstable* VM Image Builder task](https://marketplace.visualstudio.com/items?itemName=AzureImageBuilder.devOps-task-for-azure-image-builder-canary): We offer a so-called *unstable* task so that you can test the latest updates and features before we release the task code as *stable*. After about a week, if there are no customer-reported or telemetry issues, we promote the task code to *stable*. 
 
 ## Prerequisites
 
@@ -42,12 +39,12 @@ Before you begin, you must:
 * Have an Azure DevOps Services (formerly Visual Studio Team Services, or VSTS) account, and a Build Pipeline created.
 
 * Register and enable the VM Image Builder feature requirements in the subscription that's used by the pipelines:
-  * [Azure PowerShell](../windows/image-builder-powershell.md#register-features)
-  * [The Azure CLI](../windows/image-builder.md#register-the-features)
-
+    * [Azure PowerShell](../windows/image-builder-powershell.md#register-features)
+    * [The Azure CLI](../windows/image-builder.md#register-the-features)
+    
 * Create a standard Azure storage account in the source image resource group. You can use other resource groups or storage accounts. The storage account is used transfer the build artifacts from the DevOps task to the image.
 
-    ```azurepowershell-interactive
+    ```powerShell
     # Azure PowerShell
     $timeInt=$(get-date -UFormat "%s")
     $storageAccName="aibstorage"+$timeInt
@@ -56,7 +53,7 @@ Before you begin, you must:
     New-AzStorageAccount -ResourceGroupName $strResourceGroup -Name $storageAccName -Location $location -SkuName Standard_LRS
     ```
 
-    ```azurecli-interactive
+    ```azurecli
     # The Azure CLI
     location=westus
     scriptStorageAcc=aibstordot$(date +'%s')
@@ -81,13 +78,12 @@ In the dropdown list, select the subscription that you want VM Image Builder to 
 ### Resource group
 
 Use the resource group where the temporary image template artifact will be stored. When you create a template artifact, another temporary VM Image Builder resource group, `IT_<DestinationResourceGroup>_<TemplateName>_guid`, is created. The temporary resource group stores the image metadata, such as scripts. At the end of the task, the image template artifact and temporary VM Image Builder resource group is deleted.
-
+ 
 ### Location
 
 The location is the region where VM Image Builder will run. Only a set number of [regions](../image-builder-overview.md#regions) are supported. The source images must be present in this location. For example, if you're using Azure Compute Gallery (formerly Shared Image Gallery), a replica must exist in that region.
 
 ### Managed identity (required)
-
 VM Image Builder requires a managed identity, which it uses to read source custom images, connect to Azure Storage, and create custom images. For more information, see [Learn about VM Image Builder](../image-builder-overview.md#permissions).
 
 ### Virtual network support
@@ -99,13 +95,11 @@ You can configure the created VM to be in a specific virtual network. When you c
 The source images must be of the supported VM Image Builder operating systems. You can choose existing custom images in the same region that VM Image Builder is running from:
 
 * Managed Image: Pass in the resource ID. For example:
-
     ```json
     /subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/images/<imageName>
     ```
 
 * Compute Gallery: Pass in the resource ID of the image version. For example:
-
     ```json
     /subscriptions/$subscriptionID/resourceGroups/$sigResourceGroup/providers/Microsoft.Compute/galleries/$sigName/images/$imageDefName/versions/<versionNumber>
     ```
@@ -141,7 +135,6 @@ The task runs the following Windows Update configuration:
         "exclude:$_.Title -like '*Preview*'",
         "include:$true"
 ```
-
 The task installs important and recommended Windows Updates that aren't *preview* versions.
 
 #### Handling reboots
@@ -158,7 +151,7 @@ Select the **Build Path** button to choose the build folder that you want to be 
 
 > [!IMPORTANT]
 > When you're adding a repo artifact, you might find that the directory name is prefixed with an underscore character (_). The underscore can cause issues with the inline commands. Be sure to use the appropriate quotation marks in the commands.
->
+> 
 
 The following example explains how this works:
 
@@ -166,64 +159,64 @@ The following example explains how this works:
 
 * For Windows: Files exist in the *C:* drive. A directory named *buildArtifacts* is created, which includes the *webapp* directory.
 
-* For Linux: Files exist in the `/tmp` directory. The `webapp` directory is created, which includes all the files and directories. Because this is a temporary directory, you must move the files out of it. Otherwise, they'll be deleted.
+* For Linux: Files exist in the */tmp* directory. The *webapp* directory is created, which includes all the files and directories. Because this is a temporary directory, you must move the files out of it. Otherwise, they'll be deleted.
 
 #### Inline customization script
 
 * For Windows: You can enter PowerShell inline commands, separated by commas. If you want to run a script in your build directory, you can use:
 
-    ```azurepowershell-interactive
+    ```PowerShell
     & 'c:\buildArtifacts\webapp\webconfig.ps1'
     ```
 
    You can reference multiple scripts or add more commands. For example:
 
-    ```azurepowershell-interactive
+    ```PowerShell
     & 'c:\buildArtifacts\webapp\webconfig.ps1'
     & 'c:\buildArtifacts\webapp\installAgent.ps1'
     ```
-
 * For Linux: The build artifacts are put into the */tmp* directory. However, on many Linux operating systems, on a reboot, the */tmp* directory contents are deleted. If you want the artifacts to exist in the image, you must create another directory and copy them over. For example:
 
     ```bash
     sudo mkdir /lib/buildArtifacts
     sudo cp -r "/tmp/_ImageBuilding/webapp" /lib/buildArtifacts/.
     ```
-
+    
     If you're OK with using the */tmp* directory, you can run the script by using the following code:
-
+    
     ```bash
     # Grant execute permissions to run scripts
     sudo chmod +x "/tmp/_ImageBuilding/webapp/coreConfig.sh"
     echo "running script"
     sudo . "/tmp/AppsAndImageBuilderLinux/_WebApp/coreConfig.sh"
     ```
-
+    
 #### What happens to the build artifacts after the image build?
 
 > [!NOTE]
 > VM Image Builder doesn't automatically remove the build artifacts. We strongly suggest that you always use code to remove the build artifacts.
->
+> 
 
 * For Windows: VM Image Builder deploys files to the *C:\buildArtifacts* directory. Because the directory is persisted, you must remove it by running a script. For example:
 
-    ```azurepowershell-interactive
+    ```PowerShell
     # Clean up buildArtifacts directory
     Remove-Item -Path "C:\buildArtifacts\*" -Force -Recurse
     
     # Delete the buildArtifacts directory
     Remove-Item -Path "C:\buildArtifacts" -Force 
     ```
-
+    
 * For Linux: The build artifacts are put into the */tmp* directory. However, on many Linux operating systems, the */tmp* directory contents are deleted on reboot. We suggest that you use code to remove the contents and not rely on the operating system to remove the contents. For example:
 
     ```bash
     sudo rm -R "/tmp/AppsAndImageBuilderLinux"
     ```
-
+    
 #### Total length of image build
 
 Total length can't be changed in the DevOps pipeline task yet. It uses the default of 240 minutes. If you want to increase the [buildTimeoutInMinutes](./image-builder-json.md#properties-buildtimeoutinminutes), you can use an Azure CLI task in the release pipeline. Configure the task to copy a template and submit it. For an example solution, see [Use environment variables and parameters with VM Image Builder](https://github.com/danielsollondon/azvmimagebuilder/tree/master/solutions/4_Using_ENV_Variables#using-environment-variables-and-parameters-with-image-builder), or use Azure PowerShell.
+
 
 #### Storage account
 
@@ -243,7 +236,7 @@ The following three distribute types are supported.
 
 * Resource ID:
 
-    ```azurecli-interactive
+    ```bash
     /subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/images/<imageName>
     ```
 
@@ -253,9 +246,9 @@ The following three distribute types are supported.
 
 The Compute Gallery must already exist.
 
-* Resource ID:
+* Resource ID: 
 
-    ```azurecli-interactive
+    ```bash
     /subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<galleryName>/images/<imageDefName>
     ```
 
@@ -281,7 +274,7 @@ The task uses the properties that are passed to the task to create the VM Image 
 
 Example output:
 
-```output
+```text
 start reading task parameters...
 found build at:  /home/vsts/work/r1/a/_ImageBuilding/webapp
 end reading parameters
@@ -295,13 +288,13 @@ starting put template...
 
 When the image build starts, the run status is reported in the release logs:
 
-```output
+```text
 starting run template...
 ```
 
 When the image build finishes, the output is similar to following text:
 
-```output
+```text
 2019-05-06T12:49:52.0558229Z starting run template...
 2019-05-06T13:36:33.8863094Z run template:  Succeeded
 2019-05-06T13:36:33.8867768Z getting runOutput for  SharedImage_distribute
@@ -321,7 +314,7 @@ You can take the `$(imageUri)` Azure DevOps Services (formerly Visual Studio Tea
 
 ## Output DevOps variables
 
-Here is the publisher, offer, SKU, and version of the source marketplace image:
+Here are the publisher, offer, SKU, and version of the source marketplace image:
 
 * `$(pirPublisher)`
 * `$(pirOffer)`
@@ -366,6 +359,7 @@ template name:  t_1556938436xxx
 
 The VM Image Builder template resource artifact is in the resource group that was specified initially in the task. When you're done troubleshooting, delete the artifact. If you're deleting it by using the Azure portal, within the resource group, select **Show Hidden Types** to view the artifact.
 
+
 ## Next steps
 
-For more information, see [VM Image Builder overview](../image-builder-overview.md).
+For more information, see [VM Image Builder overview](../image-builder-overview.md).  

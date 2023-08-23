@@ -2,8 +2,7 @@
 title: Define multiple instances of an output value
 description: Use copy operation in an Azure Resource Manager template (ARM template) to iterate multiple times when returning a value from a deployment.
 ms.topic: conceptual
-ms.custom: devx-track-arm-template
-ms.date: 06/22/2023
+ms.date: 05/07/2021
 ---
 
 # Output iteration in ARM templates
@@ -55,30 +54,26 @@ The following example creates a variable number of storage accounts and returns 
     "storageCount": {
       "type": "int",
       "defaultValue": 2
-    },
-    "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]"
     }
   },
   "variables": {
-    "baseName": "[format('storage{0}', uniqueString(resourceGroup().id))]"
+    "baseName": "[concat('storage', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
-      "copy": {
-        "name": "storagecopy",
-        "count": "[parameters('storageCount')]"
-      },
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2022-09-01",
-      "name": "[format('{0}{1}', copyIndex(), variables('baseName'))]",
-      "location": "[parameters('location')]",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(copyIndex(), variables('baseName'))]",
+      "location": "[resourceGroup().location]",
       "sku": {
         "name": "Standard_LRS"
       },
       "kind": "Storage",
-      "properties": {}
+      "properties": {},
+      "copy": {
+        "name": "storagecopy",
+        "count": "[parameters('storageCount')]"
+      }
     }
   ],
   "outputs": {
@@ -86,7 +81,7 @@ The following example creates a variable number of storage accounts and returns 
       "type": "array",
       "copy": {
         "count": "[parameters('storageCount')]",
-        "input": "[reference(format('{0}{1}', copyIndex(), variables('baseName'))).primaryEndpoints.blob]"
+        "input": "[reference(concat(copyIndex(), variables('baseName'))).primaryEndpoints.blob]"
       }
     }
   }
@@ -112,41 +107,37 @@ The next example returns three properties from the new storage accounts.
     "storageCount": {
       "type": "int",
       "defaultValue": 2
-    },
-    "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]"
     }
   },
   "variables": {
-    "baseName": "[format('storage{0}', uniqueString(resourceGroup().id))]"
+    "baseName": "[concat('storage', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
-      "copy": {
-        "name": "storagecopy",
-        "count": "[length(range(0, parameters('storageCount')))]"
-      },
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2022-09-01",
-      "name": "[format('{0}{1}', range(0, parameters('storageCount'))[copyIndex()], variables('baseName'))]",
-      "location": "[parameters('location')]",
+      "apiVersion": "2019-04-01",
+      "name": "[concat(copyIndex(), variables('baseName'))]",
+      "location": "[resourceGroup().location]",
       "sku": {
         "name": "Standard_LRS"
       },
       "kind": "Storage",
-      "properties": {}
+      "properties": {},
+      "copy": {
+        "name": "storagecopy",
+        "count": "[parameters('storageCount')]"
+      }
     }
   ],
   "outputs": {
     "storageInfo": {
       "type": "array",
       "copy": {
-        "count": "[length(range(0, parameters('storageCount')))]",
+        "count": "[parameters('storageCount')]",
         "input": {
-          "id": "[resourceId('Microsoft.Storage/storageAccounts', format('{0}{1}', copyIndex(), variables('baseName')))]",
-          "blobEndpoint": "[reference(format('{0}{1}', copyIndex(), variables('baseName'))).primaryEndpoints.blob]",
-          "status": "[reference(format('{0}{1}', copyIndex(), variables('baseName'))).statusOfPrimary]"
+          "id": "[reference(concat(copyIndex(), variables('baseName')), '2019-04-01', 'Full').resourceId]",
+          "blobEndpoint": "[reference(concat(copyIndex(), variables('baseName'))).primaryEndpoints.blob]",
+          "status": "[reference(concat(copyIndex(), variables('baseName'))).statusOfPrimary]"
         }
       }
     }
@@ -159,12 +150,12 @@ The preceding example returns an array with the following values:
 ```json
 [
   {
-    "id": "/subscriptions/00000000/resourceGroups/demoGroup/providers/Microsoft.Storage/storageAccounts/0storagecfrbqnnmpeudi",
+    "id": "Microsoft.Storage/storageAccounts/0storagecfrbqnnmpeudi",
     "blobEndpoint": "https://0storagecfrbqnnmpeudi.blob.core.windows.net/",
     "status": "available"
   },
   {
-    "id": "/subscriptions/00000000/resourceGroups/demoGroup/providers/Microsoft.Storage/storageAccounts/1storagecfrbqnnmpeudi",
+    "id": "Microsoft.Storage/storageAccounts/1storagecfrbqnnmpeudi",
     "blobEndpoint": "https://1storagecfrbqnnmpeudi.blob.core.windows.net/",
     "status": "available"
   }

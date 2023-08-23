@@ -6,7 +6,6 @@ ms.author: kendalv
 ms.reviewer: randolphwest
 ms.date: 05/19/2020
 ms.service: sql-edge
-ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.topic: tutorial
 services: sql-edge
 ---

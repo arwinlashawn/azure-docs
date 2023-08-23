@@ -4,7 +4,7 @@ title: Events
 summary: Events documentation page for Azure Health Data Services. 
 
 metadata:
-  title: Azure Health Data Services events
+  title: Azure Health Data Services MedTech service
   description: Events documentation section for Azure Health Data Services
   services: healthcare-apis
   ms.service: healthcare-apis
@@ -13,29 +13,29 @@ metadata:
   ms.collection: collection
   author: msjasteppe
   ms.author: jasteppe
-  ms.date: 07/11/2023
+  ms.date: 07/06/2022
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
 
-  - title: About events
+  - title: Start with Events
     linkLists:
       - linkListType: overview
         links:
-          - text: What are events?
+          - text: About Events
             url: events-overview.md
             
-  - title: Deploy events
+  - title: Using Events
     linkLists:
       - linkListType: quickstart
         links:
-          - text: Deploy events using the Azure portal
+          - text: Deploy Events using the Azure portal
             url: events-deploy-portal.md
                    
-  - title: Events message structures
+  - title: Events message structure
     linkLists:
       - linkListType: concept
         links:
-          - text: Events message structures
+          - text: Events message structure
             url: events-message-structure.md 

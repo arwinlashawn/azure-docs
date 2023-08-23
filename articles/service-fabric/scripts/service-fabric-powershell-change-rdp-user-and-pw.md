@@ -14,7 +14,7 @@ ms.workload: multiple
 ms.topic: sample
 ms.date: 03/19/2018
 ms.author: atsenthi
-ms.custom: mvc, devx-track-azurepowershell
+ms.custom: mvc
 ---
 
 # Update the admin username and password of the VMs in a cluster

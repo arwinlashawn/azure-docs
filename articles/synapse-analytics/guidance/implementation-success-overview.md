@@ -1,8 +1,8 @@
 ---
 title: Azure Synapse implementation success by design
 description: "Learn about the Azure Synapse success series of articles that's designed to help you deliver a successful implementation of Azure Synapse Analytics."
-author: SnehaGunda
-ms.author: sngun
+author: peter-myers
+ms.author: v-petermyers
 ms.reviewer: sngun
 ms.service: synapse-analytics
 ms.topic: conceptual

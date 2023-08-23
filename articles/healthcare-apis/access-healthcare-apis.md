@@ -2,7 +2,7 @@
 title: Access Azure Health Data Services
 description: This article describes the different ways to access Azure Health Data Services in your applications using tools and programming languages.
 services: healthcare-apis
-author: mikaelweave
+author: ginalee-dotcom
 ms.service: healthcare-apis
 ms.subservice: fhir
 ms.topic: conceptual

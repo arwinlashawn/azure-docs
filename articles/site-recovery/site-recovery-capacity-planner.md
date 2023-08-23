@@ -5,8 +5,7 @@ services: site-recovery
 ms.service: site-recovery
 ms.topic: conceptual
 ms.date: 11/12/2019
-ms.author: ankitadutta
-author: ankitaduttaMSFT
+
 
 ---
 

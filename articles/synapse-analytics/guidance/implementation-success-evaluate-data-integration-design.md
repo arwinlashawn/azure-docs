@@ -1,8 +1,8 @@
 ---
 title: "Synapse implementation success methodology: Evaluate data integration design"
 description: "Learn how to evaluate the data integration design and validate that it meets guidelines and requirements."
-author: SnehaGunda
-ms.author: sngun
+author: peter-myers
+ms.author: v-petermyers
 ms.reviewer: sngun
 ms.service: synapse-analytics
 ms.topic: conceptual

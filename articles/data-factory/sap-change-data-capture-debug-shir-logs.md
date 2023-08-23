@@ -1,38 +1,33 @@
 ---
-title: Debug issues with the SAP CDC connector by sending logs
+title: SAP change data capture solution (Preview) - Debug issues using SHIR logs
 titleSuffix: Azure Data Factory
-description: Learn how to debug issues with the Azure Data Factory SAP CDC (change data capture) connector by sending self-hosted integration runtime logs to Microsoft.
+description: This topic describes how to debug issues with Copy activity for SAP change data capture (Preview) using self-hosted integration runtime (SHIR) logs in Azure Data Factory.
 author: ukchrist
 ms.service: data-factory
 ms.subservice: data-movement
-ms.custom: ignite-2022
 ms.topic: conceptual
-ms.date: 07/20/2023
+ms.date: 06/01/2022
 ms.author: ulrichchrist
 ---
 
-# Debug issues with the SAP CDC connector by sending self-hosted integration runtime logs
+# Debug ADF copy activity issues by sending SHIR logs
 
 [!INCLUDE[appliesto-adf-asa-md](includes/appliesto-adf-asa-md.md)]
 
-If you want Microsoft to debug Azure Data Factory issues with your SAP CDC connector, send us your self-hosted integration runtime logs, and then contact us.
+If you want us to debug your ADF copy activity issues, send SHIR logs to us.  To do so, complete the following steps.
 
 ## Send logs to Microsoft
 
-1. On the computer running the self-hosted integration runtime, open Microsoft Integration Runtime Configuration Manager.
+On SHIR machine, open the Microsoft Integration Runtime Configuration Manager app, select the Diagnostics tab, select the Send logs button, and select the Send Logs button again on dialog window that pops up.
 
-1. Select the **Diagnostics** tab. Under **Logging**, select **Send logs**.
+:::image type="content" source="media/sap-change-data-capture-solution/sap-cdc-shir-diagnostics-send-logs.png" alt-text="Screenshot of the self-hosted integration runtime (SHIR) configuration manager's Diagnostics tab highlighting the send logs button.":::
 
-   :::image type="content" source="media/sap-change-data-capture-solution/sap-cdc-shir-diagnostics-send-logs.png" alt-text="Screenshot of the Integration Runtime Configuration Manager Diagnostics tab, with Send logs highlighted.":::
+## Contacting support
 
-1. Enter or select the information that's requested, and then select **Send logs**.
+When SHIR logs have been uploaded/sent to us and you are contacting support, provide the Report ID and Timestamp values displayed on the dialog window.
 
-## Contact Microsoft support
-
-After you've uploaded and sent your self-hosted integration runtime logs, contact Microsoft support. In your support request, include the Report ID and Timestamp values that are shown in the confirmation:
-
-:::image type="content" source="media/sap-change-data-capture-solution/sap-cdc-diagnostics-report-id.png" alt-text="Screenshot of the self-hosted integration runtime's diagnostic log confirmation, with Report ID and Timestamp highlighted.":::
-
+:::image type="content" source="media/sap-change-data-capture-solution/sap-cdc-diagnostics-report-id.png" alt-text="Screenshot of the self-hosted integration runtime's diagnostic log dialog with the Report ID and Timestamp highlighted.":::
+ 
 ## Next steps
 
-[SAP CDC (Change Data Capture) Connector](connector-sap-change-data-capture.md)
+[Auto-generate ADF pipeline from SAP data partitioning template](sap-change-data-capture-data-partitioning-template.md)

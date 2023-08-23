@@ -1,8 +1,8 @@
 ---
 title: Microsoft OPC Publisher Telemetry Format
 description: This article provides an overview of the configuration settings file
-author: hansgschossmann
-ms.author: johanng
+author: jehona-m
+ms.author: jemorina
 ms.service: industrial-iot
 ms.topic: reference
 ms.date: 3/22/2021

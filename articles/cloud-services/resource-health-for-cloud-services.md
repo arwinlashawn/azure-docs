@@ -4,11 +4,11 @@ description: This article talks about Resource Health Check (RHC) Support for Mi
 ms.topic: article
 ms.service: cloud-services
 ms.subservice: resource-health
-ms.date: 02/21/2023
+ms.date: 10/14/2020
 author: hirenshah1
 ms.author: hirshah
 ms.reviewer: mimckitt
-ms.custom: compute-evergreen
+ms.custom: 
 ---
 
 # Resource Health Check (RHC) Support for Azure Cloud Services (Classic)

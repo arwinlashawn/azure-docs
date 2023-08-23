@@ -4,18 +4,18 @@ titleSuffix: Azure Machine Learning
 description: 'Use CLI (v1) to deploy your Azure Machine Learning models as a web service using Azure Container Instances.'
 services: machine-learning
 ms.service: machine-learning
-ms.subservice: inferencing
+ms.subservice: mlops
 ms.topic: how-to
-ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
-ms.author: bozhlin
-author: bozhong68
+ms.custom: deploy, cliv1, sdkv1
+ms.author: larryfr
+author: blackmist
 ms.reviewer: larryfr
-ms.date: 11/04/2022
+ms.date: 10/21/2021
 ---
 
 # Deploy a model to Azure Container Instances with CLI (v1)
 
-[!INCLUDE [deploy-v1](../includes/machine-learning-deploy-v1.md)]
+[!INCLUDE [deploy-v1](../../../includes/machine-learning-deploy-v1.md)]
 
 Learn how to use Azure Machine Learning to deploy a model as a web service on Azure Container Instances (ACI). Use Azure Container Instances if you:
 
@@ -36,8 +36,6 @@ For information on quota and region availability for ACI, see [Quotas and region
 - A machine learning model registered in your workspace. If you don't have a registered model, see [How and where to deploy models](how-to-deploy-and-where.md).
 
 - The [Azure CLI extension (v1) for Machine Learning service](reference-azure-machine-learning-cli.md), [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/intro), or the [Azure Machine Learning Visual Studio Code extension](../how-to-setup-vs-code.md).
-
-    [!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 - The __Python__ code snippets in this article assume that the following variables are set:
 
@@ -64,7 +62,7 @@ To deploy a model to Azure Container Instances, create a __deployment configurat
 
 ### Using the SDK
 
-[!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+[!INCLUDE [sdk v1](../../../includes/machine-learning-sdk-v1.md)]
 
 ```python
 from azureml.core.webservice import AciWebservice, Webservice
@@ -84,7 +82,7 @@ For more information on the classes, methods, and parameters used in this exampl
 
 ### Using the Azure CLI
 
-[!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
+[!INCLUDE [cli v1](../../../includes/machine-learning-cli-v1.md)]
 
 To deploy using the CLI, use the following command. Replace `mymodel:1` with the name and version of the registered model. Replace `myservice` with the name to give this service:
 
@@ -92,7 +90,7 @@ To deploy using the CLI, use the following command. Replace `mymodel:1` with the
 az ml model deploy -n myservice -m mymodel:1 --ic inferenceconfig.json --dc deploymentconfig.json
 ```
 
-[!INCLUDE [deploymentconfig](../includes/machine-learning-service-aci-deploy-config.md)]
+[!INCLUDE [deploymentconfig](../../../includes/machine-learning-service-aci-deploy-config.md)]
 
 For more information, see the [az ml model deploy](/cli/azure/ml/model#az-ml-model-deploy) reference. 
 

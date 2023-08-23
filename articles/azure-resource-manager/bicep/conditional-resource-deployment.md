@@ -5,8 +5,7 @@ description: Describes how to conditionally deploy a resource in Bicep.
 author: mumian
 ms.author: jgao
 ms.topic: conceptual
-ms.custom: devx-track-bicep
-ms.date: 05/12/2023
+ms.date: 07/30/2021
 ---
 
 # Conditional deployment in Bicep
@@ -18,7 +17,7 @@ Sometimes you need to optionally deploy a resource or module in Bicep. Use the `
 
 ### Training resources
 
-If you would rather learn about conditions through step-by-step guidance, see [Build flexible Bicep templates by using conditions and loops](/training/modules/build-flexible-bicep-templates-conditions-loops/).
+If you would rather learn about conditions through step-by-step guidance, see [Build flexible Bicep templates by using conditions and loops](/learn/modules/build-flexible-bicep-templates-conditions-loops/).
 
 ## Deploy condition
 
@@ -59,26 +58,21 @@ param location string = resourceGroup().location
 ])
 param newOrExisting string = 'new'
 
-resource saNew 'Microsoft.Storage/storageAccounts@2022-09-01' = if (newOrExisting == 'new') {
+resource sa 'Microsoft.Storage/storageAccounts@2019-06-01' = if (newOrExisting == 'new') {
   name: storageAccountName
   location: location
   sku: {
     name: 'Standard_LRS'
+    tier: 'Standard'
   }
   kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+  }
 }
-
-resource saExisting 'Microsoft.Storage/storageAccounts@2022-09-01' existing = if (newOrExisting == 'existing') {
-  name: storageAccountName
-}
-
-output storageAccountId string = ((newOrExisting == 'new') ? saNew.id : saExisting.id)
 ```
 
-When the parameter `newOrExisting` is set to **new**, the condition evaluates to true. The storage account is deployed. Otherwise the existing storage account is used.
-
-> [!WARNING]
-> If you reference a conditionally-deployed resource that is not deployed. You will get an error saying the resource is not defined in the template.
+When the parameter `newOrExisting` is set to **new**, the condition evaluates to true. The storage account is deployed. However, when `newOrExisting` is set to **existing**, the condition evaluates to false and the storage account isn't deployed.
 
 ## Runtime functions
 
@@ -91,7 +85,7 @@ param vmName string
 param location string
 param logAnalytics string = ''
 
-resource vmName_omsOnboarding 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' = if (!empty(logAnalytics)) {
+resource vmName_omsOnboarding 'Microsoft.Compute/virtualMachines/extensions@2017-03-30' = if (!empty(logAnalytics)) {
   name: '${vmName}/omsOnboarding'
   location: location
   properties: {
@@ -100,10 +94,10 @@ resource vmName_omsOnboarding 'Microsoft.Compute/virtualMachines/extensions@2023
     typeHandlerVersion: '1.0'
     autoUpgradeMinorVersion: true
     settings: {
-      workspaceId: ((!empty(logAnalytics)) ? reference(logAnalytics, '2022-10-01').customerId : null)
+      workspaceId: ((!empty(logAnalytics)) ? reference(logAnalytics, '2015-11-01-preview').customerId : null)
     }
     protectedSettings: {
-      workspaceKey: ((!empty(logAnalytics)) ? listKeys(logAnalytics, '2022-10-01').primarySharedKey : null)
+      workspaceKey: ((!empty(logAnalytics)) ? listKeys(logAnalytics, '2015-11-01-preview').primarySharedKey : null)
     }
   }
 }
@@ -113,6 +107,6 @@ output mgmtStatus string = ((!empty(logAnalytics)) ? 'Enabled monitoring for VM!
 
 ## Next steps
 
-* Review the Learn module [Build flexible Bicep templates by using conditions and loops](/training/modules/build-flexible-bicep-templates-conditions-loops/).
+* Review the Learn module [Build flexible Bicep templates by using conditions and loops](/learn/modules/build-flexible-bicep-templates-conditions-loops/).
 * For recommendations about creating Bicep files, see [Best practices for Bicep](best-practices.md).
 * To create multiple instances of a resource, see [Iterative loops in Bicep](loops.md).

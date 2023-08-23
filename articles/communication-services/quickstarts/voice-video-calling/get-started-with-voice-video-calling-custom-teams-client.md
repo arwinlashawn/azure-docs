@@ -7,8 +7,8 @@ ms.author: xixian
 ms.date: 12/1/2021
 ms.topic: quickstart
 ms.service: azure-communication-services
-ms.subservice: teams-interop
-ms.custom: mode-other, devx-track-js
+ms.subservice: calling
+ms.custom: mode-other
 ---
 
 # QuickStart: Add 1:1 video calling as a Teams user to your application

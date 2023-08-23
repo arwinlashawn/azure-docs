@@ -1,13 +1,12 @@
 ---
 author: tamram
-ms.service: azure-storage
-ms.custom: devx-track-azurepowershell
+ms.service: storage
 ms.topic: include
 ms.date: 06/23/2022
 ms.author: tamram
 ---
 <!--created by Robin Shahan to go in the articles for table storage w/powershell.
-    There is one for Azure Table Storage and one for Azure Cosmos DB for Table -->
+    There is one for Azure Table Storage and one for Azure Cosmos DB Table API -->
 
 ## Managing table entities
 
@@ -71,17 +70,6 @@ This command yields results similar to the following table:
 | 3 | Christine | partition1 | WA |
 | 2 | Jessie | partition2 | NM |
 | 4 | Steven | partition2 | TX |
-
-#### Retrieve the count of the entities in table
-
-```powershell
-$totalEntities=(Get-AzTableRow -table $cloudTable | measure).Count
-Echo $totalEntities
-```
-
-This command results in the numeric count of entities similar to below:
-
-4
 
 #### Retrieve entities for a specific partition key
 

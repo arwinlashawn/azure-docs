@@ -2,8 +2,7 @@
 title: Linter rule - prefer unquoted property names
 description: Linter rule - prefer unquoted property names
 ms.topic: conceptual
-ms.custom: devx-track-bicep
-ms.date: 02/10/2023
+ms.date: 07/29/2022
 ---
 
 # Linter rule - prefer unquoted property names
@@ -52,12 +51,6 @@ var x1 = obj['my-prop']
 var x2 = obj['1']
 var x3 = obj.myProp
 ```
-
-Optionally, you can use **Quick Fix** to fix the issues:
-
-linter-rule-prefer-unquoted-property-names-quick-fix
-
-:::image type="content" source="./media/linter-rule-prefer-unquoted-property-names/linter-rule-prefer-unquoted-property-names-quick-fix.png" alt-text="The screenshot of Prefer unquoted property names quick fix.":::
 
 ## Next steps
 

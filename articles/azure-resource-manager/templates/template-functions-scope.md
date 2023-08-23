@@ -2,8 +2,7 @@
 title: Template functions - scope
 description: Describes the functions to use in an Azure Resource Manager template (ARM template) to retrieve values about deployment scope.
 ms.topic: conceptual
-ms.custom: devx-track-arm-template
-ms.date: 05/22/2023
+ms.date: 03/10/2022
 ---
 
 # Scope functions for ARM templates
@@ -164,7 +163,7 @@ A common use of the resourceGroup function is to create resources in the same lo
 }
 ```
 
-You can also use the `resourceGroup` function to apply tags from the resource group to a resource. For more information, see [Apply tags from resource group](../management/tag-resources-templates.md#apply-tags-from-resource-group).
+You can also use the `resourceGroup` function to apply tags from the resource group to a resource. For more information, see [Apply tags from resource group](../management/tag-resources.md#apply-tags-from-resource-group).
 
 When using nested templates to deploy to multiple resource groups, you can specify the scope for evaluating the `resourceGroup` function. For more information, see [Deploy Azure resources to more than one subscription or resource group](./deploy-to-resource-group.md).
 
@@ -223,7 +222,7 @@ The following example shows the subscription function called in the outputs sect
 
 `tenant()`
 
-Returns the tenant of the user.
+Returns properties about the tenant for the current deployment.
 
 In Bicep, use the [tenant](../bicep/bicep-functions-scope.md#tenant) scope function.
 

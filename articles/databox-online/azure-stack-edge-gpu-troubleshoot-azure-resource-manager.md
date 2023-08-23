@@ -9,7 +9,7 @@ ms.subservice: edge
 ms.topic: troubleshooting
 ms.date: 06/10/2021
 ms.author: alkohli
-ms.custom: contperf-fy21q4, devx-track-arm-template
+ms.custom: "contperf-fy21q4"
 ---
 # Troubleshoot Azure Resource Manager issues on an Azure Stack Edge device 
 

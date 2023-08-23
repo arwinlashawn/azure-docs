@@ -1,12 +1,12 @@
 ---
 title: Cancel a scheduled contact on Azure Orbital Ground Station service 
 description: Learn how to cancel a scheduled contact.
-author: apoorvanori
+author: wamota
 ms.service: orbital
 ms.topic: how-to
 ms.custom: ga
 ms.date: 07/13/2022
-ms.author: apoorvanori
+ms.author: wamota
 # Customer intent: As a satellite operator, I want to ingest data from my satellite into Azure.
 ---
 

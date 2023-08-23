@@ -1,11 +1,9 @@
 ---
-title: Monitor DPS using Azure Monitor
-titleSuffix: Azure IoT Hub Device Provisioning Service
-description: Start here to learn how to monitor metrics and logs from the Azure IoT Hub Device Provisioning Service by using Azure Monitor
+title: Monitoring Azure IoT Hub Device Provisioning Service 
+description: Start here to learn how to monitor Azure IoT Hub Device Provisioning Service 
 author: kgremban
-
 ms.author: kgremban
-ms.topic: how-to 
+ms.topic: conceptual 
 ms.service: iot-dps
 ms.custom: subject-monitoring
 ms.date: 04/15/2022

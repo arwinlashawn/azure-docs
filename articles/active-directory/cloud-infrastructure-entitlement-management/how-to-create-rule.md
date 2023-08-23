@@ -1,15 +1,14 @@
 ---
 title: Create a rule in the Autopilot dashboard in Permissions Management
-description: How to create a rule in the Autopilot dashboard in Microsoft Entra Permissions Management.
+description: How to create a rule in the Autopilot dashboard in Permissions Management.
 services: active-directory
-author: jenniferf-skc
-manager: amycolannino
-ms.service: active-directory 
-ms.subservice: ciem
+author: kenwith
+manager: rkarlin
+ms.service: ciem
 ms.workload: identity
 ms.topic: how-to
-ms.date: 06/16/2023
-ms.author: jfields
+ms.date: 02/23/2022
+ms.author: kenwith
 ---
 
 # Create a rule in the Autopilot dashboard

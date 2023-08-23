@@ -1,13 +1,13 @@
 ---
-title: "Copy from Google Cloud Storage to Azure Storage with AzCopy"
+title: "Copy from Google Cloud Storage to Azure Storage with AzCopy | Microsoft Docs"
 description: Use AzCopy to copy data from Google Cloud Storage to Azure Storage. AzCopy is a command-line utility that you can use to copy blobs or files to or from a storage account.
 services: storage
 author: normesta
-ms.service: azure-storage
+ms.service: storage
 ms.topic: how-to
 ms.date: 04/02/2021
 ms.author: normesta
-ms.subservice: storage-common-concepts
+ms.subservice: common
 ---
 
 # Copy data from Google Cloud Storage to Azure Storage by using AzCopy

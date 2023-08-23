@@ -2,8 +2,7 @@
 title: CI/CD with Azure Pipelines and templates
 description: Describes how to configure continuous integration in Azure Pipelines by using Azure Resource Manager templates. It shows how to use a PowerShell script, or copy files to a staging location and deploy from there.
 ms.topic: conceptual
-ms.custom: devx-track-azurepowershell, devx-track-arm-template
-ms.date: 05/22/2023
+ms.date: 02/07/2022
 ---
 # Integrate ARM templates with Azure Pipelines
 
@@ -35,19 +34,19 @@ This article assumes your ARM template and Azure DevOps organization are ready f
 
 1. If you haven't added a pipeline previously, you need to create a new pipeline. From your Azure DevOps organization, select **Pipelines** and **New pipeline**.
 
-   :::image type="content" source="./media/add-template-to-azure-pipelines/new-pipeline.png" alt-text="Screenshot of the Add new pipeline button":::
+   ![Add new pipeline](./media/add-template-to-azure-pipelines/new-pipeline.png)
 
 1. Specify where your code is stored. The following image shows selecting **Azure Repos Git**.
 
-   :::image type="content" source="./media/add-template-to-azure-pipelines/select-source.png" alt-text="Screenshot of selecting the code source in Azure DevOps":::
+   ![Select code source](./media/add-template-to-azure-pipelines/select-source.png)
 
 1. From that source, select the repository that has the code for your project.
 
-   :::image type="content" source="./media/add-template-to-azure-pipelines/select-repo.png" alt-text="Screenshot of selecting the repository for the project in Azure DevOps":::
+   ![Select repository](./media/add-template-to-azure-pipelines/select-repo.png)
 
 1. Select the type of pipeline to create. You can select **Starter pipeline**.
 
-   :::image type="content" source="./media/add-template-to-azure-pipelines/select-pipeline.png" alt-text="Screenshot of selecting the type of pipeline to create in Azure DevOps":::
+   ![Select pipeline](./media/add-template-to-azure-pipelines/select-pipeline.png)
 
 You're ready to either add an Azure PowerShell task or the copy file and deploy tasks.
 
@@ -102,7 +101,7 @@ ScriptArguments: -Location 'centralus' -ResourceGroupName 'demogroup' -TemplateF
 
 When you select **Save**, the build pipeline is automatically run. Go back to the summary for your build pipeline, and watch the status.
 
-:::image type="content" source="./media/add-template-to-azure-pipelines/view-results.png" alt-text="Screenshot of the pipeline results view in Azure DevOps":::
+![View results](./media/add-template-to-azure-pipelines/view-results.png)
 
 You can select the currently running pipeline to see details about the tasks. When it finishes, you see the results for each step.
 

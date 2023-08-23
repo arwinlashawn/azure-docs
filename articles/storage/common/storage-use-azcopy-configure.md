@@ -1,12 +1,12 @@
 ---
-title: Find errors & resume jobs with logs in AzCopy (Azure Storage)
+title: Find errors & resume jobs with logs in AzCopy (Azure Storage) | Microsoft Docs
 description: Learn how to use logs to diagnose errors, and to resume jobs that are paused by using plan files. 
 author: normesta
-ms.service: azure-storage
+ms.service: storage
 ms.topic: how-to
 ms.date: 04/02/2021
 ms.author: normesta
-ms.subservice: storage-common-concepts
+ms.subservice: common
 ms.reviewer: dineshm
 ---
 

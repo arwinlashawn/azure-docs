@@ -1,32 +1,38 @@
 ---
-title: NSG diagnostics
-titleSuffix: Azure Network Watcher
-description: Learn about NSG diagnostics tool in Azure Network Watcher.
+title: Introduction to Network Configuration Diagnostics in Azure Network Watcher | Microsoft Docs
+description: This page provides an overview of the Network Watcher - Network Configuration Diagnostics
 services: network-watcher
-author: halkazwini
+documentationcenter: na
+author: damendo
 ms.service: network-watcher
-ms.author: halkazwini
-ms.reviewer: shijaiswal
-ms.topic: conceptual
-ms.date: 06/27/2023
-ms.custom: template-concept, engagement-fy23
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload:  infrastructure-services
+ms.date: 09/15/2020
+ms.author: damendo
 ---
 
-# NSG diagnostics overview
+# Introduction to Network Configuration Diagnostics in Azure Network Watcher
 
-The NSG diagnostics is an Azure Network Watcher tool that helps you understand which network traffic is allowed or denied in your Azure virtual network along with detailed information for debugging. NSG diagnostics can help you verify that your network security group rules are set up properly. 
+The Network Configuration Diagnostic tool helps customers understand which traffic flows will be allowed or denied in your Azure Virtual Network along with detailed information for debugging. It can help your in understanding if your NSG rules are configured correctly. 
+
+## Pre-requisites
+For using Network Configuration Diagnostics, Network Watcher must be enabled in your subscription. See [Create an Azure Network Watcher instance](./network-watcher-create.md) to enable.
 
 ## Background
 
-- Your resources in Azure are connected via [virtual networks](../virtual-network/virtual-networks-overview.md) and subnets. The security of these virtual networks and subnets can be managed using [network security groups](../virtual-network/network-security-groups-overview.md).
-- A network security group contains a list of [security rules](../virtual-network/network-security-groups-overview.md#security-rules) that allow or deny network traffic to resources it's connected to. A network security group can be associated to a virtual network subnet or individual network interface (NIC) attached to a virtual machine (VM). 
-- All traffic flows in your network are evaluated using the rules in the applicable network security group.
-- Rules are evaluated based on priority number from lowest to highest.
+- Your resources in Azure are connected via Virtual Networks (VNETs) and subnets. The security of these VNets and subnets can be managed using a Network Security Group (NSG).
+- An NSG contains a list of security rules that allow or deny network traffic to resources it is connected to. NSGs can be associated with subnets, individual VMs, or individual network interfaces (NICs) attached to VMs. 
+- All traffic flows in your network are evaluated using the rules in the applicable NSG.
+- Rules are evaluated based on priority number from lowest to highest 
 
-## How does NSG diagnostics work? 
+## How does Network Configuration Diagnostic work? 
 
-The NSG diagnostics tool can simulate a given flow based on the source and destination you provide. It returns whether the flow is allowed or denied with detailed information about the security rule allowing or denying the flow.
+For a given flow, the NCD tool runs a simulation of the flow and returns whether the flow would be allowed (or denied) and detailed information about rules allowing/denying the flow.  Customers must provide details of a flow like source, destination, protocol, etc. The tool returns whether traffic was allowed or denied, the NSG rules that were evaluated for the specified flow and the evaluation results for every rule.
 
 ## Next steps
 
-To learn how to use the NSG diagnostics tool to check if your network traffic is allowed or denied, see [Diagnose network security rules](diagnose-network-security-rules.md).
+Use Network Configuration Diagnostic through other interfaces
+ - [REST API](/rest/api/network-watcher/networkwatchers/getnetworkconfigurationdiagnostic)
+ - [PowerShell](/powershell/module/az.network/invoke-aznetworkwatchernetworkconfigurationdiagnostic)
+ - [Azure CLI](/cli/azure/network/watcher#az-network-watcher-run-configuration-diagnostic)

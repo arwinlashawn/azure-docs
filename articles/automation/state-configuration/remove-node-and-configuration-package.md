@@ -4,7 +4,6 @@ description: This article explains how to remove an Azure Automation State Confi
 titleSuffix: Azure Automation
 services: automation
 ms.subservice: dsc
-ms.custom: devx-track-linux
 ms.date: 04/16/2021
 ms.topic: how-to
 ---
@@ -90,7 +89,7 @@ To find the package names and other relevant details, see the [PowerShell Desire
 ### RPM-based systems
 
 ```bash
-rpm -e <package name>
+RPM -e <package name>
 ``` 
 
 ### dpkg-based systems

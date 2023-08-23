@@ -3,9 +3,9 @@ title: Azure Backup release notes - Archive
 description: Learn about past features releases in Azure Backup.
 ms.topic: conceptual
 ms.date: 01/27/2022
+author: v-amallick
 ms.service: backup
-author: AbhishekMallick-MS
-ms.author: v-abhmallick
+ms.author: v-amallick
 ---
 
 # Archived release notes in Azure Backup

@@ -1,8 +1,8 @@
 ---
 title: Creating Virtual Machine Restore Points using Azure portal
 description: Creating Virtual Machine Restore Points using Azure portal
-author: mamccrea
-ms.author: mamccrea
+author: dikethir
+ms.author: dikethir
 ms.service: virtual-machines
 ms.subservice: recovery
 ms.topic: tutorial

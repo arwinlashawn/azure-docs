@@ -23,8 +23,6 @@ There are scenarios in which it is required to create or modify large numbers of
 
 This article explains how to perform a large number of operations on a notification hub, or to export all registrations, in bulk.
 
-> **_NOTE:_** Bulk import/export is only available for the 'standard' pricing tier
-
 ## High-level flow
 
 Batch support is designed to support long-running jobs involving millions of registrations. To achieve this scale, batch support uses Azure Storage to store job details and output. For bulk update operations, the user is required to create a file in a blob container, whose content is the list of registration update operations. When starting the job, the user provides a URL to the input blob, along with a URL to an output directory (also in a blob container). After the job has started, the user can check the status by querying a URL location provided at starting of the job. A specific job can only perform operations of a specific kind (creates, updates, or deletes). Export operations are performed analogously.
@@ -37,26 +35,26 @@ This section assumes you have the following entities:
 
 - A provisioned notification hub.
 - An Azure Storage blob container.
-- References to the [Azure Storage NuGet package](https://www.nuget.org/packages/Azure.Storage.Blobs) and [Notification Hubs NuGet package](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
+- References to the [Azure Storage NuGet package](https://www.nuget.org/packages/windowsazure.storage/) and [Notification Hubs NuGet package](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
 
 ### Create input file and store it in a blob
 
 An input file contains a list of registrations serialized in XML, one per row. Using the Azure SDK, the following code example shows how to serialize the registrations and upload them to blob container:
 
 ```csharp
-private static void SerializeToBlob(BlobContainerClient container, RegistrationDescription[] descriptions)
+private static void SerializeToBlob(CloudBlobContainer container, RegistrationDescription[] descriptions)
 {
-     StringBuilder builder = new StringBuilder();
-     foreach (var registrationDescription in descriptions)
-     {
-          builder.AppendLine(registrationDescription.Serialize());
-     }
+    StringBuilder builder = new StringBuilder();
+    foreach (var registrationDescription in descriptions)
+    {
+        builder.AppendLine(registrationDescription.Serialize());
+    }
 
-     var inputBlob = container.GetBlobClient(INPUT_FILE_NAME);
-     using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(builder.ToString())))
-     {
-         inputBlob.UploadAsync(stream);
-     }
+    var inputBlob = container.GetBlockBlobReference(INPUT_FILE_NAME);
+    using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(builder.ToString())))
+    {
+        inputBlob.UploadFromStream(stream);
+    }
 }
 ```
 
@@ -68,22 +66,27 @@ private static void SerializeToBlob(BlobContainerClient container, RegistrationD
 Once your input file is uploaded, generate the URLs to provide to your notification hub for both the input file and the output directory. You can use two different blob containers for input and output.
 
 ```csharp
-static Uri GetOutputDirectoryUrl(BlobContainerClient container)
+static Uri GetOutputDirectoryUrl(CloudBlobContainer container)
 {
-      Console.WriteLine(container.CanGenerateSasUri);
-      BlobSasBuilder builder = new BlobSasBuilder(BlobSasPermissions.All, DateTime.UtcNow.AddDays(1));
-      return container.GenerateSasUri(builder);
+    SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy
+    {
+        SharedAccessExpiryTime = DateTime.UtcNow.AddDays(1),
+        Permissions = SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.List | SharedAccessBlobPermissions.Read
+    };
+
+    string sasContainerToken = container.GetSharedAccessSignature(sasConstraints);
+    return new Uri(container.Uri + sasContainerToken);
 }
-        
-        
-        
 
-static Uri GetInputFileUrl(BlobContainerClient container, string filePath)
+static Uri GetInputFileUrl(CloudBlobContainer container, string filePath)
 {
-      Console.WriteLine(container.CanGenerateSasUri);
-      BlobSasBuilder builder = new BlobSasBuilder(BlobSasPermissions.Read, DateTime.UtcNow.AddDays(1));
-      return container.GenerateSasUri(builder);
-
+    SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy
+    {
+        SharedAccessExpiryTime = DateTime.UtcNow.AddDays(1),
+        Permissions = SharedAccessBlobPermissions.Read
+    };
+    string sasToken = container.GetBlockBlobReference(filePath).GetSharedAccessSignature(sasConstraints);
+    return new Uri(container.Uri + "/" + filePath + sasToken);
 }
 ```
 
@@ -152,11 +155,12 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        private static string CONNECTION_STRING = "namespace"; 
-        private static string HUB_NAME = "demohub";
+        private static string CONNECTION_STRING = "---";
+        private static string HUB_NAME = "---";
         private static string INPUT_FILE_NAME = "CreateFile.txt";
-        private static string STORAGE_ACCOUNT_CONNECTIONSTRING = "connectionstring";
-        private static string CONTAINER_NAME = "containername";
+        private static string STORAGE_ACCOUNT = "---";
+        private static string STORAGE_PASSWORD = "---";
+        private static StorageUri STORAGE_ENDPOINT = new StorageUri(new Uri("---"));
 
         static void Main(string[] args)
         {
@@ -168,19 +172,16 @@ namespace ConsoleApplication1
                 new MpnsRegistrationDescription(@"http://dm2.notify.live.net/throttledthirdparty/01.00/12G9Ed13dLb5RbCii5fWzpFpAgAAAAADAQAAAAQUZm52OkJCMjg1QTg1QkZDMdUxREQFBlVTTkMwMQ"),
             };
 
-// Get a reference to a container named "sample-container" and then create it
-            BlobContainerClient container = new BlobContainerClient(STORAGE_ACCOUNT_CONNECTIONSTRING, CONTAINER_NAME);
-
-            container.CreateIfNotExistsAsync();
+            // Write to blob store to create an input file
+            var blobClient = new CloudBlobClient(STORAGE_ENDPOINT, new Microsoft.WindowsAzure.Storage.Auth.StorageCredentials(STORAGE_ACCOUNT, STORAGE_PASSWORD));
+            var container = blobClient.GetContainerReference("testjobs");
+            container.CreateIfNotExists();
 
             SerializeToBlob(container, descriptions);
 
             // TODO then create Sas
             var outputContainerSasUri = GetOutputDirectoryUrl(container);
-            
-            BlobContainerClient inputfilecontainer = new BlobContainerClient(STORAGE_ACCOUNT_CONNECTIONSTRING, STORAGE_ACCOUNT_CONNECTIONSTRING + "/" +         INPUT_FILE_NAME);
-
-            var inputFileSasUri = GetInputFileUrl(inputcontainer, INPUT_FILE_NAME);
+            var inputFileSasUri = GetInputFileUrl(container, INPUT_FILE_NAME);
 
 
             // Import this file
@@ -206,7 +207,7 @@ namespace ConsoleApplication1
             }
         }
 
-        private static void SerializeToBlob(BlobContainerClient container, RegistrationDescription[] descriptions)
+        private static void SerializeToBlob(CloudBlobContainer container, RegistrationDescription[] descriptions)
         {
             StringBuilder builder = new StringBuilder();
             foreach (var registrationDescription in descriptions)
@@ -214,26 +215,50 @@ namespace ConsoleApplication1
                 builder.AppendLine(registrationDescription.Serialize());
             }
 
-            var inputBlob = container.GetBlobClient(INPUT_FILE_NAME);
+            var inputBlob = container.GetBlockBlobReference(INPUT_FILE_NAME);
             using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(builder.ToString())))
             {
-                inputBlob.UploadAsync(stream);
+                inputBlob.UploadFromStream(stream);
             }
         }
 
-        static Uri GetOutputDirectoryUrl(BlobContainerClient container)
+        static Uri GetOutputDirectoryUrl(CloudBlobContainer container)
         {
-            Console.WriteLine(container.CanGenerateSasUri);
-            BlobSasBuilder builder = new BlobSasBuilder(BlobSasPermissions.All, DateTime.UtcNow.AddDays(1));
-            return container.GenerateSasUri(builder);
+            // Set the expiry time and permissions for the container.
+            // In this case no start time is specified, so the shared access signature becomes valid immediately.
+            SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy
+            {
+                SharedAccessExpiryTime = DateTime.UtcNow.AddHours(4),
+                Permissions = SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.List | SharedAccessBlobPermissions.Read
+            };
+
+            // Generate the shared access signature on the container, setting the constraints directly on the signature.
+            string sasContainerToken = container.GetSharedAccessSignature(sasConstraints);
+
+            // Return the URI string for the container, including the SAS token.
+            return new Uri(container.Uri + sasContainerToken);
         }
 
-        static Uri GetInputFileUrl(BlobContainerClient container, string filePath)
+        static Uri GetInputFileUrl(CloudBlobContainer container, string filePath)
         {
-            Console.WriteLine(container.CanGenerateSasUri);
-            BlobSasBuilder builder = new BlobSasBuilder(BlobSasPermissions.Read, DateTime.UtcNow.AddDays(1));
-            return container.GenerateSasUri(builder);
+            // Set the expiry time and permissions for the container.
+            // In this case no start time is specified, so the shared access signature becomes valid immediately.
+            SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy
+            {
+                SharedAccessExpiryTime = DateTime.UtcNow.AddHours(4),
+                Permissions = SharedAccessBlobPermissions.Read
+            };
 
+            // Generate the shared access signature on the container, setting the constraints directly on the signature.
+            string sasToken = container.GetBlockBlobReference(filePath).GetSharedAccessSignature(sasConstraints);
+
+            // Return the URI string for the container, including the SAS token.
+            return new Uri(container.Uri + "/" + filePath + sasToken);
+        }
+
+        static string GetJobPath(string namespaceName, string notificationHubPath, string jobId)
+        {
+            return string.Format(CultureInfo.InvariantCulture, @"{0}//{1}/{2}/", namespaceName, notificationHubPath, jobId);
         }
     }
 }

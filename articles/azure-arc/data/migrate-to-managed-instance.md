@@ -155,10 +155,10 @@ Example:
 Copy the backup file from the local storage to the sql pod in the cluster.
 
 ```console
-kubectl cp <source file location> <pod name>:var/opt/mssql/data/<file name> -n <namespace name> -c arc-sqlmi
+kubectl cp <source file location> <pod name>:var/opt/mssql/data/<file name> -n <namespace name>
 
 #Example:
-kubectl cp C:\Backupfiles\test.bak sqlinstance1-0:var/opt/mssql/data/test.bak -n arc -c arc-sqlmi
+kubectl cp C:\Backupfiles\test.bak sqlinstance1-0:var/opt/mssql/data/test.bak -n arc
 ```
 
 ### Step 3: Restore the database
@@ -189,4 +189,4 @@ GO
 
 [Start by creating a Data Controller](create-data-controller-indirect-cli.md)
 
-[Create an Azure Arc-enabled SQL Managed Instance](create-sql-managed-instance.md)
+[Already created a Data Controller? Create an Azure Arc-enabled SQL Managed Instance](create-sql-managed-instance.md)

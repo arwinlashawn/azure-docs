@@ -10,32 +10,32 @@ metadata:
   ms.service: virtual-network
   ms.topic: hub-page
   ms.collection:
-  author: asudbring
-  ms.author: allensu
+  author: mbender-ms
+  ms.author: mbender
   manager: kumudD
   ms.date: 09/08/2021
 
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new 
   items: 
-    - title: Azure Networking services overview 
-      itemType: overview
+    - title: What is Azure Networking? 
+      itemType: overview # controls the icon image and super-title text 
       url: fundamentals/networking-overview.md
     - title: What's new in Azure Networking? 
       itemType: whats-new 
       url: https://azure.microsoft.com/updates/?category=networking
-    - title: Azure network security
-      itemType: overview
-      url: ./security/index.yml
+    - title: Load-balancing options in Azure
+      itemType: architecture
+      url: /azure/architecture/guide/technology-choices/load-balancing-overview
     - title: Hub-spoke network topology in Azure
       itemType: architecture
       url: /azure/architecture/reference-architectures/hybrid-networking/hub-spoke
     - title: Azure Networking blogs
       itemType: concept
       url: https://azure.microsoft.com/blog/topics/networking/
-    - title: Azure Networking Solutions
-      itemType: deploy
-      url: https://mslabs.cloudguides.com/en-us/guides/Azure%20Networking%20Solutions
+    - title: Working remotely using Azure services
+      itemType: concept
+      url: working-remotely-support.md
     
 
 # additionalContent section (optional)
@@ -191,12 +191,10 @@ additionalContent:
         # Card
         - title: DDoS protection
           links:
-            - text: What is Azure DDoS Protection?
-              url: ../ddos-protection/ddos-protection-overview.md
-            - text: Create DDoS Network Protection
+            - text: What is Azure DDoS Protection Standard?
               url: ../ddos-protection/manage-ddos-protection.md
-            - text: Create DDoS IP Protection
-              url: ../ddos-protection/manage-ddos-protection-powershell-ip.md
+            - text: Manage DDoS Protection
+              url: ../ddos-protection/manage-ddos-protection.md
             - text: See more
               url: ../ddos-protection/index.yml
 

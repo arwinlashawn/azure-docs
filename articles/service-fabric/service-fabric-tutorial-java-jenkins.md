@@ -5,7 +5,6 @@ ms.topic: tutorial
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: service-fabric
-ms.custom: devx-track-extended-java, devx-track-jenkins
 services: service-fabric
 ms.date: 07/14/2022
 ---

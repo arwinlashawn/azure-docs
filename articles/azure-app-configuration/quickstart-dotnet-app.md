@@ -3,13 +3,13 @@ title: Quickstart for Azure App Configuration with .NET Framework | Microsoft Do
 description: In this article, create a .NET Framework app with Azure App Configuration to centralize storage and management of application settings separate from your code.
 services: azure-app-configuration
 documentationcenter: ''
-author: mcleanbyron
+author: maud-lv
 ms.service: azure-app-configuration
 ms.devlang: csharp
-ms.custom: devx-track-csharp, mode-other, devx-track-dotnet
+ms.custom: devx-track-csharp, mode-other
 ms.topic: quickstart
-ms.date: 02/28/2023
-ms.author: mcleans
+ms.date: 09/28/2020
+ms.author: malev
 #Customer intent: As a .NET Framework developer, I want to manage all my app settings in one place.
 ---
 # Quickstart: Create a .NET Framework app with Azure App Configuration
@@ -22,18 +22,21 @@ In this quickstart, a .NET Framework console app is used as an example, but the 
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/).
-- An App Configuration store. [Create a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
+- Azure subscription - [create one for free](https://azure.microsoft.com/free/dotnet)
 - [Visual Studio](https://visualstudio.microsoft.com/vs)
 - [.NET Framework 4.7.2 or later](https://dotnet.microsoft.com/download/dotnet-framework)
 
-## Add a key-value
+## Create an App Configuration store
 
-Add the following key-value to the App Configuration store and leave **Label** and **Content Type** with their default values. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
+[!INCLUDE [azure-app-configuration-create](../../includes/azure-app-configuration-create.md)]
 
-| Key                        | Value                               |
-|----------------------------|-------------------------------------|
-| *TestApp:Settings:Message* | *Data from Azure App Configuration* |
+7. Select **Configuration explorer** > **+ Create** > **Key-value** to add the following key-value:
+
+    | Key                        | Value                               |
+    |----------------------------|-------------------------------------|
+    | *TestApp:Settings:Message* | *Data from Azure App Configuration* |
+
+    Leave **Label** and **Content Type** empty.
 
 ## Create a .NET Framework console app
 

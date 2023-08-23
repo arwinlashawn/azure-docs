@@ -3,9 +3,9 @@ title: Tutorial - Enable Multi-user authorization using Resource Guard
 description: In this tutorial, you'll learn about how create a resource guard and enable Multi-user authorization on Recovery Services vault for Azure Backup.
 ms.topic: tutorial
 ms.date: 05/05/2022
+author: v-amallick
 ms.service: backup
-author: AbhishekMallick-MS
-ms.author: v-abhmallick
+ms.author: v-amallick
 ---
 # Tutorial: Create a Resource Guard and enable Multi-user authorization in Azure Backup
 
@@ -65,12 +65,9 @@ Follow these steps:
 Follow these steps:
 
 1. In the Resource Guard created above, go to **Properties**.
-1. Select **Disable** for operations that you wish to exclude from being authorized using the Resource Guard. 
-
-   >[!Note]
-   >The operations **Disable soft delete** and **Remove MUA protection** cannot be disabled.
+2. Select **Disable** for operations that you wish to exclude from being authorized using the Resource Guard. Note that the operations **Disable soft delete** and **Remove MUA protection** cannot be disabled.
 1. Optionally, you can also update the description for the Resource Guard using this blade. 
-1. Select **Save**.
+1. Click **Save**.
 
 ## Assign permissions to the Backup admin on the Resource Guard to enable MUA
 
@@ -106,7 +103,7 @@ Follow these steps:
 
 ## Next steps
 
-- [Protected operations using MUA](multi-user-authorization.md?pivots=vaults-recovery-services-vault#protected-operations-using-mua)
+- [Protect against unauthorized (protected) operations](multi-user-authorization.md#protect-against-unauthorized-protected-operations)
 - [Authorize critical (protected) operations using Azure AD Privileged Identity Management](multi-user-authorization.md#authorize-critical-protected-operations-using-azure-ad-privileged-identity-management)
 - [Performing a protected operation after approval](multi-user-authorization.md#performing-a-protected-operation-after-approval)
 - [Disable MUA on a Recovery Services vault](multi-user-authorization.md#disable-mua-on-a-recovery-services-vault)

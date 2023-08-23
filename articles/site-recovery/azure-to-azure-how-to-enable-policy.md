@@ -2,11 +2,10 @@
 
 title: Enable Azure Site Recovery for your VMs by using Azure Policy
 description: Learn how to enable policy support to help protect your VMs by using Azure Site Recovery.
-author: ankitaduttaMSFT
-ms.author: ankitadutta
+author: v-pgaddala
+ms.author: v-pgaddala
 ms.topic: how-to
 ms.date: 07/25/2021
-ms.service: site-recovery
 ms.custom: template-how-to
 
 ---

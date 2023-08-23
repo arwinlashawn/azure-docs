@@ -633,8 +633,8 @@ The following example describes a sample App Service plan resource definition th
       "type": "CustomLocation"
    },
    "sku": {
-      "tier": "Kubernetes",
-      "name": "K1", 
+      "tier": "K1",
+      "name": "Kubernetes", 
       "capacity": 1
    },
    "properties": {

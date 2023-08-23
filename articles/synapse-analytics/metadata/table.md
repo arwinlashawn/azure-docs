@@ -6,8 +6,8 @@ ms.service:  synapse-analytics
 ms.topic: overview 
 ms.subservice: metadata
 ms.date: 10/13/2021
-author: juluczni
-ms.author: juluczni
+author: jasonwhowell
+ms.author: jasonh
 ms.reviewer: wiassaf
 ms.custom: devx-track-csharp
 ---

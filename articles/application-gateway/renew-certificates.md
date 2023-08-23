@@ -8,6 +8,7 @@ ms.service: application-gateway
 ms.topic: how-to
 ms.date: 01/25/2022
 ms.author: greglin 
+ms.custom: devx-track-azurepowershell, devx-track-azurecli 
 ms.devlang: azurecli
 ---
 

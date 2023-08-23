@@ -1,8 +1,7 @@
 ---
 author: diberry
 ms.service: cosmos-db
-ms.subservice: mongodb
-ms.custom: ignite-2022, devx-track-azurecli
+ms.subservice: cosmosdb-mongo
 ms.topic: include
 ms.date: 06/13/2019
 ms.author: diberry
@@ -29,7 +28,7 @@ ms.author: diberry
         --location $location
     ```
 
-1. Use the [``az cosmosdb create``](/cli/azure/cosmosdb#az-cosmosdb-create) command to create a new Azure Cosmos DB for MongoDB account with default settings.
+1. Use the [``az cosmosdb create``](/cli/azure/cosmosdb#az-cosmosdb-create) command to create a new Azure Cosmos DB MongoDB API account with default settings.
 
     ```azurecli-interactive
     az cosmosdb create \

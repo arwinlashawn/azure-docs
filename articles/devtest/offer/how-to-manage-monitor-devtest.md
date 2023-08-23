@@ -1,12 +1,12 @@
 ---
 title: Managing and monitoring your Azure Dev/Test subscriptions
 description: Manage your Azure Dev/Test subscriptions with the flexibility of Azure's cloud environment. This guide also covers Azure Monitor to help maximize availability and performance for applications and services.
-author: jenp
-ms.author: jenp
+author: jamestramel
+ms.author: jametra
 ms.prod: visual-studio-windows
 ms.topic: how-to 
 ms.date: 10/12/2021
-ms.custom: devtestoffer, devx-track-arm-template
+ms.custom: devtestoffer
 ---
 
 # Managing Azure DevTest Subscriptions

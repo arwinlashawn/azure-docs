@@ -13,10 +13,10 @@ metadata:
    Use Azure Active Directory (Azure AD) with OAuth 2.0 and OpenID Connect (OIDC) to protect the apps and web APIs you build. Learn how to sign in users and
    manage their access through our quickstarts, tutorials, code samples, and API reference documentation.
 
-  author: Dickson-Mwendia
+  author: mmacy
   manager: CelesteDG
-  ms.author: dmwendia
-  ms.date: 04/28/2023
+  ms.author: marsma
+  ms.date: 04/01/2022
   ms.service: active-directory
   ms.subservice: develop
   ms.topic: hub-page
@@ -27,29 +27,20 @@ metadata:
 highlightedContent:
   items:
     - title: What is the Microsoft identity platform?
-      itemType: overview
+      itemType: overview # controls the icon image and super-title text
       url: v2-overview.md
     - title: Authentication & authorization basics
       url: authentication-vs-authorization.md
       itemType: concept
+#    - title: OAuth 2.0 and OpenID Connect (OIDC)
+#      url: active-directory-v2-protocols.md
+#      itemType: concept
     - title: App types and authentication flows
       url: authentication-flows-app-scenarios.md
       itemType: concept
     - title: Code samples
       url: sample-v2-code.md
       itemType: sample
-    - title: What's new in docs
-      url: whats-new-docs.md
-      itemType: whats-new
-    - title: OAuth 2.0 and OpenID Connect (OIDC)
-      url: ./v2-protocols.md
-      itemType: concept
-    - title: Migrate apps to MSAL
-      url: msal-migration.md
-      itemType: concept
-    - title: Register an application
-      url: quickstart-register-app.md
-      itemType: quickstart
 ## BAND 1 - HIGHLIGHTED CONTENT END ##########################################################################################################################
 
 
@@ -97,34 +88,34 @@ productDirectory:
 ## BAND 3 - CONCEPTUAL CONTENT #############################################################################################################################
 conceptualContent:
   title: Get started
-  summary: Quick access to guidance on adding core IAM features to your applications and best practices for keeping your apps secure and available.
+  summary: Quick access to documentation for adding core IAM features to your applications and guidance on the best practices for keeping your apps secure and available.
   items:
     ## CARD 1 ######################
     - title: Sign in users
       links:
         - text: Single-page web app (SPA)
-          url: quickstart-single-page-app-react-sign-in.md
+          url: single-page-app-quickstart.md
           itemType: quickstart
         - text: Web app
-          url: quickstart-web-app-aspnet-sign-in.md
+          url: web-app-quickstart.md
           itemType: quickstart
         - text: Desktop app
-          url: quickstart-desktop-app-nodejs-electron-sign-in.md
+          url: desktop-app-quickstart.md
           itemType: quickstart
         - text: Mobile app
-          url: quickstart-mobile-app-android-sign-in.md
+          url: mobile-app-quickstart.md
           itemType: quickstart
     ## CARD 2 ######################
     - title: Protect a web API
       links:
-        - text: Configure an application to expose a web API
+        - text: Register an API with the identity platform
           url: quickstart-configure-app-expose-web-apis.md
           itemType: quickstart
-        - text: Build a protected web API
-          url: web-api-tutorial-01-register-app.md
+        - text: Protect an API in code
+          url: web-api-quickstart.md
           itemType: quickstart
         - text: Call an API from a non-interactive app or script
-          url: quickstart-web-api-aspnet-protect-api.md
+          url: console-app-quickstart.md
           itemType: quickstart
     ## CARD 3 ######################
     - title: Test and deploy apps
@@ -148,47 +139,47 @@ conceptualContent:
           url: secure-least-privileged-access.md
           itemType: concept
         - text: Build auth resilience into your apps
-          url: ../architecture/resilience-app-development-overview.md?toc=/azure/active-directory/develop/toc.json&bc=/azure/active-directory/develop/breadcrumb/toc.json
+          url: ../fundamentals/resilience-app-development-overview.md?toc=/azure/active-directory/develop/toc.json&bc=/azure/active-directory/develop/breadcrumb/toc.json
           itemType: concept
 ## BAND 3 - CONCEPTUAL CONTENT END ##########################################################################################################################
 
 
 ## BAND 4 - TOOLS ###########################################################################################################################################
 tools:
-  title: Microsoft authentication libraries
+  title: Microsoft authentication libraries on GitHub
   summary: >
-    The open-source Microsoft Authentication Library (MSAL) is built and supported by Microsoft.
-    We recommend MSAL for any app that uses the Microsoft identity platform for authentication and authorization.
+    The open-source Microsoft Authentication Library (MSAL) is hosted on GitHub. Built and supported by Microsoft,
+    we recommend MSAL for any app that uses theMicrosoft identity platform for authentication and authorization.
   items:
   ## ROW 1 ######################
   - title: .NET
-    url: /entra/msal/dotnet
+    url: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet
     imageSrc: /media/logos/logo_Csharp.svg
   - title: Android
     url: https://github.com/AzureAD/microsoft-authentication-library-for-android
     imageSrc: ./media/hub/android.svg
   - title: Angular
-    url: /javascript/api/@azure/msal-angular/
+    url: https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-angular
     imageSrc: ./media/hub/angular.svg
   ## ROW 2 ######################
   - title: iOS & macOS
     url: https://github.com/AzureAD/microsoft-authentication-library-for-objc
     imageSrc: /media/logos/logo_ios.svg
   - title: Java
-    url: /java/api/com.microsoft.aad.msal4j
+    url: https://github.com/AzureAD/microsoft-authentication-library-for-java
     imageSrc: /media/logos/logo_java.svg
   - title: JavaScript
-    url: /javascript/api/overview/msal-overview
+    url: https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser
     imageSrc: /media/logos/logo_js.svg
   ## ROW 3 ######################
   - title: Node.js
-    url: /javascript/api/@azure/msal-node
+    url: https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-node
     imageSrc: ./media/hub/node.svg
   - title: Python
-    url: /entra/msal/python/
+    url: https://github.com/AzureAD/microsoft-authentication-library-for-python
     imageSrc: /media/logos/logo_python.svg
   - title: React
-    url: /javascript/api/@azure/msal-react
+    url: https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-react
     imageSrc: ./media/hub/react.svg
 ## BAND 4 - TOOLS END #######################################################################################################################################
 
@@ -208,10 +199,10 @@ additionalContent:
       ## CARD 2 ######################
       - title: Connect to Microsoft Graph
         summary: >
-          Programmatic access to organizational, user, and application data stored in Azure Active Directory. Call Microsoft Graph from your application to
+          Programmatic access to organizational, user, and application data stored in Microsoft Graph. Call the Microsoft Graph API from your application to
           create and manage Azure AD users and groups, get and modify your users' data like their profiles, calendars, email, and more.
         links:
-        - url: /graph/overview?toc=/azure/active-directory/develop/toc.json&bc=/azure/active-directory/develop/breadcrumb/toc.json
+        - url: microsoft-graph-intro.md
           text: Microsoft Graph API documentation
       ## CARD 3 ######################
       - title: Manage and market your apps

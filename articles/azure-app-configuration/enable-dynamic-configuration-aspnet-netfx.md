@@ -5,10 +5,11 @@ services: azure-app-configuration
 author: zhenlan
 ms.service: azure-app-configuration
 ms.devlang: csharp
-ms.custom: devx-track-csharp, devx-track-dotnet
+ms.custom: devx-track-csharp
 ms.topic: tutorial
-ms.date: 03/20/2023
+ms.date: 10/12/2021
 ms.author: zhenlwa
+
 #Customer intent: I want to dynamically update my ASP.NET web application (.NET Framework) to use the latest configuration data in App Configuration.
 ---
 # Tutorial: Use dynamic configuration in an ASP.NET web application (.NET Framework)
@@ -23,22 +24,25 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/).
-- An App Configuration store. [Create a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
+- Azure subscription - [create one for free](https://azure.microsoft.com/free/)
 - [Visual Studio](https://visualstudio.microsoft.com/vs)
 - [.NET Framework 4.7.2 or later](https://dotnet.microsoft.com/download/dotnet-framework)
 
-## Add key-values
+## Create an App Configuration store
 
-Add the following key-values to the App Configuration store and leave **Label** and **Content Type** with their default values. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
+[!INCLUDE[Azure App Configuration resource creation steps](../../includes/azure-app-configuration-create.md)]
 
-| Key                                | Value                               |
-|------------------------------------|-------------------------------------|
-| *TestApp:Settings:BackgroundColor* | *White*                             |
-| *TestApp:Settings:FontColor*       | *Black*                             |
-| *TestApp:Settings:FontSize*        | *40*                                |
-| *TestApp:Settings:Message*         | *Data from Azure App Configuration* |
-| *TestApp:Settings:Sentinel*        | *v1*                                |
+7. Select **Operations** > **Configuration explorer** > **Create** > **Key-value** to add the following key-values:
+
+    | Key                                | Value                               |
+    |------------------------------------|-------------------------------------|
+    | *TestApp:Settings:BackgroundColor* | *White*                             |
+    | *TestApp:Settings:FontColor*       | *Black*                             |
+    | *TestApp:Settings:FontSize*        | *40*                                |
+    | *TestApp:Settings:Message*         | *Data from Azure App Configuration* |
+    | *TestApp:Settings:Sentinel*        | *v1*                                |
+
+    Leave **Label** and **Content type** empty.
 
 ## Create an ASP.NET Web Application
 

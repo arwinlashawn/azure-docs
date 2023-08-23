@@ -4,14 +4,14 @@ description: include file
 author: v-dalc
 services: storage
 
-ms.service: azure-storage
+ms.service: storage
 ms.topic: include
 ms.date: 11/17/2021
 ms.author: alkohli
 ms.custom: include file
 ---
 
-Do the following steps to order an import job in Azure Import/Export job via the portal.
+Do the following steps to order an import job in Azure Import/Export job via the Preview portal.
 
 1. Use your Microsoft Azure credentials to sign in at this URL: [https://portal.azure.com](https://portal.azure.com).
 1. Select **+ Create a resource**, and search for *Azure Data Box*. Select **Azure Data Box**.

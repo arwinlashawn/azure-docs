@@ -1,12 +1,10 @@
 ---
 title: Troubleshoot replication of Azure VMs with Azure Site Recovery
 description: Troubleshoot replication in Azure VM disaster recovery with Azure Site Recovery
-author: ankitaduttaMSFT
+author: v-pgaddala
 manager: rochakm
 ms.topic: troubleshooting
-ms.date: 03/07/2022
-ms.service: site-recovery
-ms.custom: engagement-fy23
+ms.date: 04/03/2020
 ---
 
 # Troubleshoot replication in Azure VM disaster recovery

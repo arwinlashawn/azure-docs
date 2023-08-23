@@ -5,7 +5,7 @@ author: florianborn71
 ms.author: flborn
 ms.date: 02/11/2020
 ms.topic: how-to 
-ms.custom:
+ms.custom: devx-track-azurepowershell
 ---
 
 # Get service access tokens

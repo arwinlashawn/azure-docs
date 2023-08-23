@@ -1,12 +1,12 @@
 ---
-title: License self-service password reset
+title: License self-service password reset - Azure Active Directory
 description: Learn about the difference Azure Active Directory self-service password reset licensing requirements
 
 services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: conceptual
-ms.date: 01/29/2023
+ms.date: 07/13/2021
 
 ms.author: justinha
 author: justinha

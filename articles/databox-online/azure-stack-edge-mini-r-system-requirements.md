@@ -6,7 +6,6 @@ author: alkohli
 
 ms.service: databox
 ms.subservice: edge
-ms.custom: devx-track-arm-template
 ms.topic: conceptual
 ms.date: 02/05/2021
 ms.author: alkohli

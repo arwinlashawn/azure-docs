@@ -7,6 +7,7 @@ ms.service: web-application-firewall
 ms.date: 07/26/2022
 ms.author: victorh
 ms.topic: conceptual 
+ms.custom: devx-track-azurepowershell
 ---
 
 # Web Application Firewall request size limits
@@ -51,6 +52,4 @@ When your WAF receives a request that's over the size limit, the behavior depend
 
 ## Next steps
 
-- After you configure your WAF settings, you can learn how to view your WAF logs. For more information, see [Application Gateway diagnostics](../../application-gateway/application-gateway-diagnostics.md#diagnostic-logging).
-- [Learn more about Azure network security](../../networking/security/index.yml)
-
+After you configure your WAF settings, you can learn how to view your WAF logs. For more information, see [Application Gateway diagnostics](../../application-gateway/application-gateway-diagnostics.md#diagnostic-logging).

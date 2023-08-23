@@ -1,18 +1,20 @@
 ---
-title: "Tutorial: Create an Azure Files volume mount in Azure Container Apps"
+title: "Tutorial: Create an Azure Files storage mount in Azure Container Apps"
 description: Learn to create an Azure Files storage mount in Azure Container Apps
 services: container-apps
 author: craigshoemaker
 ms.service: container-apps
-ms.custom: devx-track-azurecli
 ms.topic: tutorial
 ms.date: 07/19/2022
 ms.author: cshoe
 ---
 
-# Tutorial: Create an Azure Files volume mount in Azure Container Apps
+# Tutorial: Create an Azure Files storage mount in Azure Container Apps
 
-Learn to write to permanent storage in a container app using an Azure Files storage mount. For more information about storage mounts, see [Use storage mounts in Azure Container Apps](storage-mounts.md).
+Learn to write to permanent storage in a container app using an Azure Files storage mount.
+
+> [!NOTE]
+> The volume mounting features in Azure Container Apps are in preview.
 
 In this tutorial, you learn how to:
 
@@ -28,11 +30,11 @@ In this tutorial, you learn how to:
 
 - Install the latest version of the [Azure CLI](/cli/azure/install-azure-cli).
 
-## Set up the environment
+## Set up
 
 The following commands help you define  variables and ensure your Container Apps extension is up to date.
 
-1. Sign in to the Azure CLI.
+1. Log in to the Azure CLI.
 
     # [Bash](#tab/bash)
 
@@ -435,7 +437,7 @@ Now you can update the container app configuration to support the storage mount.
 
 1. Open *app.yaml* in a code editor.
 
-1. Replace the `volumes: null` definition in the `template` section with a `volumes:` definition referencing the storage volume.  The template section should look like the following:
+1. Add a reference to the storage volumes to the `template` definition.
 
     ```yml
     template:
@@ -443,22 +445,6 @@ Now you can update the container app configuration to support the storage mount.
       - name: my-azure-file-volume
         storageName: mystoragemount
         storageType: AzureFile
-      containers:
-      - image: nginx
-        name: my-container-app
-        volumeMounts:
-        - volumeName: my-azure-file-volume
-          mountPath: /var/log/nginx
-        resources:
-          cpu: 0.5
-          ephemeralStorage: 3Gi
-          memory: 1Gi
-      initContainers: null
-      revisionSuffix: ''
-      scale:
-        maxReplicas: 1
-        minReplicas: 1
-        rules: null
     ```
 
     The new `template.volumes` section includes the following properties.

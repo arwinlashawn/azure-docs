@@ -2,12 +2,12 @@
 title: Related GitHub Projects for Azure API for FHIR
 description: List all Open Source (GitHub) repositories for Azure API for FHIR.
 services: healthcare-apis
-author: expekesheth
+author: ginalee-dotcom
 ms.service: healthcare-apis
 ms.subservice: fhir
 ms.topic: reference
 ms.date: 06/03/2022
-ms.author: kesheth
+ms.author: ginle
 ---
 
 # Related GitHub Projects

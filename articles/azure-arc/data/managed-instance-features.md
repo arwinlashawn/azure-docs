@@ -110,7 +110,7 @@ Azure Arc-enabled SQL Managed Instance share a common code base with the latest 
 | Feature | Azure Arc-enabled SQL Managed Instance |
 |--|--|
 | JSON | Yes |
-| Query Store | No | 
+| Query Store | Yes | 
 | Temporal | Yes | 
 | Native XML support | Yes | 
 | XML indexing | Yes | 
@@ -147,7 +147,7 @@ Azure Arc-enabled SQL Managed Instance supports various data tools that can help
 
 ### <a name="Unsupported"></a> Unsupported Features & Services
 
-The following features and services are not available for Azure Arc-enabled SQL Managed Instance.
+The following features and services are not available for Azure Arc-enabled SQL Managed Instance. The support of these features will be increasingly enabled over time.
 
 | Area | Unsupported feature or service |
 |-----|-----|
@@ -159,7 +159,9 @@ The following features and services are not available for Azure Arc-enabled SQL 
 | &nbsp; | FileTable, FILESTREAM |
 | &nbsp; | CLR assemblies with the EXTERNAL_ACCESS or UNSAFE permission set |
 | &nbsp; | Buffer Pool Extension |
-| **SQL Server Agent** |  SQL Server agent is supported but the following specific capabilities are not supported: Subsystems (CmdExec, PowerShell, Queue Reader, SSIS, SSAS, SSRS), Alerts, Managed Backup
+| **SQL Server Agent** |  Subsystems: CmdExec, PowerShell, Queue Reader, SSIS, SSAS, SSRS |
+| &nbsp; | Alerts |
+| &nbsp; | Managed Backup |
 | **High Availability** | Database mirroring  |
 | **Security** | Extensible Key Management |
 | &nbsp; | AD Authentication for Linked Servers | 

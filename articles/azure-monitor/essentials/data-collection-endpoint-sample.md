@@ -2,9 +2,7 @@
 title: Sample data collection endpoint
 description: Sample data collection endpoint below is for virtual machines with Azure Monitor agent
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
-ms.date: 07/17/2023
+ms.date: 03/16/2022
 
 ---
 

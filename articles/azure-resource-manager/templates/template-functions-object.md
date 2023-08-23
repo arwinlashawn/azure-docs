@@ -2,8 +2,7 @@
 title: Template functions - objects
 description: Describes the functions to use in an Azure Resource Manager template (ARM template) for working with objects.
 ms.topic: conceptual
-ms.custom: devx-track-arm-template
-ms.date: 05/22/2023
+ms.date: 05/09/2022
 ---
 
 # Object functions for ARM templates
@@ -14,7 +13,6 @@ Resource Manager provides several functions for working with objects in your Azu
 * [createObject](#createobject)
 * [empty](#empty)
 * [intersection](#intersection)
-* [items](#items)
 * [json](#json)
 * [length](#length)
 * [null](#null)
@@ -169,7 +167,7 @@ The output from the preceding example with the default values is:
 
 `items(object)`
 
-Converts a dictionary object to an array. See [toObject](template-functions-lambda.md#toobject) about converting an array to an object.
+Converts a dictionary object to an array.
 
 In Bicep, use the [items](../bicep/bicep-functions-object.md#items).
 
@@ -303,7 +301,7 @@ The example returns:
 }
 ```
 
-[!INCLUDE [JSON object ordering](../../../includes/resource-manager-object-ordering-arm-template.md)]
+The items() function sorts the objects in the alphabetical order. For example, **item001** appears before **item002** in the outputs of the two preceding samples.
 
 <a id="json"></a>
 

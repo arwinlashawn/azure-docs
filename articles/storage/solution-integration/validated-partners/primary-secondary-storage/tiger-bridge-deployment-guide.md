@@ -6,8 +6,8 @@ author: dukicn
 ms.author: nikoduki
 ms.date: 12/23/2021
 ms.topic: conceptual
-ms.service: azure-storage
-ms.subservice: storage-partner-integration
+ms.service: storage
+ms.subservice: partner
 ---
 
 # Deploy hybrid data infrastructure with Tiger Bridge and Azure Blob Storage

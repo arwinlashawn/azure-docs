@@ -3,9 +3,7 @@ title: Deploy Traffic Manager to balance Azure VMware Solution workloads
 description: Learn how to integrate Traffic Manager with Azure VMware Solution to balance application workloads across multiple endpoints in different regions.
 ms.topic: how-to
 ms.service: azure-vmware
-ms.date: 10/26/2022
-ms.custom: engagement-fy23
-
+ms.date: 02/08/2021
 ---
 
 # Deploy Azure Traffic Manager to balance Azure VMware Solution workloads

@@ -2,10 +2,9 @@
 title: Enable SCVMM inventory resources in Azure Arc center (preview)
 description: This article helps you enable SCVMM inventory resources from Azure portal (preview)
 ms.service: azure-arc
-ms.subservice: azure-arc-scvmm
 author: jyothisuri
 ms.reviewer: jsuri
-ms.date: 01/27/2023
+ms.date: 05/25/2022
 ms.topic: how-to
 keywords: "VMM, Arc, Azure"
 ---

@@ -29,12 +29,11 @@ To get access to the Remote Rendering service, you first need to [create an acco
 The following software must be installed:
 
 * [Windows SDK 10.0.18362.0](https://developer.microsoft.com/windows/downloads/windows-10-sdk) or later.
-* [The latest version of Visual Studio 2022](https://visualstudio.microsoft.com/vs/).
+* [The latest version of Visual Studio 2019](https://visualstudio.microsoft.com/vs/older-downloads/).
 * [Visual Studio tools for Mixed Reality](/windows/mixed-reality/install-the-tools). Specifically, the following *Workload* installations are required:
   * **Desktop development with C++**
   * **Universal Windows Platform (UWP) development**
-* [Git](https://git-scm.com/downloads).
-* [Git LFS plugin](https://git-lfs.github.com/)
+* [GIT](https://git-scm.com/downloads).
 
 ## Clone the Remote Rendering samples repository
 
@@ -54,7 +53,7 @@ The C++ HoloLens tutorial can be found in the folder *NativeCpp/HoloLens-Wmr*.
 
 ## Build the project
 
-Open the solution file *HolographicApp.sln* located in the *NativeCpp/HoloLens-Wmr* folder with Visual Studio.
+Open the solution file *HolographicApp.sln* located in the *NativeCpp/HoloLens-Wmr* folder with Visual Studio 2019.
 
 Switch the build configuration to *Debug* (or *Release*) and *ARM64*. Make sure the debugger mode is set to *Device* as opposed to *Remote Machine*:
 

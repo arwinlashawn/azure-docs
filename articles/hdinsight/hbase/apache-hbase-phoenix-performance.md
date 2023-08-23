@@ -4,7 +4,7 @@ description: Best practices to optimize Apache Phoenix performance for Azure HDI
 ms.service: hdinsight
 ms.topic: how-to
 ms.custom: hdinsightactive
-ms.date: 12/26/2022
+ms.date: 12/27/2019
 ---
 
 # Apache Phoenix performance best practices

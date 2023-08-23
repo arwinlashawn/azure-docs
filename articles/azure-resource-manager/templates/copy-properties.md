@@ -2,8 +2,7 @@
 title: Define multiple instances of a property
 description: Use copy operation in an Azure Resource Manager template (ARM template) to iterate multiple times when creating a property on a resource.
 ms.topic: conceptual
-ms.custom: devx-track-arm-template
-ms.date: 05/22/2023
+ms.date: 12/20/2021
 ---
 
 # Property iteration in ARM templates
@@ -73,7 +72,7 @@ The following example shows how to apply copy loop to the `dataDisks` property o
   "resources": [
     {
       "type": "Microsoft.Compute/virtualMachines",
-      "apiVersion": "2022-11-01",
+      "apiVersion": "2020-06-01",
       ...
       "properties": {
         "storageProfile": {
@@ -153,7 +152,7 @@ The following example template creates a failover group for databases that are p
     }
   },
   "variables": {
-    "failoverName": "[format('{0}/{1}failovergroups', parameters('primaryServerName'), parameters('primaryServerName'))]"
+    "failoverName": "[concat(parameters('primaryServerName'),'/', parameters('primaryServerName'),'failovergroups')]"
   },
   "resources": [
     {
@@ -222,7 +221,7 @@ You can use resource and property iterations together. Reference the property it
 {
   "type": "Microsoft.Network/virtualNetworks",
   "apiVersion": "2018-04-01",
-  "name": "[format('{0}{1}', parameters('vnetname'), copyIndex())]",
+  "name": "[concat(parameters('vnetname'), copyIndex())]",
   "copy":{
     "count": 2,
     "name": "vnetloop"
@@ -239,7 +238,7 @@ You can use resource and property iterations together. Reference the property it
         "name": "subnets",
         "count": 2,
         "input": {
-          "name": "[format('subnet-{0}', copyIndex('subnets'))]",
+          "name": "[concat('subnet-', copyIndex('subnets'))]",
           "properties": {
             "addressPrefix": "[variables('subnetAddressPrefix')[copyIndex('subnets')]]"
           }

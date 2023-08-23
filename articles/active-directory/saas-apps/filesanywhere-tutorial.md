@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Azure Active Directory integration with FilesAnywhere'
+title: 'Tutorial: Azure Active Directory integration with FilesAnywhere | Microsoft Docs'
 description: Learn how to configure single sign-on between Azure Active Directory and FilesAnywhere.
 services: active-directory
 author: jeevansd
@@ -9,7 +9,7 @@ ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 02/13/2019
 ms.author: jeedes
 ---
 # Tutorial: Azure Active Directory integration with FilesAnywhere

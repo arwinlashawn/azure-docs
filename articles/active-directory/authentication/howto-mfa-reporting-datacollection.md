@@ -1,5 +1,5 @@
 ---
-title: Azure AD user data collection
+title: Azure AD user data collection - Azure Active Directory
 description: What information is used to help authenticate users by self-service password reset and Azure AD Multi-Factor Authentication?
 
 services: multi-factor-authentication

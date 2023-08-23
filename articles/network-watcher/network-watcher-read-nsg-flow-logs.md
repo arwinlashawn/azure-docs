@@ -1,14 +1,16 @@
 ---
-title: Read NSG flow logs
-description: Learn how to use Azure PowerShell to parse network security group flow logs, which are created hourly and updated every few minutes in Azure Network Watcher.
+title: Read NSG flow logs | Microsoft Docs
+description: Learn how to use Azure PowerShell to parse Network Security Group flow logs, which are created hourly and updated every few minutes in Azure Network Watcher.
 services: network-watcher
-author: halkazwini
+documentationcenter: na
+author: damendo
 ms.service: network-watcher
 ms.topic: how-to
-ms.workload: infrastructure-services
-ms.date: 02/09/2021
-ms.author: halkazwini
-ms.custom: devx-track-azurepowershell, engagement-fy23
+ms.tgt_pltfrm: na
+ms.workload:  infrastructure-services
+ms.date: 01/04/2021
+ms.author: damendo 
+ms.custom: devx-track-azurepowershell
 ---
 
 # Read NSG flow logs

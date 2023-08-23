@@ -1,4 +1,3 @@
-items:
 - name: Azure
   tocHref: /azure/
   topicHref: /azure/index
@@ -8,12 +7,6 @@ items:
     topicHref: /azure/spring-apps/index
   - name: Azure Spring Apps
     tocHref: /azure/developer/java/migration/
-    topicHref: /azure/spring-apps/index
-  - name: Azure Spring Apps
-    tocHref: /azure/developer/java/containers/
-    topicHref: /azure/spring-apps/index
-  - name: Azure Spring Apps
-    tocHref: /azure/developer/java/spring-framework/
     topicHref: /azure/spring-apps/index
   - name: Azure Spring Apps
     tocHref: /cli/azure/
@@ -26,16 +19,4 @@ items:
     topicHref: /azure/spring-apps/index
   - name: Azure Spring Apps
     tocHref: /rest/api/azurespringcloud/
-    topicHref: /azure/spring-apps/index
-  - name: Azure Spring Apps
-    tocHref: /azure/architecture/guide/technology-choices/
-    topicHref: /azure/spring-apps/index
-  - name: Azure Spring Apps
-    tocHref: /azure/architecture/reference-architectures/microservices/
-    topicHref: /azure/spring-apps/index
-  - name: Azure Spring Apps
-    tocHref: /azure/architecture/web-apps/spring-apps/
-    topicHref: /azure/spring-apps/index
-  - name: Azure Spring Apps
-    tocHref: /azure/cloud-adoption-framework/scenarios/app-platform/spring-apps
     topicHref: /azure/spring-apps/index

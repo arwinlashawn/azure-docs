@@ -2,11 +2,13 @@
 title: 'Enable MFA for VPN users: Azure AD authentication'
 titleSuffix: Azure VPN Gateway
 description: Learn how to enable multi-factor authentication (MFA) for VPN users.
+services: vpn-gateway
 author: cherylmc
+
 ms.service: vpn-gateway
 ms.topic: how-to
-ms.date: 07/28/2023
-ms.author: cherylmc
+ms.date: 05/05/2021
+ms.author: alzam
 
 ---
 # Enable Azure AD Multi-Factor Authentication (MFA) for VPN users

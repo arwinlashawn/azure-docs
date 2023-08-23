@@ -4,13 +4,13 @@ titleSuffix: Azure Machine Learning
 description: 'Package a model. Models can be packaged as either a docker image, which you can then download, or you can create a Dockerfile and use it to build the image.'
 services: machine-learning
 ms.service: machine-learning
-ms.subservice: inferencing
+ms.subservice: core
 ms.date: 10/21/2021
 ms.topic: how-to
 author: ssalgadodev
-ms.author: bozhlin
+ms.author: ssalgado
 ms.reviewer: larryfr
-ms.custom: UpdateFrequency5, deploy, event-tier1-build-2022
+ms.custom: deploy, event-tier1-build-2022
 ---
 
 # How to package a registered model with Docker

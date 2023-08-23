@@ -1,10 +1,10 @@
 ---
 title: What is a connected registry
 description: Overview and scenarios of the connected registry feature of Azure Container Registry
-ms.author: jeburke
+ms.author: memladen
 ms.service: container-registry
 ms.topic: overview
-ms.date: 10/25/2022
+ms.date: 10/21/2021
 ms.custom: references_regions, ignite-fall-2021
 ---
 
@@ -17,14 +17,10 @@ In this article, you learn about the *connected registry* feature of [Azure Cont
 
 ## Available regions
 
-* Canada Central
-* East Asia
-* East US
-* North Europe
-* Norway East
-* Southeast Asia
-* West Central US
-* West Europe
+* Asia East
+* EU North
+* EU West
+* US East
 
 ## Scenarios
 

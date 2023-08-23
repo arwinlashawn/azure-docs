@@ -1,9 +1,9 @@
 ---
 title: 'Quickstart: Using Unity Remoting with Azure Object Anchors'
 description: In this quickstart, you learn how to enable Unity Remoting in a project that uses Object Anchors.
-author: RamonArguelles
+author: dfields-msft
 manager: virivera
-ms.author: rgarcia
+ms.author: dfields
 ms.date: 06/22/2022
 ms.topic: quickstart
 ms.service: azure-object-anchors

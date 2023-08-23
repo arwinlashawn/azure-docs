@@ -2,10 +2,11 @@
 title: Recover an Azure File Sync equipped server from a server-level failure
 description: Learn how to recover an Azure File Sync equipped server from a server-level failure
 author: khdownie
-ms.service: azure-file-storage
+ms.service: storage
 ms.topic: how-to
 ms.date: 12/07/2021
 ms.author: kendownie
+ms.subservice: files
 ---
 
 # Recover an Azure File Sync equipped server from a server-level failure

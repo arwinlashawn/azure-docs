@@ -1,16 +1,16 @@
 ---
-title: 'Tutorial: Configure Chaos for automatic user provisioning with Azure Active Directory'
+title: 'Tutorial: Configure Chaos for automatic user provisioning with Azure Active Directory | Microsoft Docs'
 description: Learn how to automatically provision and de-provision user accounts from Azure AD to Chaos.
 services: active-directory
 author: twimmers
 writer: twimmers
-manager: jeedes
+manager: beatrizd
 ms.assetid: 1a831f80-8fe0-4cb5-a639-ab9e2a0e90f7
 ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 09/27/2021
 ms.author: thwimmer
 ---
 

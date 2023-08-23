@@ -2,7 +2,7 @@
 title: Instantiate a public client app (MSAL.NET)
 description: Learn how to instantiate a public client application with configuration options using the Microsoft Authentication Library for .NET (MSAL.NET).
 services: active-directory
-author: Dickson-Mwendia
+author: mmacy
 manager: CelesteDG
 
 ms.service: active-directory
@@ -10,9 +10,9 @@ ms.subservice: develop
 ms.topic: how-to
 ms.workload: identity
 ms.date: 04/30/2019
-ms.author: dmwendia
+ms.author: marsma
 ms.reviewer: saeeda
-ms.custom: devx-track-csharp, aaddev, devx-track-dotnet
+ms.custom: "devx-track-csharp, aaddev"
 #Customer intent: As an application developer, I want to learn how to use application config options so I can instantiate a public client app.
 ---
 

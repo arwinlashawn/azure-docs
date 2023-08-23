@@ -1,9 +1,9 @@
 ---
-author: Elazark
+author: memildin
 ms.service: defender-for-cloud
 ms.topic: include
-ms.date: 11/09/2022
-ms.author: elkrieger
+ms.date: 03/13/2022
+ms.author: memildin
 ms.custom: generated
 ---
 

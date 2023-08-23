@@ -2,12 +2,12 @@
 title: 'Quickstart: Create an Azure Firewall and a firewall policy - Bicep'
 description: In this quickstart, you deploy an Azure Firewall and a firewall policy using Bicep.
 services: firewall-manager
-author: vhorne
-ms.author: victorh
+author: schaffererin
+ms.author: v-eschaffer
 ms.date: 07/05/2022
 ms.topic: quickstart
 ms.service: firewall-manager
-ms.custom: subject-armqs, mode-arm, devx-track-bicep
+ms.custom: devx-track-azurepowershell, subject-armqs, mode-arm
 ---
 
 # Quickstart: Create an Azure Firewall and a firewall policy - Bicep

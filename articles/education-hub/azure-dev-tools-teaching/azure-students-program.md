@@ -6,6 +6,7 @@ ms.author: rymend
 ms.topic: overview
 ms.date: 06/30/2020
 ms.service: azure-education
+ms.subservice: education-hub
 ---
 
 # Azure for Students
@@ -34,4 +35,4 @@ To get detailed terms of use for Azure for Students, see the [offer terms](https
 - [Get help with login errors](troubleshoot-login.md)
 - [Download software (Azure for Students)](download-software.md)
 - [Azure for Students Starter overview](azure-students-starter-program.md)
-- [Microsoft Learn training](/training/)
+- [Microsoft Learn: a free online learning platform](/learn/)

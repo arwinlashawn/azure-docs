@@ -3,13 +3,15 @@ title: Analyze network security - Security Group View - Azure PowerShell
 titleSuffix: Azure Network Watcher
 description: This article will describe how to use PowerShell to analyze a virtual machines security with Security Group View.
 services: network-watcher
-author: halkazwini
+documentationcenter: na
+author: damendo
 ms.service: network-watcher
 ms.topic: how-to
-ms.workload: infrastructure-services
-ms.date: 11/20/2020
-ms.author: halkazwini
-ms.custom: devx-track-azurepowershell, engagement-fy23
+ms.tgt_pltfrm: na
+ms.workload:  infrastructure-services
+ms.date: 02/22/2017
+ms.author: damendo 
+ms.custom: devx-track-azurepowershell
 ---
 
 # Analyze your Virtual Machine security with Security Group View using PowerShell
@@ -42,8 +44,7 @@ The scenario covered in this article retrieves the configured and effective secu
 The first step is to retrieve the Network Watcher instance. This variable is passed to the `Get-AzNetworkWatcherSecurityGroupView` cmdlet.
 
 ```powershell
-$nw = Get-AzResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" }
-$networkWatcher = Get-AzNetworkWatcher -Name $nw.Name -ResourceGroupName $nw.ResourceGroupName
+$networkWatcher = Get-AzResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" }
 ```
 
 ## Get a VM

@@ -7,7 +7,7 @@ author: cherylmc
 
 ms.service: virtual-wan
 ms.topic: how-to
-ms.date: 07/28/2023
+ms.date: 06/30/2022
 ms.author: cherylmc
 
 ---

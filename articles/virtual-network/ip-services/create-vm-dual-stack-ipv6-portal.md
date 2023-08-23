@@ -8,7 +8,7 @@ ms.service: virtual-network
 ms.subservice: ip-services
 ms.topic: how-to
 ms.date: 08/17/2022
-ms.custom: template-how-to, devx-track-linux
+ms.custom: template-how-to
 ---
 
 # Create an Azure Virtual Machine with a dual-stack network using the Azure portal
@@ -215,3 +215,5 @@ For more information about IPv6 and IP addresses in Azure, see:
 - [Overview of IPv6 for Azure Virtual Network.](ipv6-overview.md)
 
 - [What is Azure Virtual Network IP Services?](ip-services-overview.md)
+
+

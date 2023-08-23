@@ -2,13 +2,14 @@
 title: Scalability targets for premium block blob storage accounts
 titleSuffix: Azure Storage
 description: Learn about premium-performance block blob storage accounts. Block blob storage accounts are optimized for applications that use smaller, kilobyte-range objects.
-author: tamram
+services: storage
+author: jimmart-dev
 
-ms.service: azure-storage
+ms.service: storage
 ms.topic: conceptual
 ms.date: 12/18/2019
-ms.author: tamram
-ms.subservice: storage-common-concepts
+ms.author: jammart
+ms.subservice: common
 ---
 
 # Scalability targets for premium block blob storage accounts

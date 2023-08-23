@@ -6,6 +6,7 @@ ms.service: automation
 ms.subservice: process-automation
 ms.date: 08/01/2018
 ms.topic: conceptual 
+ms.custom: devx-track-azurepowershell
 ---
 
 # Edit textual runbooks in Azure Automation

@@ -5,17 +5,14 @@ author: kgremban
 ms.service: iot-hub
 services: iot-hub
 ms.topic: conceptual
-ms.date: 11/03/2022
+ms.date: 07/07/2021
 ms.author: kgremban
 ROBOTS: NOINDEX
 ---
 
-# Encryption of Azure Iot Hub data at rest using customer-managed keys (preview)
+# Encryption of Azure Iot Hub data at rest using customer-managed keys
 
-IoT Hub supports encryption of data at rest using customer-managed keys (CMK), also known as Bring your own key (BYOK). Azure IoT Hub provides encryption of data at rest and in-transit as it's written in our datacenters; the data is encrypted when read and decrypted when written.
-
->[!NOTE]
->The customer-managed keys feature is in private preview, and is not currently accepting new customers.
+IoT Hub supports encryption of data at rest using customer-managed keys (CMK), also known as Bring your own key (BYOK). Azure IoT Hub provides encryption of data at rest and in-transit as it's written in our datacenters; the data is encrypted when read and decrypted when written. 
 
 By default, IoT Hub uses Microsoft-managed keys to encrypt the data. With CMK, you can get another layer of encryption on top of default encryption and can choose to encrypt data at rest with a key encryption key, managed through your [Azure Key Vault](https://azure.microsoft.com/services/key-vault/). This gives you the flexibility to create, rotate, disable, and revoke access controls. If BYOK is configured for your IoT Hub, we also provide double encryption, which offers a second layer of protection, while still allowing you to control the encryption key through your Azure Key Vault.
 

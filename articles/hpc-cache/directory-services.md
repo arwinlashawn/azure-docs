@@ -5,7 +5,7 @@ author: ekpgh
 ms.service: hpc-cache
 ms.topic: how-to
 ms.date: 07/27/2022
-ms.author: rohogue
+ms.author: v-erinkelly
 ---
 
 # Configure directory services

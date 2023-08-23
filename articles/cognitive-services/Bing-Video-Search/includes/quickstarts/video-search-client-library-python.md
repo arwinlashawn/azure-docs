@@ -1,6 +1,6 @@
 ---
 title: Bing Video Search Python client library quickstart 
-titleSuffix: Azure AI services
+titleSuffix: Azure Cognitive Services
 services: cognitive-services
 author: aahill
 manager: nitinme
@@ -86,4 +86,4 @@ client = VideoSearchAPI(endpoint, CognitiveServicesCredentials(subscription_key)
 ## See also 
 
 - [What is the Bing Video Search API?](../../overview.md)
-- [Azure AI services .NET SDK samples](https://github.com/Azure-Samples/cognitive-services-dotnet-sdk-samples/tree/master/BingSearchv7)
+- [Cognitive services .NET SDK samples](https://github.com/Azure-Samples/cognitive-services-dotnet-sdk-samples/tree/master/BingSearchv7)

@@ -1,27 +1,26 @@
 ---
 title: Find unhealthy DNS records in Azure DNS - PowerShell script sample
 description: In this article, learn how to use an Azure PowerShell script to find unhealthy DNS records.
-author: greg-lindsay
-ms.author: greglin
-ms.date: 10/04/2022
+author: asudbring
+ms.author: allensu # Microsoft employees only
+ms.date: 11/10/2021
 ms.topic: sample
 ms.service: dns
-ms.custom: devx-track-azurepowershell
+
 ---
 # Find unhealthy DNS records in Azure DNS - PowerShell script sample
 
-The following Azure PowerShell script finds unhealthy DNS records in Azure DNS public zones.
+The following Azure PowerShell script finds unhealthy DNS records in Azure DNS.
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
 ```azurepowershell-interactive
 <#
-    1. Install Pre requisites Az PowerShell modules  (https://learn.microsoft.com/powershell/azure/install-az-ps)
-    2. Sign in to your Azure Account using Login-AzAccount or Connect-AzAccount.
-    3. From an elevated PowerShell prompt, navigate to folder where the script is saved and run the following command:
+    1.	Install Pre requisites Az PowerShell modules  (https://docs.microsoft.com/powershell/azure/install-az-ps?view=azps-5.7.0)
+    2.	From PowerShell prompt navigate to folder where the script is saved and run the following command
         .\ Get-AzDNSUnhealthyRecords.ps1 -SubscriptionId <subscription id> -ZoneName <zonename>
-        Replace subscription id with the subscription id of interest.
-        Replace ZoneName with the actual zone name.
+        Replace subscription id with subscription id of interest.
+        ZoneName with actual zone name.
 #>
 param(
     # subscription if to fetch dns records from
@@ -71,9 +70,9 @@ Foreach ($module in $AZModules) {
 $WarningPreference = $StoreWarningPreference
 Write-Progress -Activity $ProgessActivity -Completed
 
-$context = Get-AzAccessToken;
-if ($context.Token -eq $null) {
-    Write-host -ForegroundColor Yellow "Please sign in to your Azure Account using Login-AzAccount or Connect-AzAccount before running the script."
+$context = Get-AzContext;
+if ($context.TokenCache -eq $null) {
+    Write-host -ForegroundColor Yellow "Please Login to Azure Account using Login-AzAccount and run the script."
     exit
 } 
 $subscriptions = Get-AzSubscription
@@ -165,7 +164,7 @@ This script uses the following commands to create the deployment. Each item in t
 
 | Command | Notes |
 |---|---|
-| [Get-AzDnsZone](/powershell/module/az.dns/get-azdnszone) | Gets an Azure public DNS zone. |
+| [Get-AzDnsZone](/powershell/module/az.dns/get-azdnszone) | Gets a DNS zone. |
 | [Get-AzDnsRecordSet](/powershell/module/az.dns/get-azdnsrecordset) | Gets a DNS record set. |
 
 ## Next steps

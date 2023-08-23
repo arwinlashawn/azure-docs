@@ -4,8 +4,7 @@ description: Monitor and troubleshoot Azure Site Recovery replication issues and
 ms.service: site-recovery
 ms.topic: conceptual
 ms.date: 07/30/2019
-ms.author: ankitadutta
-author: ankitaduttaMSFT
+
 ---
 
 # Monitor Site Recovery

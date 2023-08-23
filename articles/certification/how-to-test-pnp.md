@@ -6,7 +6,7 @@ ms.author: cbroad
 ms.service: certification
 ms.topic: how-to 
 ms.date: 01/28/2022
-ms.custom: template-how-to, devx-track-azurecli
+ms.custom: template-how-to 
 ---
 
 # How to test IoT Plug and Play devices

@@ -1,12 +1,12 @@
 ---
 title: Search examples for FHIR service
 description: How to search using different search parameters, modifiers, and other search tools for FHIR
-author: expekesheth
+author: ginalee-dotcom
 ms.service: healthcare-apis
 ms.subservice: fhir
 ms.topic: reference
 ms.date: 08/22/2022
-ms.author: kesheth
+ms.author: mikaelw
 ---
 
 # FHIR search examples

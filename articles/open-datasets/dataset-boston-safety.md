@@ -2,7 +2,6 @@
 title: Boston Safety Data
 description: Learn how to use the Boston Safety Data dataset in Azure Open Datasets.
 ms.service: open-datasets
-ms.custom: devx-track-python
 ms.topic: sample
 ms.date: 04/16/2021
 ---
@@ -175,7 +174,7 @@ Sample not available for this platform/package combination.
 
 ```
 # This is a package in preview.
-# You need to pip install azureml-opendatasets in Databricks cluster. https://learn.microsoft.com/azure/data-explorer/connect-from-databricks#install-the-python-library-on-your-azure-databricks-cluster
+# You need to pip install azureml-opendatasets in Databricks cluster. https://docs.microsoft.com/azure/data-explorer/connect-from-databricks#install-the-python-library-on-your-azure-databricks-cluster
 from azureml.opendatasets import BostonSafety
 
 from datetime import datetime

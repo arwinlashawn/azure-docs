@@ -1,14 +1,16 @@
 ---
-title: 'Quickstart: Create an Azure Front Door Service - Bicep'
+title: 'Quickstart: Create an Azure Front Door Service using Bicep'
 description: This quickstart describes how to create an Azure Front Door Service using Bicep.
 services: front-door
-author: duongau
-ms.author: duau
+documentationcenter: 
+author: schaffererin
+ms.author: v-eschaffer
 ms.date: 03/30/2022
 ms.topic: quickstart
 ms.service: frontdoor
 ms.workload: infrastructure-services
-ms.custom: subject-armqs, mode-arm, devx-track-bicep
+ms.tgt_pltfrm: na
+ms.custom: devx-track-azurepowershell, subject-armqs, mode-arm
 #Customer intent: As an IT admin, I want to direct user traffic to ensure high availability of web applications.
 ---
 

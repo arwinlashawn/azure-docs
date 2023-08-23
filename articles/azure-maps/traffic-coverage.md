@@ -1,9 +1,8 @@
 ---
-title: Traffic coverage
-titleSuffix: Microsoft Azure Maps
+title: Traffic coverage | Microsoft Azure Maps
 description: Learn about traffic coverage in Azure Maps. See whether information on traffic flow and incidents is available in various regions throughout the world.
-author: eriklindeman
-ms.author: eriklind
+author: stevemunk
+ms.author: v-munksteve
 ms.date: 03/24/2022
 ms.topic: conceptual
 ms.service: azure-maps
@@ -13,7 +12,7 @@ services: azure-maps
 
 # Azure Maps traffic coverage
 
-The Azure Maps [Traffic service] is a suite of web services designed for developers to create web and mobile applications around real-time traffic. This data can be visualized on maps or used to generate smarter routes that factor in current driving conditions.
+The Azure Maps [Traffic API](/rest/api/maps/traffic) is a suite of web services designed for developers to create web and mobile applications around real-time traffic. This data can be visualized on maps or used to generate smarter routes that factor in current driving conditions.
 
 The following tables provide information about what kind of traffic information you can request from each country or region. If a market is missing in the following tables, it isn't currently supported.
 
@@ -42,11 +41,11 @@ The following tables provide information about what kind of traffic information 
 |----------------|:---------:|:----:|
 | Australia      |     ✓     |  ✓  |
 | Brunei         |     ✓     |  ✓  |
-| Hong Kong SAR  |     ✓     |  ✓  |
+| Hong Kong      |     ✓     |  ✓  |
 | India          |     ✓     |  ✓  |
 | Indonesia      |     ✓     |  ✓  |
 | Kazakhstan     |     ✓     |  ✓  |
-| Macao SAR      |     ✓     |  ✓  |
+| Macao          |     ✓     |  ✓  |
 | Malaysia       |     ✓     |  ✓  |
 | New Zealand    |     ✓     |  ✓  |
 | Philippines    |     ✓     |  ✓  |
@@ -96,7 +95,7 @@ The following tables provide information about what kind of traffic information 
 | Spain                  |     ✓     |  ✓  |
 | Sweden                 |     ✓     |  ✓  |
 | Switzerland            |     ✓     |  ✓  |
-| Türkiye                |     ✓     |  ✓  |
+| Turkey                 |     ✓     |  ✓  |
 | Ukraine                |     ✓     |  ✓  |
 | United Kingdom         |     ✓     |  ✓  |
 
@@ -135,5 +134,3 @@ See the following articles in the REST API documentation for detailed informatio
 
 > [!div class="nextstepaction"]
 > [Get Traffic Incident Tile](/rest/api/maps/traffic/get-traffic-incident-tile)
-
-[Traffic service]: /rest/api/maps/traffic

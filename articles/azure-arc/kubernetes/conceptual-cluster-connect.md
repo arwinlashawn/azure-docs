@@ -1,11 +1,13 @@
 ---
-title: "Cluster connect access to Azure Arc-enabled Kubernetes clusters"
+title: "Access Azure Arc-enabled Kubernetes clusters from anywhere using cluster connect"
+services: azure-arc
+ms.service: azure-arc
 ms.date: 07/22/2022
 ms.topic: conceptual
-description: "Cluster connect allows developers to access their Azure Arc-enabled Kubernetes clusters from anywhere for interactive development and debugging."
+description: "This article provides a conceptual overview of cluster connect capability of Azure Arc-enabled Kubernetes."
 ---
 
-# Cluster connect access to Azure Arc-enabled Kubernetes clusters
+# Access Azure Arc-enabled Kubernetes clusters from anywhere using cluster connect
 
 The Azure Arc-enabled Kubernetes *cluster connect* feature provides connectivity to the `apiserver` of the cluster without requiring any inbound port to be enabled on the firewall. A reverse proxy agent running on the cluster can securely start a session with the Azure Arc service in an outbound manner.
 

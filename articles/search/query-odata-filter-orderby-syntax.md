@@ -7,7 +7,7 @@ author: bevloh
 ms.author: beloh
 ms.service: cognitive-search
 ms.topic: conceptual
-ms.date: 08/08/2023
+ms.date: 07/18/2022
 
 ---
 

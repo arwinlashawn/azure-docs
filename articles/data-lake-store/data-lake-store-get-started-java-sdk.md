@@ -6,8 +6,9 @@ author: normesta
 ms.service: data-lake-store
 ms.topic: how-to
 ms.date: 02/23/2022
-ms.custom: devx-track-java, devx-track-extended-java
+ms.custom: devx-track-java
 ms.author: normesta
+
 ---
 # Filesystem operations on Azure Data Lake Storage Gen1 using Java SDK
 > [!div class="op_single_selector"]
@@ -229,3 +230,4 @@ promptEnterKey();
 ## Next steps
 * [Explore JavaDoc for the Java SDK](https://azure.github.io/azure-data-lake-store-java/javadoc/)
 * [Secure data in Data Lake Storage Gen1](data-lake-store-secure-data.md)
+

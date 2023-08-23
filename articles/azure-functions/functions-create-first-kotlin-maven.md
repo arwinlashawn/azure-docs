@@ -7,7 +7,7 @@ ms.topic: quickstart
 ms.date: 03/25/2020
 ms.author: dglover
 ms.devlang: kotlin
-ms.custom: mode-other
+ms.custom: devx-track-azurepowershell, mode-other
 ---
 
 # Quickstart: Create your first function with Kotlin and Maven

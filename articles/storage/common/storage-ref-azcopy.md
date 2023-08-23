@@ -1,12 +1,12 @@
 ---
-title: azcopy
+title: azcopy | Microsoft Docs
 description: This article provides reference information for the azcopy command.
 author: normesta
-ms.service: azure-storage
+ms.service: storage
 ms.topic: reference
 ms.date: 07/21/2022
 ms.author: normesta
-ms.subservice: storage-common-concepts
+ms.subservice: common
 ms.reviewer: zezha-msft
 ---
 

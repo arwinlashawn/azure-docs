@@ -2,14 +2,13 @@
 title: Troubleshoot issues with Permissions Management
 description: Troubleshoot issues with Permissions Management
 services: active-directory
-author: jenniferf-skc
-manager: amycolannino
-ms.service: active-directory 
-ms.subservice: ciem
+author: kenwith
+manager: rkarlin
+ms.service: ciem
 ms.workload: identity
 ms.topic: troubleshooting
 ms.date: 02/23/2022
-ms.author: jfields
+ms.author: kenwith
 ---
 
 # Troubleshoot issues with Permissions Management

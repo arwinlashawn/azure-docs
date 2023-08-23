@@ -2,6 +2,8 @@
 title: CreateUiDefinition artifact
 description: Shows how to create the createUiDefinition artifact for an Azure Managed Application. The file is named createUiDefinition.json.
 ms.topic: conceptual
+ms.author: davidsmatlak
+author: davidsmatlak
 ms.date: 07/11/2019
 ---
 

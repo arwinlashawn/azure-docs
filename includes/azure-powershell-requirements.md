@@ -1,9 +1,9 @@
 ---
 ms.topic: include
-ms.date: 10/24/2022
+ms.date: 10/04/2021
 author: mikefrobbins
 ms.author: mirobb
-ms.manager: jasongroce
+manager: barbkess
 ms.technology: azure-powershell
 ms.service: azure-powershell
 ms.devlang: azurepowershell

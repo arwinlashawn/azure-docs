@@ -1,12 +1,10 @@
 ---
 title: Azure Functions SignalR Service output binding
 description: Learn about the SignalR Service output binding for Azure Functions.
-author: Y-Sindo
 ms.topic: reference
 ms.devlang: csharp, java, javascript, python
-ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-js, devx-track-python
-ms.date: 01/13/2023
-ms.author: zityang
+ms.custom: devx-track-csharp
+ms.date: 03/04/2022
 zone_pivot_groups: programming-languages-set-functions-lang-workers
 ---
 
@@ -25,7 +23,7 @@ For information on setup and configuration details, see the [overview](functions
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [functions-bindings-csharp-intro-with-csx](../../includes/functions-bindings-csharp-intro-with-csx.md)]
+[!INCLUDE [functions-bindings-csharp-intro](../../includes/functions-bindings-csharp-intro.md)]
 
 ### Broadcast to all clients
 
@@ -52,7 +50,7 @@ public static Task SendMessage(
 
 The following example shows a function that sends a message using the output binding to all connected clients. The *newMessage* is the name of the method to be invoked on each client.
 
-:::code language="csharp" source="~/azure-functions-dotnet-worker/samples/Extensions/SignalR/SignalROutputBindingFunctions2.cs" id="snippet_broadcast_to_all":::
+:::code language="csharp" source="~/azure-functions-dotnet-worker/samples/Extensions/SignalR/SignalROutputBindingFunctions.cs" range="13-24":::
 
 # [C# Script](#tab/csharp-script)
 
@@ -191,7 +189,7 @@ public static Task SendMessage(
 
 # [Isolated process](#tab/isolated-process)
 
-:::code language="csharp" source="~/azure-functions-dotnet-worker/samples/Extensions/SignalR/SignalROutputBindingFunctions2.cs" id="snippet_send_to_user":::
+:::code language="csharp" source="~/azure-functions-dotnet-worker/samples/Extensions/SignalR/SignalROutputBindingFunctions.cs" range="39-50":::
 
 # [C# Script](#tab/csharp-script)
 
@@ -333,7 +331,7 @@ public static Task SendMessage(
 ```
 # [Isolated process](#tab/isolated-process)
 
-:::code language="csharp" source="~/azure-functions-dotnet-worker/samples/Extensions/SignalR/SignalROutputBindingFunctions2.cs" id="snippet_send_to_group":::
+:::code language="csharp" source="~/azure-functions-dotnet-worker/samples/Extensions/SignalR/SignalROutputBindingFunctions.cs" range="52-63":::
 
 # [C# Script](#tab/csharp-script)
 
@@ -480,9 +478,9 @@ public static Task AddToGroup(
 
 # [Isolated process](#tab/isolated-process)
 
-Specify `SignalRGroupActionType` to add or remove a member. The following example removes a user from a group.
+Specify `SignalRGroupActionType` to add or remove a member. The following example adds a user to a group.
 
-:::code language="csharp" source="~/azure-functions-dotnet-worker/samples/Extensions/SignalR/SignalROutputBindingFunctions2.cs" id="snippet_remove_from_group":::
+:::code language="csharp" source="~/azure-functions-dotnet-worker/samples/Extensions/SignalR/SignalROutputBindingFunctions.cs" range="80-89":::
 
 # [C# Script](#tab/csharp-script)
 
@@ -689,7 +687,7 @@ public SignalRGroupAction removeFromGroup(
 
 ## Attributes
 
-Both [in-process](functions-dotnet-class-library.md) and [isolated worker process](dotnet-isolated-process-guide.md) C# libraries use attribute to define the function. C# script instead uses a function.json configuration file.
+Both [in-process](functions-dotnet-class-library.md) and [isolated process](dotnet-isolated-process-guide.md) C# libraries use attribute to define the function. C# script instead uses a function.json configuration file.
 
 # [In-process](#tab/in-process)
 

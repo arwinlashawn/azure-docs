@@ -4,7 +4,6 @@ description: Describes how to assess large numbers of servers in Hyper-V environ
 author: rashi-ms
 ms.author: rajosh
 ms.manager: abhemraj
-ms.service: azure-migrate
 ms.topic: how-to
 ms.date: 05/02/2022
 

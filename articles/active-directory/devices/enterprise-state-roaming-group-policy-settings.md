@@ -1,5 +1,5 @@
 ---
-title: Group Policy and MDM settings for ESR
+title: Group Policy and MDM settings for ESR - Azure Active Directory
 description: Management settings for Enterprise State Roaming
 
 services: active-directory
@@ -56,4 +56,4 @@ These settings are located in Group Policy under: **Computer Configuration** > *
 
 ## Next steps
 
-For an overview, see [enterprise State Roaming overview](./enterprise-state-roaming-enable.md).
+For an overview, see [enterprise State Roaming overview](enterprise-state-roaming-overview.md).

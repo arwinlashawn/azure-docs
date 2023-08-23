@@ -2,17 +2,17 @@
 title: Change streams in Azure Cosmos DB’s API for MongoDB
 description: Learn how to use change streams n Azure Cosmos DB’s API for MongoDB to get the changes made to your data.
 ms.service: cosmos-db
-ms.subservice: mongodb
+ms.subservice: cosmosdb-mongo
 ms.topic: how-to
 ms.date: 03/02/2021
 author: gahl-levy
 ms.author: gahllevy
 ms.devlang: csharp, javascript
-ms.custom: devx-track-csharp, ignite-2022
+ms.custom: devx-track-js, devx-track-csharp
 ---
 
 # Change streams in Azure Cosmos DB’s API for MongoDB
-[!INCLUDE[MongoDB](../includes/appliesto-mongodb.md)]
+[!INCLUDE[appliesto-mongodb-api](../includes/appliesto-mongodb-api.md)]
 
 [Change feed](../change-feed.md) support in Azure Cosmos DB’s API for MongoDB is available by using the change streams API. By using the change streams API, your applications can get the changes made to the collection or to the items in a single shard. Later you can take further actions based on the results. Changes to the items in the collection are captured in the order of their modification time and the sort order is guaranteed per shard key.
 
@@ -43,46 +43,22 @@ while (!cursor.isExhausted()) {
 # [C#](#tab/csharp)
 
 ```csharp
-var collection = new MongoClient("<connection-string>")
-    .GetDatabase("<database-name>")
-    .GetCollection<BsonDocument>("<collection-name>");
-
 var pipeline = new EmptyPipelineDefinition<ChangeStreamDocument<BsonDocument>>()
-    .Match(change => 
-        change.OperationType == ChangeStreamOperationType.Insert || 
-        change.OperationType == ChangeStreamOperationType.Update || 
-        change.OperationType == ChangeStreamOperationType.Replace
-    )
+    .Match(change => change.OperationType == ChangeStreamOperationType.Insert || change.OperationType == ChangeStreamOperationType.Update || change.OperationType == ChangeStreamOperationType.Replace)
     .AppendStage<ChangeStreamDocument<BsonDocument>, ChangeStreamDocument<BsonDocument>, BsonDocument>(
-        @"{ 
-            $project: { 
-                '_id': 1, 
-                'fullDocument': 1, 
-                'ns': 1, 
-                'documentKey': 1 
-            }
-        }"
-    );
+    "{ $project: { '_id': 1, 'fullDocument': 1, 'ns': 1, 'documentKey': 1 }}");
 
-ChangeStreamOptions options = new ()
-{
-    FullDocument = ChangeStreamFullDocumentOption.UpdateLookup
-};
+var options = new ChangeStreamOptions{
+        FullDocument = ChangeStreamFullDocumentOption.UpdateLookup
+    };
 
-using IChangeStreamCursor<BsonDocument> enumerator = collection.Watch(
-    pipeline, 
-    options
-);
+var enumerator = coll.Watch(pipeline, options).ToEnumerable().GetEnumerator();
 
-Console.WriteLine("Waiting for changes...");
-while (enumerator.MoveNext())
-{
-    IEnumerable<BsonDocument> changes = enumerator.Current;
-    foreach(BsonDocument change in changes)
-    {
-        Console.WriteLine(change);
-    }  
-}
+while (enumerator.MoveNext()){
+        Console.WriteLine(enumerator.Current);
+    }
+
+enumerator.Dispose();
 ```
 
 # [Java](#tab/java)
@@ -164,7 +140,7 @@ The following limitations are applicable when using change streams:
 
 Due to these limitations, the $match stage, $project stage, and fullDocument options are required as shown in the previous examples.
 
-Unlike the change feed in Azure Cosmos DB's API for NoSQL, there is not a separate [Change Feed Processor Library](../change-feed-processor.md) to consume change streams or a need for a leases container. There is not currently support for [Azure Functions triggers](../change-feed-functions.md) to process change streams.
+Unlike the change feed in Azure Cosmos DB's SQL API, there is not a separate [Change Feed Processor Library](../change-feed-processor.md) to consume change streams or a need for a leases container. There is not currently support for [Azure Functions triggers](../change-feed-functions.md) to process change streams.
 
 ## Error handling
 
@@ -176,5 +152,5 @@ The following error codes and messages are supported when using change streams:
 
 ## Next steps
 
-* [Use time to live to expire data automatically in Azure Cosmos DB's API for MongoDB](time-to-live.md)
-* [Indexing in Azure Cosmos DB's API for MongoDB](indexing.md)
+* [Use time to live to expire data automatically in Azure Cosmos DB's API for MongoDB](mongodb-time-to-live.md)
+* [Indexing in Azure Cosmos DB's API for MongoDB](mongodb-indexing.md)

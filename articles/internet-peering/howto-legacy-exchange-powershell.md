@@ -1,24 +1,21 @@
 ---
-title: Convert a legacy Exchange peering to an Azure resource - PowerShell
-description: Convert a legacy Exchange peering to an Azure resource using PowerShell.
+title: Convert a legacy Exchange peering to an Azure resource by using PowerShell
+titleSuffix: Azure
+description: Convert a legacy Exchange peering to an Azure resource by using PowerShell
 services: internet-peering
 author: halkazwini
 ms.service: internet-peering
 ms.topic: how-to
-ms.date: 01/23/2023
+ms.date: 12/15/2020
 ms.author: halkazwini 
-ms.custom: template-how-to, devx-track-azurepowershell, engagement-fy23
+ms.custom: devx-track-azurepowershell
 ---
 
-# Convert a legacy Exchange peering to an Azure resource using PowerShell
-
-> [!div class="op_single_selector"]
-> - [Azure portal](howto-legacy-exchange-portal.md)
-> - [PowerShell](howto-legacy-exchange-powershell.md)
+# Convert a legacy Exchange peering to an Azure resource by using PowerShell
 
 This article describes how to convert an existing legacy Exchange peering to an Azure resource by using PowerShell cmdlets.
 
-If you prefer, you can complete this guide by using the [Azure portal](howto-legacy-exchange-portal.md).
+If you prefer, you can complete this guide by using the Azure [portal](howto-legacy-exchange-portal.md).
 
 ## Before you begin
 * Review the [prerequisites](prerequisites.md) and the [Exchange peering walkthrough](walkthrough-exchange-all.md) before you begin configuration.
@@ -96,8 +93,8 @@ You can get detailed descriptions of all the parameters by running the following
 ```powershell
 Get-Help Get-AzPeering -detailed
 ```
+For more information, see [Internet peering FAQs](faqs.md).
 
 ## Next steps
 
-- [Create or modify an Exchange peering by using PowerShell](howto-exchange-powershell.md).
-- [Internet peering frequently asked questions (FAQ)](faqs.md).
+* [Create or modify an Exchange peering by using PowerShell](howto-exchange-powershell.md)

@@ -4,7 +4,6 @@ description: Create configuration profile assignments using the Python SDK for A
 author: andrsmith
 ms.service: automanage
 ms.workload: infrastructure
-ms.custom: devx-track-python
 ms.topic: quickstart
 ms.date: 08/24/2022
 ms.author: andrsmith
@@ -68,5 +67,5 @@ client.configuration_profile_assignments.create_or_update("default", "resourceGr
 
 ## Next steps
 
-> [!div class="nextstepaction"]
 Learn how to conduct more operations with the Automanage Client by visiting the [azure-samples-python-management repo](https://github.com/Azure-Samples/azure-samples-python-management/tree/main/samples/automanage).
+

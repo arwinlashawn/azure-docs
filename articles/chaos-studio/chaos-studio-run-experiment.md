@@ -1,71 +1,70 @@
 ---
-title: Run and manage a chaos experiment in Azure Chaos Studio Preview
-description: Learn how to start, stop, view details, and view history for a chaos experiment in Azure Chaos Studio Preview.
+title: Run and manage a chaos experiment in Azure Chaos Studio
+description: Learn how to start, stop, view details, and view history for a chaos experiment in Azure Chaos Studio
 services: chaos-studio
-author: prasha-microsoft 
+author: johnkemnetz
 ms.topic: article
 ms.date: 11/01/2021
-ms.author: prashabora
+ms.author: johnkem
 ms.service: chaos-studio
 ms.custom: ignite-fall-2021
 ---
 
-# Run and manage an experiment in Azure Chaos Studio Preview
+# Run and manage an experiment in Azure Chaos Studio
 
-You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. This article provides an overview of how to use Azure Chaos Studio Preview with a chaos experiment that you've previously created.
+You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. This article provides an overview of how to use a chaos experiment that you have previously created.
 
 ## Start an experiment
 
 1. Open the [Azure portal](https://portal.azure.com).
 
-1. Search for **Chaos Studio (preview)** in the search bar.
+2. Search for **Chaos Studio (preview)** in the search bar.
 
-1. Select **Experiments**. This experiment list view is where you can start, stop, or delete experiments in bulk. You can also create a new experiment.
+3. Click on **Experiments**. This is the experiment list view you can start, stop, or delete experiments in bulk or create a new experiment.
 
-    ![Screenshot that shows the experiment list in the portal.](images/run-experiment-list.png)
+    ![Experiment list in the portal](images/run-experiment-list.png)
 
-1. Select your experiment. On the experiment **Overview** page, you can start, stop, and edit your experiment. You can also view essential details about the resource and its history. Select **Start** and then select **OK** to start your experiment.
+4. Click on your experiment. The experiment overview page allows you to start, stop, and edit your experiment, view essential details about the resource, and view history. Click the **Start** button then click **OK** to start your experiment.
 
-    ![Screenshot that shows the Start this experiment pane.](images/run-experiment-start.png)
+    ![Start experiment](images/run-experiment-start.png)
 
-1. The experiment status shows as *PreProcessingQueued*, then *WaitingToStart*, and finally *Running*.
+5. The experiment status shows *PreProcessingQueued*, then *WaitingToStart*, and finally *Running*.
 
 ## View experiment history and details
 
-1. After the experiment is running, under **History**, select **Details** on the current run to see status and errors.
+1. Once the experiment is running, click **Details** on the current run under **History** to see detailed status and errors.
 
-    ![Screenshot that shows the run history.](images/run-experiment-history.png)
+    ![Run history](images/run-experiment-history.png)
 
-1. The experiment **Details** view shows the execution status of each step, branch, and fault. Select a fault.
+2. The experiment details view shows the execution status of each step, branch, and fault. Click on a fault.
 
-    ![Screenshot that shows the Details view.](images/run-experiment-details.png)
+    ![Experiment details](images/run-experiment-details.png)
 
-1. **Fault details** shows other information about the fault execution. It includes which targets have failed or succeeded and why. If there's an error running your experiment, debugging information appears here.
+3. Fault details shows additional information about the fault execution including which targets have failed or succeeded and why. If there is an error running your experiment, debugging information appears here.
 
-    ![Screenshot that shows Fault details.](images/run-experiment-fault.png)
+    ![Fault details](images/run-experiment-fault.png)
 
-## Edit an experiment
+## Edit experiment
 
-1. Return to the experiment **Overview** page and select **Edit**.
+1. Return to the Experiment Overview and click the **Edit** button.
 
-    ![Screenshot that shows the Edit button.](images/run-edit.png)
+    ![Edit experiment](images/run-edit.png)
 
-1. This experiment designer is the same as the one you used to create the experiment. You can add or remove steps, branches, and faults. You can also edit fault parameters and targets. To edit a fault, select **...** next to the fault.
+2. This is the same experiment designer as was used to create the experiment. You can add or remove steps, branches, and faults, and edit fault parameters and targets. To edit a fault, click on the **...** beside the fault.
 
-    ![Screenshot that shows preparing to edit a fault.](images/run-edit-ellipses.png)
+    ![Edit fault](images/run-edit-ellipses.png)
 
-1. When you're finished editing, select **Save**. If you want to discard your changes without saving, select the **Close** button in the upper-right corner.
-  ![Screenshot that shows saving the experiment.](images/run-edit-save.png)
+3. When you are finished editing, click **Save**. If you want to discard your changes without saving, click the **Close (X)** button in the top right.
+  ![Save experiment](images/run-edit-save.png)
 
 > [!WARNING]
 > If you added targets to your experiment, remember to add a role assignment on the target resource for your experiment identity.
 
-## Delete an experiment
+## Delete experiment
+1. Return to the experiment list and check the experiment(s) you want to delete. Click **Delete** in the toolbar above the experiment list. You may need to click the ellipsis (...) to see the delete option depending on screen resolution.
 
-1. Return to the **Experiments** list and select the checkbox next to the experiment you want to delete. Select **Delete**. You might need to select **...** to see the delete option depending on your screen resolution.
+    ![Delete experiment](images/run-delete.png)
 
-    ![Screenshot that shows deleting an experiment.](images/run-delete.png)
+2. Click **Yes** to confirm you want to delete the resource.
 
-1. Select **Yes** to confirm that you want to delete the resource.
-
-1. Alternatively, you can open an experiment and select **Delete**.
+3. Alternatively, you can open an experiment and click the **Delete** button in the toolbar.

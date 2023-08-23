@@ -1,38 +1,43 @@
 ---
-title: 'Configure virtual hub routing preference: Azure portal'
+title: 'Configure virtual hub routing preference - Preview'
 titleSuffix: Azure Virtual WAN
-description: Learn how to configure Virtual WAN virtual hub routing preference using the Azure portal.
+description: Learn how to configure Virtual WAN virtual hub routing preference.
 author: cherylmc
 ms.service: virtual-wan
 ms.topic: conceptual
-ms.date: 10/26/2022
+ms.date: 05/30/2022
 ms.author: cherylmc
 ---
-# Configure virtual hub routing preference - Azure portal
+# Configure virtual hub routing preference (Preview)
 
-The following steps help you configure virtual hub routing preference settings. For information about this feature, see [Virtual hub routing preference](about-virtual-hub-routing-preference.md). You can also configure these settings using the [Azure PowerShell](how-to-virtual-hub-routing-preference-powershell.md).
+The following steps help you configure virtual hub routing preference settings. For information about this feature, see [Virtual hub routing preference](about-virtual-hub-routing-preference.md).
 
-## New virtual hub
+> [!IMPORTANT]
+> The Virtual WAN feature **Hub routing preference** is currently in public preview. If you are interested in trying this feature, please follow the documentation below.
+This public preview is provided without a service-level agreement and shouldn't be used for production workloads. Certain features might not be supported, might have constrained capabilities, or might not be available in all Azure locations. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
 
-You can configure a new virtual hub to include the virtual hub routing preference setting by using the [Azure portal](https://portal.azure.com). Follow the steps in the [Tutorial: Create a site-to-site connection](virtual-wan-site-to-site-portal.md) article.
+## Configure
 
-## Existing virtual hub
+You can configure a new virtual hub to include the virtual hub routing preference setting by using the [Azure Preview portal]( https://portal.azure.com/?feature.virtualWanRoutingPreference=true#home). Follow the steps in the [Tutorial: Create a site-to-site connection](virtual-wan-site-to-site-portal.md) article.
 
 To configure virtual hub routing preference for an existing virtual hub, use the following steps.
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Open the [Azure Preview portal]( https://portal.azure.com/?feature.virtualWanRoutingPreference=true#home). You can't use the regular Azure portal yet for this feature.
 
-1. Go to your virtual WAN. In the left pane, click **Hubs** to view the list of hubs.
+1. Go to your virtual WAN. In the left pane, under the **Connectivity** section, click **Hubs** to view the list of hubs. Select **… > Edit virtual hub** to open the **Edit virtual hub** dialog box.
 
-1. Click the hub that you want to configure. On the **Virtual HUB** page, click **Edit virtual hub**.
+   :::image type="content" source="./media/howto-virtual-hub-routing-preference/edit-virtual-hub.png" alt-text="Screenshot shows select Edit virtual hub." lightbox="./media/howto-virtual-hub-routing-preference/edit-virtual-hub-expand.png":::
+
+   You can also click on the hub to open the virtual hub, and then under virtual hub resource, click the **Edit virtual hub** button.
 
    :::image type="content" source="./media/howto-virtual-hub-routing-preference/hub-edit.png" alt-text="Screenshot shows Edit virtual hub." lightbox="./media/howto-virtual-hub-routing-preference/hub-edit.png":::
 
-1. On the **Edit virtual hub** page, select from the dropdown to configure **Hub routing preference**. To determine the setting to use, see [About virtual hub routing preference](about-virtual-hub-routing-preference.md).
+1. On the **Edit virtual hub** page, select from the dropdown to configure the field **Hub routing preference**. To determine the setting to use, see [About virtual hub routing preference](about-virtual-hub-routing-preference.md).
 
    Click **Confirm** to save the settings.
 
-   :::image type="content" source="./media/howto-virtual-hub-routing-preference/select.png" alt-text="Screenshot shows the dropdown showing ExpressRoute, VPN, and AS PATH options." lightbox="./media/howto-virtual-hub-routing-preference/select.png":::
+   :::image type="content" source="./media/howto-virtual-hub-routing-preference/select-preference.png" alt-text="Screenshot shows the dropdown showing ExpressRoute, VPN, and AS PATH." lightbox="./media/howto-virtual-hub-routing-preference/select-preference.png":::
 
 1. After the settings have saved, you can verify the configuration on the **Overview** page for the virtual hub.
 

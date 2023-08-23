@@ -7,7 +7,7 @@ author: tomvcassidy
 ms.service: container-instances
 services: container-instances
 ms.date: 06/17/2022
-ms.custom: mvc, devx-track-azurecli, devx-track-arm-template
+ms.custom: mvc, devx-track-azurecli
 ---
 
 # Deploy to Azure Container Instances from Azure Container Registry using a service principal

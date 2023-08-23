@@ -1,9 +1,11 @@
 ---
 title: Create and deploy template spec
 description: Learn how to create a template spec from ARM template. Then, deploy the template spec to a resource group in your subscription.
-ms.date: 05/22/2023
+author: tfitzmac
+ms.date: 05/04/2021
 ms.topic: quickstart
-ms.custom: mode-api, devx-track-azurecli, devx-track-arm-template
+ms.author: tomfitz
+ms.custom: mode-api, devx-track-azurecli
 ms.devlang: azurecli
 ---
 
@@ -19,7 +21,7 @@ This quickstart shows you how to package an Azure Resource Manager template (ARM
 An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
 > [!NOTE]
-> To use template spec with Azure PowerShell, you must install [version 5.0.0 or later](/powershell/azure/install-azure-powershell). To use it with Azure CLI, use [version 2.14.2 or later](/cli/azure/install-azure-cli).
+> To use template spec with Azure PowerShell, you must install [version 5.0.0 or later](/powershell/azure/install-az-ps). To use it with Azure CLI, use [version 2.14.2 or later](/cli/azure/install-azure-cli).
 
 ## Create template
 
@@ -78,20 +80,20 @@ The template spec is a resource type named `Microsoft.Resources/templateSpecs`. 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 1. Search for **template specs**. Select **Template specs** from the available options.
 
-    :::image type="content" source="./media/quickstart-create-template-specs/search-template-spec.png" alt-text="Screenshot of search bar with 'template specs' query.":::
+    :::image type="content" source="./media/quickstart-create-template-specs/search-template-spec.png" alt-text="search template specs":::
 
 1. Select **Import template**.
 
-    :::image type="content" source="./media/quickstart-create-template-specs/import-template.png" alt-text="Screenshot of 'Import template' button in Template specs page.":::
+    :::image type="content" source="./media/quickstart-create-template-specs/import-template.png" alt-text="import template":::
 
 1. Select the folder icon.
 
-    :::image type="content" source="./media/quickstart-create-template-specs/open-folder.png" alt-text="Screenshot of folder icon to open file explorer.":::
+    :::image type="content" source="./media/quickstart-create-template-specs/open-folder.png" alt-text="open folder":::
 
 1. Navigate to the local template you saved and select it. Select **Open**.
 1. Select **Import**.
 
-    :::image type="content" source="./media/quickstart-create-template-specs/select-import.png" alt-text="Screenshot of 'Import' button after selecting a template file.":::
+    :::image type="content" source="./media/quickstart-create-template-specs/select-import.png" alt-text="select import option":::
 
 1. Provide the following values:
 
@@ -170,7 +172,7 @@ The template spec is a resource type named `Microsoft.Resources/templateSpecs`. 
                   "resources": [
                     {
                       "type": "Microsoft.Storage/storageAccounts",
-                      "apiVersion": "2022-09-01",
+                      "apiVersion": "2021-04-01",
                       "name": "[[variables('storageAccountName')]",
                       "location": "[[parameters('location')]",
                       "sku": {
@@ -304,11 +306,11 @@ To deploy a template spec, use the same deployment commands as you would use to 
 
 1. Select the template spec you created.
 
-    :::image type="content" source="./media/quickstart-create-template-specs/select-template-spec.png" alt-text="Screenshot of Template specs list with one item selected.":::
+    :::image type="content" source="./media/quickstart-create-template-specs/select-template-spec.png" alt-text="select template specs":::
 
 1. Select **Deploy**.
 
-    :::image type="content" source="./media/quickstart-create-template-specs/deploy-template-spec.png" alt-text="Screenshot of 'Deploy' button in the selected Template spec.":::
+    :::image type="content" source="./media/quickstart-create-template-specs/deploy-template-spec.png" alt-text="deploy template specs":::
 
 1. Provide the following values:
 
@@ -453,22 +455,22 @@ Rather than creating a new template spec for the revised template, add a new ver
 
 1. In your template spec, select **Create new version**.
 
-   :::image type="content" source="./media/quickstart-create-template-specs/select-versions.png" alt-text="Screenshot of 'Create new version' button in Template spec details.":::
+   :::image type="content" source="./media/quickstart-create-template-specs/select-versions.png" alt-text="create new version":::
 
 1. Name the new version `2.0` and optionally add notes. Select **Edit template**.
 
-   :::image type="content" source="./media/quickstart-create-template-specs/add-version-name.png" alt-text="Screenshot of naming the new version and selecting 'Edit template' button.":::
+   :::image type="content" source="./media/quickstart-create-template-specs/add-version-name.png" alt-text="name new version":::
 
 1. Replace the contents of the template with your updated template. Select **Review + Save**.
 1. Select **Save changes**.
 
 1. To deploy the new version, select **Versions**
 
-   :::image type="content" source="./media/quickstart-create-template-specs/see-versions.png" alt-text="Screenshot of 'Versions' tab in Template spec details.":::
+   :::image type="content" source="./media/quickstart-create-template-specs/see-versions.png" alt-text="list versions":::
 
 1. For the version you want to deploy, select the three dots and **Deploy**.
 
-   :::image type="content" source="./media/quickstart-create-template-specs/deploy-version.png" alt-text="Screenshot of 'Deploy' option in the context menu of a specific version.":::
+   :::image type="content" source="./media/quickstart-create-template-specs/deploy-version.png" alt-text="select version to deploy":::
 
 1. Fill in the fields as you did when deploying the earlier version.
 1. Select **Review + create**.

@@ -4,9 +4,8 @@ description: IP groups allow you to group and manage IP addresses for Azure Fire
 services: firewall
 author: vhorne
 ms.service: firewall
-ms.custom: devx-track-azurepowershell
 ms.topic: conceptual
-ms.date: 01/10/2023
+ms.date: 01/22/2021
 ms.author: victorh
 ---
 
@@ -19,9 +18,12 @@ IP Groups allow you to group and manage IP addresses for Azure Firewall rules in
 - As a source address in application rules
 
 
-An IP Group can have a single IP address, multiple IP addresses, one or more IP address ranges or addresses and ranges in combination.
+An IP Group can have a single IP address, multiple IP addresses, or one or more IP address ranges.
 
 IP Groups can be reused in Azure Firewall DNAT, network, and application rules for multiple firewalls across regions and subscriptions in Azure. Group names must be unique. You can configure an IP Group in the Azure portal, Azure CLI, or REST API. A sample template is provided to help you get started.
+
+> [!NOTE]
+> IP Groups are not currently available in Azure national cloud environments.
 
 ## Sample format
 
@@ -66,7 +68,7 @@ IP Groups are available in all public cloud regions.
 
 ## IP address limits
 
-For IP Group limits, see [Azure subscription and service limits, quotas, and constraints](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-firewall-limits)
+You can have a maximum of 100 IP Groups per firewall with a maximum 5000 individual IP addresses or IP prefixes per each IP Group.
 
 ## Related Azure PowerShell cmdlets
 

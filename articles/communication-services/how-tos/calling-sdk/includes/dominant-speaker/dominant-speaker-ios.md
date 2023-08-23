@@ -8,6 +8,8 @@ ms.author: jsaurezlee
 
 [!INCLUDE [Install SDK](../install-sdk/install-sdk-ios.md)]
 
+[!INCLUDE [public-preview-notes](../../../../includes/public-preview-include.md)]
+
 [!INCLUDE [common](dominant-speaker-common.md)]
 
 In order to use the Dominant Speakers call feature for iOS, the first step is to obtain the Dominant Speakers feature API object:
@@ -19,7 +21,7 @@ The Dominant Speakers feature object have the following API structure:
 - `didChangeDominantSpeakers`: Event for listening for changes in the dominant speakers list.
 - `dominantSpeakersInfo`: Which gets the `DominantSpeakersInfo` object. This object has:
     - `speakers`: A list of participant identifiers representing the dominant speakers list.
-    - `lastUpdatedAt`: The date when the dominant speakers list was updated.
+    - `timestamp`: The date when the dominant speakers list was updated.
 
 To subscribe to changes in the dominant speakers list:
 
@@ -34,7 +36,7 @@ public class DominantSpeakersDelegate : DominantSpeakersCallFeatureDelegate
     public func dominantSpeakersCallFeature(_ dominantSpeakersCallFeature: DominantSpeakersCallFeature, didChangeDominantSpeakers args: PropertyChangedEventArgs) {
         // When the list changes, get the timestamp of the last change and the current list of Dominant Speakers
         let dominantSpeakersInfo = dominantSpeakersCallFeature.dominantSpeakersInfo
-        let timestamp = dominantSpeakersInfo.lastUpdatedAt
+        let timestamp = dominantSpeakersInfo.timestamp
         let dominantSpeakersList = dominantSpeakersInfo.speakers
     }
 }

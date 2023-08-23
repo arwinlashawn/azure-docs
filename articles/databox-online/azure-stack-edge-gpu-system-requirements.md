@@ -7,9 +7,9 @@ author: alkohli
 ms.service: databox
 ms.subservice: edge
 ms.topic: conceptual
-ms.date: 04/17/2023
+ms.date: 03/24/2022
 ms.author: alkohli
-ms.custom: contperf-fy21q4, devx-track-arm-template
+ms.custom: "contperf-fy21q4"
 ---
 # System requirements for Azure Stack Edge Pro with GPU 
 

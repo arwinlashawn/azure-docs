@@ -4,8 +4,7 @@ description: Learn definitions of some basic DevTest Labs concepts related to la
 ms.topic: conceptual
 ms.author: rosemalcolm
 author: RoseHJM
-ms.date: 06/14/2023
-ms.custom: UpdateFrequency2
+ms.date: 03/03/2022
 ---
 
 # DevTest Labs concepts

@@ -8,7 +8,7 @@ ms.service: data-factory
 ms.subservice: data-movement
 ms.topic: conceptual
 ms.custom: synapse
-ms.date: 01/18/2023
+ms.date: 09/09/2021
 ---
 
 # Copy data from Spark using Azure Data Factory or Synapse Analytics

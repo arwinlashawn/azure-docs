@@ -3,7 +3,7 @@ title: Manage an Azure support request
 description: Learn about viewing support requests and how to send messages, upload files, and manage options.
 tags: billing
 ms.topic: how-to
-ms.date: 08/23/2023
+ms.date: 09/01/2022
 ---
 
 # Manage an Azure support request
@@ -21,9 +21,7 @@ View the details and status of support requests by going to **Help + support** >
 
 :::image type="content" source="media/how-to-manage-azure-support-request/all-requests-lower.png" alt-text="All support requests":::
 
-On this page, you can search, filter, and sort support requests. By default, you may only see recent open requests. Change the filter options to select a longer period of time or to include support requests that have already been closed.
-
-To view details about a support request to view details, including its severity and any messages associated with the request, select it from the list.
+On this page, you can search, filter, and sort support requests. Select a support request to view details, including its severity and any messages associated with the request.
 
 ## Send a message
 
@@ -40,7 +38,7 @@ To view details about a support request to view details, including its severity 
 
 1. On the **All support requests** page, select the support request.
 
-1. On the **Support Request** page, select **Change severity**.
+1. On the **Support Request** page, select **Change**.
 
 1. The Azure portal shows one of two screens, depending on whether your request is already assigned to a support engineer:
 
@@ -60,9 +58,9 @@ To change your **Advanced diagnostic information** selection after the request h
 
 1. On the **All support requests** page, select the support request.
 
-1. On the **Support Request** page, select **Advanced diagnostic information** near the top of the screen.
+1. On the **Support Request** page, look for **Advanced diagnostic information** and then select **Change**.
 
-1. Select **Yes** or **No**, then select **Submit**.
+1. Select **Yes** or **No**, then select **OK** to confirm.
 
     :::image type="content" source="media/how-to-manage-azure-support-request/grant-permission-manage.png" alt-text="Grant permissions for diagnostic information":::
 
@@ -72,7 +70,7 @@ You can use the file upload option to upload a diagnostic file, such as a [brows
 
 1. On the **All support requests** page, select the support request.
 
-1. On the **Support Request** page, select the **Upload file** box, then browse to find your file and select **Upload**.
+1. On the **Support Request** page, select the **File upload** box, then browse to find your file and select **Upload**.
 
 ### File upload guidelines
 
@@ -86,19 +84,15 @@ Follow these guidelines when you use the file upload option:
 
 ## Close a support request
 
-To close a support request, select the **Close request** option near the top of the screen. When prompted to confirm, select **Close**. You'll receive a confirmation email when your request is closed.
+To close a support request, [send a message](#send-a-message) and let us know you'd like to close the request.
 
 ## Reopen a closed request
 
-To reopen a closed support request, select **Reopen request** near the top of the screen. When prompted to confirm, select **Reopen request.** Your support request will then be active again.
+To reopen a closed support request, create a [new message](#send-a-message), which automatically reopens the request.
 
 ## Cancel a support plan
 
-To cancel a support plan, see [Cancel a support plan](../../cost-management-billing/manage/cancel-azure-subscription.md#cancel-a-subscription-in-the-azure-portal).
-
-## Get help with a support request
-
-If you need assistance managing a support request, [create another support request](how-to-create-azure-support-request.md) to get help. For the **Issue type**, select **Technical**, then select **All Services**. For **Service type**, select **Portal** and for **Problem type** select **Issue with Support Ticket Experience**.
+To cancel a support plan, see [Cancel a support plan](../../cost-management-billing/manage/cancel-azure-subscription.md#cancel-a-support-plan).
 
 ## Next steps
 

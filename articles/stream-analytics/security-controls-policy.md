@@ -1,10 +1,10 @@
 ---
 title: Azure Policy Regulatory Compliance controls for Azure Stream Analytics
 description: Lists Azure Policy Regulatory Compliance controls available for Azure Stream Analytics. These built-in policy definitions provide common approaches to managing the compliance of your Azure resources.
-ms.date: 08/03/2023
+ms.date: 08/17/2022
 ms.topic: sample
-author: ajetasin
-ms.author: ajetasi
+author: sidramadoss
+ms.author: sidram
 ms.service: stream-analytics
 ms.custom: subject-policy-compliancecontrols
 ---

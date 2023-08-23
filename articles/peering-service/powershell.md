@@ -1,110 +1,135 @@
 ---
-title: Create or change a Peering Service connection - Azure PowerShell
-description: Learn how to create or change a Peering Service connection using PowerShell.
+title: 'Register a Peering Service connection - Azure PowerShell '
+description: In this tutorial learn how to register a Peering Service connection with PowerShell.
 services: peering-service
 author: halkazwini
 ms.service: peering-service
-ms.topic: how-to
-ms.date: 01/19/2023
+ms.topic: tutorial
+ms.date: 05/18/2020
 ms.author: halkazwini 
-ms.custom: template-how-to, devx-track-azurepowershell, engagement-fy23
+ms.custom: devx-track-azurepowershell
+# Customer intent: Customer wants to measure their connection telemetry per prefix to Microsoft services with Azure Peering Service .
 ---
 
-# Create or change a Peering Service connection using PowerShell
+# Tutorial: Register a Peering Service connection using Azure PowerShell
 
-> [!div class="op_single_selector"]
-> * [Portal](azure-portal.md)
-> * [PowerShell](powershell.md)
-> * [Azure CLI](cli.md)
+In this tutorial, you'll learn how to register Peering Service using Azure PowerShell.
 
-Azure Peering Service is a networking service that enhances connectivity to Microsoft cloud services such as Microsoft 365, Dynamics 365, software as a service (SaaS) services, Azure, or any Microsoft services accessible via the public internet.
+Azure Peering Service is a networking service that enhances customer connectivity to Microsoft cloud services such as Microsoft 365, Dynamics 365, software as a service (SaaS) services, Azure, or any Microsoft services accessible via the public internet. In this article, you'll learn how to register a Peering Service connection by using Azure PowerShell.
 
-In this article, you'll learn how to create and change a Peering Service connection using PowerShell.
-
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create an [account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) now.
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-If you decide to install and use PowerShell locally instead, this article requires you to use Azure PowerShell module version 1.0.0 or later. To find the installed version, run `Get-Module -ListAvailable Az`. For installation and upgrade information, see [Install Azure PowerShell module](/powershell/azure/install-azure-powershell).
+If you decide to install and use PowerShell locally instead, this quickstart requires you to use Azure PowerShell module version 1.0.0 or later. To find the installed version, run `Get-Module -ListAvailable Az`. For installation and upgrade information, see [Install Azure PowerShell module](/powershell/azure/install-az-ps).
 
 Finally, if you're running PowerShell locally, you'll also need to run `Connect-AzAccount`. That command creates a connection with Azure.
 
 Use the Azure PowerShell module to register and manage Peering Service. You can register or manage Peering Service from the PowerShell command line or in scripts.
 
-## Prerequisites
 
-- An Azure subscription.
+## Prerequisites  
+You must have the following:
 
-- A connectivity provider. For more information, see [Peering Service partners](./location-partners.md).
+### Azure account
 
-## Register your subscription with the resource provider and feature flag
+You must have a valid and active Microsoft Azure account. This account is required to set up the Peering Service connection. Peering Service is a resource within Azure subscriptions.
 
-Before you proceed to the steps of creating Peering Service, register your subscription with the resource provider and feature flag using [Register-AzResourceProvider](/powershell/module/az.resources/register-azresourceprovider) and [Register-AzProviderFeature](/powershell/module/az.resources/get-azproviderfeature):
+### Connectivity provider
+
+You can work with an internet service provider or internet exchange partner to obtain Peering Service to connect your network with the Microsoft network.
+
+Make sure that the connectivity providers are partnered with Microsoft.
+
+### Register a subscription with the resource provider and feature flag
+
+Before you proceed to the steps of registering Peering Service, register your subscription with the resource provider and feature flag by using Azure PowerShell. The Azure PowerShell commands are specified here:
 
 ```azurepowershell-interactive
-# Register Microsoft.Peering provider.
-Register-AzResourceProvider -ProviderNamespace Microsoft.Peering
-# Register AllowPeeringService feature.
-Register-AzProviderFeature -FeatureName AllowPeeringService -ProviderNamespace Microsoft.Peering 
+Register-AzProviderFeature -FeatureName AllowPeeringService ProviderNamespace Microsoft.Peering 
+
+Register-AzResourceProvider -ProviderNamespace Microsoft.Peering 
+
 ```
 
-## List Peering Service locations and service providers 
+### Fetch the location and service provider 
 
-Use [Get-AzPeeringServiceCountry](/powershell/module/az.peering/get-azpeeringservicecountry) to list the countries/regions where Peering Service is available and [Get-AzPeeringServiceLocation](/powershell/module/az.peering/get-azpeeringservicelocation) to list the available metro locations in each country where you can get the Peering Service: 
+Run the following commands in Azure PowerShell to acquire the location and service provider to which the Peering Service should be enabled. 
+
+Get Peering Service locations:
 
 ```azurepowershell-interactive
-# List the countries/regions available for Peering Service.
+# Gets a list of available countries
 Get-AzPeeringServiceCountry 
-# List metro locations serviced in a country
+# Gets a list of metro locations serviced by country
 Get-AzPeeringServiceLocation -Country "United States"
 ```
 
-Use [Get-AzPeeringServiceProvider](/powershell/module/az.peering/get-azpeeringserviceprovider) to get a list of available [Peering Service providers](location-partners.md):
+Get Peering Service providers:
+              
 ```azurepowershell-interactive
 Get-AzPeeringServiceProvider
 ```
 
-## Create a Peering Service connection
+### Register the Peering Service connection
 
-Create a Peering Service connection using [New-AzPeeringService](/powershell/module/az.peering/new-azpeeringservice):
+Register the Peering Service connection by using the following set of commands via Azure PowerShell. This example registers the Peering Service named myPeeringService.
 
 ```azurepowershell-interactive
-New-AzPeeringService -ResourceGroupName myResourceGroup -Name myPeeringService -PeeringLocation Virginia -PeeringServiceProvider Contoso
+$loc = "Washington"
+$provider = "TestPeer1"
+$resourceGroup = "MyResourceGroup"
+$name = “myPeeringService”
+$peeringService = New-AzPeeringService -ResourceGroupName $resourceGroup -Name $name -PeeringLocation $loc -PeeringServiceProvider $provider
 ```
 
-## Add the Peering Service prefix
+### Register the Peering Service prefix
 
-Use [New-AzPeeringServicePrefix](/powershell/module/az.peering/new-azpeeringserviceprefix) to add the prefix provided to you by the connectivity provider:
+Register the prefix that's provided by the connectivity provider by executing the following commands via Azure PowerShell. This example registers the prefix named myPrefix.
 
 ```azurepowershell-interactive
-New-AzPeeringServicePrefix -ResourceGroupName myResourceGroup -PeeringServiceName myPeeringService -Name myPrefix -prefix 240.0.0.0/32 -ServiceKey 00000000-0000-0000-0000-000000000000
+$loc = "Washington"
+$provider = "TestPeer1"
+$resourceGroup = "MyResourceGroup"
+$name = “myPeeringService”
+$peeringService = New-AzPeeringService -ResourceGroupName $resourceGroup -Name $name -PeeringLocation $loc -PeeringServiceProvider $provider
+$prefixName = "myPrefix"
+$prefix = “192.168.1.0/24”
+$serviceKey = "6f48cdd6-2c2e-4722-af89-47e27b2513af"
+$prefixService = $peeringService | New-AzPeeringServicePrefix -Name $prefixName -Prefix $prefix -ServiceKey $serviceKey
 ```
 
-## List all Peering Services connections
+### List all the Peering Services connections
 
-To view the list of all Peering Service connections, use [Get-AzPeeringService](/powershell/module/az.peering/get-azpeeringservice):
+To view the list of all Peering Services, run the following command:
 
 ```azurepowershell-interactive
-Get-AzPeeringService | Format-Table Name, PeeringServiceLocation, PeeringServiceProvider, Location
+$peeringService = Get-AzPeeringService
 ```
 
-## List all Peering Service prefixes
+### List all the Peering Service prefixes
 
-To view the list of all Peering Service prefixes, use [Get-AzPeeringServicePrefix](/powershell/module/az.peering/get-azpeeringserviceprefix):
+To view the list of all Peering Service prefixes, run the following command:
 
 ```azurepowershell-interactive
-Get-AzPeeringServicePrefix -PeeringServiceName myPeeringService -ResourceGroupName myResourceGroup
+ $prefixName = "myPrefix"
 ```
 
-## Remove the Peering Service prefix
+```azurepowershell-interactive
+$prefix = Get-AzPeeringServicePrefix -PeeringServiceName "myPeeringService" -ResourceGroupName "MyResourceGroup" -Name "myPrefix"
+```
 
-To remove the Peering Service prefix, use [Remove-AzPeeringServicePrefix](/powershell/module/az.peering/remove-azpeeringserviceprefix):
+### Remove the Peering Service prefix
+
+To remove the Peering Service prefix, run the following command:
 
 ```azurepowershell-interactive
-Remove-AzPeeringServicePrefix -ResourceGroupName myResourceGroup -Name myPeeringService -PrefixName myPrefix
+Remove-AzPeeringServicePrefix -ResourceGroupName  "MyResourceGroup" -Name "myPrefix" -PeeringServiceName "myPeeringService"
 ```
 
 ## Next steps
 
-- To learn more about Peering Service connections, see [Peering Service connection](connection.md).
-- To learn more about Peering Service connection telemetry, see [Access Peering Service connection telemetry](connection-telemetry.md).
+- To learn about Peering Service connection, see [Peering Service connection](connection.md).
+- To learn about Peering Service connection telemetry, see [Peering Service connection telemetry](connection-telemetry.md).
+- To register a Peering Service connection by using the Azure portal, see [Register a Peering Service connection - Azure portal](azure-portal.md).
+- To register a Peering Service connection by using the Azure CLI, see [Register a Peering Service connection - Azure CLI](cli.md).

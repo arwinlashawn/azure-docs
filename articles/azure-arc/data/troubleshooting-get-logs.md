@@ -96,9 +96,9 @@ The following folder hierarchy is an example. It's organized by pod name, then c
 │   │   └───controlwatchdog
 │   │       └───controlwatchdog
 │   ├───logsdb-0
-│   │   └───opensearch
+│   │   └───elasticsearch
 │   │       ├───agent
-│   │       ├───opensearch
+│   │       ├───elasticsearch
 │   │       ├───provisioner
 │   │       └───supervisor
 │   │           └───log

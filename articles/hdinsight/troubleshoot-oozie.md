@@ -3,7 +3,7 @@ title: Troubleshoot Apache Oozie in Azure HDInsight
 description: Troubleshoot certain Apache Oozie errors in Azure HDInsight.
 ms.service: hdinsight
 ms.topic: troubleshooting
-ms.date: 01/31/2023
+ms.date: 04/27/2020
 ---
 
 # Troubleshoot Apache Oozie in Azure HDInsight

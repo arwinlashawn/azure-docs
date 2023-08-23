@@ -6,62 +6,58 @@ ms.subservice: flexible-server
 ms.topic: quickstart
 author: shreyaaithal 
 ms.author: shaithal 
-ms.custom: mvc, mode-api, devx-track-azurecli, devx-track-linux
-ms.date: 05/03/2023
+ms.custom: mvc, mode-api
+ms.date: 03/01/2021
 ---
 
 # Quickstart: Connect and query with Azure CLI  with Azure Database for MySQL - Flexible Server
 
 [[!INCLUDE[applies-to-mysql-flexible-server](../includes/applies-to-mysql-flexible-server.md)]
 
-This quickstart demonstrates how to connect to an Azure Database for MySQL - Flexible Server using Azure CLI with ```az mysql flexible-server connect``` and execute single query or sql file with ```az mysql flexible-server execute``` command. This command allows you test connectivity to your database server and run queries. You can also run multiple queries using the interactive mode.
+This quickstart demonstrates how to connect to an Azure Database for MySQL Flexible Server using Azure CLI with ```az mysql flexible-server connect``` and execute single query or sql file with ```az mysql flexible-server execute``` command. This command allows you test connectivity to your database server and run queries. You can also run multiple queries using the interactive mode.
 
 ## Prerequisites
 
 - An Azure account with an active subscription. 
 
     [!INCLUDE [flexible-server-free-trial-note](../includes/flexible-server-free-trial-note.md)]
-- Install [Azure CLI](/cli/azure/install-azure-cli) latest version (2.20.0 or higher)
+- Install [Azure CLI](/cli/azure/install-azure-cli) latest version (2.20.0 or above)
 - Log in using Azure CLI with ```az login``` command
-- Turn on parameter persistence with ```az config param-persist on```. Parameter persistence helps you use local context without having to repeat numerous arguments like resource group or location etc.
+- Turn on parameter persistence with ```az config param-persist on```. Parameter persistence will help you use local context without having to repeat a lot of arguments like resource group or location etc.
 
 ## Create a MySQL Flexible Server
 
-The first thing we create is a managed MySQL server. In [Azure Cloud Shell](https://shell.azure.com/), run the following script and make a note of the **server name**, **username** and  **password** generated from this command.
+The first thing we'll create is a managed MySQL server. In [Azure Cloud Shell](https://shell.azure.com/), run the following script and make a note of the **server name**, **username** and  **password** generated from this command.
 
-```azurecli-interactive
+```azurecli
 az mysql flexible-server create --public-access <your-ip-address>
 ```
 
-You can provide more arguments for this command to customize it. See all arguments for [az mysql flexible-server create](/cli/azure/mysql/flexible-server#az-mysql-flexible-server-create).
+You can provide additional arguments for this command to customize it. See all arguments for [az mysql flexible-server create](/cli/azure/mysql/flexible-server#az-mysql-flexible-server-create).
 
 ## Create a database
+Run the following command to create a database, **newdatabase** if you have not already created one.
 
-Run the following command to create a database, `newdatabase` if you haven't already created one.
-
-```azurecli-interactive
+```azurecli
 az mysql flexible-server db create -d newdatabase
 ```
 
 ## View all the arguments
-
 You can view all the arguments for this command with ```--help``` argument.
 
-```azurecli-interactive
+```azurecli
 az mysql flexible-server connect --help
 ```
 
 ## Test database server connection
-
 Run the following script to test and validate the connection to the database from your development environment.
 
-```azurecli-interactive
+```azurecli
 az mysql flexible-server connect -n <servername> -u <username> -p <password> -d <databasename>
 ```
 
 **Example:**
-
-```azurecli-interactive
+```azurecli
 az mysql flexible-server connect -n mysqldemoserver1 -u dbuser -p "dbpassword" -d newdatabase
 ```
 
@@ -72,31 +68,27 @@ Command group 'mysql flexible-server' is in preview and under development. Refer
 Connecting to newdatabase database.
 Successfully connected to mysqldemoserver1.
 ```
-
 If the connection failed, try these solutions:
-
 - Check if port 3306 is open on your client machine.
 - If your server administrator user name and password are correct
 - If you have configured firewall rule for your client machine
 - If you have configured your server with private access in virtual networking, make sure your client machine is in the same virtual network.
 
 ## Run multiple queries using interactive mode
-
 You can run multiple queries using the **interactive** mode. To enable interactive mode, run the following command
 
-```azurecli-interactive
+```azurecli
 az mysql flexible-server connect -n <server-name> -u <username> -p <password> --interactive
 ```
 
 **Example:**
-
-```azurecli-interactive
+```azurecli
 az mysql flexible-server connect -n mysqldemoserver1 -u dbuser -p "dbpassword" -d newdatabase --interactive
 ```
 
-You can see the **MySQL** shell experience as shown below:
+You will see the **MySQL** shell experience as shown below:
 
-```mysql
+```bash
 Command group 'mysql flexible-server' is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus
 Password:
 mysql 5.7.29-log
@@ -126,20 +118,18 @@ Your preference of  are now saved to local context. To learn more, type in `az l
 ```
 
 ## Run Single Query
-
 Run the following command to execute a single query using ```--querytext``` argument, ```-q```.
 
-```azurecli-interactive
+```azurecli
 az mysql flexible-server execute -n <server-name> -u <username> -p "<password>" -d <database-name> --querytext "<query text>"
 ```
 
 **Example:**
-
-```azurecli-interactive
+```azurecli
 az mysql flexible-server execute -n mysqldemoserver1 -u dbuser -p "dbpassword" -d newdatabase -q "select * from table1;" --output table
 ```
 
-You can see an output as shown below:
+You will see an output as shown below:
 
 ```output
 Command group 'mysql flexible-server' is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus
@@ -161,20 +151,18 @@ test   200
 ```
 
 ## Run SQL File
-
 You can execute a sql file with the command using ```--file-path``` argument, ```-q```.
 
-```azurecli-interactive
+```azurecli
 az mysql flexible-server execute -n <server-name> -u <username> -p "<password>" -d <database-name> --file-path "<file-path>"
 ```
 
 **Example:**
-
-```azurecli-interactive
+```azurecli
 az mysql flexible-server execute -n mysqldemoserver -u dbuser -p "dbpassword" -d flexibleserverdb -f "./test.sql"
 ```
 
-You can see an output as shown below:
+You will see an output as shown below:
 
 ```output
 Command group 'mysql flexible-server' is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus

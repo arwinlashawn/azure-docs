@@ -1,126 +1,128 @@
 ---
-title: Update Network Watcher extension to the latest version 
+title: Update the Network Watcher extension to the latest version 
 description: Learn how to update the Azure Network Watcher extension to the latest version.
 services: virtual-machines
-author: halkazwini
+documentationcenter: ''
+author: damendo
+manager: balar
+editor: ''
 tags: azure-resource-manager
 ms.service: virtual-machines
-ms.topic: conceptual
-ms.date: 07/12/2023
-ms.author: halkazwini
-ms.custom: template-concept, devx-track-azurepowershell, engagement-fy23
+ms.subservice: extensions
+ms.collection: windows
+ms.topic: article
+ms.workload: infrastructure-services
+ms.date: 09/23/2020
+ms.author: damendo 
+ms.custom: devx-track-azurepowershell
+
 ---
+# Update the Network Watcher extension to the latest version
 
-# Update Azure Network Watcher extension to the latest version
+## Overview
 
-[Azure Network Watcher](../../network-watcher/network-watcher-monitoring-overview.md) is a network performance monitoring, diagnostic, and analytics service that monitors Azure networks. The Network Watcher Agent virtual machine (VM) extension is a requirement for capturing network traffic on demand and using other advanced functionality on Azure VMs. The Network Watcher extension is used by features like connection monitor, connection monitor (preview), connection troubleshoot, and packet capture.
+[Azure Network Watcher](../../network-watcher/network-watcher-monitoring-overview.md) is a network performance monitoring, diagnostic, and analytics service that monitors Azure networks. The Network Watcher Agent virtual machine (VM) extension is a requirement for capturing network traffic on demand and using other advanced functionality on Azure VMs. The Network Watcher extension is used by features like Connection Monitor, Connection Monitor (preview), connection troubleshoot, and packet capture.
 
 ## Prerequisites
 
-- An Azure account with an active subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- An Azure virtual machine (VM) that has the Network Watcher extension installed.
+This article assumes you have the Network Watcher extension installed in your VM.
 
 ## Latest version
 
-The latest version of the Network Watcher extension is `1.4.2573.1`.
-
-### Identify latest version
-
-Use [az vm extension image list](/cli/azure/vm/extension/image#az-vm-extension-image-list) command to identify the latest version of the Network Watcher extension for your VM's operating system.
-
-# [Linux](#tab/linux)
-
-```azurecli-interactive 
-# Identify latest version of Network Watcher extension for Linux.
-az vm extension image list --name 'NetworkWatcherAgentLinux' --publisher 'Microsoft.Azure.NetworkWatcher' --latest --location 'eastus'
-```
-
-# [Windows](#tab/windows)
-
-```azurecli-interactive
-# Identify latest version of Network Watcher extension for Windows.
-az vm extension image list --name 'NetworkWatcherAgentWindows' --publisher 'Microsoft.Azure.NetworkWatcher' --latest --location 'eastus'
-```
-
----
+The latest version of the Network Watcher extension is currently `1.4.2146.1`.
 
 ## Update your extension using a PowerShell script
-
-If you have large deployments, use a PowerShell script to update multiple VMs at once. The following PowerShell script updates Network Watcher extension of all Windows VMs in a subscription: 
+Customers with large deployments who need to update multiple VMs at once. For updating select VMs manually, please see the next section 
 
 ```powershell
-<# 
-    .SYNOPSIS 
-    This script will scan all VMs in the provided subscription and upgrade any out of date AzureNetworkWatcherExtensions  
-    .DESCRIPTION 
-    This script should be no-op if AzureNetworkWatcherExtensions are up to date 
-    Requires Azure PowerShell 4.2 or higher to be installed (e.g. Install-Module AzureRM). 
-    .EXAMPLE 
-    .\UpdateVMAgentsInSub.ps1 -SubID F4BC4873-5DAB-491E-B713-1358EF4992F2 -NoUpdate 
+<#
+    .SYNOPSIS
+    This script will scan all VMs in the provided subscription and upgrade any out of date AzureNetworkWatcherExtensions
+
+    .DESCRIPTION
+    This script should be no-op if AzureNetworkWatcherExtensions are up to date
+    Requires Azure PowerShell 4.2 or higher to be installed (e.g. Install-Module AzureRM).
+
+    .EXAMPLE
+    .\UpdateVMAgentsInSub.ps1 -SubID F4BC4873-5DAB-491E-B713-1358EF4992F2 -NoUpdate
+
 #>
- 
-[CmdletBinding()] 
-param( 
-    [Parameter(Mandatory=$true)] 
-    [string] $SubID, 
-    [Parameter(Mandatory=$false)] 
-    [Switch] $NoUpdate = $false, 
-    [Parameter(Mandatory=$false)] 
-    [string] $MinVersion = "1.4.2573.1" 
-)  
-function NeedsUpdate($version) 
-{ 
-    if ([Version]$version -lt [Version]$MinVersion)
-	{ 
-        $lessThan = $true 
-    }else{ 
-        $lessThan = $false 
-    } 
-    return $lessThan 
-}   
-Write-Host "Scanning all VMs in the subscription: $($SubID)" 
-Set-AzContext -SubscriptionId $SubID
-$vms = Get-AzVM 
-$foundVMs = $false 
-Write-Host "Starting VM search, this may take a while" 
-foreach ($vmName in $vms) 
-{ 
-    # Get Detailed VM info 
-    $vm = Get-AzVM -ResourceGroupName $vmName.ResourceGroupName -Name $vmName.name -Status 
-    $isitWindows = $vm.OsName -like "*Windows*"
- 
-    foreach ($extension in $vm.Extensions) 
-    { 
-        if ($extension.Name -eq "AzureNetworkWatcherExtension") 
-        { 
-            if (NeedsUpdate($extension.TypeHandlerVersion)) 
-            { 
-                $foundVMs = $true 
-                if (-not ($NoUpdate)) 
-                { 
-                    Write-Host "Found VM that needs to be updated: subscriptions/$($SubID)/resourceGroups/$($vm.ResourceGroupName)/providers/Microsoft.Compute/virtualMachines/$($vm.Name) -> Updating " -NoNewline 
-                    Remove-AzVMExtension -ResourceGroupName $vm.ResourceGroupName -VMName $vm.Name -Name "AzureNetworkWatcherExtension" -Force 
-                    Write-Host "... " -NoNewline 
-                    $type = if ($isitWindows) { "NetworkWatcherAgentWindows" } else { "NetworkWatcherAgentLinux" } 
-                    Set-AzVMExtension -ResourceGroupName $vm.ResourceGroupName -Location $vmName.Location -VMName $vm.Name -Name "AzureNetworkWatcherExtension" -Publisher "Microsoft.Azure.NetworkWatcher" -Type $type -typeHandlerVersion $MinVersion
-                    Write-Host "Done" 
-                } 
-                else 
-                { 
-                    Write-Host "Found $(if ($isitWindows) {"Windows"} else {"Linux"}) VM that needs to be updated: subscriptions/$($SubID)/resourceGroups/$($vm.ResourceGroupName)/providers/Microsoft.Compute/virtualMachines/$($vm.Name)" 
-                } 
-            } 
-        } 
-    } 
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory=$true)]
+    [string] $SubID,
+    [Parameter(Mandatory=$false)]
+    [Switch] $NoUpdate = $false,
+    [Parameter(Mandatory=$false)]
+    [string] $MinVersion = "1.4.1974.1"
+)
+
+
+function NeedsUpdate($version)
+{
+    if ($version -eq $MinVersion)
+    {
+        return $false
+    }
+
+    $lessThan = $true;
+    $versionParts = $version -split '\.';
+    $minVersionParts = $MinVersion -split '\.';
+    for ($i = 0; $i -lt $versionParts.Length; $i++)
+    {
+        if ([int]$versionParts[$i] -gt [int]$minVersionParts[$i])
+        {
+            $lessThan = $false;
+            break;
+        }
+    }
+
+    return $lessThan
 }
- 
-if ($foundVMs) 
-{ 
-    Write-Host "Finished $(if ($NoUpdate) {"searching"} else {"updating"}) out of date AzureNetworkWatcherExtension on VMs" 
-} 
-else 
-{ 
-    Write-Host "All AzureNetworkWatcherExtensions up to date" 
+
+Write-Host "Scanning all VMs in the subscription: $($SubID)"
+Select-AzSubscription -SubscriptionId $SubID;
+$vms = Get-AzVM;
+$foundVMs = $false;
+Write-Host "Starting VM search, this may take a while"
+
+foreach ($vmName in $vms)
+{
+    # Get Detailed VM info
+    $vm = Get-AzVM -ResourceGroupName $vmName.ResourceGroupName -Name $vmName.name -Status;
+    $isWindows = $vm.OsVersion -match "Windows";
+    foreach ($extension in $vm.Extensions)
+    {
+        if ($extension.Name -eq "AzureNetworkWatcherExtension")
+        {
+            if (NeedsUpdate($extension.TypeHandlerVersion))
+            {
+                $foundVMs = $true;
+                if (-not ($NoUpdate))
+                {
+                    Write-Host "Found VM that needs to be updated: subscriptions/$($SubID)/resourceGroups/$($vm.ResourceGroupName)/providers/Microsoft.Compute/virtualMachines/$($vm.Name) -> Updating " -NoNewline
+                    Remove-AzVMExtension -ResourceGroupName $vm.ResourceGroupName -VMName $vm.Name -Name "AzureNetworkWatcherExtension" -Force
+                    Write-Host "... " -NoNewline
+                    $type = if ($isWindows) { "NetworkWatcherAgentWindows" } else { "NetworkWatcherAgentLinux" };
+                    Set-AzVMExtension -ResourceGroupName $vm.ResourceGroupName -Location $vmName.Location -VMName $vm.Name -Name "AzureNetworkWatcherExtension" -Publisher "Microsoft.Azure.NetworkWatcher" -Type $type -typeHandlerVersion "1.4"
+                    Write-Host "Done"
+                }
+                else
+                {
+                    Write-Host "Found $(if ($isWindows) {"Windows"} else {"Linux"}) VM that needs to be updated: subscriptions/$($SubID)/resourceGroups/$($vm.ResourceGroupName)/providers/Microsoft.Compute/virtualMachines/$($vm.Name)"
+                }
+            }
+        }
+    }
+}
+
+if ($foundVMs)
+{
+    Write-Host "Finished $(if ($NoUpdate) {"searching"} else {"updating"}) out of date AzureNetworkWatcherExtension on VMs"
+}
+else
+{
+    Write-Host "All AzureNetworkWatcherExtensions up to date"
 }
 
 ```
@@ -133,7 +135,7 @@ To update your extension, you need to know your extension version.
 
 You can check your extension version by using the Azure portal, the Azure CLI, or PowerShell.
 
-#### Use the Azure portal
+#### Use the Azure portal
 
 1. Go to the **Extensions** pane of your VM in the Azure portal.
 1. Select the **AzureNetworkWatcher** extension to see the details pane.
@@ -147,8 +149,7 @@ Run the following command from an Azure CLI prompt:
 az vm get-instance-view --resource-group  "SampleRG" --name "Sample-VM"
 ```
 Locate **"AzureNetworkWatcherExtension"** in the output and identify the version number from the *“TypeHandlerVersion”* field in the output.  
-
-Information about the extension appears multiple times in the JSON output. The full version number of the extension is available under the Extensions block. 
+Please note: Information about the extension appears multiple times in the JSON output. Please look under the "extensions" block and you should see the full version number of the extension. 
 
 You should see something like the below:
 ![Azure CLI Screenshot](./media/network-watcher/azure-cli-screenshot.png)
@@ -182,14 +183,14 @@ Set-AzVMExtension -ResourceGroupName "myResourceGroup1" -Location "WestUS" -VMNa
 
 ```
 
-If that doesn't work. Remove and install the extension again, using the steps below, to install latest version.
+If that doesn't work. Remove and install the extension again, using the steps below. This will automatically add the latest version.
 
 Removing the extension 
 
 ```powershell
 #Same command for Linux and Windows
 Remove-AzVMExtension -ResourceGroupName "SampleRG" -VMName "Sample-VM" -Name "AzureNetworkWatcherExtension"
-```
+``` 
 
 Installing the extension again
 

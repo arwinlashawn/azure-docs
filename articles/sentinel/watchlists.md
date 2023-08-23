@@ -4,7 +4,8 @@ description: Learn what watchlists are in Microsoft and when to use them.
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: conceptual
-ms.date: 01/05/2023
+ms.custom: mvc, ignite-fall-2021
+ms.date: 02/07/2022
 ---
 
 # Use watchlists in Microsoft Sentinel

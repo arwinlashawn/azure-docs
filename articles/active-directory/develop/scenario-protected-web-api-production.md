@@ -2,7 +2,7 @@
 title: Move a protected web API to production
 description: Learn how to build a protected web API (move to production).
 services: active-directory
-author: cilwerner
+author: jmprieur
 manager: CelesteDG
 
 ms.service: active-directory
@@ -10,8 +10,7 @@ ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
 ms.date: 07/15/2020
-ms.author: cwerner
-ms.reviewer: jmprieur
+ms.author: jmprieur
 ms.custom: aaddev
 #Customer intent: As an application developer, I want to know how to write a protected web API using the Microsoft identity platform for developers.
 ---
@@ -20,7 +19,7 @@ ms.custom: aaddev
 
 Now that you know how to protect your web API, here are some things to consider when moving your application to production.
 
-[!INCLUDE [Common steps to move to production](./includes/scenarios/scenarios-production.md)]
+[!INCLUDE [Common steps to move to production](../../../includes/active-directory-develop-scenarios-production.md)]
 
 ## Next steps
 

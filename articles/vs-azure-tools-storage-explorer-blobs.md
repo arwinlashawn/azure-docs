@@ -1,15 +1,20 @@
 ---
-title: Manage Azure Blob Storage resources with Storage Explorer
+title: Manage Azure Blob Storage resources with Storage Explorer | Microsoft Docs
 description: Manage Azure Blob Storage resources with Storage Explorer. Create a blob container, view blob container contents, delete or copy a blob container, and more.
 services: storage
+documentationcenter: na
 author: cawaMS
 manager: paulyuk
+editor: ''
+
 ms.assetid: 2f09e545-ec94-4d89-b96c-14783cc9d7a9
-ms.service: azure-storage
+ms.service: storage
 ms.topic: article
+ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/21/2019
 ms.author: cawa
+
 ---
 
 # Manage Azure Blob Storage resources with Storage Explorer
@@ -47,7 +52,7 @@ The following steps illustrate how to create a blob container within Storage Exp
 
 ## View a blob container's contents
 
-Blob containers contain blobs and virtual directories (that can also contain blobs).
+Blob containers contain blobs and folders (that can also contain blobs).
 
 The following steps illustrate how to view the contents of a blob container within Storage Explorer:
 
@@ -165,7 +170,7 @@ The following steps illustrate how to specify a public access level for a blob c
 Once you've created a blob container, you can upload a blob to that blob container, download a blob to your local computer, open a blob on your local computer,
 and much more.
 
-The following steps illustrate how to manage the blobs (and virtual directories) within a blob container.
+The following steps illustrate how to manage the blobs (and folders) within a blob container.
 
 1. Open Storage Explorer.
 2. In the left pane, expand the storage account containing the blob container you wish to manage.
@@ -186,7 +191,7 @@ The following steps illustrate how to manage the blobs (and virtual directories)
 
         ![Upload files options][16]
      3. Specify the type of **Blob type**. See [Create a container](storage/blobs/storage-quickstart-blobs-dotnet.md#create-a-container) for more information.
-     4. Optionally, specify a target virtual directory into which the selected file(s) will be uploaded. If the target virtual directory doesn’t exist, it will be created.
+     4. Optionally, specify a target folder into which the selected file(s) will be uploaded. If the target folder doesn’t exist, it will be created.
      5. Select **Upload**.
    * **Upload a folder to a blob container**
 
@@ -197,7 +202,7 @@ The following steps illustrate how to manage the blobs (and virtual directories)
 
         ![Upload folder options][18]
      3. Specify the type of **Blob type**. See [Create a container](storage/blobs/storage-quickstart-blobs-dotnet.md#create-a-container) for more information.
-     4. Optionally, specify a target virtual directory into which the selected folder's contents will be uploaded. If the target virtual directory doesn’t exist, it will be created.
+     4. Optionally, specify a target folder into which the selected folder's contents will be uploaded. If the target folder doesn’t exist, it will be created.
      5. Select **Upload**.
    * **Download a blob to your local computer**
 
@@ -225,7 +230,7 @@ The following steps illustrate how to manage the blobs (and virtual directories)
 ## Next steps
 
 * View the [latest Storage Explorer release notes and videos](https://www.storageexplorer.com).
-* Learn how to [create applications using Azure blobs, tables, queues, and files](./storage/index.yml).
+* Learn how to [create applications using Azure blobs, tables, queues, and files](/azure/storage/).
 
 [0]: ./media/vs-azure-tools-storage-explorer-blobs/blob-containers-create-context-menu.png
 [1]: ./media/vs-azure-tools-storage-explorer-blobs/blob-container-create.png

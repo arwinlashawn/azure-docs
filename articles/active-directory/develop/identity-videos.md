@@ -2,14 +2,15 @@
 title: Microsoft identity platform videos
 description: A list of videos about modern authentication and the Microsoft identity platform
 services: active-directory
-author: davidmu1
+author: mmacy
 manager: CelesteDG
+
 ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 01/06/2023
-ms.author: davidmu
+ms.date: 08/03/2020
+ms.author: marsma
 ms.custom: aaddev, has-adal-ref
 ms.reviewer: celested
 ---
@@ -175,12 +176,12 @@ ___
 
 
 <!-- IMAGES -->
-[auth-fund-01-img]: ./media/identity-videos/auth-fund-01.jpg
-[auth-fund-02-img]: ./media/identity-videos/auth-fund-02.jpg
-[auth-fund-03-img]: ./media/identity-videos/auth-fund-03.jpg
-[auth-fund-04-img]: ./media/identity-videos/auth-fund-04.jpg
-[auth-fund-05-img]: ./media/identity-videos/auth-fund-05.jpg
-[auth-fund-06-img]: ./media/identity-videos/auth-fund-06.jpg
+[auth-fund-01-img]: ./media/identity-videos/aad-auth-fund-01.jpg
+[auth-fund-02-img]: ./media/identity-videos/aad-auth-fund-02.jpg
+[auth-fund-03-img]: ./media/identity-videos/aad-auth-fund-03.jpg
+[auth-fund-04-img]: ./media/identity-videos/aad-auth-fund-04.jpg
+[auth-fund-05-img]: ./media/identity-videos/aad-auth-fund-05.jpg
+[auth-fund-06-img]: ./media/identity-videos/aad-auth-fund-06.jpg
 
 <!-- VIDEOS -->
 [auth-fund-01-vid]: https://www.youtube.com/watch?v=fbSVgC8nGz4&list=PLLasX02E8BPD5vC2XHS_oHaMVmaeHHPLy&index=1

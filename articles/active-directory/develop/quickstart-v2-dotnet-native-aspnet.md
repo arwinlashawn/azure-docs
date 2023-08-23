@@ -2,16 +2,15 @@
 title: "Quickstart: Call an ASP.NET web API that is protected by the Microsoft identity platform"
 description: In this quickstart, learn how to call an ASP.NET web API that's protected by the Microsoft identity platform from a Windows Desktop (WPF) application.
 services: active-directory
-author: OwenRichards1
+author: jmprieur
 manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
-ms.topic: conceptual
+ms.topic: portal
 ms.workload: identity
 ms.date: 01/11/2022
 ROBOTS: NOINDEX
-ms.author: owenrichards
-ms.reviewer: jmprieur
+ms.author: jmprieur
 ms.custom: devx-track-csharp, aaddev, identityplatformtop40, "scenarios:getting-started", "languages:ASP.NET", mode-api
 #Customer intent: As an application developer, I want to know how to set up OpenId Connect authentication in a web application that's built by using Node.js with Express.
 ---
@@ -21,7 +20,7 @@ ms.custom: devx-track-csharp, aaddev, identityplatformtop40, "scenarios:getting-
 > [!div renderon="docs"]
 > Welcome! This probably isn't the page you were expecting. While we work on a fix, this link should take you to the right article:
 >
-> > [Quickstart: Call a protected ASP.NET web API](quickstart-web-api-aspnet-protect-api.md)
+> > [Quickstart: Call a protected ASP.NET web API](web-api-quickstart.md?pivots=devlang-aspnet)
 > 
 > We apologize for the inconvenience and appreciate your patience while we work to get this resolved.
 
@@ -47,7 +46,7 @@ ms.custom: devx-track-csharp, aaddev, identityplatformtop40, "scenarios:getting-
 > 
 > * [Download it as a ZIP file](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet/archive/complete.zip).
 > 
-> [!INCLUDE [active-directory-develop-path-length-tip](./includes/error-handling-and-tips/path-length-tip.md)]
+> [!INCLUDE [active-directory-develop-path-length-tip](../../../includes/active-directory-develop-path-length-tip.md)]
 > 
 > ## Register the web API (TodoListService)
 > 
@@ -147,7 +146,7 @@ ms.custom: devx-track-csharp, aaddev, identityplatformtop40, "scenarios:getting-
 > 
 > 1. For both projects choose **Start** as the action
 > 
-> 1. Ensure the TodoListService service starts first by moving it to the first position in the list, using the up arrow.
+> 1. Ensure the TodoListService service starts first by moving it to the fist position in the list, using the up arrow.
 > 
 > Sign in to run your TodoListClient project.
 > 
@@ -191,7 +190,7 @@ ms.custom: devx-track-csharp, aaddev, identityplatformtop40, "scenarios:getting-
 > 
 > You can implement a custom method to validate issuers by using the `IssuerValidator` parameter. For more information about this parameter, see [TokenValidationParameters class](/dotnet/api/microsoft.identitymodel.tokens.tokenvalidationparameters).
 > 
-> [!INCLUDE [Help and support](./includes/error-handling-and-tips/help-support-include.md)]
+> [!INCLUDE [Help and support](../../../includes/active-directory-develop-help-support-include.md)]
 > 
 > ## Next steps
 > 

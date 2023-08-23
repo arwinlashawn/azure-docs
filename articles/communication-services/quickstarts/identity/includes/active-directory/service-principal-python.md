@@ -47,7 +47,9 @@ Now we'll add code which uses the created credential, to issue a VoIP Access Tok
 ```python
 def create_identity_and_get_token(resource_endpoint):
      client = CommunicationIdentityClient(resource_endpoint, credential)
-     user, token_response = client.create_user_and_token(scopes=["voip"])
+
+     user = client.create_user()
+     token_response = client.get_token(user, scopes=["voip"])
 
      return token_response
 ```
@@ -99,7 +101,9 @@ credential = DefaultAzureCredential()
 
 def create_identity_and_get_token(resource_endpoint):
      client = CommunicationIdentityClient(resource_endpoint, credential)
-     user, token_response = client.create_user_and_token(scopes=["voip"])
+
+     user = client.create_user()
+     token_response = client.get_token(user, scopes=["voip"])
 
      return token_response
 

@@ -3,9 +3,6 @@ title: Geo-code mapping
 description: Learn about geo-codes mapped with the respective regions.
 ms.topic: sample
 ms.date: 03/07/2022
-ms.service: backup
-author: AbhishekMallick-MS
-ms.author: v-abhmallick
 ---
 
 # Geo-code mapping

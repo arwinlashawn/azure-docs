@@ -2,7 +2,7 @@
 author: craigshoemaker
 ms.service: container-apps
 ms.topic: include
-ms.date: 11/08/2022
+ms.date: 05/11/2022
 ms.author: cshoe
 ---
 
@@ -16,10 +16,10 @@ To sign in to Azure from the CLI, run the following command and follow the promp
 az login
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
-```azurepowershell
-Connect-AzAccount
+```powershell
+az login
 ```
 
 ---
@@ -32,36 +32,26 @@ Ensure you're running the latest version of the CLI via the upgrade command.
 az upgrade
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
-You must have the latest Az module installed.  Ignore warnings about modules currently in use.
-
-```azurepowershell
-Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+```powershell
+az upgrade
 ```
 
 ---
 
-# [Bash](#tab/bash)
-
 Next, install or update the Azure Container Apps extension for the CLI.
+
+# [Bash](#tab/bash)
 
 ```azurecli
 az extension add --name containerapp --upgrade
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
-Install the Az.App module if it isn't installed.
-
-```azurepowershell
-Install-Module -Name Az.App
-```
-
-If you have an older version of the Az.App module installed, update it.
-
-```azurepowershell
-Update-Module -Name Az.App
+```powershell
+az extension add --name containerapp --upgrade
 ```
 
 ---
@@ -78,14 +68,14 @@ az provider register --namespace Microsoft.App
 az provider register --namespace Microsoft.OperationalInsights
 ```
 
-# [Azure PowerShell](#tab/azure-powershell)
+# [PowerShell](#tab/powershell)
 
-```azurepowershell
-Register-AzResourceProvider -ProviderNamespace Microsoft.App
+```powershell
+az provider register --namespace Microsoft.App
 ```
 
-```azurepowershell
-Register-AzResourceProvider -ProviderNamespace Microsoft.OperationalInsights
+```powershell
+az provider register --namespace Microsoft.OperationalInsights
 ```
 
 ---

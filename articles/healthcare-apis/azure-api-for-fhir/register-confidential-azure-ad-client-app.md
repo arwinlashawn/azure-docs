@@ -1,12 +1,12 @@
 ---
 title: Register a confidential client app in Azure AD - Azure API for FHIR
 description: Register a confidential client application in Azure Active Directory that authenticates on a user's behalf and requests access to resource applications.
-author: expekesheth
+author: matjazl
 ms.service: healthcare-apis
 ms.subservice: fhir
 ms.topic: conceptual
 ms.date: 06/03/2022
-ms.author: kesheth
+ms.author: mikaelw
 ---
 
 # Register a confidential client application in Azure Active Directory for Azure API for FHIR

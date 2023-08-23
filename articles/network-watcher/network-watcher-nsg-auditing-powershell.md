@@ -1,37 +1,39 @@
 ---
-title: Automate NSG auditing with security group view
+title: Automate NSG auditing - Security group view
 titleSuffix: Azure Network Watcher
 description: This page provides instructions on how to configure auditing of a Network Security Group
 services: network-watcher
-author: halkazwini
+documentationcenter: na
+author: damendo
+
 ms.service: network-watcher
 ms.topic: how-to
-ms.workload: infrastructure-services
-ms.date: 03/28/2023
-ms.author: halkazwini
-ms.custom: template-how-to, engagement-fy23
+ms.tgt_pltfrm: na
+ms.workload:  infrastructure-services
+ms.date: 02/22/2017
+ms.author: damendo 
+ms.custom: devx-track-azurepowershell
+
 ---
 
-# Automate NSG auditing with Azure Network Watcher security group view
+# Automate NSG auditing with Azure Network Watcher Security group view
 
-> [!NOTE]
-> The security group view API is no longer being maintained and will be deprecated soon. Please use the [Effective security rules feature](./network-watcher-security-group-view-overview.md) which provides the same functionality.
+Customers are often faced with the challenge of verifying the security posture of their infrastructure. This challenge is no different for their VMs in Azure. It is important to have a similar security profile based on the Network Security Group (NSG) rules applied. Using the Security Group View, you can now get the list of rules applied to a VM within an NSG. You can define a golden NSG security profile and initiate Security Group View on a weekly cadence and compare the output to the golden profile and create a report. This way you can identify with ease all the VMs that do not conform to the prescribed security profile.
 
-Customers are often faced with the challenge of verifying the security posture of their infrastructure. This challenge is no different for their VMs in Azure. It's important to have a similar security profile based on the Network Security Group (NSG) rules applied. Using the Security Group View, you can now get the list of rules applied to a VM within an NSG. You can define a golden NSG security profile and initiate Security Group View on a weekly cadence and compare the output to the golden profile and create a report. This way you can identify with ease all the VMs that don't conform to the prescribed security profile.
+If you are unfamiliar with Network Security Groups, see [Network Security Overview](../virtual-network/network-security-groups-overview.md).
 
-To learn more about network security groups, see [Network security groups overview](../virtual-network/network-security-groups-overview.md).
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
-## Prerequisites
+## Before you begin
 
-- If you don't have an Azure account with an active subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- A virtual machine (VM).
+In this scenario, you compare a known good baseline to the security group view results returned for a virtual machine.
 
+This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher. The scenario also assumes that a Resource Group with a valid virtual machine exists to be used.
 
 ## Scenario
 
-In this scenario, you compare a known good baseline to the security group view results returned for a virtual machine.
+The scenario covered in this article gets the security group view for a virtual machine.
 
 In this scenario, you will:
 
@@ -111,7 +113,7 @@ The first step in this example is to work with an existing baseline. The followi
 
 ## Convert rule set to PowerShell objects
 
-In this step, we're reading a json file that was created earlier with the rules that are expected to be on the Network Security Group for this example.
+In this step, we are reading a json file that was created earlier with the rules that are expected to be on the Network Security Group for this example.
 
 ```powershell
 $nsgbaserules = Get-Content -Path C:\temp\testvm1-nsg.json | ConvertFrom-Json
@@ -125,7 +127,7 @@ The next step is to retrieve the Network Watcher instance. The `$networkWatcher`
 $networkWatcher = Get-AzResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" } 
 ```
 
-## Retrieve virtual machine configuration
+## Get a VM
 
 A virtual machine is required to run the `Get-AzNetworkWatcherSecurityGroupView` cmdlet against. The following example gets a VM object.
 
@@ -141,9 +143,9 @@ The next step is to retrieve the security group view result. This result is comp
 $secgroup = Get-AzNetworkWatcherSecurityGroupView -NetworkWatcher $networkWatcher -TargetVirtualMachineId $VM.Id
 ```
 
-## Analyze the results
+## Analyzing the results
 
-The response is grouped by Network interfaces. The different types of rules returned are effective and default security rules. The result is further broken down by how it's applied, either on a subnet or a virtual NIC.
+The response is grouped by Network interfaces. The different types of rules returned are effective and default security rules. The result is further broken down by how it is applied, either on a subnet or a virtual NIC.
 
 The following PowerShell script compares the results of the Security Group View to an existing output of an NSG. The following example is a simple example of how the results can be compared with `Compare-Object` cmdlet.
 
@@ -153,7 +155,7 @@ Compare-Object -ReferenceObject $nsgbaserules `
 -Property Name,Description,Protocol,SourcePortRange,DestinationPortRange,SourceAddressPrefix,DestinationAddressPrefix,Access,Priority,Direction
 ```
 
-The following example is the result. You can see two of the rules that were in the first rule set weren't present in the comparison.
+The following example is the result. You can see two of the rules that were in the first rule set were not present in the comparison.
 
 ```
 Name                     : My2ndRuleDoNotDelete
@@ -183,4 +185,4 @@ SideIndicator            : <=
 
 ## Next steps
 
-See [Create, change, or delete a network security group](../virtual-network/manage-network-security-group.md) to track down the network security group and security rules that are in question.
+If settings have been changed, see [Manage Network Security Groups](../virtual-network/manage-network-security-group.md) to track down the network security group and security rules that are in question.

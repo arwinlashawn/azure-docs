@@ -5,7 +5,7 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 05/17/2022
 ms.topic: quickstart
-ms.custom: subject-armqs, mode-arm, devx-track-bicep
+ms.custom: subject-armqs, mode-arm
 ---
 # Quickstart: Create a shared query using Bicep
 

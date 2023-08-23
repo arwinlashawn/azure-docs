@@ -7,9 +7,8 @@ ms.service: virtual-machines
 ms.subservice: billing
 ms.topic: conceptual
 ms.workload: infrastructure-services
-ms.date: 01/09/2023
+ms.date: 10/30/2017
 ms.author: vikdesai
-ms.reviewer: erd
 
 ---
 # Save costs with Azure Reserved VM Instances

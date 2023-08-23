@@ -3,9 +3,9 @@ title: include file
 description: include file
 services: storage
 author: tamram
-ms.service: azure-storage
+ms.service: storage
 ms.topic: include
-ms.date: 05/02/2023
+ms.date: 12/18/2019
 ms.author: tamram
 ms.custom: include file
 ---

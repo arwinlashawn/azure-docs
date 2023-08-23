@@ -2,9 +2,7 @@
 title: ACR Tasks overview
 description: An introduction to ACR Tasks, a suite of features in Azure Container Registry that provides secure, automated container image build, management, and patching in the cloud.
 ms.topic: article
-author: tejaswikolli-web
-ms.author: tejaswikolli
-ms.date: 10/11/2022
+ms.date: 06/14/2021
 ---
 
 # Automate container image builds and maintenance with ACR Tasks

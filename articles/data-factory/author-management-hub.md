@@ -4,9 +4,9 @@ description: Manage your connections, source control configuration and global au
 ms.service: data-factory
 ms.subservice: authoring
 ms.topic: conceptual
-author: kromerm
-ms.author: makromer
-ms.date: 01/18/2023
+author: joshuha-msft
+ms.author: joowen
+ms.date: 04/27/2021
 ---
 
 # Management hub in Azure Data Factory

@@ -1,8 +1,8 @@
 ---
 title: Troubleshoot expired Visual Studio subscription
 description: Learn how to renew an expired subscription, purchase a new one, or transfer your Azure resources.
-author: jenp
-ms.author: jenp
+author: jamestramel
+ms.author: jametra
 ms.date: 12/15/2021
 ms.topic: troubleshooting
 ms.prod: visual-studio-windows

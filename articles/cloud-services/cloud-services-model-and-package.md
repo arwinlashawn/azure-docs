@@ -4,11 +4,11 @@ description: Describes the cloud service model (.csdef, .cscfg) and package (.cs
 ms.topic: article
 ms.service: cloud-services
 ms.subservice: deployment-files
-ms.date: 02/21/2023
+ms.date: 10/14/2020
 author: hirenshah1
 ms.author: hirshah
 ms.reviewer: mimckitt
-ms.custom: compute-evergreen
+ms.custom: 
 ---
 
 # What is the Cloud Service (classic) model and how do I package it?

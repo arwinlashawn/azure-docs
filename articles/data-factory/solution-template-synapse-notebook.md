@@ -6,7 +6,7 @@ author: chugugrace
 ms.service: data-factory
 ms.subservice: tutorials
 ms.topic: conceptual
-ms.date: 08/10/2023
+ms.date: 11/23/2021
 ---
 
 # Call Synapse pipeline with a notebook activity

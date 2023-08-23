@@ -2,11 +2,11 @@
 title: Enable cookie based affinity with Application Gateway
 description: This article provides information on how to enable cookie-based affinity with an Application Gateway. 
 services: application-gateway
-author: greg-lindsay
+author: caya
 ms.service: application-gateway
 ms.topic: how-to
 ms.date: 11/4/2019
-ms.author: greglin
+ms.author: caya
 ---
 
 # Enable Cookie based affinity with an Application Gateway
@@ -14,7 +14,7 @@ As outlined in the [Azure Application Gateway Documentation](./application-gatew
 
 ## Example
 ```yaml
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: guestbook

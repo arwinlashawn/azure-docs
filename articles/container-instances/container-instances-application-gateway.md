@@ -4,7 +4,6 @@ description: Create a container group in a virtual network and use an Azure appl
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: container-instances
-ms.custom: devx-track-azurecli
 services: container-instances
 ms.topic: how-to
 ms.date: 06/17/2022
@@ -119,8 +118,7 @@ az network application-gateway create \
   --public-ip-address myAGPublicIPAddress \
   --vnet-name myVNet \
   --subnet myAGSubnet \
-  --servers "$ACI_IP" \ 
-  --priority 100
+  --servers "$ACI_IP"
 ```
 
 

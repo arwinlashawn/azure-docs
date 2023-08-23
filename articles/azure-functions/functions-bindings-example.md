@@ -2,7 +2,7 @@
 title: Azure Functions trigger and binding example
 description: Learn to configure Azure Function bindings 
 
-ms.topic: conceptual
+ms.topic: reference
 ms.devlang: csharp, javascript
 ms.custom: devx-track-csharp
 ms.date: 02/08/2022

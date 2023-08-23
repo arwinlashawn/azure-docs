@@ -8,9 +8,9 @@ ms.service: private-link
 ms.topic: how-to
 ms.date: 05/17/2022
 ms.author: allensu 
-ms.custom: devx-track-azurepowershell, template-how-to, devx-track-azurecli
----
+ms.custom: devx-track-azurepowershell
 
+---
 # Manage Azure Private Endpoints
 
 Azure Private Endpoints have several options when managing the configuration and their deployment. 

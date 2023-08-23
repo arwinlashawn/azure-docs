@@ -2,16 +2,15 @@
 title: "Quickstart: Call Microsoft Graph from a Python daemon"
 description: In this quickstart, you learn how a Python process can get an access token and call an API protected by Microsoft identity platform, using the app's own identity
 services: active-directory
-author: OwenRichards1
+author: jmprieur
 manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
-ms.topic: conceptual
+ms.topic: portal
 ms.workload: identity
 ms.date: 01/10/2022
 ROBOTS: NOINDEX
-ms.author: owenrichards
-ms.reviewer: jmprieur
+ms.author: jmprieur
 ms.custom: aaddev, identityplatformtop40, devx-track-python, "scenarios:getting-started", "languages:Python", mode-api
 #Customer intent: As an application developer, I want to learn how my Python app can get an access token and call an API that's protected by the Microsoft identity platform using client credentials flow.
 ---
@@ -21,7 +20,7 @@ ms.custom: aaddev, identityplatformtop40, devx-track-python, "scenarios:getting-
 > [!div renderon="docs"]
 > Welcome! This probably isn't the page you were expecting. While we work on a fix, this link should take you to the right article:
 > 
-> > [Quickstart: Acquire a token and call Microsoft Graph from a Python daemon app](quickstart-daemon-app-python-acquire-token.md)
+> > [Quickstart: Python console app that calls an API](console-app-quickstart.md?pivots=devlang-python)
 > 
 > We apologize for the inconvenience and appreciate your patience while we work to get this resolved.
 
@@ -138,7 +137,7 @@ ms.custom: aaddev, identityplatformtop40, devx-track-python, "scenarios:getting-
 > result = app.acquire_token_silent(config["scope"], account=None)
 > 
 > if not result:
->     logging.info("No suitable token exists in cache. Let's get a new one from Azure AD.")
+>     logging.info("No suitable token exists in cache. Let's get a new one from AAD.")
 >     result = app.acquire_token_for_client(scopes=config["scope"])
 > ```
 > 
@@ -148,7 +147,7 @@ ms.custom: aaddev, identityplatformtop40, devx-track-python, "scenarios:getting-
 > 
 > For more information, please see the [reference documentation for `AcquireTokenForClient`](https://msal-python.readthedocs.io/en/latest/#msal.ConfidentialClientApplication.acquire_token_for_client).
 > 
-> [!INCLUDE [Help and support](./includes/error-handling-and-tips/help-support-include.md)]
+> [!INCLUDE [Help and support](../../../includes/active-directory-develop-help-support-include.md)]
 > 
 > ## Next steps
 > 

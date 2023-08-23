@@ -1,11 +1,12 @@
 ---
-title: Choose Azure File Sync cloud tiering policies
+title: Choose Azure File Sync cloud tiering policies | Microsoft Docs
 description: Details on what to keep in mind when choosing Azure File Sync cloud tiering policies.
 author: khdownie
-ms.service: azure-file-storage
+ms.service: storage
 ms.topic: conceptual
 ms.date: 04/13/2021
 ms.author: kendownie
+ms.subservice: files
 ---
 
 # Choose cloud tiering policies

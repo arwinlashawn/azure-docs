@@ -1,5 +1,5 @@
 ---
-title: Azure MFA Server and third-party VPNs
+title: Azure MFA Server and third-party VPNs - Azure Active Directory
 description: Step-by-step configuration guides for Azure MFA Server to integrate with Cisco, Citrix, and Juniper.
 
 services: multi-factor-authentication

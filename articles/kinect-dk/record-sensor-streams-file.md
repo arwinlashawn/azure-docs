@@ -3,7 +3,7 @@ title: Quickstart- Record Azure Kinect sensor streams to a file
 description: In this quickstart, you will learn how to record data streams from the Sensor SDK to a file.
 author: tesych
 ms.author: tesych
-ms.service: azure-kinect-developer-kit
+ms.prod: kinect-dk
 ms.date: 06/26/2019
 ms.topic: quickstart
 keywords: azure, kinect, record, play back, reader, matroska, mkv, streams, depth, rgb, camera, color, imu, audio, sensor

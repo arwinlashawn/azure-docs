@@ -7,7 +7,6 @@ author: kengaderdus
 manager: CelesteDG
 ms.service: active-directory
 ms.workload: identity
-ms.custom: devx-track-python, devx-track-linux
 ms.topic: how-to
 ms.date: 06/28/2022
 ms.author: kengaderdus
@@ -45,14 +44,14 @@ This article uses [Python 3.9+](https://www.python.org/) and [Flask 2.1](https:/
 
     # [macOS](#tab/macos)
     
-    ```zsh
+    ```bash
     python3 -m venv .venv
     source .venv/bin/activate
     ```
     
     # [Windows](#tab/windows)
     
-    ```cmd
+    ```bash
     py -3 -m venv .venv
     .venv\scripts\activate
     ```
@@ -60,7 +59,7 @@ This article uses [Python 3.9+](https://www.python.org/) and [Flask 2.1](https:/
 
 1. Update pip in the virtual environment by running the following command in the terminal:
 
-    ```
+    ```bash
     python -m pip install --upgrade pip
     ``` 
 
@@ -74,13 +73,13 @@ This article uses [Python 3.9+](https://www.python.org/) and [Flask 2.1](https:/
 
     # [macOS](#tab/macos)
     
-    ```zsh
+    ```bash
     export FLASK_ENV=development
     ```
     
     # [Windows](#tab/windows)
     
-    ```cmd
+    ```bash
     set FLASK_ENV=development
     ```
     ---
@@ -112,13 +111,13 @@ python -m pip install -r requirements.txt
 
 # [macOS](#tab/macos)
 
-```zsh
+```bash
 python -m pip install -r requirements.txt
 ```
 
 # [Windows](#tab/windows)
 
-```cmd
+```bash
 py -m pip install -r requirements.txt
 ```
 
@@ -190,7 +189,7 @@ In the root folder of your web app, create the `templates` folder. In the templa
 
 Add the following templates under the templates folder. These templates extend the `base.html` template:
 
-- **index.html**: the home page of the web app. The templates use the following logic: if a user doesn't sign in, it renders the sign-in button. If a user signs in, it renders the access token's claims, link to edit profile, and call a Graph API.
+- **index.html**: the home page of the web app. The templates use the following logic: if a user doesn't sign-in, it renders the sing-in button. If users sings-in, it renders the access token's claims, link to edit profile, and call a Graph API.
 
     ```html
     {% extends "base.html" %}
@@ -242,7 +241,7 @@ Add the following templates under the templates folder. These templates extend t
     
     {% block metadata %}
     {% if config.get("B2C_RESET_PASSWORD_AUTHORITY") and "AADB2C90118" in result.get("error_description") %}
-    <!-- See also https://learn.microsoft.com/azure/active-directory-b2c/active-directory-b2c-reference-policies#linking-user-flows -->
+    <!-- See also https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-reference-policies#linking-user-flows -->
     <meta http-equiv="refresh"
       content='0;{{_build_auth_code_flow(authority=config["B2C_RESET_PASSWORD_AUTHORITY"])["auth_uri"]}}'>
     {% endif %}
@@ -427,13 +426,13 @@ python -m flask run --host localhost --port 5000
 
 # [macOS](#tab/macos)
 
-```zsh
+```bash
 python -m flask run --host localhost --port 5000
 ```
 
 # [Windows](#tab/windows)
 
-```cmd
+```bash
 py -m flask run --host localhost --port 5000
 ```
 

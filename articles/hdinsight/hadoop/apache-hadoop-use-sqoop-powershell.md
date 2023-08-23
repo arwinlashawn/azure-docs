@@ -4,7 +4,7 @@ description: Learn how to use Azure PowerShell from a workstation to run Apache 
 ms.service: hdinsight
 ms.topic: how-to
 ms.custom: hdinsightactive,seoapr2020, devx-track-azurepowershell
-ms.date: 02/27/2023
+ms.date: 05/14/2020
 ---
 
 # Run Apache Sqoop jobs with Azure PowerShell in HDInsight

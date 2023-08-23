@@ -7,9 +7,8 @@ ms.author: askaur
 ms.date: 06/30/2021
 ms.topic: quickstart
 ms.service: azure-communication-services
-ms.subservice: teams-interop
 zone_pivot_groups: acs-plat-web-ios-android-windows
-ms.custom: mode-other, devx-track-js
+ms.custom: mode-other
 ---
 
 # Quickstart: Join your chat app to a Teams meeting

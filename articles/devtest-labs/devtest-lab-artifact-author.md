@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.author: rosemalcolm
 author: RoseHJM
 ms.date: 01/11/2022
-ms.custom: UpdateFrequency2
 ---
 
 # Create custom artifacts for DevTest Labs

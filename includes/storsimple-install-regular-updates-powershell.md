@@ -1,7 +1,6 @@
 ---
 author: alkohli
 ms.service: storsimple
-ms.custom:
 ms.topic: include
 ms.date: 10/26/2018
 ms.author: alkohli
@@ -25,3 +24,4 @@ ms.author: alkohli
 > * You may notice a controller failover during the update process; however, the failover will not affect system availability or operation.
 > 
 > 
+

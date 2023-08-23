@@ -1,10 +1,10 @@
 ---
-title: Using Proxy Updates with Device Update for Azure IoT Hub
+title: Using Proxy Updates with Device Update for Azure IoT Hub| Microsoft Docs
 description: Using Proxy Updates with Device Update for Azure IoT Hub
-author: kgremban
-ms.author: kgremban
+author: ValOlson
+ms.author: valls
 ms.date: 11/12/2021
-ms.topic: concept-article
+ms.topic: conceptual
 ms.service: iot-hub-device-update
 ---
 

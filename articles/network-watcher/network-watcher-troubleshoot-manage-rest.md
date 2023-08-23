@@ -1,17 +1,20 @@
 ---
-title: Troubleshoot VNet gateway and connections - Azure REST API
+title: Troubleshoot VNET Gateway and Connections - Azure REST API
 titleSuffix: Azure Network Watcher
-description: This page explains how to troubleshoot virtual network gateway and connections with Azure Network Watcher using REST API.
+description: This page explains how to troubleshoot Virtual Network Gateways and Connections with Azure Network Watcher using REST
 services: network-watcher
-author: halkazwini
+documentationcenter: na
+author: damendo
 ms.service: network-watcher
-ms.topic: how-to
-ms.workload: infrastructure-services
+ms.topic: troubleshooting
+ms.tgt_pltfrm: na
+ms.workload:  infrastructure-services
 ms.date: 01/07/2021
-ms.author: halkazwini
+ms.author: damendo
+
 ---
 
-# Troubleshoot virtual network gateway and connections with Azure Network Watcher using REST API
+# Troubleshoot Virtual Network gateway and Connections using Azure Network Watcher
 
 > [!div class="op_single_selector"]
 > - [Portal](diagnose-communication-problem-between-networks.md)

@@ -1,13 +1,12 @@
 ---
 title: Frequently asked questions (FAQ) - Bing Image Search API
-titleSuffix: Azure AI services
+titleSuffix: Azure Cognitive Services
 description: Find answers to commonly asked questions about concepts, code, and scenarios related to the Bing Image Search API.
 services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: cognitive-services
 ms.subservice: bing-image-search
-ms.custom: devx-track-js
 ms.topic: conceptual
 ms.date: 01/05/2022
 ms.author: aahi
@@ -15,9 +14,9 @@ ms.author: aahi
 
 # Frequently asked questions (FAQ) about the Bing Image Search API
 
-[!INCLUDE [Bing move notice](../bing-web-search/includes/bing-move-notice.md)]
+[!INCLUDE [Bing move notice](../Bing-Web-Search/includes/bing-move-notice.md)]
 
-Find answers to commonly asked questions about concepts, code, and scenarios related to the Bing Image Search API for Azure AI services on Azure.
+Find answers to commonly asked questions about concepts, code, and scenarios related to the Bing Image Search API for Azure Cognitive Services on Azure.
 
 ## Response headers in JavaScript
 
@@ -66,4 +65,4 @@ Is your question about a missing feature or functionality? Consider requesting o
 
 ## See also
 
- [Stack Overflow: Azure AI services](https://stackoverflow.com/questions/tagged/bing-api)
+ [Stack Overflow: Cognitive Services](https://stackoverflow.com/questions/tagged/bing-api)

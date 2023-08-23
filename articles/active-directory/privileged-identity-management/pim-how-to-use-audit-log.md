@@ -1,9 +1,9 @@
 ---
-title: View audit log report for Azure AD roles in Azure AD PIM
+title: View audit log report for Azure AD roles in Azure AD PIM | Microsoft Docs
 description: Learn how to view the audit log history for Azure AD roles in Azure AD Privileged Identity Management (PIM).
 services: active-directory
 documentationcenter: ''
-author: billmath
+author: amsliu
 manager: amycolannino
 editor: ''
 ms.service: active-directory
@@ -11,7 +11,7 @@ ms.topic: how-to
 ms.workload: identity
 ms.subservice: pim
 ms.date: 06/24/2022
-ms.author: billmath
+ms.author: amsliu
 ms.reviewer: shaunliu
 ms.custom: pim
 

@@ -14,7 +14,7 @@ ms.workload: multiple
 ms.topic: sample
 ms.date: 01/18/2018
 ms.author: atsenthi
-ms.custom: mvc, devx-track-azurepowershell
+ms.custom: mvc
 ---
 
 # Upgrade a Service Fabric application

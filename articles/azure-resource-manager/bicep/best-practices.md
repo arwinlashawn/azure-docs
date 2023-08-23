@@ -4,8 +4,7 @@ description: Describes practices to follow when creating your Bicep files so the
 author: johndowns
 ms.author: jodowns
 ms.topic: conceptual
-ms.custom: devx-track-bicep
-ms.date: 06/23/2023
+ms.date: 05/16/2022
 ---
 # Best practices for Bicep
 
@@ -13,7 +12,7 @@ This article recommends practices to follow when developing your Bicep files. Th
 
 ### Training resources
 
-If you would rather learn about Bicep best practices through step-by-step guidance, see [Structure your Bicep code for collaboration](/training/modules/structure-bicep-code-collaboration/).
+If you would rather learn about Bicep best practices through step-by-step guidance, see [Structure your Bicep code for collaboration](/learn/modules/structure-bicep-code-collaboration/).
 
 ## Parameters
 
@@ -68,13 +67,13 @@ For more information about Bicep variables, see [Variables in Bicep](variables.m
 * Avoid using `name` in a symbolic name. The symbolic name represents the resource, not the resource's name. For example, instead of the following syntax:
 
   ```bicep
-  resource cosmosDBAccountName 'Microsoft.DocumentDB/databaseAccounts@2023-04-15' = {
+  resource cosmosDBAccountName 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
   ```
 
   Use:
 
   ```bicep
-  resource cosmosDBAccount 'Microsoft.DocumentDB/databaseAccounts@2023-04-15' = {
+  resource cosmosDBAccount 'Microsoft.DocumentDB/databaseAccounts@2021-04-15' = {
   ```
 
 * Avoid distinguishing variables and parameters by the use of suffixes.

@@ -4,7 +4,7 @@ description: You can use the Azure Monitor HTTP Data Collector API to add POST J
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 08/08/2023
+ms.date: 07/14/2022
 
 ---
 
@@ -46,9 +46,9 @@ To use the HTTP Data Collector API, you create a POST request that includes the 
 |:--- |:--- |
 | Authorization |The authorization signature. Later in the article, you can read about how to create an HMAC-SHA256 header. |
 | Log-Type |Specify the record type of the data that's being submitted. It can contain only letters, numbers, and the underscore (_) character, and it can't exceed 100 characters. |
-| x-ms-date |The date that the request was processed, in RFC [1123](/dotnet/api/system.globalization.datetimeformatinfo.rfc1123pattern) format. |
+| x-ms-date |The date that the request was processed, in RFC 7234 format. |
 | x-ms-AzureResourceId | The resource ID of the Azure resource that the data should be associated with. It populates the [_ResourceId](./log-standard-columns.md#_resourceid) property and allows the data to be included in [resource-context](manage-access.md#access-mode) queries. If this field isn't specified, the data won't be included in resource-context queries. |
-| time-generated-field | The name of a field in the data that contains the timestamp of the data item. If you specify a field, its contents are used for **TimeGenerated**. If you don't specify this field, the default for **TimeGenerated** is the time that the message is ingested. The contents of the message field should follow the ISO 8601 format YYYY-MM-DDThh:mm:ssZ. The Time Generated value cannot be older than 2 days before received time or more than a day in the future. In such case, the time that the message is ingested will be used.|
+| time-generated-field | The name of a field in the data that contains the timestamp of the data item. If you specify a field, its contents are used for **TimeGenerated**. If you don't specify this field, the default for **TimeGenerated** is the time that the message is ingested. The contents of the message field should follow the ISO 8601 format YYYY-MM-DDThh:mm:ssZ. Note: the Time Generated value cannot be older than 2 days before received time or the row will be dropped.|
 | | |
 
 ## Authorization
@@ -166,7 +166,6 @@ The following properties are reserved and shouldn't be used in a custom record t
 - TimeGenerated
 - RawData
 
-
 ## Data limits
 The data posted to the Azure Monitor Data collection API is subject to certain constraints:
 
@@ -204,19 +203,18 @@ The complete set of status codes that the service might return is listed in the 
 To query data submitted by the Azure Monitor HTTP Data Collector API, search for records whose **Type** is equal to the **LogType** value that you specified and appended with **_CL**. For example, if you used **MyCustomLog**, you would return all records with `MyCustomLog_CL`.
 
 ## Sample requests
-In this section are samples that demonstrate how to submit data to the Azure Monitor HTTP Data Collector API by using various programming languages.
+In the next sections, you'll find samples that demonstrate how to submit data to the Azure Monitor HTTP Data Collector API by using various programming languages.
 
 For each sample, set the variables for the authorization header by doing the following:
 
 1. In the Azure portal, locate your Log Analytics workspace.
-2. Select **Agents**.
+2. Select **Agents management**.
 2. To the right of **Workspace ID**, select the **Copy** icon, and then paste the ID as the value of the **Customer ID** variable.
 3. To the right of **Primary Key**, select the **Copy** icon, and then paste the ID as the value of the **Shared Key** variable.
 
 Alternatively, you can change the variables for the log type and JSON data.
 
-### [PowerShell](#tab/powershell)
-
+### PowerShell sample
 ```powershell
 # Replace with your Workspace ID
 $CustomerId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  
@@ -298,7 +296,7 @@ Function Post-LogAnalyticsData($customerId, $sharedKey, $body, $logType)
 Post-LogAnalyticsData -customerId $customerId -sharedKey $sharedKey -body ([System.Text.Encoding]::UTF8.GetBytes($json)) -logType $logType  
 ```
 
-### [C#](#tab/c-sharp)
+### C# sample
 ```csharp
 using System;
 using System.Net;
@@ -366,7 +364,6 @@ namespace OIAPIExample
 				client.DefaultRequestHeaders.Add("x-ms-date", date);
 				client.DefaultRequestHeaders.Add("time-generated-field", TimeStampField);
 
-				// If charset=utf-8 is part of the content-type header, the API call may return forbidden.
 				System.Net.Http.HttpContent httpContent = new StringContent(json, Encoding.UTF8);
 				httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 				Task<System.Net.Http.HttpResponseMessage> response = client.PostAsync(new Uri(url), httpContent);
@@ -385,7 +382,7 @@ namespace OIAPIExample
 
 ```
 
-### [Python](#tab/python)
+### Python sample
 
 >[!NOTE]
 > If using Python 2, you may need to change the line:
@@ -476,7 +473,7 @@ post_data(customer_id, shared_key, body, log_type)
 ```
 
 
-### [Java](#tab/java)
+### Java sample
 
 ```java
 
@@ -568,7 +565,6 @@ public class ApiExample {
 
 ```
 
----
 
 ## Alternatives and considerations
 

@@ -1,11 +1,12 @@
 ---
-title: Azure Storage samples using JavaScript
+title: Azure Storage samples using JavaScript | Microsoft Docs
 description: View, download, and run sample code and applications for Azure Storage. Discover getting started samples for blobs, queues, tables, and files, using the JavaScript/Node.js storage client libraries.
-author: pauljewellmsft
-ms.author: pauljewell
+author: normesta
+
+ms.author: normesta
 ms.date: 10/01/2020
-ms.service: azure-storage
-ms.subservice: storage-common-concepts
+ms.service: storage
+ms.subservice: common
 ms.topic: sample
 ms.custom: devx-track-js
 ms.devlang: javascript
@@ -64,7 +65,7 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="":::
-      [Create a container](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/errorsAndResponses.js#L23)
+      [Create a container](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/listContainers.js)
    :::column-end:::
    :::column span="":::
       [Create a container using a shared key credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/snapshots.js#L23)
@@ -83,7 +84,7 @@ The following tables provide an overview of our samples repository and the scena
       [List containers by page](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/listContainers.js#L34)
    :::column-end:::
    :::column span="":::
-      [Delete a container](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/errorsAndResponses.js#L132)
+      [Delete a container](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/listContainers.js)
    :::column-end:::
 :::row-end:::
 
@@ -91,15 +92,15 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="":::
-      [Create a blob service client](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/listContainers.js#L23)
+      [Create a blob](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/listContainers.js#L8)
    :::column-end:::
    :::column span="":::
-      [Upload a blob](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/errorsAndResponses.js#L59)
+      [List blobs](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/listContainers.js#L22)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Download a blob](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/errorsAndResponses.js#L90)
+      [Download a blob](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/listContainers.js)
    :::column-end:::
    :::column span="":::
       [List blobs using an iterator](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/storage/storage-blob/samples/v12/javascript/listBlobsFlat.js#L41)

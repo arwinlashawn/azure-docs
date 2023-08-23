@@ -9,10 +9,10 @@ ms.subservice: sql-dw
 ms.date: 07/20/2020
 ms.author: emtehran
 ms.reviewer: wiassaf
-ms.custom: azure-synapse
+ms.custom: seo-lt-2019, azure-synapse
 ---
 
-# Using IDENTITY to create surrogate keys using dedicated SQL pool in Azure Synapse Analytics
+# Using IDENTITY to create surrogate keys using dedicated SQL pool in AzureSynapse Analytics
 
 In this article, you'll find recommendations and examples for using the IDENTITY property to create surrogate keys on tables in dedicated SQL pool.
 

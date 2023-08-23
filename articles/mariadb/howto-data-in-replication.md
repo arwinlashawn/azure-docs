@@ -2,11 +2,10 @@
 title: Configure data-in Replication - Azure Database for MariaDB
 description: This article describes how to set up Data-in Replication in Azure Database for MariaDB.
 ms.service: mariadb
-ms.custom: devx-track-linux
-author: SudheeshGH
-ms.author: sunaray
+author: savjani
+ms.author: pariks
 ms.topic: how-to
-ms.date: 04/19/2023
+ms.date: 06/24/2022
 ---
 
 # Configure Data-in Replication in Azure Database for MariaDB
@@ -55,13 +54,13 @@ The following steps prepare and configure the MariaDB server hosted on-premises,
    1. Sign in to your Azure Database for MariaDB using a tool like MySQL command line.
    2. Execute the below query.
 
-      ```sql
-      SELECT @@global.redirect_server_host;
+      ```bash
+      mysql> SELECT @@global.redirect_server_host;
       ```
 
       Below is some sample output:
 
-      ```output
+      ```bash
       +-----------------------------------------------------------+
       | @@global.redirect_server_host                             |
       +-----------------------------------------------------------+
@@ -72,13 +71,13 @@ The following steps prepare and configure the MariaDB server hosted on-premises,
    3. Exit from the MySQL command line.
    4. Execute the below in the ping utility to get the IP address.
 
-      ```terminal
+      ```bash
       ping <output of step 2b>
       ```
 
       For example:
 
-      ```terminal
+      ```bash
       C:\Users\testuser> ping e299ae56f000.tr1830.westus1-a.worker.database.windows.net
       Pinging tr1830.westus1-a.worker.database.windows.net (**11.11.111.111**) 56(84) bytes of data.
       ```

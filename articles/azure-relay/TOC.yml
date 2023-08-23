@@ -83,8 +83,6 @@
       href: diagnostic-logs.md
 - name: Reference
   items:
-  - name: REST
-    href: /rest/api/relay/
   - name: .NET
     items:
     - name: Microsoft.Azure.Relay

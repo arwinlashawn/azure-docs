@@ -1,6 +1,6 @@
 ---
-author: SnehaGunda
-ms.author: sngun
+author: peter-myers
+ms.author: v-petermyers
 ms.reviewer: sngun
 ms.service: synapse-analytics
 ms.topic: include

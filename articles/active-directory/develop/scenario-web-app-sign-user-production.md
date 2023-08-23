@@ -2,7 +2,7 @@
 title: Move web app that signs in users to production
 description: Learn how to build a web app that signs in users (move to production)
 services: active-directory
-author: cilwerner
+author: jmprieur
 manager: CelesteDG
 
 ms.service: active-directory
@@ -10,9 +10,8 @@ ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
 ms.date: 09/17/2019
-ms.author: cwerner
-ms.reviewer: jmprieur
-ms.custom: aaddev, devx-track-extended-java, devx-track-js
+ms.author: jmprieur
+ms.custom: aaddev 
 #Customer intent: As an application developer, I want to know how to write a web app that signs in users by using the Microsoft identity platform.
 ---
 
@@ -20,7 +19,7 @@ ms.custom: aaddev, devx-track-extended-java, devx-track-js
 
 Now that you know how to get a token to call web APIs, here are some things to consider when moving your application to production.
 
-[!INCLUDE [Common steps to move to production](./includes/scenarios/scenarios-production.md)]
+[!INCLUDE [Common steps to move to production](../../../includes/active-directory-develop-scenarios-production.md)]
 
 ## Troubleshooting
 When users sign-in to the web application for the first time, they will need to consent. However, in some organizations, users can see a message like the following:

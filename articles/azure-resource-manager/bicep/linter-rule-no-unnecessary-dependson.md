@@ -2,8 +2,7 @@
 title: Linter rule - no unnecessary dependsOn entries
 description: Linter rule - no unnecessary dependsOn entries
 ms.topic: conceptual
-ms.custom: devx-track-bicep
-ms.date: 02/10/2023
+ms.date: 12/14/2021
 ---
 
 # Linter rule - no unnecessary dependsOn entries
@@ -18,25 +17,23 @@ Use the following value in the [Bicep configuration file](bicep-config-linter.md
 
 ## Solution
 
-To reduce confusion in your template, delete any dependsOn entries that aren't necessary.  Bicep automatically infers most resource dependencies as long as template expressions reference other resources via symbolic names rather than strings with hard-coded IDs or names.
+To reduce confusion in your template, delete any dependsOn entries which are not necessary.  Bicep automatically infers most resource dependencies as long as template expressions reference other resources via symbolic names rather than strings with hard-coded IDs or names.
 
 The following example fails this test because the dependsOn entry `appServicePlan` is automatically inferred by Bicep implied by the expression `appServicePlan.id` (which references resource symbolic name `appServicePlan`) in the `serverFarmId` property's value.
 
 ```bicep
-param location string = resourceGroup().location
-
-resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: 'name'
-  location: location
+  location: resourceGroup().location
   sku: {
     name: 'F1'
     capacity: 1
   }
 }
 
-resource webApplication 'Microsoft.Web/sites@2022-03-01' = {
+resource webApplication 'Microsoft.Web/sites@2018-11-01' = {
   name: 'name'
-  location: location
+  location: resourceGroup().location
   properties: {
     serverFarmId: appServicePlan.id
   }
@@ -49,29 +46,23 @@ resource webApplication 'Microsoft.Web/sites@2022-03-01' = {
 You can fix it by removing the unnecessary dependsOn entry.
 
 ```bicep
-param location string = resourceGroup().location
-
-resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: 'name'
-  location: location
+  location: resourceGroup().location
   sku: {
     name: 'F1'
     capacity: 1
   }
 }
 
-resource webApplication 'Microsoft.Web/sites@2022-03-01' = {
+resource webApplication 'Microsoft.Web/sites@2018-11-01' = {
   name: 'name'
-  location: location
+  location: resourceGroup().location
   properties: {
     serverFarmId: appServicePlan.id
   }
 }
 ```
-
-Use **Quick Fix** to remove the unnecessary dependsOn entry.
-
-:::image type="content" source="./media/linter-rule-no-unnecessary-dependson/linter-rule-no-unnecessary-dependson-quick-fix.png" alt-text="The screenshot of No unnecessary dependson linterfule with quick fix.":::
 
 ## Next steps
 

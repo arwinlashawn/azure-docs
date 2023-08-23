@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.author: rosemalcolm
 author: RoseHJM
 ms.date: 11/17/2021
-ms.custom: UpdateFrequency2
 ---
 
 # Integrate DevTest Labs environments into Azure Pipelines

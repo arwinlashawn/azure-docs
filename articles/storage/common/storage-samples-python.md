@@ -1,24 +1,23 @@
 ---
-title: Azure Storage samples using Python
-titleSuffix: Azure Storage
+title: Azure Storage samples using Python | Microsoft Docs
 description: View, download, and run sample code and applications for Azure Storage. Discover getting started samples for blobs, queues, tables, and files, using the Python storage client libraries.
-author: pauljewellmsft
+author: normesta
 
-ms.author: pauljewell
-ms.date: 12/21/2022
-ms.service: azure-storage
-ms.subservice: storage-common-concepts
+ms.author: normesta
+ms.date: 10/01/2020
+ms.service: storage
+ms.subservice: common
 ms.topic: sample
 ms.devlang: python
-ms.custom: devx-track-python, py-fresh-zinc
+ms.custom: devx-track-python
 ---
 
 # Azure Storage samples using v12 Python client libraries
 
-The following tables provide an overview of our samples repository and the scenarios covered in each sample. Select the links to view the corresponding sample code in GitHub.
+The following tables provide an overview of our samples repository and the scenarios covered in each sample. Click on the links to view the corresponding sample code in GitHub.
 
 > [!NOTE]
-> These samples use the latest [Azure Storage .NET v12 library](/python/api/overview/azure/storage). For legacy v2.1 code, see [Azure Storage: Getting Started with Azure Storage in Python](https://github.com/Azure-Samples/storage-blob-python-getting-started) in the GitHub repository.
+> These samples use the latest Azure Storage .NET v12 library. For legacy v2.1 code, see [Azure Storage: Getting Started with Azure Storage in Python](https://github.com/Azure-Samples/storage-blob-python-getting-started) in the GitHub repository.
 
 ## Blob samples
 
@@ -109,42 +108,42 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="":::
-      [Create container client from service](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L36)
+      [Create container client from service](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L35)
    :::column-end:::
    :::column span="":::
-      [Create container client using SAS URL](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L45)
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-      [Create container using container client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L53)
-   :::column-end:::
-   :::column span="":::
-      [Get container properties](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L57)
+      [Create container client using SAS URL](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L44)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Delete container using container client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L62)
+      [Create container using container client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L52)
    :::column-end:::
    :::column span="":::
-      [Acquire lease on container](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L81)
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-      [Set container metadata](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L102)
-   :::column-end:::
-   :::column span="":::
-      [Set container access policy](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L129)
+      [Get container properties](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L56)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Get container access policy](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L142)
+      [Delete container using container client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L61)
    :::column-end:::
    :::column span="":::
-      [Generate SAS token](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L146)
+      [Acquire lease on container](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L80)
+   :::column-end:::
+:::row-end:::
+:::row:::
+   :::column span="":::
+      [Set container metadata](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L101)
+   :::column-end:::
+   :::column span="":::
+      [Set container access policy](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L128)
+   :::column-end:::
+:::row-end:::
+:::row:::
+   :::column span="":::
+      [Get container access policy](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L141)
+   :::column-end:::
+   :::column span="":::
+      [Generate SAS token](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L145)
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -152,15 +151,15 @@ The following tables provide an overview of our samples repository and the scena
       [Create container client using SAS token](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L158)
    :::column-end:::
    :::column span="":::
-      [Upload blob to container](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L183)
+      [Upload blob to container](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L182)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [List blobs in container](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L190)
+      [List blobs in container](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L189)
    :::column-end:::
    :::column span="":::
-      [Get blob client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L214)
+      [Get blob client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_containers.py#L213)
    :::column-end:::
 :::row-end:::
 
@@ -168,15 +167,15 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="":::
-      [Upload a blob](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_hello_world.py#L69)
+      [Upload a blob](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_hello_world.py#L68)
    :::column-end:::
    :::column span="":::
-      [Download a blob](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_hello_world.py#L75)
+      [Download a blob](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_hello_world.py#L74)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Delete blob](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_hello_world.py#L81)
+      [Delete blob](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_hello_world.py#L80)
    :::column-end:::
    :::column span="":::
       [Undelete blob](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/samples/blob_samples_common.py#L100)
@@ -210,7 +209,7 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="2":::
-      [Create Data Lake service client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L84)
+      [Create Data Lake service client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L64)
    :::column-end:::
 :::row-end:::
 
@@ -218,10 +217,10 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="":::
-      [Create file system client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L94)
+      [Create file system client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L74)
    :::column-end:::
    :::column span="":::
-      [Delete file system](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L101)
+      [Delete file system](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L81)
    :::column-end:::
 :::row-end:::
 
@@ -229,26 +228,26 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="":::
-      [Create directory client](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L33)
+      [Create directory client](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L14)
    :::column-end:::
    :::column span="":::
-      [Get directory permissions](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L38)
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-      [Set directory permissions](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L42)
-   :::column-end:::
-   :::column span="":::
-      [Rename directory](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_directory.py#L52)
+      [Get directory permissions](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L19)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Get directory properties](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_directory.py#L60)
+      [Set directory permissions](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L23)
    :::column-end:::
    :::column span="":::
-      [Delete directory](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_directory.py#L67)
+      [Rename directory](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_directory.py#L19)
+   :::column-end:::
+:::row-end:::
+:::row:::
+   :::column span="":::
+      [Get directory properties](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_directory.py#L25)
+   :::column-end:::
+   :::column span="":::
+      [Delete directory](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_directory.py#L29)
    :::column-end:::
 :::row-end:::
 
@@ -256,26 +255,26 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="":::
-      [Create file client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_upload_download.py#L39)
+      [Create file client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_upload_download.py#L13)
    :::column-end:::
    :::column span="":::
-      [Create file](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L72)
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-      [Get file permissions](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L38)
-   :::column-end:::
-   :::column span="":::
-      [Set file permissions](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L58)
+      [Create file](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L45)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Append data to file](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_upload_download.py#L52)
+      [Get file permissions](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L35)
    :::column-end:::
    :::column span="":::
-      [Read data from file](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_upload_download.py#L67)
+      [Set file permissions](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_access_control.py#L38)
+   :::column-end:::
+:::row-end:::
+:::row:::
+   :::column span="":::
+      [Append data to file](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_upload_download.py#L18)
+   :::column-end:::
+   :::column span="":::
+      [Read data from file](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples/datalake_samples_upload_download.py#L29)
    :::column-end:::
 :::row-end:::
 
@@ -325,7 +324,7 @@ The following tables provide an overview of our samples repository and the scena
 
 :::row:::
    :::column span="":::
-      [Create share client from connection string](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L54)
+      [Create share client from connection string](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L52)
    :::column-end:::
    :::column span="":::
       [Get share client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_service.py#L96)
@@ -333,23 +332,23 @@ The following tables provide an overview of our samples repository and the scena
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Create share using file share client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L40)
+      [Create share using file share client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L39)
    :::column-end:::
    :::column span="":::
-      [Create share snapshot](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L45)
-   :::column-end:::
-:::row-end:::
-:::row:::
-   :::column span="":::
-      [Delete share using file share client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L49)
-   :::column-end:::
-   :::column span="":::
-      [Set share quota](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L63)
+      [Create share snapshot](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L43)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Set share metadata](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L68)
+      [Delete share using file share client](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L47)
+   :::column-end:::
+   :::column span="":::
+      [Set share quota](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L61)
+   :::column-end:::
+:::row-end:::
+:::row:::
+   :::column span="":::
+      [Set share metadata](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L66)
    :::column-end:::
    :::column span="":::
       [Get share properties](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_hello_world.py#L47)
@@ -392,7 +391,7 @@ The following tables provide an overview of our samples repository and the scena
 :::row-end:::
 :::row:::
    :::column span="2":::
-      [List files in directory](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L127)
+      [List files in directory](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-file-share/samples/file_samples_share.py#L87)
    :::column-end:::
 :::row-end:::
 
@@ -512,18 +511,18 @@ The following tables provide an overview of our samples repository and the scena
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Peek message](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-queue/samples/queue_samples_message.py#L258)
+      [Peek message](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-queue/samples/queue_samples_message.py#L197)
    :::column-end:::
    :::column span="":::
-      [Update message](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-queue/samples/queue_samples_message.py#L283)
+      [Update message](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-queue/samples/queue_samples_message.py#L222)
    :::column-end:::
 :::row-end:::
 :::row:::
    :::column span="":::
-      [Delete message](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-queue/samples/queue_samples_message.py#L226)
+      [Delete message](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-queue/samples/queue_samples_message.py#L165)
    :::column-end:::
    :::column span="":::
-      [Clear messages](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-queue/samples/queue_samples_message.py#L234)
+      [Clear messages](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-queue/samples/queue_samples_message.py#L173)
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -568,21 +567,21 @@ The following tables provide an overview of our samples repository and the scena
 
 To view the complete Python sample libraries, go to:
 
-- [Azure Blob code samples](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-blob/samples)
+- [Azure blob code samples](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-blob/samples)
 - [Azure Data Lake code samples](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-datalake/samples)
 - [Azure Files code samples](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-file-share/samples)
-- [Azure Queue code samples](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-queue/samples)
+- [Azure queue code samples](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-queue/samples)
 
 You can browse and clone the GitHub repository for each library.
 
 ## Getting started guides
 
-Check out the following guides if you're looking for instructions on how to install and get started with the Azure Storage client libraries.
+Check out the following guides if you are looking for instructions on how to install and get started with the Azure Storage client libraries.
 
 - [Getting Started with Azure Blob Service in Python](../blobs/storage-quickstart-blobs-python.md)
-- [Getting Started with Azure File Service in Python](../files/storage-python-how-to-use-file-storage.md)
 - [Getting Started with Azure Queue Service in Python](../queues/storage-quickstart-queues-python.md)
 - [Getting Started with Azure Table Service in Python](../../cosmos-db/table-storage-how-to-use-python.md)
+- [Getting Started with Azure File Service in Python](../files/storage-python-how-to-use-file-storage.md)
 
 ## Next steps
 

@@ -4,11 +4,11 @@ description: The various XPath settings you can use in the cloud service role co
 ms.topic: article
 ms.service: cloud-services
 ms.subservice: deployment-files
-ms.date: 02/21/2023
+ms.date: 10/14/2020
 author: hirenshah1
 ms.author: hirshah
 ms.reviewer: mimckitt
-ms.custom: compute-evergreen
+ms.custom: 
 ---
 
 # Expose role configuration settings as an environment variable with XPath

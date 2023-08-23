@@ -2,8 +2,7 @@
 title: Azure Event Grid - Set custom headers on delivered events 
 description: Describes how you can set custom headers (or delivery properties) on delivered events. 
 ms.topic: conceptual
-ms.custom: devx-track-azurecli
-ms.date: 02/21/2023
+ms.date: 02/23/2022
 ---
 
 # Custom delivery properties
@@ -14,9 +13,7 @@ You can set custom headers on the events that are delivered to the following des
 - Webhooks
 - Azure Service Bus topics and queues
 - Azure Event Hubs
-- Azure Functions
-- Azure Relay Hybrid Connections
-
+- Relay Hybrid Connections
 
 When creating an event subscription in the Azure portal, you can use the **Delivery Properties** tab to set custom HTTP headers. This page lets you set fixed and dynamic header values.
 
@@ -67,7 +64,7 @@ Authorization: BEARER SlAV32hkKG...
 ```
 
 > [!NOTE]
-> Defining authorization headers is a sensible option when your destination is a Webhook. It should not be used for [functions subscribed with a resource id](/rest/api/eventgrid/controlplane-version2023-06-01-preview/event-subscriptions/create-or-update#azurefunctioneventsubscriptiondestination), Service Bus, Event Hubs, and Hybrid Connections as those destinations support their own authentication schemes when used with Event Grid.
+> Defining authorization headers is a sensible option when your destination is a Webhook. It should not be used for [functions subscribed with a resource id](/rest/api/eventgrid/controlplane-version2021-10-15-preview/event-subscriptions/create-or-update#azurefunctioneventsubscriptiondestination), Service Bus, Event Hubs, and Hybrid Connections as those destinations support their own authentication schemes when used with Event Grid.
 
 ### Service Bus example
 Azure Service Bus supports the use of following message properties when sending single messages. 

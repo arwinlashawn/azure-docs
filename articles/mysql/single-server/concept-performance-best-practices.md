@@ -4,16 +4,14 @@ description: This article describes some recommendations to monitor and tune per
 ms.service: mysql
 ms.subservice: single-server
 ms.topic: conceptual
-author: code-sidd 
-ms.author: sisawant
+author: Bashar-MSFT
+ms.author: bahusse
 ms.date: 07/22/2022
 ---
 
-# Best practices for optimal performance of Azure Database for MySQL servers
+# Best practices for optimal performance of your Azure Database for MySQL server
 
 [!INCLUDE[applies-to-mysql-single-flexible-server](../includes/applies-to-mysql-single-flexible-server.md)]
-
-[!INCLUDE[azure-database-for-mysql-single-server-deprecation](../includes/azure-database-for-mysql-single-server-deprecation.md)]
 
 Learn how to get best performance while working with your Azure Database for MySQL server. As we add new capabilities to the platform, we'll continue refining our recommendations in this section.
 
@@ -92,7 +90,7 @@ Vertically split load by functionally sharding the database - moving separate ap
 ## Data import configurations
 
 - You can temporarily scale your instance to higher SKU size before starting a data import operation and then scale it down when the import is successful.
-- You can import your data with minimal downtime by using [Azure Database Migration Service (DMS)](../migrate/mysql-on-premises-azure-db/01-mysql-migration-guide-intro.md) for online or offline migrations.
+- You can import your data with minimal downtime by using [Azure Database Migration Service (DMS)](https://datamigration.microsoft.com/) for online or offline migrations.
 
 ## Azure Database for MySQL memory recommendations
 

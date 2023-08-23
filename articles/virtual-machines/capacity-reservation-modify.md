@@ -3,14 +3,14 @@ title: Modify a Capacity Reservation in Azure
 description: Learn how to modify a Capacity Reservation.
 author: bdeforeest
 ms.author: bidefore
-ms.service: virtual-machines
+ms.service: virtual-machines #Required
 ms.topic: how-to
-ms.date: 11/22/2022
+ms.date: 08/09/2021
 ms.reviewer: cynthn, jushiman
-ms.custom: template-how-to, devx-track-azurecli, devx-track-azurepowershell
+ms.custom: template-how-to, devx-track-azurecli
 ---
 
-# Modify a Capacity Reservation
+# Modify a Capacity Reservation (preview)
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs :heavy_check_mark: Uniform scale set :heavy_check_mark: Flexible scale sets
 

@@ -1,21 +1,21 @@
 ---
-title: Create an Azure Cosmos DB for Table account
-description: Learn how to create a new Azure Cosmos DB for Table account
+title: Create an Azure Cosmos DB Table API account
+description: Learn how to create a new Azure Cosmos DB Table API account
 author: seesharprun
 ms.author: sidandrews
 ms.service: cosmos-db
-ms.subservice: table
+ms.subservice: cosmosdb-table
 ms.devlang: csharp
 ms.topic: how-to
 ms.date: 07/06/2022
-ms.custom: devx-track-csharp, ignite-2022
+ms.custom: devx-track-csharp
 ---
 
-# Create an Azure Cosmos DB for Table account
+# Create an Azure Cosmos DB Table API account
 
-[!INCLUDE[Table](../includes/appliesto-table.md)]
+[!INCLUDE[appliesto-table-api](../includes/appliesto-table-api.md)]
 
-An Azure Cosmos DB for Table account contains all of your Azure Cosmos DB resources: tables and items. The account provides a unique endpoint for various tools and SDKs to connect to Azure Cosmos DB and perform everyday operations. For more information about the resources in Azure Cosmos DB, see [Azure Cosmos DB resource model](../resource-model.md).
+An Azure Cosmos DB Table API account contains all of your Azure Cosmos DB resources: tables and items. The account provides a unique endpoint for various tools and SDKs to connect to Azure Cosmos DB and perform everyday operations. For more information about the resources in Azure Cosmos DB, see [Azure Cosmos DB resource model](../account-databases-containers-items.md).
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ An Azure Cosmos DB for Table account contains all of your Azure Cosmos DB resour
 
 ## Create an account
 
-Create a single Azure Cosmos DB account using the API for Table.
+Create a single Azure Cosmos DB account using the Table API.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -51,7 +51,7 @@ Create a single Azure Cosmos DB account using the API for Table.
         --location $location
     ```
 
-1. Use the [``az cosmosdb create``](/cli/azure/cosmosdb#az-cosmosdb-create) command to create a new Azure Cosmos DB for Table account with default settings.
+1. Use the [``az cosmosdb create``](/cli/azure/cosmosdb#az-cosmosdb-create) command to create a new Azure Cosmos DB Table API account with default settings.
 
     ```azurecli-interactive
     az cosmosdb create \
@@ -89,7 +89,7 @@ Create a single Azure Cosmos DB account using the API for Table.
     New-AzResourceGroup @parameters    
     ```
 
-1. Use the [``New-AzCosmosDBAccount``](/powershell/module/az.cosmosdb/new-azcosmosdbaccount) cmdlet to create a new Azure Cosmos DB for Table account with default settings.
+1. Use the [``New-AzCosmosDBAccount``](/powershell/module/az.cosmosdb/new-azcosmosdbaccount) cmdlet to create a new Azure Cosmos DB Table API account with default settings.
 
     ```azurepowershell-interactive
     $parameters = @{
@@ -105,7 +105,7 @@ Create a single Azure Cosmos DB account using the API for Table.
 
 ## Next steps
 
-In this guide, you learned how to create an Azure Cosmos DB for Table account.
+In this guide, you learned how to create an Azure Cosmos DB Table API account. You can now import more data to your Azure Cosmos DB account.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Azure Cosmos DB for Table for .NET](quickstart-dotnet.md)
+> [Import data into Azure Cosmos DB Table API](../import-data.md)

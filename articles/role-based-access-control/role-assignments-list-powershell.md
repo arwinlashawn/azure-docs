@@ -27,7 +27,7 @@ ms.custom: devx-track-azurepowershell
 
 ## Prerequisites
 
-- [PowerShell in Azure Cloud Shell](../cloud-shell/overview.md) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
+- [PowerShell in Azure Cloud Shell](../cloud-shell/overview.md) or [Azure PowerShell](/powershell/azure/install-az-ps)
 
 ## List role assignments for the current subscription
 

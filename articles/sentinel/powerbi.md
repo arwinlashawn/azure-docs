@@ -1,19 +1,22 @@
 ---
 title: Create a Power BI report from Microsoft Sentinel data
 description: Learn how to create a Power BI report using an exported query from Microsoft Sentinel Log Analytics. Share your report with others in the Power BI service and a Teams channel.
-author: yelevin
-ms.author: yelevin
+author: batamig
+ms.author: bagol
 ms.topic: conceptual
-ms.date: 01/09/2023
+ms.date: 11/09/2021
+ms.custom: ignite-fall-2021
 ---
 
-# Create a Power BI report from Microsoft Sentinel data
+# Tutorial: Create a Power BI report from Microsoft Sentinel data
+
+[!INCLUDE [Banner for top of topics](./includes/banner.md)]
 
 [Power BI](https://powerbi.microsoft.com/) is a reporting and analytics platform that turns data into coherent, immersive, interactive visualizations. Power BI lets you easily connect to data sources, visualize and discover relationships, and share insights with whoever you want.
 
 You can base Power BI reports on data from Microsoft Sentinel Log Analytics workspaces, and share those reports with people who don't have access to Microsoft Sentinel. For example, you might want to share information about failed sign-in attempts with app owners, without granting them Microsoft Sentinel access. Power BI visualizations can provide the data at a glance.
 
-In this article, you:
+In this tutorial, you:
 
 > [!div class="checklist"]
 > * Export a Log Analytics Kusto query to a Power BI M language query.
@@ -24,11 +27,11 @@ In this article, you:
 People you granted access in the Power BI service, and members of the Teams channel, can see the report without needing Microsoft Sentinel permissions.
 
 > [!NOTE]
-> This article provides a scenario-based procedure to view analysis reports in PowerBI for your Microsoft Sentinel data. For more information, see [Connect data sources](connect-data-sources.md) and [Visualize collected data](get-visibility.md).
+> This tutorial provides a scenario-based procedure for a top customer ask: viewing analysis reports in PowerBI for your Microsoft Sentinel data. For more information, see [Connect data sources](connect-data-sources.md) and [Visualize collected data](get-visibility.md).
 >
 ## Prerequisites
 
-To complete the steps in this article, you need:
+To complete this tutorial, you need:
 
 - At least read access to a Microsoft Sentinel Log Analytics workspace that monitors sign-in attempts.
 - A Power BI account that has read access to the Log Analytics workspace.

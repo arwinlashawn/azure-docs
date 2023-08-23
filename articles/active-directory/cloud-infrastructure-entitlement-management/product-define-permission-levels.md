@@ -1,15 +1,14 @@
 ---
-title: Define and manage users, roles, and access levels in Microsoft Permissions Management
-description: How to define and manage users, roles, and access levels in the Permissions Management User management dashboard.
+title: Define and manage users, roles, and access levels in Permissions Management
+description: How to define and manage users, roles, and access levels in Permissions Management User management dashboard.
 services: active-directory
-author: jenniferf-skc
-manager: amycolannino
-ms.service: active-directory 
-ms.subservice: ciem
+author: kenwith
+manager: rkarlin
+ms.service: ciem
 ms.workload: identity
 ms.topic: how-to
-ms.date: 06/19/2023
-ms.author: jfields
+ms.date: 02/23/2022
+ms.author: kenwith
 ---
 
 # Define and manage users, roles, and access levels
@@ -33,7 +32,7 @@ Follow this process to invite users if the customer hasn't enabled SAML integrat
 
 ### Invite a user to Permissions Management
 
-Inviting a user to Permissions Management adds the user to the system and allows system administrators to assign permissions to those users. Follow the steps to invite a user to Permissions Management.
+Inviting a user to Permissions Management adds the user to the system and allows system administrators to assign permissions to those users. Follow the steps below to invite a user to Permissions Management.
 
 1. To invite a user to Permissions Management, select the down caret icon next to the **User** icon on the right of the screen, and then select **User Management**.
 2. From the **Users** tab, select **Invite User**.
@@ -268,5 +267,5 @@ Creating a permission directly in Permissions Management allows system administr
 
 ## Next steps
 
-- To view user management information, see [Manage users with the User management dashboard](ui-user-management.md).
-- To create group-based permissions, see [Create group-based permissions](how-to-create-group-based-permissions.md).
+- For information about how to view user management information, see [Manage users with the User management dashboard](ui-user-management.md).
+- For information about how to create group-based permissions, see [Create group-based permissions](how-to-create-group-based-permissions.md).

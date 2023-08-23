@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.author: rosemalcolm
 author: RoseHJM
 ms.date: 06/26/2020
-ms.custom: UpdateFrequency2
 ---
 
 # Enable user-assigned managed identities on lab virtual machines in Azure DevTest Labs

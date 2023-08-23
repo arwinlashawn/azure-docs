@@ -4,6 +4,7 @@ ms.date: 01/05/2022
 author: dbradish-microsoft
 ms.author: dbradish
 manager: barbkess
+ms.custom: devx-track-azurecli
 ---
 
 ### Launch Azure Cloud Shell

@@ -13,7 +13,7 @@ services: iot-edge
 
 # Deploy IoT Edge modules at scale using Visual Studio Code
 
-[!INCLUDE [iot-edge-version-all-supported](includes/iot-edge-version-all-supported.md)]
+[!INCLUDE [iot-edge-version-all-supported](../../includes/iot-edge-version-all-supported.md)]
 
 You can create an **IoT Edge automatic deployment** using Visual Studio Code to manage ongoing deployments for many devices at once. Automatic deployments for IoT Edge are part of the [automatic device management](../iot-hub/iot-hub-automatic-device-management.md) feature of IoT Hub. Deployments are dynamic processes that enable you to deploy multiple modules to multiple devices. You can also track the status and health of the modules, and make changes when necessary.
 
@@ -29,8 +29,7 @@ In this article, you set up Visual Studio Code and the IoT extension. You then l
   If you don't have an IoT Edge device set up, you can create one in an Azure virtual machine. Follow the steps in one of the quickstart articles to [Create a virtual Linux device](quickstart-linux.md) or [Create a virtual Windows device](quickstart.md).
 
 * [Visual Studio Code](https://code.visualstudio.com/).
-* [Azure IoT Edge for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-edge).
-* [Azure IoT Hub](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit).
+* [Azure IoT Tools](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-tools#overview) for Visual Studio Code.
 
 ## Sign in to access your IoT hub
 
@@ -220,7 +219,7 @@ After you have configured the deployment manifest and configured tags in the dev
 
 1. Provide values as prompted, starting with the **deployment ID**.
 
-   :::image type="content" source="./media/how-to-deploy-monitor-vscode/create-deployment-at-scale.png" alt-text="Screenshot showing how to specify a deployment ID.":::
+   ![Specify a deployment ID](./media/how-to-deploy-monitor-vscode/create-deployment-at-scale.png)
 
    Specify values for these parameters:
 

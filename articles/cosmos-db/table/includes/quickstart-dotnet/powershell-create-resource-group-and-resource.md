@@ -1,8 +1,7 @@
 ---
 author: alexwolfmsft
 ms.service: cosmos-db
-ms.subservice: table
-ms.custom: ignite-2022
+ms.subservice: cosmosdb-table
 ms.topic: include
 ms.date: 07/08/2022
 ms.author: alexwolf
@@ -31,7 +30,7 @@ ms.author: alexwolf
     New-AzResourceGroup @parameters    
     ```
 
-1. Use the [``New-AzCosmosDBAccount``](/powershell/module/az.cosmosdb/new-azcosmosdbaccount) cmdlet to create a new Azure Cosmos DB for Table account with default settings. 
+1. Use the [``New-AzCosmosDBAccount``](/powershell/module/az.cosmosdb/new-azcosmosdbaccount) cmdlet to create a new Azure Cosmos DB Table API account with default settings. 
 
     ```azurepowershell-interactive
     $parameters = @{

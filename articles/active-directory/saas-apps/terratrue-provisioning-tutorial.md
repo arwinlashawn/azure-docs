@@ -1,11 +1,11 @@
 ---
-title: 'Tutorial: Configure TerraTrue for automatic user provisioning with Azure Active Directory'
+title: 'Tutorial: Configure TerraTrue for automatic user provisioning with Azure Active Directory | Microsoft Docs'
 description: Learn how to automatically provision and de-provision user accounts from Azure AD to TerraTrue.
 services: active-directory
 documentationcenter: ''
 author: twimmers
 writer: Thwimmer
-manager: jeedes
+manager: beatrizd
 
 ms.assetid: 80547381-3f42-4e18-b737-20b43402e31e
 ms.service: active-directory
@@ -13,7 +13,7 @@ ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.devlang: na
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 12/16/2021
 ms.author: Thwimmer
 ---
 

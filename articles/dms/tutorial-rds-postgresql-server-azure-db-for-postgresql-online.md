@@ -2,13 +2,16 @@
 title: "Tutorial: Migrate RDS PostgreSQL online to Azure Database for PostgreSQL"
 titleSuffix: Azure Database Migration Service
 description: Learn to perform an online migration from RDS PostgreSQL to Azure Database for PostgreSQL by using the Azure Database Migration Service.
-author: apduvuri
-ms.author: adityaduvuri
+services: dms
+author: croblesm
+ms.author: roblescarlos
+manager: craigg
 ms.reviewer: craigg
-ms.date: 04/11/2020
 ms.service: dms
+ms.workload: data-services
+ms.custom: "seo-lt-2019"
 ms.topic: tutorial
-ms.custom: seo-lt-2019
+ms.date: 04/11/2020
 ---
 
 # Tutorial: Migrate RDS PostgreSQL to Azure DB for PostgreSQL online using DMS
@@ -72,13 +75,13 @@ To complete this tutorial, you need to:
     The easiest way to migrate only the schema is to use pg_dump with the -s option. For more information, see the [examples](https://www.postgresql.org/docs/9.6/app-pgdump.html#PG-DUMP-EXAMPLES) in the Postgres pg_dump tutorial.
 
     ```
-    pg_dump -O -h hostname -U db_username -d db_name -s > your_schema.sql
+    pg_dump -o -h hostname -U db_username -d db_name -s > your_schema.sql
     ```
 
     For example, to dump a schema file for the **dvdrental** database, use the following command:
 
     ```
-    pg_dump -O -h localhost -U postgres -d dvdrental -s  > dvdrentalSchema.sql
+    pg_dump -o -h localhost -U postgres -d dvdrental -s  > dvdrentalSchema.sql
     ```
 
 2. Create an empty database in the target service, which is Azure Database for PostgreSQL. To connect and create a database, refer to one of the following articles:

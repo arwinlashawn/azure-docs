@@ -1,21 +1,19 @@
 ---
 author: baanders
-description: prerequisites for Azure Digital Twins tutorials
+description: include file for Azure Digital Twins tutorials - prerequisites for the sample project
 ms.service: digital-twins
 ms.topic: include
-ms.date: 9/26/2022
+ms.date: 6/22/2022
 ms.author: baanders
 ---
 
 ## Prerequisites
 
-Before beginning this tutorial, start with these prerequisites:
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-* This tutorial uses .NET Core 3.1. You can download this version of the .NET Core SDK for multiple platforms from [Download .NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+Before beginning this tutorial, start by completing the prerequisites in this section.
 
-Then, continue through the rest of this section to set up the remaining prerequisites.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-### Get sample resources
+### Get required resources
 
 The tutorial is driven by an [Azure Digital Twins end-to-end sample project written in C#](/samples/azure-samples/digital-twins-samples/digital-twins-samples). Get the sample project on your machine by navigating to the sample link, and selecting the **Browse code** button underneath the title. 
 

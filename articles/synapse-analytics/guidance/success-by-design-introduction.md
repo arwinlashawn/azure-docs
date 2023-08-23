@@ -1,8 +1,8 @@
 ---
 title: Success by design
-description: Azure Synapse Customer Success Engineering Success by Design repository.
-author: SnehaGunda
-ms.author: sngun
+description: "TODO: Success by design"
+author: peter-myers
+ms.author: v-petermyers
 ms.reviewer: sngun
 ms.service: synapse-analytics
 ms.topic: conceptual

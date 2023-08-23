@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Configure Zscaler One for automatic user provisioning with Azure Active Directory'
+title: 'Tutorial: Configure Zscaler One for automatic user provisioning with Azure Active Directory | Microsoft Docs'
 description: Learn how to configure Azure Active Directory to automatically provision and deprovision user accounts to Zscaler One.
 services: active-directory
 author: twimmers
@@ -9,7 +9,7 @@ ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 03/27/2019
 ms.author: jeedes
 ---
 

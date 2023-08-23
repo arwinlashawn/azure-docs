@@ -13,9 +13,6 @@ ms.author: cshoe
 
 When configuring custom authentication providers, you may want to store connection secrets in Azure Key Vault. This article demonstrates how to use a managed identity to grant Azure Static Web Apps access to Key Vault for custom authentication secrets.
 
-> [!NOTE]
-> Azure Serverless Functions do not support direct Key Vault integration. If you require Key Vault integration with your managed Function app, you will need to implement Key Vault access into your app's code.
-
 Security secrets require the following items to be in place.
 
 - Create a system-assigned identity in the Static Web Apps instance.
@@ -45,13 +42,13 @@ Key Vault integration is not available for:
 
 1. Select the **System assigned** tab.
 
-2. Under the _Status_ label, select **On**.
+1. Under the _Status_ label, select the **On** button.
 
-3. Select **Save**.
+1. Select the **Save** button.
 
     :::image type="content" source="media/key-vault-secrets/azure-static-web-apps-enable-managed-identity.png" alt-text="Add system-assigned identity":::
 
-4. When the confirmation dialog appears, select **Yes**.
+1. When the confirmation dialog appears, select the **Yes** button.
 
     :::image type="content" source="media/key-vault-secrets/azure-static-web-apps-enable-managed-identity-confirmation.png" alt-text="Confirm identity assignment.":::
 
@@ -73,11 +70,11 @@ You can now add an access policy to allow your static web app to read Key Vault 
 
 1. Select list item that matches your application name.
 
-2. Select **Select**.
+1. Select the **Select** button.
 
-3. Select **Add**.
+1. Select the **Add** button.
 
-4. Select **Save**.
+1. Select the **Save** button.
 
     :::image type="content" source="media/key-vault-secrets/azure-static-web-apps-key-vault-save-policy.png" alt-text="Save Key Vault access policy":::
 
@@ -89,9 +86,9 @@ The access policy is now saved to Key Vault. Next, access the secret's URI to us
 
 1. Select your desired secret version from the list.
 
-2. Select **copy** at end of _Secret Identifier_ text box to copy the secret URI value to the clipboard.
+1. Select the **copy button** at end of _Secret Identifier_ text box to copy the secret URI value to the clipboard.
 
-3. Paste this value into a text editor for later use.
+1. Paste this value into a text editor for later use.
 
 ## Add application setting
 
@@ -99,11 +96,11 @@ The access policy is now saved to Key Vault. Next, access the secret's URI to us
 
 1. Under the _Settings_ menu, select **Configuration**.
 
-2. Under the _Application settings_ section, select **Add**.
+1. Under the _Application settings_ section, select the **Add** button.
 
-3. Enter a name in the text box for the _Name_ field.
+1. Enter a name in the text box for the _Name_ field.
 
-4. Determine the secret value in text box for the _Value_ field.
+1. Determine the secret value in text box for the _Value_ field.
 
     The secret value is a composite of a few different values. The following template shows how the final string is built.
 
@@ -113,17 +110,17 @@ The access policy is now saved to Key Vault. Next, access the secret's URI to us
 
     Use the following steps to build the full secret value.
 
-5. Copy the template from above and paste it into a text editor.
+1. Copy the template from above and paste it into a text editor.
 
-6. Replace `<YOUR-KEY-VAULT-SECRET-URI>` with the Key Vault URI value you set aside earlier.
+1. Replace `<YOUR-KEY-VAULT-SECRET-URI>` with the Key Vault URI value you set aside earlier.
 
-7. Copy the new full string value.
+1. Copy the new full string value.
 
-8. Paste the value into the text box for the _Value_ field.
+1. Paste the value into the text box for the _Value_ field.
 
-9. Select **OK**.
+1. Select the **OK** button.
 
-10. Select **Save** at the top of the _Application settings_ toolbar.
+1. Select the **Save** button at the top of the _Application settings_ toolbar.
 
     :::image type="content" source="media/key-vault-secrets/azure-static-web-apps-application-settings-save.png" alt-text="Save application settings":::
 

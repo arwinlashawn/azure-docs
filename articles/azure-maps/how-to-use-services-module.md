@@ -1,10 +1,9 @@
 ---
-title: Use the Azure Maps Services module
-titleSuffix:  Microsoft Azure Maps
+title: Use the Azure Maps Services module | Microsoft Azure Maps
 description: Learn about the Azure Maps services module. See how to load and use this helper library to access Azure Maps REST services in web or Node.js applications.
-author: dubiety
-ms.author: yuchungchen
-ms.date: 06/26/2023
+author: stevemunk
+ms.author: v-munksteve
+ms.date: 03/25/2019
 ms.topic: how-to
 ms.service: azure-maps
 services: azure-maps
@@ -13,7 +12,7 @@ ms.custom: devx-track-js
 
 # Use the Azure Maps services module
 
-The Azure Maps Web SDK provides a [services module]. This module is a helper library that makes it easy to use the Azure Maps REST services in web or Node.js applications by using JavaScript or TypeScript.
+The Azure Maps Web SDK provides a *services module*. This module is a helper library that makes it easy to use the Azure Maps REST services in web or Node.js applications by using JavaScript or TypeScript.
 
 ## Use the services module in a webpage
 
@@ -29,13 +28,13 @@ The Azure Maps Web SDK provides a [services module]. This module is a helper lib
 
       `npm install azure-maps-rest`
 
-      Then, use an import declaration to add the module into a source file:
+      Then, add a script reference to the `<head>` element of the file:
 
-      ```js
-      import * as service from "azure-maps-rest";
+      ```html
+      <script src="node_modules/azure-maps-rest/dist/atlas-service.min.js"></script>
       ```
 
-1. Create an authentication pipeline. The pipeline must be created before you can initialize a service URL client endpoint. Use your own Azure Maps account key or Azure Active Directory (Azure AD) credentials to authenticate an Azure Maps Search service client. In this example, the Search service URL client is created.
+1. Create an authentication pipeline. The pipeline must be created before you can initialize a service URL client endpoint. Use your own Azure Maps account key or Azure Active Directory (Azure AD) credentials to authenticate an Azure Maps Search service client. In this example, the Search service URL client will be created. 
 
     If you use a subscription key for authentication:
 
@@ -118,7 +117,7 @@ The Azure Maps Web SDK provides a [services module]. This module is a helper lib
     }
     ```
 
-    For more information, see [Authentication with Azure Maps].
+    For more information, see [Authentication with Azure Maps](azure-maps-authentication.md).
 
 1. The following code uses the newly created Azure Maps Search service URL client to geocode an address: "1 Microsoft Way, Redmond, WA". The code uses the `searchAddress` function and displays the results as a table in the body of the page.
 
@@ -151,87 +150,20 @@ The Azure Maps Web SDK provides a [services module]. This module is a helper lib
     });
     ```
 
-Here's the full, running code sample:
+    Here's the full, running code sample:
 
-```javascript
-<html>
- <head>
+<br/>
 
-  <script src="https://atlas.microsoft.com/sdk/javascript/service/2/atlas-service.min.js"></script>
+<iframe height="500" scrolling="no" title="Using the Services Module" src="//codepen.io/azuremaps/embed/zbXGMR/?height=500&theme-id=0&default-tab=js,result&editable=true" frameborder='no' loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/azuremaps/pen/zbXGMR/'>Using the Services Module</a> by Azure Maps
+  (<a href='https://codepen.io/azuremaps'>@azuremaps</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
-  <script type="text/javascript">
-    
-    // Get an Azure Maps key at https://azure.com/maps.
-    var subscriptionKey = '{Your-Azure-Maps-Subscription-key}';
-
-    // Use SubscriptionKeyCredential with a subscription key.
-    var subscriptionKeyCredential = new atlas.service.SubscriptionKeyCredential(subscriptionKey);
-
-    // Use subscriptionKeyCredential to create a pipeline.
-    var pipeline = atlas.service.MapsURL.newPipeline(subscriptionKeyCredential, {
-      retryOptions: { maxTries: 4 } // Retry options
-    });
-
-    // Create an instance of the SearchURL client.
-    var searchURL = new atlas.service.SearchURL(pipeline);
-
-    // Search for "1 microsoft way, redmond, wa".
-    searchURL.searchAddress(atlas.service.Aborter.timeout(10000), '1 microsoft way, redmond, wa')
-      .then(response => {
-      var html = [];
-
-      // Display the total results.
-      html.push('Total results: ', response.summary.numResults, '<br/><br/>');
-
-      // Create a table of the results.
-      html.push('<table><tr><td></td><td>Result</td><td>Latitude</td><td>Longitude</td></tr>');
-
-      for(var i=0;i<response.results.length;i++){
-        html.push('<tr><td>', (i+1), '.</td><td>', 
-        response.results[i].address.freeformAddress, 
-        '</td><td>', 
-        response.results[i].position.lat,
-        '</td><td>', 
-        response.results[i].position.lon,
-        '</td></tr>');
-      }
-
-      html.push('</table>');
-
-      // Add the resulting HTML to the body of the page.
-      document.body.innerHTML = html.join('');
-    });
-
-  </script>
-</head>
-
-<style>
-  table {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  td, th {
-    border: 1px solid black;
-    padding: 5px;
-  }
-</style>
-
-<body> </body>
-
-</html>
-```
-
-The following image is a screenshot showing the results of this sample code, a table with the address searched for, along with the resulting coordinates.
-
-:::image type="content" source="./media/how-to-use-services-module/services-module-in-webpage.png"alt-text="A screenshot of an HTML table showing the address searched and the resulting coordinates.":::
-
-<!-------------------------------------------------------
-> [!VIDEO //codepen.io/azuremaps/embed/zbXGMR/?height=500&theme-id=0&default-tab=js,result&editable=true]
---------------------------------------------------------->
+<br/>
 
 ## Azure Government cloud support
 
-The Azure Maps Web SDK supports the Azure Government cloud. All JavaScript and CSS URLs used to access the Azure Maps Web SDK remain the same, however the following tasks need to be done to connect to the Azure Government cloud version of the Azure Maps platform.
+The Azure Maps Web SDK supports the Azure Government cloud. All JavaScript and CSS URLs used to access the Azure Maps Web SDK remain the same, however the following tasks will need to be done to connect to the Azure Government cloud version of the Azure Maps platform.
 
 When using the interactive map control, add the following line of code before creating an instance of the `Map` class. 
 
@@ -241,7 +173,7 @@ atlas.setDomain('atlas.azure.us');
 
 Be sure to use an Azure Maps authentication details from the Azure Government cloud platform when authenticating the map and services.
 
-The domain for the services needs to be set when creating an instance of an API URL endpoint. For example, the following code creates an instance of the `SearchURL` class and points the domain to the Azure Government cloud.
+When using the services module, the domain for the services needs to be set when creating an instance of an API URL endpoint. For example, the following code creates an instance of the `SearchURL` class and points the domain to the Azure Government cloud.
 
 ```javascript
 var searchURL = new atlas.service.SearchURL(pipeline, 'atlas.azure.us');
@@ -254,39 +186,27 @@ If directly accessing the Azure Maps REST services, change the URL domain to `at
 Learn more about the classes and methods used in this article:
 
 > [!div class="nextstepaction"]
-> [MapsURL]
+> [MapsURL](/javascript/api/azure-maps-rest/atlas.service.mapsurl)
 
 > [!div class="nextstepaction"]
-> [SearchURL]
+> [SearchURL](/javascript/api/azure-maps-rest/atlas.service.searchurl)
 
 > [!div class="nextstepaction"]
-> [RouteURL]
+> [RouteURL](/javascript/api/azure-maps-rest/atlas.service.routeurl)
 
 > [!div class="nextstepaction"]
-> [SubscriptionKeyCredential]
+> [SubscriptionKeyCredential](/javascript/api/azure-maps-rest/atlas.service.subscriptionkeycredential)
 
 > [!div class="nextstepaction"]
-> [TokenCredential]
+> [TokenCredential](/javascript/api/azure-maps-rest/atlas.service.tokencredential)
 
 For more code samples that use the services module, see these articles:
 
 > [!div class="nextstepaction"]
-> [Show search results on the map]
+> [Show search results on the map](./map-search-location.md)
 
 > [!div class="nextstepaction"]
-> [Get information from a coordinate]
+> [Get information from a coordinate](./map-get-information-from-coordinate.md)
 
 > [!div class="nextstepaction"]
-> [Show directions from A to B]
-
-[MapsURL]: /javascript/api/azure-maps-rest/atlas.service.mapsurl
-[SearchURL]: /javascript/api/azure-maps-rest/atlas.service.searchurl
-[RouteURL]: /javascript/api/azure-maps-rest/atlas.service.routeurl
-[SubscriptionKeyCredential]: /javascript/api/azure-maps-rest/atlas.service.subscriptionkeycredential
-[TokenCredential]: /javascript/api/azure-maps-rest/atlas.service.tokencredential
-[Show search results on the map]: map-search-location.md
-[Get information from a coordinate]: map-get-information-from-coordinate.md
-[Show directions from A to B]: map-route.md
-
-[Authentication with Azure Maps]: azure-maps-authentication.md
-[services module]: https://www.npmjs.com/package/azure-maps-rest
+> [Show directions from A to B](./map-route.md)

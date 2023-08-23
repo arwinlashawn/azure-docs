@@ -7,7 +7,6 @@ author: asudbring
 manager: KumudD
 ms.service: load-balancer
 ms.devlang: azurecli
-ms.custom: devx-track-azurecli
 ms.topic: article
 ms.tgt_pltfrm:
 ms.workload: infrastructure

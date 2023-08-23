@@ -2,8 +2,7 @@
 title: Linter rule - max outputs
 description: Linter rule - max outputs.
 ms.topic: conceptual
-ms.custom: devx-track-bicep
-ms.date: 06/23/2023
+ms.date: 02/03/2022
 ---
 
 # Linter rule - max outputs

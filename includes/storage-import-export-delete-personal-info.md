@@ -24,7 +24,7 @@ Personal information is relevant to the import/export service (via the portal an
 - City
 - Zip/postal code
 - State
-- Country/Region/Province
+- Country/Province/Region
 - Drive ID
 - Carrier account number
 - Shipping tracking number

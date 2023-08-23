@@ -5,15 +5,14 @@ services: microsoft-graph, app-service-web
 author: rwike77
 manager: CelesteDG
 
-ms.service: app-service
+ms.service: app-service-web
 ms.topic: tutorial
 ms.workload: identity
-ms.date: 03/14/2023
+ms.date: 01/21/2022
 ms.author: ryanwi
 ms.reviewer: stsoneff
 ms.devlang: javascript
-ms.custom: azureday1, devx-track-js, AppServiceConnectivity
-ms.subservice: web-apps
+ms.custom: azureday1, devx-track-azurepowershell
 #Customer intent: As an application developer, I want to learn how to access data in Microsoft Graph by using managed identities.
 ---
 
@@ -57,6 +56,7 @@ const appSettings = {
     },
     authRoutes: {
         redirect: "/.auth/login/aad/callback", // Enter the redirect URI here
+        error: "/error", // enter the relative path to error handling route
         unauthorized: "/unauthorized" // enter the relative path to unauthorized route
     },
 }

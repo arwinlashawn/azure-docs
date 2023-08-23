@@ -2,9 +2,7 @@
 title: Registry best practices
 description: Learn how to use your Azure container registry effectively by following these best practices.
 ms.topic: article
-author: tejaswikolli-web
-ms.author: tejaswikolli
-ms.date: 10/11/2022
+ms.date: 08/13/2021
 ---
 
 # Best practices for Azure Container Registry
@@ -117,5 +115,6 @@ For recommendations to improve the security posture of your container registries
 [az-acr-repository-delete]: /cli/azure/acr/repository#az_acr_repository_delete
 [az-acr-show-usage]: /cli/azure/acr#az_acr_show_usage
 [azure-cli]: /cli/azure
+[azure-portal]: https://portal.azure.com
 [container-registry-geo-replication]: container-registry-geo-replication.md
 [container-registry-skus]: container-registry-skus.md

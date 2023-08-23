@@ -1,10 +1,9 @@
 ---
 title: Manage revisions in Azure Container Apps
-description: Manage revisions in Azure Container Apps.
+description: Manage revisions and traffic splitting in Azure Container Apps.
 services: container-apps
 author: craigshoemaker
 ms.service: container-apps
-ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.topic: conceptual
 ms.date: 06/07/2022
 ms.author: cshoe
@@ -16,17 +15,19 @@ Supporting multiple revisions in Azure Container Apps allows you to manage the v
 
 A revision is created when you first deploy your application.  New revisions are created when you [update](#updating-your-container-app) your application with [revision-scope changes](revisions.md#revision-scope-changes).  You can also update your container app based on a specific revision.  
 
+
 This article described the commands to manage your container app's revisions. For more information about Container Apps commands, see [`az containerapp`](/cli/azure/containerapp).  For more information about commands to manage revisions, see [`az containerapp revision`](/cli/azure/containerapp/revision).
+
 
 ## Updating your container app
 
-To update a container app, use the `az containerapp update` command.   With this command you can modify environment variables, compute resources, scale parameters, and deploy a different image.  If your container app update includes [revision-scope changes](revisions.md#revision-scope-changes), a new revision is generated.
-
-# [Bash](#tab/bash)
+To update a container app, use the `az containerapp update` command.   With this command you can modify environment variables, compute resources, scale parameters, and deploy a different image.  If your container app update includes [revision-scope changes](revisions.md#revision-scope-changes), a new revision will be generated.
 
 You may also use a YAML file to define these and other configuration options and parameters.  For more information regarding this command, see [`az containerapp revision copy`](/cli/azure/containerapp#az-containerapp-update).  
 
-This example updates the container image. Replace the \<PLACEHOLDERS\> with your values.
+This example updates the container image.  (Replace the \<placeholders\> with your values.)
+
+# [Bash](#tab/bash)
 
 ```azurecli
 az containerapp update \
@@ -37,21 +38,11 @@ az containerapp update \
 
 # [PowerShell](#tab/powershell)
 
-Replace the \<Placeholders\> with your values.
-
-```azurepowershell
-$ImageParams = @{
-    Name = '<ContainerName>'
-    Image = 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
-}
-$TemplateObj = New-AzContainerAppTemplateObject @ImageParams
-
-$UpdateArgs = @{
-  Name = '<ApplicationName>'
-  ResourceGroupName = '<ResourceGroupName>'
-  Location = '<Location>'
-}
-Update-AzContainerApp @UpdateArgs
+```azurecli
+az containerapp update `
+  --name <APPLICATION_NAME> `
+  --resource-group <RESOURCE_GROUP_NAME> `
+  --image <IMAGE_NAME>
 ```
 
 ---
@@ -64,8 +55,6 @@ List all revisions associated with your container app with `az containerapp revi
 
 # [Bash](#tab/bash)
 
-Replace the \<PLACEHOLDERS\> with your values.
-
 ```azurecli
 az containerapp revision list \
   --name <APPLICATION_NAME> \
@@ -75,15 +64,11 @@ az containerapp revision list \
 
 # [PowerShell](#tab/powershell)
 
-Replace the \<Placeholders\> with your values.
-
 ```azurecli
-$CmdArgs = @{
-  ContainerAppName = '<ContainerAppName>'
-  ResourceGroupName = '<ResourceGroupName>'
-}
-
-Get-AzContainerAppRevision @CmdArgs
+az containerapp revision list `
+  --name <APPLICATION_NAME> `
+  --resource-group <RESOURCE_GROUP_NAME> `
+  -o table
 ```
 
 ---
@@ -92,9 +77,9 @@ Get-AzContainerAppRevision @CmdArgs
 
 Show details about a specific revision by using `az containerapp revision show`.  For more information about this command, see [`az containerapp revision show`](/cli/azure/containerapp/revision#az-containerapp-revision-show).
 
-# [Bash](#tab/bash)
+Example: (Replace the \<placeholders\> with your values.)
 
-Replace the \<PLACEHOLDERS\> with your values.
+# [Bash](#tab/bash)
 
 ```azurecli
 az containerapp revision show \
@@ -105,28 +90,21 @@ az containerapp revision show \
 
 # [PowerShell](#tab/powershell)
 
-Replace the \<Placeholders\> with your values.
-
 ```azurecli
-$CmdArgs = @{
-  ContainerAppName = '<ContainerAppName>'
-  ResourceGroupName = '<ResourceGroupName>'
-  RevisionName = '<RevisionName>'
-}
-
-$RevisionObject = (Get-AzContainerAppRevision @CmdArgs) | Select-Object -Property *
-echo $RevisionObject
+  --name <APPLICATION_NAME> `
+  --revision <REVISION_NAME> `
+  --resource-group <RESOURCE_GROUP_NAME>
 ```
 
 ---
 
 ## Revision copy
 
-To create a new revision based on an existing revision, use the `az containerapp revision copy`. Container Apps uses the configuration of the existing revision, which you may then modify.  
+To create a new revision based on an existing revision, use the `az containerapp revision copy`. Container Apps will use the configuration of the existing revision, which you then may modify.  
 
 With this command, you can modify environment variables, compute resources, scale parameters, and deploy a different image.  You may also use a YAML file to define these and other configuration options and parameters.  For more information regarding this command, see [`az containerapp revision copy`](/cli/azure/containerapp/revision#az-containerapp-revision-copy).
 
-This example copies the latest revision and sets the compute resource parameters.  (Replace the \<PLACEHOLDERS\> with your values.)
+This example copies the latest revision and sets the compute resource parameters.  (Replace the \<placeholders\> with your values.)
 
 # [Bash](#tab/bash)
 
@@ -139,8 +117,6 @@ az containerapp revision copy \
 ```
 
 # [PowerShell](#tab/powershell)
-
-The following example demonstrates how to copy a container app revision using the Azure CLI command. There isn't an equivalent PowerShell command. 
 
 ```azurecli
 az containerapp revision copy `
@@ -156,9 +132,9 @@ az containerapp revision copy `
 
 Activate a revision by using `az containerapp revision activate`.  For more information about this command, see [`az containerapp revision activate`](/cli/azure/containerapp/revision#az-containerapp-revision-activate).
 
-# [Bash](#tab/bash)
+Example: (Replace the \<placeholders\> with your values.)
 
-Example: (Replace the \<PLACEHOLDERS\> with your values.)
+# [Bash](#tab/bash)
 
 ```azurecli
 az containerapp revision activate \
@@ -168,16 +144,10 @@ az containerapp revision activate \
 
 # [PowerShell](#tab/powershell)
 
-Example: (Replace the \<Placeholders\> with your values.)
-
-```azurepowershell
-$CmdArgs = @{
-  ContainerAppName = '<ContainerAppName>'
-  ResourceGroupName = '<ResourceGroupName>'
-  RevisionName = '<RevisionName>'
-}
-
-Enable-AzContainerAppRevision @CmdArgs
+```poweshell
+az containerapp revision activate `
+  --revision <REVISION_NAME> `
+  --resource-group <RESOURCE_GROUP_NAME>
 ```
 
 ---
@@ -186,9 +156,9 @@ Enable-AzContainerAppRevision @CmdArgs
 
 Deactivate revisions that are no longer in use with `az containerapp revision deactivate`. Deactivation stops all running replicas of a revision.  For more information, see [`az containerapp revision deactivate`](/cli/azure/containerapp/revision#az-containerapp-revision-deactivate).
 
-# [Bash](#tab/bash)
+Example: (Replace the \<placeholders\> with your values.)
 
-Example: (Replace the \<PLACEHOLDERS\> with your values.)
+# [Bash](#tab/bash)
 
 ```azurecli
 az containerapp revision deactivate \
@@ -198,16 +168,10 @@ az containerapp revision deactivate \
 
 # [PowerShell](#tab/powershell)
 
-Example: (Replace the \<Placeholders\> with your values.)
-
-```azurepowershell
-$CmdArgs = @{
-  ContainerAppName = '<ContainerAppName>'
-  ResourceGroupName = '<ResourceGroupName>'
-  RevisionName = '<RevisionName>'
-}
-
-Disable-AzContainerAppRevision @CmdArgs
+```azurecli
+az containerapp revision deactivate `
+  --revision <REVISION_NAME> `
+  --resource-group <RESOURCE_GROUP_NAME>
 ```
 
 ---
@@ -216,11 +180,11 @@ Disable-AzContainerAppRevision @CmdArgs
 
 This command restarts a revision.  For more information about this command, see [`az containerapp revision restart`](/cli/azure/containerapp/revision#az-containerapp-revision-restart).
 
-When you modify secrets in your container app, you need to restart the active revisions so they can access the secrets.  
+When you modify secrets in your container app, you'll need to restart the active revisions so they can access the secrets.  
+
+Example: (Replace the \<placeholders\> with your values.)
 
 # [Bash](#tab/bash)
-
-Example: (Replace the \<PLACEHOLDERS\> with your values.)
 
 ```azurecli
 az containerapp revision restart \
@@ -230,16 +194,10 @@ az containerapp revision restart \
 
 # [PowerShell](#tab/powershell)
 
-Example: (Replace the \<Placeholders\> with your values.)
-
-```azurepowershell
-$CmdArgs = @{
-  ContainerAppName = '<ContainerAppName>'
-  ResourceGroupName = '<ResourceGroupName>'
-  RevisionName = '<RevisionName>'
-}
-
-Restart-AzContainerAppRevision @CmdArgs
+```azurecli
+az containerapp revision restart `
+  --revision <REVISION_NAME> `
+  --resource-group <RESOURCE_GROUP_NAME>
 ```
 
 ---
@@ -256,28 +214,20 @@ Example: (Replace the \<placeholders\> with your values.)
 
 # [Bash](#tab/bash)
 
-Example: (Replace the \<PLACEHOLDERS\> with your values.)
-
 ```azurecli
 az containerapp revision set-mode \
   --name <APPLICATION_NAME> \
   --resource-group <RESOURCE_GROUP_NAME> \
-  --mode <REVISION_MODE>
+  --mode single
 ```
 
 # [PowerShell](#tab/powershell)
 
-Example: (Replace the \<Placeholders\> with your values.)
-
 ```azurecli
-$CmdArgs = @{
-  Name = '<ContainerAppName>'
-  ResourceGroupName = '<ResourceGroupName>'
-  Location = '<Location>'
-  ConfigurationActiveRevisionMode = '<RevisionMode>'
-}
-
-Update-AzContainerApp @CmdArgs
+az containerapp revision set-mode `
+  --name <APPLICATION_NAME> `
+  --resource-group <RESOURCE_GROUP_NAME> `
+  --mode single
 ```
 
 ---
@@ -292,9 +242,9 @@ You can add and remove a label from a revision.  For more information about the 
 
 To add a label to a revision, use the [`az containerapp revision label add`](/cli/azure/containerapp/revision/label#az-containerapp-revision-label-add) command.  
 
-You can only assign a label to one revision at a time, and a revision can only be assigned one label.  If the revision you specify has a label, the add command replaces the existing label.
+You can only assign a label to one revision at a time, and a revision can only be assigned one label.  If the revision you specify has a label, the add command will replace the existing label.
 
-This example adds a label to a revision: (Replace the \<PLACEHOLDERS\> with your values.)
+This example adds a label to a revision: (Replace the \<placeholders\> with your values.)
 
 # [Bash](#tab/bash)
 
@@ -308,10 +258,10 @@ az containerapp revision label add \
 # [PowerShell](#tab/powershell)
 
 ```azurecli
-az containerapp revision label add `
+az containerapp revision set-mode `
   --revision <REVISION_NAME> `
   --resource-group <RESOURCE_GROUP_NAME> `
-  --label <LABEL_NAME>
+  --mode <LABEL_NAME>
 ```
 
 ---
@@ -320,7 +270,7 @@ az containerapp revision label add `
 
 To remove a label from a revision, use the [`az containerapp revision label remove`](/cli/azure/containerapp/revision/label#az-containerapp-revision-label-remove) command.  
 
-This example removes a label to a revision: (Replace the \<PLACEHOLDERS\> with your values.)
+This example removes a label to a revision: (Replace the \<placeholders\> with your values.)
 
 # [Bash](#tab/bash)
 
@@ -334,17 +284,53 @@ az containerapp revision label add \
 # [PowerShell](#tab/powershell)
 
 ```azurecli
-az containerapp revision label add `
+az containerapp revision set-mode `
   --revision <REVISION_NAME> `
   --resource-group <RESOURCE_GROUP_NAME> `
-  --label <LABEL_NAME>
+  --mode <LABEL_NAME>
 ```
 
 ---
 
 ## Traffic splitting
 
-Applied by assigning percentage values, you can decide how to balance traffic among different revisions. Traffic splitting rules are assigned by setting weights to different revisions by their  name or [label](#revision-labels).  For more information, see, [Traffic Splitting](traffic-splitting.md).
+Applied by assigning percentage values, you can decide how to balance traffic among different revisions. Traffic splitting rules are assigned by setting weights to different revisions.
+
+The following example shows how to split traffic between three revisions. 
+
+```json
+{
+  ...
+  "configuration": {
+    "ingress": {
+      "traffic": [
+        {
+          "revisionName": <REVISION1_NAME>,
+          "weight": 50
+        },
+        {
+          "revisionName": <REVISION2_NAME>,
+          "weight": 30
+        },
+        {
+          "latestRevision": true,
+          "weight": 20
+        }
+      ]
+    }
+  }
+}
+```
+
+Each revision gets traffic based on the following rules:
+
+- 50% of the requests go to REVISION1
+- 30% of the requests go to REVISION2
+- 20% of the requests go to the latest revision
+
+The sum of all revision weights must equal 100.
+
+In this example, replace the `<REVISION*_NAME>` placeholders with revision names in your container app. You access revision names via the [revision list](#revision-list) command.
 
 ## Next steps
 

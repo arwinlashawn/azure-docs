@@ -3,12 +3,13 @@ title: Optimize costs for Blob storage with reserved capacity
 titleSuffix: Azure Storage 
 description: Learn about purchasing Azure Storage reserved capacity to save costs on block blob and Azure Data Lake Storage Gen2 resources.
 services: storage
-author: tamram
+author: jimmart-dev
 
-ms.service: azure-storage
+ms.service: storage
 ms.topic: conceptual
 ms.date: 05/17/2021
-ms.author: tamram
+ms.author: jammart
+ms.subservice: blobs
 ---
 
 # Optimize costs for Blob storage with reserved capacity

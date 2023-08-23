@@ -5,7 +5,7 @@ services: firewall
 author: vhorne
 ms.service: firewall
 ms.topic: quickstart
-ms.custom: subject-armqs, mode-arm, devx-track-arm-template
+ms.custom: subject-armqs, devx-track-azurepowershell, mode-arm
 ms.date: 08/28/2020
 ms.author: victorh
 ---

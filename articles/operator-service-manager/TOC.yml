@@ -1,7 +1,0 @@
-- name: Azure Operator Service Manager documentation
-  href: ./overview.md
-- name: Overview
-  expanded: true
-  items:
-  - name: About Azure Operator Service Manager
-    href: ./overview.md

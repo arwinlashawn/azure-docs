@@ -142,6 +142,4 @@ For technical details about triggers, actions, and limits, which are described b
 
 ## Next steps
 
-* [Managed connectors for Azure Logic Apps](managed.md)
-* [Built-in connectors for Azure Logic Apps](built-in.md)
-* [What are connectors in Azure Logic Apps](introduction.md)
+* Learn about other [Logic Apps connectors](apis-list.md)

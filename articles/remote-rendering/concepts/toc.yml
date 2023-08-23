@@ -20,7 +20,3 @@
   href: rendering-modes.md
 - name: Graphics bindings
   href: graphics-bindings.md
-- name: Security
-  items:
-  - name: Security baseline
-    href: /security/benchmark/azure/baselines/azure-remote-rendering-security-baseline?toc=/azure/remote-rendering/concepts/toc.json

@@ -4,8 +4,7 @@ description: This article provides an overview of components and architecture us
 ms.service: site-recovery
 ms.topic: conceptual
 ms.date: 11/14/2019
-ms.author: ankitadutta
-author: ankitaduttaMSFT
+
 ---
 
 

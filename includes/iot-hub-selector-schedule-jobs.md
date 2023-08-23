@@ -3,11 +3,10 @@ author: kgremban
 ms.author: kgremban
 ms.service: iot-hub
 ms.topic: include
-ms.date: 03/15/2023
+ms.date: 10/26/2018
 ---
 > [!div class="op_single_selector"]
-> * [CLI](../articles/iot-hub/schedule-jobs-cli.md)
-> * [.NET](../articles/iot-hub/schedule-jobs-dotnet.md)
-> * [Python](../articles/iot-hub/schedule-jobs-python.md)
-> * [Node.js](../articles/iot-hub/schedule-jobs-node.md)
-> * [Java](../articles/iot-hub/schedule-jobs-java.md)
+> * [Node.js](../articles/iot-hub/iot-hub-node-node-schedule-jobs.md)
+> * [.NET](../articles/iot-hub/iot-hub-csharp-csharp-schedule-jobs.md)
+> * [Java](../articles/iot-hub/iot-hub-java-java-schedule-jobs.md)
+> * [Python](../articles/iot-hub/iot-hub-python-python-schedule-jobs.md)

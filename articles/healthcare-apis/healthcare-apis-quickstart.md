@@ -1,12 +1,12 @@
 ---
 title: Deploy workspace in the Azure portal - Azure Health Data Services
 description: This document teaches users how to deploy a workspace in the Azure portal.
-author: mikaelweave
+author: stevewohl
 ms.service: healthcare-apis
 ms.subservice: fhir
 ms.topic: quickstart
 ms.date: 06/06/2022
-ms.author: mikaelw
+ms.author: ginle
 ms.custom: mode-api
 ---
 

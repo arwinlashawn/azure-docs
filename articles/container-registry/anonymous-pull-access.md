@@ -2,9 +2,8 @@
 title: Enable anonymous pull access
 description: Optionally enable anonymous pull access to make content in your Azure container registry publicly available
 ms.topic: how-to
-author: tejaswikolli-web
-ms.author: tejaswikolli
-ms.date: 10/11/2022
+ms.date: 09/17/2021
+ms.custom: ""
 ---
 
 # Make your container registry content publicly available

@@ -5,7 +5,7 @@ services: automation
 ms.subservice: shared-capabilities
 ms.date: 03/28/2021
 ms.topic: conceptual
-ms.custom: devx-track-azurepowershell, devx-track-python
+ms.custom: devx-track-azurepowershell
 ---
 # Manage variables in Azure Automation
 

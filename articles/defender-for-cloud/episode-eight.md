@@ -2,14 +2,16 @@
 title: Microsoft Defender for IoT
 description: Learn how Defender for IoT discovers devices to monitor and how it fits in the Microsoft Security portfolio.
 ms.topic: reference
-ms.date: 04/27/2023
+ms.date: 06/01/2022
 ---
 
 # Microsoft Defender for IoT
 
 **Episode description**: In this episode of Defender for Cloud in the Field, Dolev Zemer joins Yuri Diogenes to talk about how Defender for IoT works. Dolev explains the difference between OT Security and IT Security and how Defender for IoT fulfills this gap. Dolev also demonstrates how Defender for IoT discovers devices to monitor and how it fits in the Microsoft Security portfolio.
 
-> [!VIDEO https://aka.ms/docs/player?id=05fdecf5-f6a1-4162-b95d-1e34478d1d60]
+<br>
+<br>
+<iframe src="https://aka.ms/docs/player?id=05fdecf5-f6a1-4162-b95d-1e34478d1d60" width="1080" height="530" allowFullScreen="true" frameBorder="0"></iframe>
 
 - [1:20](/shows/mdc-in-the-field/defender-for-iot#time=01m20s) - Overview of the Defender for IoT solution
 

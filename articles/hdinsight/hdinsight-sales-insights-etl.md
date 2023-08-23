@@ -4,7 +4,7 @@ description: Learn how to use create ETL pipelines with Azure HDInsight to deriv
 ms.service: hdinsight
 ms.topic: tutorial
 ms.custom: hdinsightactive
-ms.date: 06/26/2023
+ms.date: 05/13/2022
 ---
 
 # Tutorial: Create an end-to-end data pipeline to derive sales insights in Azure HDInsight
@@ -76,13 +76,13 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 1. Set variable for resource group. Replace `RESOURCE_GROUP_NAME` with the name of an existing or new resource group, then enter the command:
 
     ```bash
-    RESOURCE_GROUP="RESOURCE_GROUP_NAME"
+    resourceGroup="RESOURCE_GROUP_NAME"
     ```
 
 1. Execute the script. Replace `LOCATION` with a desired value, then enter the command:
 
     ```bash
-    ./scripts/resources.sh $RESOURCE_GROUP LOCATION
+    ./scripts/resources.sh $resourceGroup LOCATION
     ```
 
     If you're not sure which region to specify, you can retrieve a list of supported regions for your subscription with the [az account list-locations](/cli/azure/account#az-account-list-locations) command.
@@ -107,39 +107,39 @@ The default password for SSH access to the clusters is `Thisisapassword1`. If yo
 1. To view the names of the clusters, enter the following command:
 
     ```bash
-    SPARK_CLUSTER_NAME=$(cat resourcesoutputs_remainder.json | jq -r '.properties.outputs.sparkClusterName.value')
-    LLAP_CLUSTER_NAME=$(cat resourcesoutputs_remainder.json | jq -r '.properties.outputs.llapClusterName.value')
+    sparkClusterName=$(cat resourcesoutputs_remainder.json | jq -r '.properties.outputs.sparkClusterName.value')
+    llapClusterName=$(cat resourcesoutputs_remainder.json | jq -r '.properties.outputs.llapClusterName.value')
 
-    echo "Spark Cluster" $SPARK_CLUSTER_NAME
-    echo "LLAP cluster" $LLAP_CLUSTER_NAME
+    echo "Spark Cluster" $sparkClusterName
+    echo "LLAP cluster" $llapClusterName
     ```
 
 1. To view the Azure storage account and access key, enter the following command:
 
     ```azurecli
-    BLOB_STORAGE_NAME=$(cat resourcesoutputs_storage.json | jq -r '.properties.outputs.blobStorageName.value')
+    blobStorageName=$(cat resourcesoutputs_storage.json | jq -r '.properties.outputs.blobStorageName.value')
 
     blobKey=$(az storage account keys list \
-        --account-name $BLOB_STORAGE_NAME \
-        --resource-group $RESOURCE_GROUP \
+        --account-name $blobStorageName \
+        --resource-group $resourceGroup \
         --query [0].value -o tsv)
 
-    echo $BLOB_STORAGE_NAME
-    echo $BLOB_KEY
+    echo $blobStorageName
+    echo $blobKey
     ```
 
 1. To view the Data Lake Storage Gen2 account and access key, enter the following command:
 
     ```azurecli
-    ADLSGEN2STORAGENAME=$(cat resourcesoutputs_storage.json | jq -r '.properties.outputs.adlsGen2StorageName.value')
+    ADLSGen2StorageName=$(cat resourcesoutputs_storage.json | jq -r '.properties.outputs.adlsGen2StorageName.value')
 
-    ADLSKEY=$(az storage account keys list \
-        --account-name $ADLSGEN2STORAGENAME \
-        --resource-group $RESOURCE_GROUP \
+    adlsKey=$(az storage account keys list \
+        --account-name $ADLSGen2StorageName \
+        --resource-group $resourceGroup \
         --query [0].value -o tsv)
 
-    echo $ADLSGEN2STORAGENAME
-    echo $ADLSKEY
+    echo $ADLSGen2StorageName
+    echo $adlsKey
     ```
 
 ### Create a data factory
@@ -154,10 +154,10 @@ This data factory will have one pipeline with two activities:
 To set up your Azure Data Factory pipeline, execute the  command below.  You should still be at the `hdinsight-sales-insights-etl` directory.
 
 ```bash
-BLOB_STORAGE_NAME=$(cat resourcesoutputs_storage.json | jq -r '.properties.outputs.blobStorageName.value')
-ADLSGEN2STORAGENAME=$(cat resourcesoutputs_storage.json | jq -r '.properties.outputs.adlsGen2StorageName.value')
+blobStorageName=$(cat resourcesoutputs_storage.json | jq -r '.properties.outputs.blobStorageName.value')
+ADLSGen2StorageName=$(cat resourcesoutputs_storage.json | jq -r '.properties.outputs.adlsGen2StorageName.value')
 
-./scripts/adf.sh $RESOURCE_GROUP $ADLSGEN2STORAGENAME $BLOB_STORAGE_NAME
+./scripts/adf.sh $resourceGroup $ADLSGen2StorageName $blobStorageName
 ```
 
 This script does the following things:
@@ -220,8 +220,8 @@ For other ways to transform data by using HDInsight, see [this article on using 
 1. Copy the `query.hql` file to the LLAP cluster by using SCP. Enter the command:
 
     ```bash
-    LLAP_CLUSTER_NAME=$(cat resourcesoutputs_remainder.json | jq -r '.properties.outputs.llapClusterName.value')
-    scp scripts/query.hql sshuser@$LLAP_CLUSTER_NAME-ssh.azurehdinsight.net:/home/sshuser/
+    llapClusterName=$(cat resourcesoutputs_remainder.json | jq -r '.properties.outputs.llapClusterName.value')
+    scp scripts/query.hql sshuser@$llapClusterName-ssh.azurehdinsight.net:/home/sshuser/
     ```
 
     Reminder: The default password is `Thisisapassword1`.
@@ -229,7 +229,7 @@ For other ways to transform data by using HDInsight, see [this article on using 
 1. Use SSH to access the LLAP cluster. Enter the command:
 
     ```bash
-    ssh sshuser@$LLAP_CLUSTER_NAME-ssh.azurehdinsight.net
+    ssh sshuser@$llapClusterName-ssh.azurehdinsight.net
     ```
 
 1. Use the following command to run the script:
@@ -270,14 +270,14 @@ If you're not going to continue to use this application, delete all resources by
 1. To remove the resource group, enter the command:
 
     ```azurecli
-    az group delete -n $RESOURCE_GROUP
+    az group delete -n $resourceGroup
     ```
 
 1. To remove the service principal, enter the commands:
 
     ```azurecli
-    SERVICE_PRINCIPAL=$(cat serviceprincipal.json | jq -r '.name')
-    az ad sp delete --id $SERVICE_PRINCIPAL
+    servicePrincipal=$(cat serviceprincipal.json | jq -r '.name')
+    az ad sp delete --id $servicePrincipal
     ```
 
 ## Next steps

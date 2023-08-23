@@ -5,9 +5,9 @@ author: bandersmsft
 ms.service: cost-management-billing
 ms.subservice: reservations
 ms.author: banders
-ms.reviewer: nitinarora
+ms.reviewer: yashar
 ms.topic: troubleshooting
-ms.date: 12/06/2022
+ms.date: 09/15/2021
 ---
 
 # Troubleshoot Azure reservation download usage details

@@ -4,7 +4,7 @@ description: This article provides steps for handling Service Bus events via Eve
 documentationcenter: .net
 author: spelluru
 ms.topic: tutorial
-ms.date: 12/08/2022
+ms.date: 10/04/2021
 ms.author: spelluru
 ---
 
@@ -33,7 +33,7 @@ In this step, you create an Azure logic app that receives Service Bus events via
     1. Search for **Event Grid**. 
     2. Select **When a resource event occurs - Azure Event Grid**. 
 
-        :::image type="content" source="./media/service-bus-to-event-grid-integration-example/logic-apps-event-grid-trigger.png" alt-text="Screenshot of showing the Logic Apps Designer with Event Grid trigger selected.":::
+        ![Logic Apps Designer - select Event Grid trigger](./media/service-bus-to-event-grid-integration-example/logic-apps-event-grid-trigger.png)
 4. Select **Sign in**, enter your Azure credentials, and select **Allow Access**. 
 5. On the **When a resource event occurs** page, do the following steps:
     1. Select your Azure subscription. 
@@ -43,26 +43,23 @@ In this step, you create an Azure logic app that receives Service Bus events via
     
         :::image type="content" source="./media/service-bus-to-event-grid-integration-example/add-new-parameter-suffix-filter.png" alt-text="Image showing the addition of a suffix filter.":::
     1. For **Suffix Filter**, enter the name of your Service Bus topic subscription. 
-    
-        :::image type="content" source="./media/service-bus-to-event-grid-integration-example/logic-apps-event-grid-trigger.png" alt-text="Screenshot of showing the Logic Apps Designer with connection configuration for the Service Bus namespace.":::
+        ![Logic Apps Designer - configure event](./media/service-bus-to-event-grid-integration-example/logic-app-configure-event.png)
 1. Select **+ New Step** in the designer, and do the following steps:
     1. Search for **Service Bus**.
     2. Select **Service Bus** in the list. 
     3. Select for **Get messages** in the **Actions** list. 
     4. Select **Get messages from a topic subscription (peek-lock)**. 
 
-        :::image type="content" source="./media/service-bus-to-event-grid-integration-example/service-bus-get-messages-step.png" alt-text="Screenshot of showing the Logic Apps Designer with Get messages from a topic subscription selected.":::
-    5. Follow these steps:
-        1. Enter a **name for the connection**. For example: **Get messages from the topic subscription**. 
-        1. Confirm that **Authentication Type** is set to **Access Key**.
-        1. For **Connection String**, copy and paste the connection string to the Service Bus namespace that you saved earlier.
-        1. Select **Create**. 
-    
-            :::image type="content" source="./media/service-bus-to-event-grid-integration-example/logic-app-shared-access-key.png" alt-text="Screenshot of showing the Logic Apps Designer with the Service Bus connection string specified.":::
+        ![Logic Apps Designer - get messages action](./media/service-bus-to-event-grid-integration-example/service-bus-get-messages-step.png)
+    5. Enter a **name for the connection**. For example: **Get messages from the topic subscription**, and select the Service Bus namespace. 
+
+        ![Logic Apps Designer - select the Service Bus namespace](./media/service-bus-to-event-grid-integration-example/logic-apps-select-namespace.png) 
+    6. Select **RootManageSharedAccessKey**, and then select **Create**.
+
+        ![Logic Apps Designer - select the shared access key](./media/service-bus-to-event-grid-integration-example/logic-app-shared-access-key.png) 
     8. Select your **topic** and **subscription**. 
     
-
-        :::image type="content" source="./media/service-bus-to-event-grid-integration-example/logic-app-shared-access-key.png" alt-text="Screenshot of showing the Logic Apps Designer with the Service Bus topic and subscription specified.":::
+        ![Screenshot that shows where you select your topic and subscription.](./media/service-bus-to-event-grid-integration-example/logic-app-select-topic-subscription.png)
 
 ### Add a step to process and complete received messages
 In this step, you'll add steps to send the received message in an email and then complete the message. In a real-world scenario, you'll process a message in the logic app before completing the message.

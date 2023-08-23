@@ -1,10 +1,9 @@
 ---
 author: cephalin
-ms.service: app-service
+ms.service: app-service-web
 ms.topic: include
 ms.date: 11/25/2018
 ms.author: cephalin
-ms.subservice: web-apps
 ---
 > [!div class="op_single_selector"]
 > * [Buy a domain](../articles/app-service/manage-custom-dns-buy-domain.md)

@@ -1,11 +1,12 @@
 ---
-title: Traffic acceleration
-titleSuffix: Azure Front Door
+title: Azure Front Door - traffic acceleration | Microsoft Docs
 description: This article helps you understand how Front Door accelerates traffic.
 services: front-door
+documentationcenter: ''
 author: johndowns
 ms.service: frontdoor
-ms.topic: conceptual
+ms.topic: article
+ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/05/2022
 ms.author: jodowns

@@ -7,9 +7,9 @@ ms.topic: include
 
 <!-- docutune:disable -->
 
-## Supported OT protocols for active monitoring
+## Supported protocols for active monitoring
 
-OT sensors support active monitoring for the following protocols:
+Active monitoring is supported with the following protocols:
 
 |Scan type  |Supported protocols  | Method |
 |---------|---------|---------|

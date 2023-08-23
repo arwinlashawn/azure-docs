@@ -5,7 +5,6 @@ ms.topic: quickstart
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: service-fabric
-ms.custom: devx-track-arm-template
 services: service-fabric
 ms.date: 07/11/2022
 ---
@@ -32,7 +31,7 @@ To complete this quickstart, you'll need to:
 
 * Install the [Service Fabric SDK and PowerShell module](service-fabric-get-started.md).
 
-* Install [Azure PowerShell](/powershell/azure/install-azure-powershell).
+* Install [Azure PowerShell](/powershell/azure/install-az-ps).
 
 ### Download the sample template and certificate helper script
 

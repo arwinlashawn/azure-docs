@@ -1,17 +1,17 @@
 ---
 title: Configure and Access Logs - Flexible Server - Azure Database for PostgreSQL
 description: How to access database logs for Azure Database for PostgreSQL - Flexible Server
-author: varun-dhawan
-ms.author: varundhawan
+ms.author: sunila
+author: sunilagarwal
 ms.service: postgresql
 ms.subservice: flexible-server
 ms.topic: how-to
-ms.date: 4/3/2023
+ms.date: 11/30/2021
 ---
 
 # Configure and Access Logs in Azure Database for PostgreSQL - Flexible Server
 
-[!INCLUDE [applies-to-postgresql-flexible-server](../includes/applies-to-postgresql-flexible-server.md)]
+[!INCLUDE [!INCLUDE [applies-to-postgresql-flexible-server](../includes/applies-to-postgresql-flexible-server.md)]
 
 PostgreSQL logs are available on every node of a flexible server. You can ship logs to a storage server, or to an analytics service. The logs can be used to identify, troubleshoot, and repair configuration errors and suboptimal performance.
 
@@ -28,10 +28,10 @@ To enable resource logs using the Azure portal:
 
 3. Name this setting. 
 
-4. Select your preferred endpoint (Log Analytics workspace, Storage account, Event hub). 
+4. Select your preferred endpoint (storage account, event hub, log analytics). 
 
-5. Select the log type from the list of categories (Server Logs, Sessions data, Query Store Runtime / Wait Statistics etc.)
-   :::image type="content" source="media/howto-logging/diagnostic-setting-log-category.png" alt-text="Screenshot of choosing log categories.":::
+5. Select the log type **PostgreSQLLogs**.
+   :::image type="content" source="media/howto-logging/diagnostic-create-setting.png" alt-text="Choose PostgreSQL logs":::
 
 7. Save your setting.
 
@@ -45,15 +45,16 @@ For Azure Monitor Logs, logs are sent to the workspace you selected. The Postgre
 
 The following are queries you can try to get started. You can configure alerts based on queries.
 
-Search for all Postgres logs for a particular server in the last day.
+Search for all Postgres logs for a particular server in the last day
 
 ```kusto
 AzureDiagnostics
-| where Resource == "myservername"
+| where LogicalServerName_s == "myservername"
 | where Category == "PostgreSQLLogs"
 | where TimeGenerated > ago(1d) 
 ```
-Search for all non-localhost connection attempts. Below query will show results over the last 6 hours for any Postgres server logging in this workspace.
+
+Search for all non-localhost connection attempts
 
 ```kusto
 AzureDiagnostics
@@ -61,50 +62,7 @@ AzureDiagnostics
 | where Category == "PostgreSQLLogs" and TimeGenerated > ago(6h)
 ```
 
-Search for PostgreSQL Sessions collected from `pg_stat_activity` system view for a particular server in the last day.
-
-```kusto
-AzureDiagnostics
-| where Resource == "myservername"
-| where Category =='PostgreSQLFlexSessions'
-| where TimeGenerated > ago(1d) 
-```
-
-Search for PostgreSQL Query Store Runtime statistics collected from `query_store.qs_view` for a particular server in the last day. It requires Query Store to be enabled.
-
-```kusto
-AzureDiagnostics
-| where Resource == "myservername"
-| where Category =='PostgreSQLFlexQueryStoreRuntime'
-| where TimeGenerated > ago(1d) 
-```
-
-Search for PostgreSQL Query Store Wait Statistics collected from `query_store.pgms_wait_sampling_view` for a particular server in the last day. It requires Query Store Wait Sampling to be enabled.
-
-```kusto
-AzureDiagnostics
-| where Resource == "myservername"
-| where Category =='PostgreSQLFlexQueryStoreWaitStats'
-| where TimeGenerated > ago(1d) 
-```
-
-Search for PostgreSQL Autovacuum and Schema statistics for each database in a particular server within the last day.
-
-```kusto
-AzureDiagnostics
-| where Resource == "myservername"
-| where Category =='PostgreSQLFlexTableStats'
-| where TimeGenerated > ago(1d) 
-```
-
-Search for PostgreSQL remaining transactions and multixacts till emergency autovacuum or wraparound protection for each database in a particular server within the last day.
-
-```kusto
-AzureDiagnostics
-| where Resource == "myservername"
-| where Category =='PostgreSQLFlexDatabaseXacts'
-| where TimeGenerated > ago(1d) 
-```
+The query above will show results over the last 6 hours for any Postgres server logging in this workspace.
 
 ## Next steps
 

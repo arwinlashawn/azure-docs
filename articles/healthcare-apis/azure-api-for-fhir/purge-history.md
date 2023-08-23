@@ -1,12 +1,12 @@
 ---
 title: Purge history operation for Azure API for FHIR
 description: This article describes the $purge-history operation for Azure API for FHIR.
-author: expekesheth
+author: stevewohl
 ms.service: healthcare-apis
 ms.subservice: fhir
 ms.topic: conceptual
 ms.date: 06/03/2022
-ms.author: kesheth
+ms.author: mikaelw
 ---
 
 # Purge history operation for Azure API for FHIR

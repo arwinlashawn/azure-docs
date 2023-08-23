@@ -1,13 +1,13 @@
 ---
-title: Create an Oracle database in an Azure VM
-description: Learn how to quickly configure and deploy an Oracle Database 12c database in your Azure environment by using Azure Cloud Shell or the Azure CLI.
-author: jjaygbay1
+title: Create an Oracle database in an Azure VM | Microsoft Docs
+description: Quickly get an Oracle Database 12c database up and running in your Azure environment.
+author: dbakevlar
 ms.service: virtual-machines
 ms.subservice: oracle
 ms.collection: linux
 ms.topic: quickstart
-ms.date: 04/20/2023
-ms.author: jacobjaygbay
+ms.date: 10/05/2020
+ms.author: kegorman
 ms.custom: mode-other, devx-track-azurecli, devx-track-java, devx-track-javaee
 ms.devlang: azurecli
 ---
@@ -16,50 +16,42 @@ ms.devlang: azurecli
 
 **Applies to:** :heavy_check_mark: Linux VMs 
 
-This article describes how to use the Azure CLI to deploy an Azure virtual machine (VM) from the [Oracle marketplace gallery image](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) to create an Oracle Database 19c database. After you deploy the server, you connect the server via SSH to configure the Oracle database. 
+This guide details using the Azure CLI to deploy an Azure virtual machine from the [Oracle marketplace gallery image](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) in order to create an Oracle 19c database. Once the server is deployed, you will connect via SSH in order to configure the Oracle database. 
 
-## Prerequisites
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-- [!INCLUDE [quickstarts-free-trial-note](../../../../includes/quickstarts-free-trial-note.md)]
+If you choose to install and use the CLI locally, this quickstart requires that you are running the Azure CLI version 2.0.4 or later. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI]( /cli/azure/install-azure-cli).
 
-- Azure Cloud Shell or the Azure CLI.
-
-   You can run the Azure CLI commands in this quickstart interactively in Azure Cloud Shell. To run the commands in Cloud Shell, select **Open Cloudshell** at the upper-right corner of a code block. Select **Copy** to copy the code, and paste it into Cloud Shell to run it. You can also [run Cloud Shell from within the Azure portal](https://shell.azure.com). Cloud Shell always uses the latest version of the Azure CLI.
-
-   Alternatively, you can [install Azure CLI locally](/cli/azure/install-azure-cli) to run the commands. The steps in this article require the Azure CLI version 2.0.4 or later. Run [az version](/cli/azure/reference-index?#az-version) to see your installed version and dependent libraries, and run [az upgrade](/cli/azure/reference-index?#az-upgrade) to upgrade. If you use a local installation, sign in to Azure by using the [az login](/cli/azure/reference-index#az-login) command.
-
-## Create resource group
+## Create a resource group
 
 Create a resource group with the [az group create](/cli/azure/group) command. An Azure resource group is a logical container into which Azure resources are deployed and managed. 
 
-The following example creates a resource group named **rg-oracle** in the **eastus** location.
+The following example creates a resource group named *rg-oracle* in the *eastus* location.
 
 ```azurecli-interactive
 az group create --name rg-oracle --location eastus
 ```
 
-> [!Note]
-> This quickstart creates a Standard_DS2_v2 SKU VM in the East US region. To view the list of supported SKUs by region, use the [az vm list-skus](/cli/azure/vm#az-vm-list-skus) command.
-
 ## Create virtual machine
 
-Create a virtual machine (VM) with the [az vm create](/cli/azure/vm) command. 
+To create a virtual machine (VM), use the [az vm create](/cli/azure/vm) command. 
 
-The following example creates a VM named **vmoracle19c**. It also creates SSH keys, if they don't already exist in a default key location. To use a specific set of keys, you can use the `--ssh-key-value` option with the command.  
+The following example creates a VM named `vmoracle19c`. It also creates SSH keys, if they do not already exist in a default key location. To use a specific set of keys, use the `--ssh-key-value` option.  
 
 ```azurecli-interactive 
-az vm create \
-    --name vmoracle19c \
-    --resource-group rg-oracle \
-    --image Oracle:oracle-database-19-3:oracle-database-19-0904:latest \
-    --size Standard_DS2_v2 \
-    --admin-username azureuser \
-    --generate-ssh-keys \
-    --public-ip-address-allocation static \
+az vm create ^
+    --resource-group rg-oracle ^
+    --name vmoracle19c ^
+    --image Oracle:oracle-database-19-3:oracle-database-19-0904:latest ^
+    --size Standard_DS2_v2 ^
+    --admin-username azureuser ^
+    --generate-ssh-keys ^
+    --public-ip-address-allocation static ^
     --public-ip-address-dns-name vmoracle19c
+
 ```
 
-After you create the VM, Azure CLI displays information similar to the following example. Note the value for the `publicIpAddress` property. You use this IP address to access the VM.
+After you create the VM, Azure CLI displays information similar to the following example. Note the value for `publicIpAddress`. You use this address to access the VM.
 
 ```output
 {
@@ -73,222 +65,169 @@ After you create the VM, Azure CLI displays information similar to the following
   "resourceGroup": "rg-oracle"
 }
 ```
+## Create and attach a new disk for Oracle datafiles and FRA
 
-## Create disk for Oracle data files
-
-Create and attach a new disk for Oracle data files and a fast recovery area (FRA) with the [az vm disk attach](/cli/azure/vm/disk#az-vm-disk-attach) command. 
-
-The following example creates a disk named **oradata01**.
-
-```azurecli-interactive
-az vm disk attach \
-    --name oradata01 --new \
-    --resource-group rg-oracle \
-    --size-gb 64 --sku StandardSSD_LRS \
-    --vm-name vmoracle19c
-
+```azurecli
+az vm disk attach --name oradata01 --new --resource-group rg-oracle --size-gb 64 --sku StandardSSD_LRS --vm-name vmoracle19c
 ```
 
 ## Open ports for connectivity
+In this task you must configure some external endpoints for the database listener to use by setting up the Azure Network Security Group that protects the VM. 
 
-In this task, you must configure some external endpoints for the database listener to use by setting up the Azure network security group (NSG) that protects the VM. 
-
-1. Create the NSG for the VM with the [az network nsg create](/cli/azure/network/nsg#az-network-nsg-create) command. This command creates the **vmoracle19cNSG** NSG for rules to control access to the VM:
-
-   ```azurecli-interactive
-   az network nsg create --resource-group rg-oracle --name vmoracle19cNSG
-   ```
-
-1. Create an NSG rule with the [az network nsg rule create](/cli/azure/network/nsg/rule#az-network-nsg-rule-create) command. This command creates the **allow-oracle** NSG rule to open the endpoint for remote access to the Oracle database:
-
-   ```azurecli-interactive
-   az network nsg rule create \
-       --resource-group rg-oracle \
-       --nsg-name vmoracle19cNSG \
-       --name allow-oracle \
-       --protocol tcp \
-       --priority 1001 \
+1. To open the endpoint that you use to access the Oracle database remotely, create a Network Security Group rule as follows:
+   ```azurecli
+   az network nsg rule create ^
+       --resource-group rg-oracle ^
+       --nsg-name vmoracle19cNSG ^
+       --name allow-oracle ^
+       --protocol tcp ^
+       --priority 1001 ^
        --destination-port-range 1521
    ```
-
-1. Create a second NSG rule to open the endpoint for remote access to Oracle. This command creates the **allow-oracle-EM** NSG rule:
-
-   ```azurecli-interactive
-   az network nsg rule create \
-       --resource-group rg-oracle \
-       --nsg-name vmoracle19cNSG \
-       --name allow-oracle-EM \
-       --protocol tcp \
-       --priority 1002 \
+2. To open the endpoint that you use to access Oracle remotely, create a Network Security Group rule with az network nsg rule create as follows:
+   ```azurecli
+   az network nsg rule create ^
+       --resource-group rg-oracle ^
+       --nsg-name vmoracle19cNSG ^
+       --name allow-oracle-EM ^
+       --protocol tcp ^
+       --priority 1002 ^
        --destination-port-range 5502
    ```
+3. If needed, obtain the public IP address of your VM again with az network public-ip show as follows:
 
-1. As needed, use the [az network public-ip show](/cli/azure/network/public-ip#az-network-public-ip-show) command to get the public IP address of your VM:
-
-   ```azurecli-interactive
-   az network public-ip show \
-       --resource-group rg-oracle \
-       --name vmoracle19cPublicIP \
-       --query "ipAddress" \
+   ```azurecli
+   az network public-ip show ^
+       --resource-group rg-oracle ^
+       --name vmoracle19cPublicIP ^
+       --query "ipAddress" ^
        --output tsv
    ```
 
-## Prepare VM environment
+## Prepare the VM environment
 
-1. Create an SSH session with the VM. Replace the `<publicIPAddress>` portion with the public IP address value for your VM, such as `10.200.300.4`:
+1. Connect to the VM
+
+   To create an SSH session with the VM, use the following command. Replace the IP address with the `publicIpAddress` value for your VM.
 
    ```bash
-   ssh azureuser@<publicIPAddress>
+   ssh azureuser@<publicIpAddress>
    ```
 
-1. Switch to the root user:
+2. Switch to the root user
 
    ```bash
    sudo su -
    ```
 
-1. Locate the most recently created disk device that you want to format to hold Oracle data files:
+3. Check for last created disk device that we will format for use holding Oracle datafiles
 
    ```bash
    ls -alt /dev/sd*|head -1
    ```
 
-   The output is similar to this example:
-
+   The output will be similar to this:
    ```output
    brw-rw----. 1 root disk 8, 16 Dec  8 22:57 /dev/sdc
    ```
 
-1. As the root user, use the `parted` command to format the device.
+4. Format the device. 
+   As root user run parted on the device 
    
-   1. First, create a disk label:
-   
-      ```bash
-      parted /dev/sdc mklabel gpt
-      ```
+   First create a disk label:
+   ```bash
+   parted /dev/sdc mklabel gpt
+   ```
+   Then create a primary partition spanning the whole disk:
+   ```bash
+   parted -a optimal /dev/sdc mkpart primary 0GB 64GB	
+   ```
+   Finally check the device details by printing its metadata:
+   ```bash
+   parted /dev/sdc print
+   ```
+   The output should look similar to this:
+   ```bash
+   # parted /dev/sdc print
+   Model: Msft Virtual Disk (scsi)
+   Disk /dev/sdc: 68.7GB
+   Sector size (logical/physical): 512B/4096B
+   Partition Table: gpt
+   Disk Flags:
+   Number  Start   End     Size    File system  Name     Flags
+    1      1049kB  64.0GB  64.0GB  ext4         primary
+   ```
 
-   1. Next, create a primary partition that spans the entire disk:
-
-      ```bash
-      parted -a optimal /dev/sdc mkpart primary 0GB 64GB	
-      ```
-
-   1. Finally, check the device details by printing its metadata:
-
-      ```bash
-      parted /dev/sdc print
-      ```
-
-      The output is similar to this example:
-   
-      ```bash
-      Model: Msft Virtual Disk (scsi)
-      Disk /dev/sdc: 68.7GB
-      Sector size (logical/physical): 512B/4096B
-      Partition Table: gpt
-      Disk Flags:
-      Number   Start    End      Size     File system   Name     Flags
-      1        1049kB   64.0GB   64.0GB   ext4          primary
-      ```
-
-1. Create a filesystem on the device partition:
+5. Create a filesystem on the device partition
 
    ```bash
    mkfs -t ext4 /dev/sdc1
    ```
 
-   The output is similar to this example:
-   
-   ```bash
-   mke2fs 1.42.9 (28-Dec-2013)
-   Discarding device blocks: done                            
-   Filesystem label=
-   OS type: Linux
-   Block size=4096 (log=2)
-   Fragment size=4096 (log=2)
-   Stride=0 blocks, Stripe width=0 blocks
-   3907584 inodes, 15624704 blocks
-   781235 blocks (5.00%) reserved for the super user
-   First data block=0
-   Maximum filesystem blocks=2164260864
-   477 block groups
-   32768 blocks per group, 32768 fragments per group
-   8192 inodes per group
-   Superblock backups stored on blocks: 
-        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
-        4096000, 7962624, 11239424
-    Allocating group tables: done                            
-    Writing inode tables: done                            
-    Creating journal (32768 blocks): done
-    Writing superblocks and filesystem accounting information: done   
-    ```
-
-1. Create a mount point:
-
+6. Create a mount point
    ```bash
    mkdir /u02
    ```
 
-1. Mount the disk:
+7. Mount the disk
 
    ```bash
    mount /dev/sdc1 /u02
    ```
 
-1. Change permissions on the mount point:
+8. Change permissions on the mount point
 
    ```bash
    chmod 777 /u02
    ```
 
-1. Add the mount to the **/etc/fstab** file: 
+9. Add the mount to the /etc/fstab file. 
 
    ```bash
    echo "/dev/sdc1               /u02                    ext4    defaults        0 0" >> /etc/fstab
    ```
    
-   > [!Important]
-   > This command mounts the /etc/fstab file without a specific UUID, which can prevent successful reboot of the disk. Before you attempt to reboot the disk, update the /etc/fstab entry to include a UUID for the mount point.
+10. Update the ***/etc/hosts*** file with the public IP and hostname.
 
-1. Update the **/etc/hosts** file with the public IP address and address hostname. Change the `<Public IP>` and two `<VMname>` portions to reflect your actual values:
+    Change the ***Public IP and VMname*** to reflect your actual values:
   
-   ```bash
-   echo "<Public IP> <VMname>.eastus.cloudapp.azure.com <VMname>" >> /etc/hosts
-   ```
-
-1. Add the domain name of the VM to the **/etc/hostname** file. The following command assumes the resource group and VM are created in the **eastus** region:
+    ```bash
+    echo "<Public IP> <VMname>.eastus.cloudapp.azure.com <VMname>" >> /etc/hosts
+    ```
+11. Update the hostname file
     
-   ```bash
-   sed -i 's/$/\.eastus\.cloudapp\.azure\.com &/' /etc/hostname
-   ```
-
-1. Open firewall ports.
+    Use the following command to add the domain name of the VM to the **/etc/hostname** file. This assumes you have created your resource group and VM in the **eastus** region:
     
-   Because SELinux is enabled by default on the Marketplace image, we need to open the firewall to traffic for the database listening port 1521, and Enterprise Manager Express port 5502. Run the following commands as root user:
+    ```bash
+    sed -i 's/$/\.eastus\.cloudapp\.azure\.com &/' /etc/hostname
+    ```
 
-   ```bash
-   firewall-cmd --zone=public --add-port=1521/tcp --permanent
-   firewall-cmd --zone=public --add-port=5502/tcp --permanent
-   firewall-cmd --reload
-   ```
+12. Open firewall ports
+    
+    As SELinux is enabled by default on the Marketplace image we need to open the firewall to traffic for the database listening port 1521, and Enterprise Manager Express port 5502. Run the following commands as root user:
+
+    ```bash
+    firewall-cmd --zone=public --add-port=1521/tcp --permanent
+    firewall-cmd --zone=public --add-port=5502/tcp --permanent
+    firewall-cmd --reload
+    ```
+   
 
 ## Create the database
 
 The Oracle software is already installed on the Marketplace image. Create a sample database as follows. 
 
-1. Switch to the **oracle** user:
+1.  Switch to the **oracle** user:
 
-   ```bash
-   sudo su - oracle
-   ```
-
-1. Start the database listener:
+    ```bash
+    sudo su - oracle
+    ```
+2. Start the database listener
 
    ```bash
    lsnrctl start
    ```
-   
-   The output is similar to the following example:
+   The output is similar to the following:
   
    ```output
    LSNRCTL for Linux: Version 19.0.0.0.0 - Production on 20-OCT-2020 01:58:18
@@ -317,17 +256,17 @@ The Oracle software is already installed on the Marketplace image. Create a samp
    The listener supports no services
    The command completed successfully
    ```
-
-1. Create a data directory for the Oracle data files:
+3. Create a data directory for the Oracle data files:
 
    ```bash
    mkdir /u02/oradata
    ```
+    
 
-1. Run the Database Creation Assistant:
+3.  Run the Database Creation Assistant:
 
-   ```bash
-   dbca -silent \
+    ```bash
+    dbca -silent \
        -createDatabase \
        -templateName General_Purpose.dbc \
        -gdbname oratest1 \
@@ -342,13 +281,13 @@ The Oracle software is already installed on the Marketplace image. Create a samp
        -storageType FS \
        -datafileDestination "/u02/oradata/" \
        -ignorePreReqs
-   ```
+    ```
 
-   It takes a few minutes to create the database.
+    It takes a few minutes to create the database.
 
-   The output is similar to the following example:
+    You will see output that looks similar to the following:
 
-   ```output
+    ```output
         Prepare for db operation
        10% complete
        Copying database files
@@ -370,100 +309,102 @@ The Oracle software is already installed on the Marketplace image. Create a samp
        Global Database Name:oratest1
        System Identifier(SID):oratest1
        Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/oratest1/oratest1.log" for further details.
-   ```
+    ```
 
-1. Set Oracle variables:
+4. Set Oracle variables
 
-   Before you connect, you need to set the environment variable `ORACLE_SID`:
+    Before you connect, you need to set the environment variable *ORACLE_SID*:
 
-   ```bash
-   export ORACLE_SID=oratest1
-   ```
+    ```bash
+        export ORACLE_SID=oratest1
+    ```
 
-   You should also add the `ORACLE_SID` variable to the `oracle` users **.bashrc** file for future sign-ins by using the following command:
+    You should also add the ORACLE_SID variable to the `oracle` users `.bashrc` file for future sign-ins using the following command:
 
-   ```bash
-   echo "export ORACLE_SID=oratest1" >> ~oracle/.bashrc
-   ```
+    ```bash
+    echo "export ORACLE_SID=oratest1" >> ~oracle/.bashrc
+    ```
 
 ## Automate database startup and shutdown
 
 The Oracle database by default doesn't automatically start when you restart the VM. To set up the Oracle database to start automatically, first sign in as root. Then, create and update some system files.
 
-1. Sign on as the root user:
+1. Sign on as root
 
-   ```bash
-   sudo su -
-   ```
+    ```bash
+    sudo su -
+    ```
 
-1. Change the automated startup flag from `N` to `Y` in the /etc/oratab file:
+2.  Run the following command to change the automated startup flag from `N` to `Y` in the `/etc/oratab` file:
 
-   ```bash
-   sed -i 's/:N/:Y/' /etc/oratab
-   ```
+    ```bash
+    sed -i 's/:N/:Y/' /etc/oratab
+    ```
 
-1. Create a file named **/etc/init.d/dbora** and add the following bash command to the file:
+3.  Create a file named `/etc/init.d/dbora` and paste the following contents:
 
-   ```bash
-   #!/bin/sh
-   # chkconfig: 345 99 10
-   # Description: Oracle auto start-stop script.
-   #
-   # Set ORA_HOME to be equivalent to $ORACLE_HOME.
-   ORA_HOME=/u01/app/oracle/product/19.0.0/dbhome_1
-   ORA_OWNER=oracle
+    ```bash
+    #!/bin/sh
+    # chkconfig: 345 99 10
+    # Description: Oracle auto start-stop script.
+    #
+    # Set ORA_HOME to be equivalent to $ORACLE_HOME.
+    ORA_HOME=/u01/app/oracle/product/19.0.0/dbhome_1
+    ORA_OWNER=oracle
 
-   case "$1" in
-   'start')
-       # Start the Oracle databases:
-       # The following command assumes that the Oracle sign-in
-       # will not prompt the user for any values.
-       # Remove "&" if you don't want startup as a background process.
-       su - $ORA_OWNER -c "$ORA_HOME/bin/dbstart $ORA_HOME" &
-       touch /var/lock/subsys/dbora
-       ;;
+    case "$1" in
+    'start')
+        # Start the Oracle databases:
+        # The following command assumes that the Oracle sign-in
+        # will not prompt the user for any values.
+        # Remove "&" if you don't want startup as a background process.
+        su - $ORA_OWNER -c "$ORA_HOME/bin/dbstart $ORA_HOME" &
+        touch /var/lock/subsys/dbora
+        ;;
 
-   'stop')
-       # Stop the Oracle databases:
-       # The following command assumes that the Oracle sign-in
-       # will not prompt the user for any values.
-       su - $ORA_OWNER -c "$ORA_HOME/bin/dbshut $ORA_HOME" &
-       rm -f /var/lock/subsys/dbora
-       ;;
-   esac
-   ```
+    'stop')
+        # Stop the Oracle databases:
+        # The following command assumes that the Oracle sign-in
+        # will not prompt the user for any values.
+        su - $ORA_OWNER -c "$ORA_HOME/bin/dbshut $ORA_HOME" &
+        rm -f /var/lock/subsys/dbora
+        ;;
+    esac
+    ```
 
-1. Change permissions on files with the `chmod` command:
+4.  Change permissions on files with *chmod* as follows:
 
-   ```bash
-   chgrp dba /etc/init.d/dbora
-   chmod 750 /etc/init.d/dbora
-   ```
+    ```bash
+    chgrp dba /etc/init.d/dbora
+    chmod 750 /etc/init.d/dbora
+    ```
 
-1. Create symbolic links for startup and shutdown:
+5.  Create symbolic links for startup and shutdown as follows:
 
-   ```bash
-   ln -s /etc/init.d/dbora /etc/rc.d/rc0.d/K01dbora
-   ln -s /etc/init.d/dbora /etc/rc.d/rc3.d/S99dbora
-   ln -s /etc/init.d/dbora /etc/rc.d/rc5.d/S99dbora
-   ```
+    ```bash
+    ln -s /etc/init.d/dbora /etc/rc.d/rc0.d/K01dbora
+    ln -s /etc/init.d/dbora /etc/rc.d/rc3.d/S99dbora
+    ln -s /etc/init.d/dbora /etc/rc.d/rc5.d/S99dbora
+    ```
 
-1. To test your changes, restart the VM:
+6.  To test your changes, restart the VM:
 
-   ```bash
-   reboot
-   ```
+    ```bash
+    reboot
+    ```
 
 ## Clean up resources
 
-After you finish exploring your first Oracle database on Azure and the VM is no longer needed, you can use the [az group delete](/cli/azure/group) command to remove the resource group, VM, and all related resources.
+Once you have finished exploring your first Oracle database on Azure and the VM is no longer needed, you can use the [az group delete](/cli/azure/group) command to remove the resource group, VM, and all related resources.
 
 ```azurecli-interactive
-az group delete --name rg-oracle
+az group delete --name myResourceGroup
 ```
 
 ## Next steps
 
-- Protect your database in Azure with [Oracle backup strategies](/azure/virtual-machines/workloads/oracle/oracle-database-backup-strategies)
-- Explore [Oracle solutions on Azure](/azure/virtual-machines/workloads/oracle/oracle-overview) 
-- [Install and configure Oracle Automated Storage Management](/azure/virtual-machines/workloads/oracle/configure-oracle-asm)
+Understand how to protect your database in Azure with [Oracle Backup Strategies](./oracle-database-backup-strategies.md)
+
+Learn about other [Oracle solutions on Azure](./oracle-overview.md). 
+
+Try the [Installing and Configuring Oracle Automated Storage Management](configure-oracle-asm.md) tutorial.

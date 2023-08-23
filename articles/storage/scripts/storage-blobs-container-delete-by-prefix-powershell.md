@@ -1,10 +1,11 @@
 ---
-title: Azure PowerShell Script Sample - Delete containers by prefix
+title: Azure PowerShell Script Sample - Delete containers by prefix | Microsoft Docs
 description: Read an example that shows how to delete Azure Blob storage based on a prefix in the container name, using Azure PowerShell.
 services: storage
 author: stevenmatthew
 
-ms.service: azure-storage
+ms.service: storage
+ms.subservice: blobs
 ms.devlang: powershell
 ms.topic: sample
 ms.date: 06/13/2017

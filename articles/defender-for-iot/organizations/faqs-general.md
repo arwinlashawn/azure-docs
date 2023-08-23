@@ -1,7 +1,7 @@
 ---
 title: General FAQs - Microsoft Defender for IoT
 description: Find answers to the most frequently asked questions about Microsoft Defender for IoT features and service.
-ms.topic: faq
+ms.topic: conceptual
 ms.date: 07/07/2022
 ---
 
@@ -19,9 +19,9 @@ Microsoft Defender for IoT delivers comprehensive security across all your IoT/O
 
 ## Do I have to be an Azure customer?
 
-You must be an Azure customer to use Microsoft Defender for IoT. However, OT sensors installed for air-gapped networks can be managed locally, and don't need to connect to the cloud.
+No, for the agentless version of Microsoft Defender for IoT, you do not need to be an Azure customer. However, if you want to send alerts to Microsoft Sentinel; provision network sensors and monitor their health from the cloud; and benefit from automatic software and threat intelligence updates, you will need to connect the sensor to Azure and Defender for IoT. For more information, see [Sensor connection methods](architecture-connections.md).
 
-For more information, see [Defender for IoT subscription billing](billing.md).
+For the agent-based version of Microsoft Defender for IoT, you must be an Azure customer.
 
 ## What happens when the internet connection stops working?
 

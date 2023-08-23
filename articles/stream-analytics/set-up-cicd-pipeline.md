@@ -2,11 +2,12 @@
 title: Use Azure DevOps to create a CI/CD pipeline for a Stream Analytics job
 description: This article describes how to set up a continuous integration and deployment (CI/CD) pipeline for an Azure Stream Analytics job in Azure DevOps
 services: stream-analytics
-author: alexlzx
-ms.author: zhenxilin
+author: su-jie
+ms.author: sujie
+
 ms.service: stream-analytics
 ms.topic: how-to
-ms.date: 12/27/2022
+ms.date: 09/10/2020
 ---
 
 # Use Azure DevOps to create a CI/CD pipeline for a Stream Analytics job
@@ -85,7 +86,7 @@ Use following steps if you need to use hosted-Linux agent:
    azure-streamanalytics-cicd build -project $(projectRootPath)/asaproj.json -outputpath $(projectRootPath)/$(outputPath)/$(deployPath)
    ```
 
-   The image uses a Stream Analytics Visual Studio Code project as an example.
+   The image below uses a Stream Analytics Visual Studio Code project as an example.
 
    :::image type="content" source="media/set-up-cicd-pipeline/command-line-config-build.png" alt-text="Enter configurations for command-line task visual studio code":::
 
@@ -138,7 +139,7 @@ You need to add a copy file task to copy the test summary file and Azure Resourc
 
 ## Save and run
 
-Once you have finished adding the npm package, command line, copy files, and publish build artifacts tasks, select **Save & queue**. When you're prompted, enter a save comment and select **Save and run**. You can download the testing results from **Summary** page of the pipeline.
+Once you have finished adding the npm package, command line, copy files, and publish build artifacts tasks, select **Save & queue**. When you are prompted, enter a save comment and select **Save and run**. You can download the testing results from **Summary** page of the pipeline.
 
 ## Check the build and test results
 

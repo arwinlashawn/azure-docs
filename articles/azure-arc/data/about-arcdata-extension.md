@@ -27,7 +27,7 @@ To access the latest reference documentation:
 - [`az sql mi-arc`](/cli/azure/sql/mi-arc)
 - [`az sql midb-arc`](/cli/azure/sql/midb-arc)
 - [`sql instance-failover-group-arc`](/cli/azure/sql/instance-failover-group-arc)
-- [`az postgres server-arc`](/cli/azure/postgres/server-arc)
+- [`az postgres arc-server`](/cli/azure/postgres/arc-server)
 
 ## Next steps
 

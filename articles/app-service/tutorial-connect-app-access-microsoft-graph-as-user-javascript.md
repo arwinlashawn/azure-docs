@@ -5,15 +5,14 @@ services: microsoft-graph, app-service-web
 author: rwike77
 manager: CelesteDG
 
-ms.service: app-service
+ms.service: app-service-web
 ms.topic: tutorial
 ms.workload: identity
 ms.date: 03/08/2022
 ms.author: ryanwi
 ms.reviewer: stsoneff
 ms.devlang: csharp
-ms.custom: azureday1, devx-track-js, AppServiceConnectivity
-ms.subservice: web-apps
+ms.custom: azureday1
 #Customer intent: As an application developer, I want to learn how to access data in Microsoft Graph for a signed-in user.
 ---
 

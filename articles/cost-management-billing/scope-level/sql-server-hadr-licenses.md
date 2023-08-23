@@ -4,7 +4,7 @@ description: This article explains how the SQL Server HADR Software Assurance be
 keywords:
 author: bandersmsft
 ms.author: banders
-ms.date: 04/20/2022
+ms.date: 09/30/2021
 ms.topic: conceptual
 ms.service: cost-management-billing
 ms.subservice: ahb

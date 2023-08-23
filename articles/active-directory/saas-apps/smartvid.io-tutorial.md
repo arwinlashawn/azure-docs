@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Azure Active Directory integration with smartvid.io'
+title: 'Tutorial: Azure Active Directory integration with smartvid.io | Microsoft Docs'
 description: Learn how to configure single sign-on between Azure Active Directory and smartvid.io.
 services: active-directory
 author: jeevansd
@@ -9,7 +9,7 @@ ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 02/26/2019
 ms.author: jeedes
 ---
 # Tutorial: Azure Active Directory integration with smartvid.io

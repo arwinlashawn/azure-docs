@@ -1,19 +1,19 @@
 ---
 
-title: 'Tutorial: Configure Apple Business Manager for automatic user provisioning with Azure Active Directory'
+title: 'Tutorial: Configure Apple Business Manager for automatic user provisioning with Azure Active Directory | Microsoft Docs'
 description: Learn how to automatically provision and de-provision user accounts from Azure AD to Apple Business Manager.
 services: active-directory
 documentationcenter: ''
 author: twimmers
 writer: twimmers
-manager: jeedes
+manager: beatrizd
 ms.assetid: 4ad30031-9904-4ac3-a4d2-e8c28d44f319
 ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 09/08/2020
 ms.author: thwimmer
 
 ---
@@ -29,7 +29,6 @@ This tutorial describes the steps you need to perform in both Apple Business Man
 > * Create users in Apple Business Manager
 > * Remove users in Apple Business Manager when they do not require access anymore
 > * Keep user attributes synchronized between Azure AD and Apple Business Manager
-> * [Single sign-on](../manage-apps/add-application-portal-setup-oidc-sso.md) to Apple Business Manager (recommended).
 
 ## Prerequisites
 
@@ -53,21 +52,17 @@ The scenario outlined in this tutorial assumes that you already have the followi
 2. Click Settings at the bottom of the sidebar click Data Source below Organization Settings, then click Connect to Data Source.
 3. Click Connect next to SCIM, carefully read the warning, click Copy, then click Close.
 [The Connect to SCIM window, which provides a token and a Copy button under it.]
-Leave this window open to copy the Tenant URL from Apple Business Manager to Azure AD, which is: `https://federation.apple.com/feeds/business/scim`
+Leave this window open to copy the Tenant URL from Apple Business Manager to Azure AD, which is: 'https://federation.apple.com/feeds/business/scim'
 
-	![Screenshot of Apple Business Manager token generation.](media/apple-business-manager-provision-tutorial/scim-token.png)
+	![Apple Business Manager](media/applebusinessmanager-provisioning-tutorial/scim-token.png)
 
-   > [!NOTE]
-   > The secret token shouldn’t be shared with anyone other than the Azure AD administrator.
+> [!NOTE]
+> The secret token shouldn’t be shared with anyone other than the Azure AD administrator.
 
 ## Step 3. Add Apple Business Manager from the Azure AD application gallery
 
-* Add Apple Business Manager from the Azure AD application gallery to start managing provisioning to Apple Business Manager. If you have previously setup Apple Business Manager for SSO, you can use the same application. However it is recommended that you create a separate app when testing out the integration initially.
+Add Apple Business Manager from the Azure AD application gallery to start managing provisioning to Apple Business Manager. If you have previously setup Apple Business Manager for SSO, you can use the same application. However it is recommended that you create a separate app when testing out the integration initially. Learn more about adding an application from the gallery [here](../manage-apps/add-application-portal.md).
 
-* To add the Apple Business Manager Azure AD app with Microsoft tenants, the administrator of the tenants must go through the federated authentication setup process, including testing authentication. When authentication has succeeded, the Apple Business Manager Azure AD app is populated in the tenant and the administrator can federate domains and configure Apple Business Manager to use SCIM (System for Cross-domain Identity Management) for directory sync.
-
-   [Use federated authentication with MS Azure AD in Apple Business Manager](https://support.apple.com/en-ke/guide/apple-business-manager/axmb02f73f18/web)
-   
 ## Step 4. Define who will be in scope for provisioning 
 
 The Azure AD provisioning service allows you to scope who will be provisioned based on assignment to the application and or based on attributes of the user / group. If you choose to scope who will be provisioned to your app based on assignment, you can use the following [steps](../manage-apps/assign-user-or-group-access-portal.md) to assign users and groups to the application. If you choose to scope who will be provisioned based solely on attributes of the user or group, you can use a scoping filter as described [here](../app-provisioning/define-conditional-rules-for-provisioning-user-accounts.md). 
@@ -80,30 +75,30 @@ The Azure AD provisioning service allows you to scope who will be provisioned ba
 
 1. Sign in to the [Azure portal](https://portal.azure.com). Select **Enterprise Applications**, then select **All applications**.
 
-	![Screenshot of Enterprise applications blade.](common/enterprise-applications.png)
+	![Enterprise applications blade](common/enterprise-applications.png)
 
 2. In the applications list, select **Apple Business Manager**.
 
-	![Screenshot of the Apple Business Manager in the Applications list.](common/all-applications.png)
+	![The Apple Business Manager in the Applications list](common/all-applications.png)
 
 3. Select the **Provisioning** tab.
 
-	![Screenshot of Provisioning tab.](common/provisioning.png)
+	![Provisioning tab](common/provisioning.png)
 
 4. Set the **Provisioning Mode** to **Automatic**.
 
-	![Screenshot of Provisioning tab automatic.](common/provisioning-automatic.png)
+	![Provisioning tab automatic](common/provisioning-automatic.png)
 
-5. Under the **Admin Credentials** section, input the **SCIM 2.0 base URL and Access Token** values retrieved from Apple Business Manager in **Tenant URL** and **Secret Token** respectively. Click **Test Connection** to ensure Azure AD can connect to Apple Business Manager. If the connection fails, ensure your Apple Business Manager account has Admin permissions and try again.
+5. Under the **Admin Credentials** section, input the **SCIM 2.0 base URL and Access Token** values retrieved from Apple Business Manager in **Tenant URL** and **Secret Token** respectively.. Click **Test Connection** to ensure Azure AD can connect to Apple Business Manager. If the connection fails, ensure your Apple Business Manager account has Admin permissions and try again.
 
-	![Screenshot of Token.](common/provisioning-testconnection-tenanturltoken.png)
+	![Token](common/provisioning-testconnection-tenanturltoken.png)
 
 > [!NOTE]
 >If the connection is successful, Apple Business Manager shows the SCIM connection as active. This process can take up to 60 seconds for Apple Business Manager to reflect the latest connection status.
 
 6. In the **Notification Email** field, enter the email address of a person or group who should receive the provisioning error notifications and check the checkbox - **Send an email notification when a failure occurs**.
 
-	![Screenshot of Notification Email.](common/provisioning-notification-email.png)
+	![Notification Email](common/provisioning-notification-email.png)
 
 7. Click **Save**.
 
@@ -130,15 +125,15 @@ The Azure AD provisioning service allows you to scope who will be provisioned ba
 
 11. To enable the Azure AD provisioning service for Apple Business Manager, change the **Provisioning Status** to **On** in the Settings section.
 
-	![Screenshot of Provisioning Status Toggled On.](common/provisioning-toggle-on.png)
+	![Provisioning Status Toggled On](common/provisioning-toggle-on.png)
 
 12. Define the users and/or groups that you would like to provision to Apple Business Manager by choosing the desired values in **Scope** in the **Settings** section.
 
-	![Screenshot of Provisioning Scope.](common/provisioning-scope.png)
+	![Provisioning Scope](common/provisioning-scope.png)
 
 13. When you are ready to provision, click **Save**.
 
-	![Screenshot of Saving Provisioning Configuration.](common/provisioning-configuration-save.png)
+	![Saving Provisioning Configuration](common/provisioning-configuration-save.png)
 
 This operation starts the initial synchronization of all users and/or groups defined in **Scope** in the **Settings** section. The initial sync takes longer to perform than subsequent syncs, which occur approximately every 40 minutes as long as the Azure AD provisioning service is running.
 

@@ -4,10 +4,9 @@ description: Symptoms, causes, and resolutions of Azure Backup failures related 
 ms.topic: troubleshooting
 ms.date: 05/05/2022
 ms.service: backup
-ms.custom: devx-track-linux
 ms.reviewer: geg
-author: AbhishekMallick-MS
-ms.author: v-abhmallick
+author: v-amallick
+ms.author: v-amallick
 ---
 
 # Troubleshoot Azure Backup failure: Issues with the agent or extension
@@ -245,15 +244,8 @@ Most agent-related or extension-related failures for Linux VMs are caused by iss
 
    If the process isn't running, restart it by using the following commands:
 
-   - For Ubuntu/Debian: 
-     ```bash
-        sudo systemctl restart walinuxagent
-     ```
-  
-   - For other distributions: 
-     ```bash
-        sudo systemctl restart waagent
-     ```
+   - For Ubuntu: `service walinuxagent start`
+   - For other distributions: `service waagent start`
 
 3. [Configure the auto restart agent](https://github.com/Azure/WALinuxAgent/wiki/Known-Issues#mitigate_agent_crash).
 4. Run a new test backup. If the failure persists, collect the following logs from the VM:

@@ -6,7 +6,7 @@ ms.workload: storage
 ms.topic: conceptual
 author: b-hchen
 ms.author: anfdocs
-ms.date: 09/10/2022
+ms.date: 10/11/2021
 ---
 # Azure NetApp Files backup FAQs
 

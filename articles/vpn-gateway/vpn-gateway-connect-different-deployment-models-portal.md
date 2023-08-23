@@ -7,7 +7,8 @@ ms.service: vpn-gateway
 ms.topic: how-to
 ms.date: 04/25/2022
 ms.author: cherylmc 
-ms.custom: devx-track-azurepowershell, devx-track-arm-template
+ms.custom: devx-track-azurepowershell
+
 ---
 # Connect virtual networks from different deployment models using the portal
 

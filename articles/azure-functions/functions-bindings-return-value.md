@@ -3,29 +3,25 @@ title: Using return value from an Azure Function
 description: Learn to manage return values for Azure Functions
 ms.topic: reference
 ms.devlang: csharp, fsharp, java, javascript, powershell, python
-ms.custom: devx-track-csharp, devx-track-extended-java, devx-track-js, devx-track-python
-ms.date: 07/25/2023
-zone_pivot_groups: programming-languages-set-functions-lang-workers
+ms.custom: devx-track-csharp
+ms.date: 01/14/2019
 ---
 
 # Using the Azure Function return value
 
-This article explains how return values work inside a function. In languages that have a return value, you can bind a function [output binding](./functions-triggers-bindings.md#binding-direction) to the return value.
+This article explains how return values work inside a function.
 
-::: zone pivot="programming-language-javascript,programming-language-powershell,programming-language-python" 
+In languages that have a return value, you can bind a function [output binding](./functions-triggers-bindings.md#binding-direction) to the return value:
 
-Set the `name` property in *function.json* to `$return`. If there are multiple output bindings, use the return value for only one of them.
+* In a C# class library, apply the output binding attribute to the method return value.
+* In Java, apply the output binding annotation to the function method.
+* In other languages, set the `name` property in *function.json* to `$return`.
 
-::: zone-end
+If there are multiple output bindings, use the return value for only one of them.
 
-::: zone pivot="programming-language-csharp"
+In C# and C# script, alternative ways to send data to an output binding are `out` parameters and [collector objects](functions-reference-csharp.md#writing-multiple-output-values).
 
-How return values are used depends on the C# mode you're using in your function app: 
-
-# [In-process](#tab/in-process)
-
-
-In a C# class library, apply the output binding attribute to the method return value. In C# and C# script, alternative ways to send data to an output binding are `out` parameters and [collector objects](functions-reference-csharp.md#writing-multiple-output-values).
+# [C#](#tab/csharp)
 
 Here's C# code that uses the return value for an output binding, followed by an async example:
 
@@ -51,15 +47,62 @@ public static Task<string> Run([QueueTrigger("inputqueue")]WorkItem input, ILogg
 }
 ```
 
-# [Isolated process](#tab/isolated-process)
+# [C# Script](#tab/csharp-script)
 
-See [Output bindings in the .NET worker guide](./dotnet-isolated-process-guide.md#output-bindings) for details and examples.
+Here's the output binding in the *function.json* file:
 
----
+```json
+{
+    "name": "$return",
+    "type": "blob",
+    "direction": "out",
+    "path": "output-container/{id}"
+}
+```
 
-::: zone-end
+Here's the C# script code, followed by an async example:
 
-::: zone pivot="programming-language-javascript"  
+```cs
+public static string Run(WorkItem input, ILogger log)
+{
+    string json = string.Format("{{ \"id\": \"{0}\" }}", input.Id);
+    log.LogInformation($"C# script processed queue message. Item={json}");
+    return json;
+}
+```
+
+```cs
+public static Task<string> Run(WorkItem input, ILogger log)
+{
+    string json = string.Format("{{ \"id\": \"{0}\" }}", input.Id);
+    log.LogInformation($"C# script processed queue message. Item={json}");
+    return Task.FromResult(json);
+}
+```
+
+# [F#](#tab/fsharp)
+
+Here's the output binding in the *function.json* file:
+
+```json
+{
+    "name": "$return",
+    "type": "blob",
+    "direction": "out",
+    "path": "output-container/{id}"
+}
+```
+
+Here's the F# code:
+
+```fsharp
+let Run(input: WorkItem, log: ILogger) =
+    let json = String.Format("{{ \"id\": \"{0}\" }}", input.Id)   
+    log.LogInformation(sprintf "F# script processed queue message '%s'" json)
+    json
+```
+
+# [JavaScript](#tab/javascript)
 
 Here's the output binding in the *function.json* file:
 
@@ -81,11 +124,7 @@ module.exports = function (context, input) {
     return json;
 }
 ```
-
-
-::: zone-end
-
-::: zone pivot="programming-language-powershell"  
+# [PowerShell](#tab/PowerShell)
 
 Here's the output binding in the *function.json* file:
 
@@ -107,9 +146,7 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
     })
 ```
 
-::: zone-end
-
-::: zone pivot="programming-language-python"
+# [Python](#tab/python)
 
 Here's the output binding in the *function.json* file:
 
@@ -132,13 +169,7 @@ def main(input: azure.functions.InputStream) -> str:
     })
 ```
 
-
-::: zone-end
-
-::: zone pivot="programming-language-java"
-
-Apply the output binding annotation to the function method. If there are multiple output bindings, use the return value for only one of them.
-
+# [Java](#tab/java)
 
 Here's Java code that uses the return value for an output binding:
 
@@ -156,8 +187,7 @@ public static String run(
 }
 ```
 
-::: zone-end
-
+---
 
 ## Next steps
 

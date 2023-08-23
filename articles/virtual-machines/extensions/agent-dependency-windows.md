@@ -6,9 +6,11 @@ ms.service: virtual-machines
 ms.subservice: extensions
 author: mgoedtel
 ms.author: magoedte
-ms.reviewer: erd
 ms.collection: windows
-ms.date: 03/27/2023
+ms.date: 06/01/2021
+ms.custom: devx-track-azurepowershell
+
+
 ---
 # Azure Monitor Dependency virtual machine extension for Windows
 

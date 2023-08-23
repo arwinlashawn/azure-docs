@@ -1,12 +1,12 @@
 ---
-title: azcopy jobs remove
+title: azcopy jobs remove | Microsoft Docs
 description: This article provides reference information for the azcopy jobs remove command.
 author: normesta
-ms.service: azure-storage
+ms.service: storage
 ms.topic: reference
 ms.date: 05/26/2022
 ms.author: normesta
-ms.subservice: storage-common-concepts
+ms.subservice: common
 ms.reviewer: zezha-msft
 ---
 

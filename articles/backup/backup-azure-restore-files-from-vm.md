@@ -1,12 +1,9 @@
 ---
 title: Recover files and folders from Azure VM backup
 description: In this article, learn how to recover files and folders from an Azure virtual machine recovery point.
-ms.topic: how-to
-ms.date: 06/30/2023
-ms.custom: references_regions, devx-track-linux
-ms.service: backup
-author: AbhishekMallick-MS
-ms.author: v-abhmallick
+ms.topic: conceptual
+ms.date: 02/22/2022
+ms.custom: references_regions
 ---
 # Recover files from Azure virtual machine backup
 
@@ -39,7 +36,7 @@ To restore files or folders from the recovery point, go to the virtual machine a
     ![File recovery menu](./media/backup-azure-restore-files-from-vm/file-recovery-blade.png)
 
 > [!IMPORTANT]
-> Users should note the performance limitations of this feature. As pointed out in the footnote section of the above blade, this feature should be used when the total size of recovery is 10 GB or less. The expected data transfer speeds are around 1 GB per hour.
+> Users should note the performance limitations of this feature. As pointed out in the footnote section of the above blade, this feature should be used when the total size of recovery is not beyond 10 GB and you could get data transfer speeds of around 1 GB per hour
 
 4. From the **Select recovery point** drop-down menu, select the recovery point that holds the files you want. By default, the latest recovery point is already selected.
 
@@ -71,7 +68,7 @@ You can't run the executable script on the VM with any of the following characte
 
 ### Windows Storage Spaces
 
-You can't run the downloaded executable on the same backed-up VM if the backed-up VM has Windows Storage Spaces. Choose an alternate machine.
+You cannot run the downloaded executable on the same backed-up VM if the backed up VM has Windows Storage Spaces. Choose an alternate machine.
 
 ### Virtual machine backups having large disks
 
@@ -93,7 +90,6 @@ The following table shows the compatibility between server and computer operatin
 
 |Server OS | Compatible client OS  |
 | --------------- | ---- |
-| Windows Server 2022    | Windows 11 and Windows 10 |
 | Windows Server 2019    | Windows 10 |
 | Windows Server 2016    | Windows 10 |
 | Windows Server 2012 R2 | Windows 8.1 |
@@ -114,16 +110,14 @@ In Linux, the OS of the computer used to restore files must support the file sys
 | SLES | 12 and above |
 | openSUSE | 42.2 and above |
 
-### Additional components
-
 The script also requires Python and bash components to execute and connect securely to the recovery point.
 
-|Component | Version  | OS type |
-| --------------- | ---- | --- |
-| bash | 4 and above | Linux |
-| Python | 2.6.6 and above  | Linux |
-| .NET | 4.6.2 and above | Windows |
-| TLS | 1.2 should be supported  | Linux/ Windows |
+|Component | Version  |
+| --------------- | ---- |
+| bash | 4 and above |
+| Python | 2.6.6 and above  |
+| .NET | 4.6.2 and above |
+| TLS | 1.2 should be supported  |
 
 Also, ensure that you have the [right machine to execute the ILR script](#step-2-ensure-the-machine-meets-the-requirements-before-executing-the-script) and it meets the [access requirements](#step-4-access-requirements-to-successfully-run-the-script).
 
@@ -134,7 +128,7 @@ If you run the script on a computer with restricted access, ensure there's acces
 - `download.microsoft.com` or `AzureFrontDoor.FirstParty` service tag in NSG on port 443 (outbound)
 - Recovery Service URLs (GEO-NAME refers to the region where the Recovery Services vault resides) on port 3260 (outbound)
   - `https://pod01-rec2.GEO-NAME.backup.windowsazure.com` (For Azure public regions) or `AzureBackup` service tag in NSG
-  - `https://pod01-rec2.GEO-NAME.backup.windowsazure.cn` (For Microsoft Azure operated by 21Vianet) or `AzureBackup` service tag in NSG
+  - `https://pod01-rec2.GEO-NAME.backup.windowsazure.cn` (For Azure China 21Vianet) or `AzureBackup` service tag in NSG
   - `https://pod01-rec2.GEO-NAME.backup.windowsazure.us` (For Azure US Government) or `AzureBackup` service tag in NSG
   - `https://pod01-rec2.GEO-NAME.backup.windowsazure.de` (For Azure Germany) or `AzureBackup` service tag in NSG
 - Public DNS resolution on port 53 (outbound)
@@ -171,7 +165,7 @@ Also, ensure that you have the [right machine to execute the ILR script](#step-2
 
 After you meet all the requirements listed in [Step 2](#step-2-ensure-the-machine-meets-the-requirements-before-executing-the-script), [Step 3](#step-3-os-requirements-to-successfully-run-the-script) and [Step 4](#step-4-access-requirements-to-successfully-run-the-script), copy the script from the downloaded location (usually the Downloads folder), see [Step 1 to learn how to generate and download script](#step-1-generate-and-download-script-to-browse-and-recover-files). Right-click the executable file and run it with Administrator credentials. When prompted, type the password or paste the password from memory, and press Enter. Once the valid password is entered, the script connects to the recovery point.
 
-  :::image type="content" source="./media/backup-azure-restore-files-from-vm/executable-output.png" alt-text="Screenshot shows the executable output for file restore from VM." lightbox="./media/backup-azure-restore-files-from-vm/executable-output.png":::
+  ![Executable output](./media/backup-azure-restore-files-from-vm/executable-output.png)
 
 
 When you run the executable, the operating system mounts the new volumes and assigns drive letters. You can use Windows Explorer or File Explorer to browse those drives. The drive letters assigned to the volumes may not be the same letters as the original virtual machine. However, the volume name is preserved. For example, if the volume on the original virtual machine was "Data Disk (E:`\`)", that volume can be attached on the local computer as "Data Disk ('Any letter':`\`). Browse through all volumes mentioned in the script output until you find your files or folder.  
@@ -237,12 +231,12 @@ Once the script is run, the LVM partitions are mounted in the physical volume(s)
 To list the volume group names:
 
 ```bash
-sudo pvs -o +vguuid
+pvs -o +vguuid
 ```
 
 This command will list all physical volumes (including the ones present before running the script), their corresponding volume group names, and the volume group's unique user IDs (UUIDs). A sample output of the command is shown below.
 
-```output
+```bash
 PV         VG        Fmt  Attr PSize   PFree    VG UUID
 
   /dev/sda4  rootvg    lvm2 a--  138.71g  113.71g EtBn0y-RlXA-pK8g-de2S-mq9K-9syx-B29OL6
@@ -262,7 +256,7 @@ The first column (PV) shows the physical volume, the subsequent columns show the
 
 There are scenarios where volume group names can have 2 UUIDs after running the script. It means that the volume group names in the machine where the script is executed and in the backed-up VM are the same. Then we need to rename the backed-up VMs volume groups. Take a look at the example below.
 
-```output
+```bash
 PV         VG        Fmt  Attr PSize   PFree    VG UUID
 
   /dev/sda4  rootvg    lvm2 a--  138.71g  113.71g EtBn0y-RlXA-pK8g-de2S-mq9K-9syx-B29OL6
@@ -283,8 +277,8 @@ The script output would have shown /dev/sdg, /dev/sdh, /dev/sdm2 as attached. So
 Now we need to rename VG names for script-based volumes, for example: /dev/sdg, /dev/sdh, /dev/sdm2. To rename the volume group, use the following command
 
 ```bash
-sudo vgimportclone -n rootvg_new /dev/sdm2
-sudo vgimportclone -n APPVg_2 /dev/sdg /dev/sdh
+vgimportclone -n rootvg_new /dev/sdm2
+vgimportclone -n APPVg_2 /dev/sdg /dev/sdh
 ```
 
 Now we have all VG names with unique IDs.
@@ -294,13 +288,14 @@ Now we have all VG names with unique IDs.
 Make sure that the Volume groups corresponding to script's volumes are active. The following command is used to display active volume groups. Check whether the script's related volume groups are present in this list.
 
 ```bash
-sudo vgdisplay -a
+vgdisplay -a
 ```  
 
 Otherwise, activate the volume group by using the following command.
 
 ```bash
-sudo vgchange –a y  <volume-group-name>
+#!/bin/bash
+vgchange –a y  <volume-group-name>
 ```
 
 ##### Listing logical volumes within Volume groups
@@ -308,7 +303,8 @@ sudo vgchange –a y  <volume-group-name>
 Once we get the unique, active list of VGs related to the script, then the logical volumes present in those volume groups can be listed using the following command.
 
 ```bash
-sudo lvdisplay <volume-group-name>
+#!/bin/bash
+lvdisplay <volume-group-name>
 ```
 
 This command displays the path of each logical volume as 'LV Path'.
@@ -318,7 +314,8 @@ This command displays the path of each logical volume as 'LV Path'.
 To mount the logical volumes to the path of your choice:
 
 ```bash
-sudo mount <LV path from the lvdisplay cmd results> </mountpath>
+#!/bin/bash
+mount <LV path from the lvdisplay cmd results> </mountpath>
 ```
 
 > [!WARNING]
@@ -329,7 +326,8 @@ sudo mount <LV path from the lvdisplay cmd results> </mountpath>
 The following command displays details about all raid disks:
 
 ```bash
-sudo mdadm –detail –scan
+#!/bin/bash
+mdadm –detail –scan
 ```
 
  The relevant RAID disk is displayed as `/dev/mdm/<RAID array name in the protected VM>`
@@ -337,7 +335,8 @@ sudo mdadm –detail –scan
 Use the mount command if the RAID disk has physical volumes:
 
 ```bash
-sudo mount [RAID Disk Path] [/mountpath]
+#!/bin/bash
+mount [RAID Disk Path] [/mountpath]
 ```
 
 If the RAID disk has another LVM configured in it, then use the preceding procedure for LVM partitions but use the volume name in place of the RAID Disk name.
@@ -389,7 +388,7 @@ We use a mutual CHAP authentication mechanism so that each component authenticat
 
 The data flow between the recovery service and the machine is protected by building a secure TLS tunnel over TCP ([TLS 1.2 should be supported](#step-3-os-requirements-to-successfully-run-the-script) in the machine where script is run).
 
-Any file Access Control List (ACL) present in the parent/backed-up VM is preserved in the mounted file system as well.
+Any file Access Control List (ACL) present in the parent/backed up VM is preserved in the mounted file system as well.
 
 The script gives read-only access to a recovery point and is valid for only 12 hours. If you wish to remove the access earlier, then sign into Azure portal/PowerShell/CLI and perform **unmount disks** for that particular recovery point. The script will be invalidated immediately.
 

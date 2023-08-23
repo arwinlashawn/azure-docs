@@ -5,6 +5,7 @@ author: rymend
 ms.author: rymend
 ms.topic: troubleshooting
 ms.service: azure-education
+ms.subservice: education-hub
 ms.date: 06/30/2020
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Configure cross-origin resource sharing in DICOM service in Azure Health Data Services
 description: This article describes how to configure cross-origin resource sharing in DICOM service in Azure Health Data Services
-author: mmitrik
-ms.author: mmitrik
+author: msjasteppe
+ms.author: v-smcevoy
 ms.date: 06/14/2022
 ms.topic: how-to
 ms.service: healthcare-apis

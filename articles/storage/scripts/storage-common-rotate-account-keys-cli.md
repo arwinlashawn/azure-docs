@@ -1,9 +1,10 @@
 ---
-title: Azure CLI Script Sample - Rotate storage account access keys
+title: Azure CLI Script Sample - Rotate storage account access keys | Microsoft Docs
 description: Create an Azure Storage account, then retrieve and rotate its account access keys.
 services: storage
 author: stevenmatthew
-ms.service: azure-storage
+ms.service: storage
+ms.subservice: blobs
 ms.devlang: azurecli
 ms.topic: sample
 ms.date: 03/02/2022
@@ -17,7 +18,7 @@ This script creates an Azure Storage account, displays the new storage account's
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-[!INCLUDE [azure-cli-prepare-your-environment.md](~/articles/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
+[!INCLUDE [azure-cli-prepare-your-environment.md](../../../includes/azure-cli-prepare-your-environment.md)]
 
 ## Sample script
 

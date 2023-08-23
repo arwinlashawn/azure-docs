@@ -1,11 +1,11 @@
 ---
 title: "Tutorial: Route policy state change events to Event Grid with Azure CLI"
 description: In this tutorial, you configure Event Grid to listen for policy state change events and call a webhook.
-author: davidsmatlak
+author: timwarner-msft
 ms.date: 07/19/2022
 ms.topic: tutorial
 ms.custom: devx-track-azurecli
-ms.author: davidsmatlak
+ms.author: timwarner
 ---
 # Tutorial: Route policy state change events to Event Grid with Azure CLI
 

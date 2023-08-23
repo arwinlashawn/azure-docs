@@ -1,21 +1,11 @@
 ---
-title: Configure automatic shutdown for a lab plan
-titleSuffix: Azure Lab Services
-description: Learn how to enable or disable automatic shutdown of lab VMs in Azure Lab Services by configuring the lab plan settings. Automatic shutdown happens when a user disconnects from the remote connection.
-services: lab-services
-ms.service: lab-services
-author: ntrogh
-ms.author: nicktrog
+title: Configure automatic shutdown of VMs in Azure Lab Services
+description: This article describes how to configure automatic shutdown of VMs in the lab plan. 
 ms.topic: how-to
-ms.date: 03/01/2023
+ms.date: 11/13/2021
 ---
 
 # Configure automatic shutdown of VMs for a lab plan
-
-[!INCLUDE [preview note](./includes/lab-services-new-update-focused-article.md)]
-
-> [!NOTE]
-> If using a version of Azure Lab Services prior to the [August 2022 Update](lab-services-whats-new.md), see how to [configure automatic shutdown of VMs for a lab account](./how-to-configure-lab-accounts.md).
 
 You can enable several auto-shutdown cost control features to avoid extra costs when the virtual machines aren't being used.
 
@@ -30,8 +20,6 @@ The **disconnect idle virtual machines** has two settings.  Both settings use a 
 
 Review more details about the auto-shutdown features in the [Maximize cost control with auto-shutdown settings](cost-management-guide.md#automatic-shutdown-settings-for-cost-control) section.
 
-Azure Lab Services supports automatic shutdown for both Windows-based and Linux-based virtual machines. For Linux-based VMs, [support depends on the specific Linux distribution and version](#supported-linux-distributions-for-automatic-shutdown).
-
 ## Enable automatic shutdown
 
 1. In the [Azure portal](https://portal.azure.com/), navigate to the **Lab Plan** page.
@@ -43,12 +31,6 @@ Azure Lab Services supports automatic shutdown for both Windows-based and Linux-
     The setting(s) apply to all the labs associated with the lab plan. A lab creator (educator) can override this setting at the lab level. The change to this setting at the lab plan will only affect labs that are created after the change is made.
 
     To disable the setting(s), uncheck the checkbox(s) on this page.
-
-## Supported Linux distributions for automatic shutdown
-
-Azure Lab Services supports automatic shutdown for many Linux distristributions and versions. 
-
-[!INCLUDE [supported linux distributions for automatic shutdown](./includes/lab-services-auto-shutdown-linux-support.md)]
 
 ## Next steps
 

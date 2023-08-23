@@ -5,7 +5,7 @@ services: azure-monitor
 author: AbbyMSFT
 ms.author: abbyweisberg
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 07/05/2022
 ms.reviewer: gardnerjr 
 ---
 
@@ -43,7 +43,7 @@ If you select the **Edit** button immediately under the grid of requested data, 
 
 Select the other **Edit** buttons on the right to see some of the core components that make up workbooks, like:
 
-- Markdown-based [text boxes](../visualize/workbooks-create-workbook.md#add-text).
+- Markdown-based [text boxes](../visualize/workbooks-text-visualizations.md).
 - [Parameter selection](../visualize/workbooks-parameters.md) UI elements.
 - Other [chart/visualization types](workbooks-visualizations.md).
 

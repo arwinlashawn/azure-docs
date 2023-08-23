@@ -2,15 +2,14 @@
 title: "Tutorial: Sign in users and call the Microsoft Graph API in an Electron desktop app"
 description: In this tutorial, you build an Electron desktop app that can sign in users and use the auth code flow to obtain an access token from the Microsoft identity platform and call the Microsoft Graph API.
 services: active-directory
-author: cilwerner
+author: mmacy
 manager: CelesteDG
 
 ms.service: active-directory
 ms.subservice: develop
-ms.custom: devx-track-js
 ms.topic: tutorial
 ms.date: 02/17/2021
-ms.author: cwerner
+ms.author: marsma
 ---
 
 # Tutorial: Sign in users and call the Microsoft Graph API in an Electron desktop app
@@ -41,9 +40,9 @@ First, complete the steps in [Register an application with the Microsoft identit
 Use the following settings for your app registration:
 
 - Name: `ElectronDesktopApp` (suggested)
-- Supported account types: **Accounts in my organizational directory only (single tenant)**
+- Supported account types: **Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)**
 - Platform type: **Mobile and desktop applications**
-- Redirect URI: `http://localhost`
+- Redirect URI: `msal{Your_Application/Client_Id}://auth`
 
 ## Create the project
 
@@ -53,8 +52,8 @@ Create a folder to host your application, for example *ElectronDesktopApp*.
 
     ```console
     npm init -y
-    npm install --save @azure/msal-node @microsoft/microsoft-graph-client isomorphic-fetch bootstrap jquery popper.js
-    npm install --save-dev electron@20.0.0
+    npm install --save @azure/msal-node axios bootstrap dotenv jquery popper.js
+    npm install --save-dev babel electron@18.2.3 webpack
     ```
 
 2. Then, create a folder named *App*. Inside this folder, create a file named *index.html* that will serve as UI. Add the following code there:
@@ -77,9 +76,19 @@ The renderer methods are exposed by the preload script found in the *preload.js*
 
     :::code language="js" source="~/ms-identity-JavaScript-nodejs-desktop/App/preload.js":::
 
-This preload script exposes a renderer API to give the renderer process controlled access to some `Node APIs` by applying IPC channels that have been configured for communication between the main and renderer processes.
+This preload script exposes a renderer methods to give the renderer process controlled access to some `Node APIs` by applying IPC channels that have been configured for communication between the main and renderer processes.
 
-6. Finally, create a file named *constants.js* that will store the strings constants for describing the application **events**:
+6. Next, create *UIManager.js* class inside the *App* folder and add the following code:
+
+    :::code language="js" source="~/ms-identity-JavaScript-nodejs-desktop/App/UIManager.js":::
+
+7. After that, create *CustomProtocolListener.js* class and add the following code there:
+
+    :::code language="js" source="~/ms-identity-JavaScript-nodejs-desktop/App/CustomProtocolListener.js":::
+
+*CustomProtocolListener* class can be instantiated in order to register and unregister a custom typed protocol on which MSAL Node can listen for Auth Code responses.
+
+8. Finally, create a file named *constants.js* that will store the strings constants for describing the application **events**:
 
     :::code language="js" source="~/ms-identity-JavaScript-nodejs-desktop/App/constants.js":::
 
@@ -90,11 +99,13 @@ ElectronDesktopApp/
 ├── App
 │   ├── AuthProvider.js
 │   ├── constants.js
-│   ├── graph.js
+│   ├── CustomProtocolListener.js
+│   ├── fetch.js
 │   ├── index.html
 |   ├── main.js
 |   ├── preload.js
 |   ├── renderer.js
+│   ├── UIManager.js
 │   ├── authConfig.js
 ├── package.json
 ```
@@ -105,17 +116,17 @@ In *App* folder, create a file named *AuthProvider.js*. The *AuthProvider.js* fi
 
 :::code language="js" source="~/ms-identity-JavaScript-nodejs-desktop/App/AuthProvider.js":::
 
-In the code snippet above, we first initialized MSAL Node `PublicClientApplication` by passing a configuration object (`msalConfig`). We then exposed `login`, `logout` and `getToken` methods to be called by main module (*main.js*). In `login` and `getToken`, we acquire ID and access tokens using MSAL Node `acquireTokenInteractive` public API.
+In the code snippet above, we first initialized MSAL Node `PublicClientApplication` by passing a configuration object (`msalConfig`). We then exposed `login`, `logout` and `getToken` methods to be called by main module (*main.js*). In `login` and `getToken`, we acquire ID and access tokens, respectively, by first requesting an authorization code and then exchanging this with a token using MSAL Node `acquireTokenByCode` public API.
 
-## Add Microsoft Graph SDK
+## Add a method to call a web API
 
-Create a file named *graph.js*. The *graph.js* file will contain an instance of the Microsoft Graph SDK Client to facilitate accessing data on the Microsoft Graph API, using the access token obtained by MSAL Node:
+Create another file named *fetch.js*. This file will contain an Axios HTTP client for making REST calls to the Microsoft Graph API.
 
-:::code language="js" source="~/ms-identity-JavaScript-nodejs-desktop/App/graph.js":::
+:::code language="js" source="~/ms-identity-JavaScript-nodejs-desktop/App/fetch.js":::
 
 ## Add app registration details
 
-Create an environment file to store the app registration details that will be used when acquiring tokens. To do so, create a file named *authConfig.js* inside the root folder of the sample (*ElectronDesktopApp*), and add the following code:
+Finally, create an environment file to store the app registration details that will be used when acquiring tokens. To do so, create a file named *authConfig.js* inside the root folder of the sample (*ElectronDesktopApp*), and add the following code:
 
 :::code language="js" source="~/ms-identity-JavaScript-nodejs-desktop/App/authConfig.js":::
 
@@ -130,6 +141,7 @@ Fill in these details with the values you obtain from Azure app registration por
 - `Enter_the_Cloud_Instance_Id_Here`: The Azure cloud instance in which your application is registered.
   - For the main (or *global*) Azure cloud, enter `https://login.microsoftonline.com/`.
   - For **national** clouds (for example, China), you can find appropriate values in [National clouds](authentication-national-cloud.md).
+- `Enter_the_Redirect_Uri_Here`: The Redirect Uri of the application you registered `msal{Your_Application/Client_Id}:///auth`.
 - `Enter_the_Graph_Endpoint_Here` is the instance of the Microsoft Graph API the application should communicate with.
   - For the **global** Microsoft Graph API endpoint, replace both instances of this string with `https://graph.microsoft.com/`.
   - For endpoints in **national** cloud deployments, see [National cloud deployments](/graph/deployments) in the Microsoft Graph documentation.
@@ -158,13 +170,23 @@ If you consent to the requested permissions, the web applications displays your 
 
 ## Test web API call
 
-After you sign in, select **See Profile** to view the user profile information returned in the response from the call to the Microsoft Graph API. After consent, you'll view the profile information returned in the response:
+After you sign in, select **See Profile** to view the user profile information returned in the response from the call to the Microsoft Graph API:
 
 :::image type="content" source="media/tutorial-v2-nodejs-desktop/desktop-04-profile.png" alt-text="profile information from Microsoft Graph":::
 
+Select **Read Mails** to view the messages in user's account. You'll be presented with a consent screen:
+
+:::image type="content" source="media/tutorial-v2-nodejs-desktop/desktop-05-consent-mail.png" alt-text="consent screen for read.mail permission":::
+
+After consent, you'll view the messages returned in the response from the call to the Microsoft Graph API:
+
+:::image type="content" source="media/tutorial-v2-nodejs-desktop/desktop-06-mails.png" alt-text="mail information from Microsoft Graph":::
+
 ## How the application works
 
-When a user selects the **Sign In** button for the first time, the `acquireTokenInteractive` method of MSAL Node. This method redirects the user to sign-in with the Microsoft identity platform endpoint and validates the user's credentials, obtains an **authorization code** and then exchanges that code for an ID token, access token, and refresh token. MSAL Node also caches these tokens for future use.
+When a user selects the **Sign In** button for the first time, get `getTokenInteractive` method of *AuthProvider.js* is called. This method redirects the user to sign-in with the Microsoft identity platform endpoint and validates the user's credentials, and then obtains an **authorization code**. This code is then exchanged for an access token using `acquireTokenByCode` public API of MSAL Node.
+
+At this point, a PKCE-protected authorization code is sent to the CORS-protected token endpoint and is exchanged for tokens. An ID token, access token, and refresh token are received by your application and processed by MSAL Node, and the information contained in the tokens is cached.
 
 The ID token contains basic information about the user, like their display name. The access token has a limited lifetime and expires after 24 hours. If you plan to use these tokens for accessing protected resource, your back-end server *must* validate it to guarantee the token was issued to a valid user for your application.
 
@@ -174,7 +196,7 @@ The Microsoft Graph API requires the *user.read* scope to read a user's profile.
 
 As you add scopes, your users might be prompted to provide another consent for the added scopes.
 
-[!INCLUDE [Help and support](./includes/error-handling-and-tips/help-support-include.md)]
+[!INCLUDE [Help and support](../../../includes/active-directory-develop-help-support-include.md)]
 
 ## Next steps
 

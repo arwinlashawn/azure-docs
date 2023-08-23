@@ -5,8 +5,7 @@ ms.service: site-recovery
 ms.topic: tutorial
 ms.date: 11/12/2019
 ms.custom: MVC
-ms.author: ankitadutta
-author: ankitaduttaMSFT
+
 ---
 # Prepare on-premises VMware servers for disaster recovery to Azure
 

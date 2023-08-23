@@ -2,8 +2,8 @@
 title: How to restrict the virtual machine sizes allowed for labs
 description: Learn how to use the Lab Services should restrict allowed virtual machine SKU sizes Azure Policy to restrict educators to specified virtual machine sizes for their labs.  
 ms.topic: how-to
-author: ntrogh
-ms.author: nicktrog
+ms.author: rosemalcolm
+author: RoseHJM
 ms.date: 08/23/2022
 ---
 
@@ -105,5 +105,6 @@ Now you have a lab plan resource ID, you can use it to exclude the lab plan as y
 ## Next steps
 See the following articles:
 - [What’s new with Azure Policy for Lab Services?](azure-polices-for-lab-services.md)
-- [Built-in Policies](../governance/policy/samples/built-in-policies.md#lab-services)
-- [What is Azure policy?](../governance/policy/overview.md)
+- [Built-in Policies](/azure/governance/policy/samples/built-in-policies#lab-services)
+- [What is Azure policy?](/azure/governance/policy/overview)
+

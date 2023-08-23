@@ -3,11 +3,11 @@ title: Communication for Roles in Cloud Services (classic) | Microsoft Docs
 description: Role instances in Cloud Services can have endpoints (http, https, tcp, udp) defined for them that communicate with the outside or between other role instances.
 ms.topic: article
 ms.service: cloud-services
-ms.date: 02/21/2023
+ms.date: 10/14/2020
 author: hirenshah1
 ms.author: hirshah
 ms.reviewer: mimckitt
-ms.custom: compute-evergreen, devx-track-dotnet
+ms.custom: 
 ---
 
 # Enable communication for role instances in Azure Cloud Services (classic)
@@ -364,3 +364,7 @@ An XML schema reference for the elements used above can be found [here](/previou
 
 ## Next steps
 Read more about the Cloud Service [model](cloud-services-model-and-package.md).
+
+
+
+

@@ -6,7 +6,7 @@ ms.service: hdinsight
 ms.topic: conceptual
 ms.author: kecheung
 author: kcheeeung
-ms.date: 09/28/2022
+ms.date: 08/12/2020
 ---
 
 # Scale HiveServer2 on Azure HDInsight Clusters for High Availability

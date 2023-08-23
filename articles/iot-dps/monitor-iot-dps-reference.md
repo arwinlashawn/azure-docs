@@ -1,9 +1,7 @@
 ---
-title: Monitoring DPS data reference
-titleSuffix: Azure IoT Hub Device Provisioning Service
-description: Important reference material needed when you monitor Azure IoT Hub Device Provisioning Service using Azure Monitor
+title: Monitoring Azure IoT Hub Device Provisioning Service data reference #Required; *your official service name*  
+description: Important reference material needed when you monitor Azure IoT Hub Device Provisioning Service 
 author: kgremban
-
 ms.topic: reference
 ms.author: kgremban
 ms.service: iot-dps

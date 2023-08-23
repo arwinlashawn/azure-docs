@@ -1,13 +1,12 @@
 ---
 title: Get access token using Azure CLI - Azure Health Data Services for DICOM service
 description: This article explains how to obtain an access token for the DICOM service using the Azure CLI.
-author: mmitrik
+author: stevewohl
 ms.service: healthcare-apis
 ms.subservice: fhir
-ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 03/02/2022
-ms.author: mmitrik
+ms.author: aersoy
 ---
 
 # Get access token for the DICOM service using Azure CLI

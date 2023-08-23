@@ -1,29 +1,27 @@
-- name: Microsoft Entra ID Protection Documentation
+- name: Identity Protection Documentation
   href: index.yml
 - name: Overview
   items:
-  - name: What is Microsoft Entra ID Protection?
+  - name: What is Identity Protection?
     href: overview-identity-protection.md
 - name: Concepts
   expanded: false
   items:
-  - name: Microsoft Entra ID Protection dashboard
-    href: id-protection-dashboard.md
+  - name: Security overview
+    href: concept-identity-protection-security-overview.md
   - name: What are risks?
     href: concept-identity-protection-risks.md
-  - name: Risk-based access control policies
+  - name: Identity Protection policies
     href: concept-identity-protection-policies.md
-  - name: User sign-in experience
+  - name: What is the sign-in experience?
     href: concept-identity-protection-user-experience.md
   - name: Securing workload identities
     href: concept-workload-identity-risk.md
-  - name: Microsoft Entra ID Protection and B2B users
+  - name: Identity Protection and B2B users
     href: concept-identity-protection-b2b.md
 - name: How-to guides
   expanded: true
   items:
-  - name: Deploy Microsoft Entra ID Protection
-    href: how-to-deploy-identity-protection.md
   - name: Configure notifications
     href: howto-identity-protection-configure-notifications.md
   - name: Policy configuration
@@ -42,7 +40,7 @@
       href: howto-identity-protection-remediate-unblock.md
     - name: Export risk data
       href: howto-export-risk-data.md
-    - name: Use the Microsoft Graph PowerShell 
+    - name: Use the Microsoft Graph API
       href: howto-identity-protection-graph-api.md
   - name: Provide feedback on risk detections
     href: howto-identity-protection-risk-feedback.md
@@ -50,9 +48,7 @@
     href: troubleshooting-identity-protection-faq.yml
 - name: Reference
   items:
-  - name: Security overview
-    href: concept-identity-protection-security-overview.md
-  - name: Microsoft Graph APIs
+  - name: Graph APIs
     items: 
     - name: riskDetection API
       href: /graph/api/resources/riskdetection
@@ -60,10 +56,6 @@
       href: /graph/api/resources/riskyuser
     - name: signIn API
       href: /graph/api/resources/signin
-    - name: servicePrincipalRiskDetection API
-      href: /graph/api/resources/serviceprincipalriskdetection
-    - name: riskyServicePrincipal API
-      href: /graph/api/resources/riskyserviceprincipal
   - name: Glossary
     href: reference-identity-protection-glossary.md
 - name: Resources

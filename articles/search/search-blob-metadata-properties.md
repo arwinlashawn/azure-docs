@@ -2,12 +2,13 @@
 title: Content metadata properties
 titleSuffix: Azure Cognitive Search
 description: Metadata properties can provide content to fields in a search index. This article lists metadata properties supported in Azure Cognitive Search.
+
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 ms.service: cognitive-search
 ms.topic: conceptual
-ms.date: 02/08/2023
+ms.date: 01/15/2022
 ---
 
 # Content metadata properties used in Azure Cognitive Search

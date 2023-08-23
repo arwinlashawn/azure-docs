@@ -6,7 +6,7 @@ ms.topic: reference
 ms.author: msangapu
 ms.service: app-service
 ms.custom: subject-monitoring
-ms.date: 06/29/2023
+ms.date: 04/16/2021
 ---
 
 # Monitoring App Service data reference

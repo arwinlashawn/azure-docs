@@ -1,13 +1,13 @@
 ---
 title: Set up VMware disaster recovery to Azure in a multi-tenancy environment using Site Recovery and the Cloud Solution Provider (CSP) program | Microsoft Docs
 description: Describes how to set up VMware disaster recovery in a multi-tenant environment with Azure Site Recovery.
-ms.author: ankitadutta
-author: ankitaduttaMSFT
+author: v-pgaddala
 manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
-ms.date: 04/03/2022
-ms.custom: subject-rbac-steps, engagement-fy23
+ms.date: 11/27/2018
+ms.author: v-pgaddala
+ms.custom: subject-rbac-steps
 ---
 
 # Set up VMware disaster recovery in a multi-tenancy environment with the Cloud Solution Provider (CSP) program

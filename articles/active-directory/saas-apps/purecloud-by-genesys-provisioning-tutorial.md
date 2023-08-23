@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Configure Genesys Cloud for Azure for automatic user provisioning with Azure Active Directory'
+title: 'Tutorial: Configure Genesys Cloud for Azure for automatic user provisioning with Azure Active Directory | Microsoft Docs'
 description: Learn how to automatically provision and de-provision user accounts from Azure AD to Genesys Cloud for Azure.
 services: active-directory
 author: twimmers
@@ -9,7 +9,7 @@ ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 02/05/2020
 ms.author: thwimmer
 ---
 

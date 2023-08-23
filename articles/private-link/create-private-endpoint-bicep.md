@@ -1,13 +1,13 @@
 ---
-title: 'Quickstart: Create a private endpoint - Bicep'
+title: 'Quickstart: Create a private endpoint using Bicep'
 description: In this quickstart, you'll learn how to create a private endpoint using Bicep.
 services: private-link
-author: asudbring
+author: schaffererin
 ms.service: private-link
 ms.topic: quickstart
+ms.custom: subject-armqs, devx-track-azurepowershell, mode-arm
 ms.date: 05/02/2022
-ms.author: allensu
-ms.custom: subject-armqs, mode-arm, template-concept, devx-track-bicep
+ms.author: v-eschaffer
 #Customer intent: As someone who has a basic network background but is new to Azure, I want to create a private endpoint using Bicep.
 ---
 

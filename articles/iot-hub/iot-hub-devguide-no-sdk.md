@@ -1,11 +1,12 @@
 ---
-title: Develop without an Azure IoT SDK
-description: This article provides information about and links to topics that you can use to build device apps and back-end apps without using an Azure IoT SDK.
+title: Develop without an Azure IoT SDK | Microsoft Docs
+description: Developer guide - information about and links to topics that you can use to build device apps and back-end apps without using an Azure IoT SDK.
 author: kgremban
 
 ms.author: kgremban
 ms.service: iot-hub
-ms.topic: concept-article
+services: iot-hub
+ms.topic: conceptual
 ms.date: 10/12/2020
 ms.custom: [mqtt, amqp, 'Role: IoT Device', 'Role: Cloud Development']
 ---
@@ -36,7 +37,7 @@ For help using the following protocols without an Azure IoT SDK:
 
 * Device or back-end apps on **AMQP**, see [AMQP support](iot-hub-amqp-support.md).
 
-* Device apps on **MQTT**, see [MQTT support](../iot/iot-mqtt-connect-to-iot-hub.md). Most of this topic treats using the MQTT protocol directly. It also contains information about using the [IoT MQTT Sample repository](https://github.com/Azure-Samples/IoTMQTTSample). This repository contains C samples that use the Eclipse Mosquitto library to send messages to IoT Hub.
+* Device apps on **MQTT**, see [MQTT support](iot-hub-mqtt-support.md). Most of this topic treats using the MQTT protocol directly. It also contains information about using the [IoT MQTT Sample repository](https://github.com/Azure-Samples/IoTMQTTSample). This repository contains C samples that use the Eclipse Mosquitto library to send messages to IoT Hub.
 
 * Device or back-end apps on **HTTPS**, consult the [Azure IoT Hub REST APIs](/rest/api/iothub/). Be aware, as noted in [Development prerequisites](#development-prerequisites), that you can't use X.509 certificate authority (CA) authentication with HTTPS.
 
@@ -44,4 +45,4 @@ For devices, we strongly recommend using MQTT if your device supports it.
 
 ## Next steps
 
-* [MQTT support](../iot/iot-mqtt-connect-to-iot-hub.md)
+* [MQTT support](iot-hub-mqtt-support.md)

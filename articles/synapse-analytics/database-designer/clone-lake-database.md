@@ -1,8 +1,8 @@
 ---
 title: Clone a lake database using the database designer.
 description: Learn how to clone an entire lake database or specific tables within a lake database using the database designer.
-author: SnehaGunda
-ms.author: sngun
+author: lakshmi-murthy
+ms.author: lamurthy
 ms.service: synapse-analytics
 ms.subservice: database-editor
 ms.topic: how-to

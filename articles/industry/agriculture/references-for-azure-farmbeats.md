@@ -10,3 +10,5 @@ ms.author: riyazp
 # Reference information for FarmBeats
 
 [FarmBeats REST API](rest-api-in-azure-farmbeats.md).
+
+[FarmBeats Data hub Swagger](https://aka.ms/FarmBeatsDatahubSwagger).

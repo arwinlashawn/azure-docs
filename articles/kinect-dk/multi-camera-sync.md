@@ -3,7 +3,7 @@ title: Synchronize multiple Azure Kinect DK devices
 description: This article explores the benefits of multi-device synchronization as well as how to set up the devices to synchronize.
 author: tesych
 ms.author: tesych
-ms.service: azure-kinect-developer-kit
+ms.prod: kinect-dk
 ms.date: 02/20/2020
 ms.topic: article
 keywords: azure, kinect, specs, hardware, DK, capabilities, depth, color, RGB, IMU, array, depth, multi, synchronization

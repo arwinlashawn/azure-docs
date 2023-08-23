@@ -1,12 +1,13 @@
 ---
-title: Monitor AKS data reference
+title: Monitoring AKS data reference
 description: Important reference material needed when you monitor AKS 
-ms.custom: subject-monitoring, ignite-2022
-ms.date: 08/01/2023
-ms.topic: conceptual
+ms.service: container-service
+ms.custom: subject-monitoring
+ms.date: 07/18/2022
+ms.topic: reference
 ---
 
-# Monitor AKS data reference
+# Monitoring AKS data reference
 
 See [Monitoring AKS](monitor-aks.md) for details on collecting and analyzing monitoring data for AKS.
 
@@ -17,14 +18,14 @@ The following table lists the platform metrics collected for AKS.  Follow each l
 |Metric Type | Resource Provider / Type Namespace<br/> and link to individual metrics |
 |-------|-----|
 | Managed clusters | [Microsoft.ContainerService/managedClusters](../azure-monitor/essentials/metrics-supported.md#microsoftcontainerservicemanagedclusters)
-| Connected clusters | [microsoft.kubernetes/connectedClusters](../azure-monitor/essentials/metrics-supported.md)
+| Connected clusters | [microsoft.kubernetes/connectedClusters](../azure-monitor/essentials/metrics-supported.md#microsoftkubernetesconnectedclusters)
 | Virtual machines| [Microsoft.Compute/virtualMachines](../azure-monitor/essentials/metrics-supported.md#microsoftcomputevirtualmachines) |
 | Virtual machine scale sets | [Microsoft.Compute/virtualMachineScaleSets](../azure-monitor/essentials/metrics-supported.md#microsoftcomputevirtualmachinescalesets)|
 | Virtual machine scale sets virtual machines | [Microsoft.Compute/virtualMachineScaleSets/virtualMachines](../azure-monitor/essentials/metrics-supported.md#microsoftcomputevirtualmachinescalesetsvirtualmachines)|
 
 For more information, see a list of [all platform metrics supported in Azure Monitor](../azure-monitor/essentials/metrics-supported.md).
 
-In addition to the above platform metrics, Azure Monitor Container insights collects [these custom metrics](../azure-monitor/containers/container-insights-custom-metrics.md) for nodes, pods, containers, and persistent volumes.
+In addition to the above platform metrics, Azure Monitor container insights collects [these custom metrics](../azure-monitor/containers/container-insights-metric-alerts.md#metrics-collected) for nodes, pods, containers, and persistent volumes.
 
 ## Metric dimensions
 
@@ -47,12 +48,11 @@ The following table lists [dimensions](../azure-monitor/essentials/data-platform
 
 ## Resource logs
 
-AKS implements control plane logs for the cluster as [resource logs in Azure Monitor.](../azure-monitor/essentials/resource-logs.md). See [Resource logs](monitor-aks.md#resource-logs) for details on creating a diagnostic setting to collect these logs and [Sample queries](monitor-aks-reference.md#resource-logs) for query examples.
+The following table lists the resource log categories you can collect for AKS. These are the logs for AKS control plane components. See [Configure monitoring](monitor-aks.md#configure-monitoring) for information on creating a diagnostic setting to collect these logs and recommendations on which to enable. See [How to query logs from Container insights](../azure-monitor/containers/container-insights-log-query.md#resource-logs) for query examples.
 
-The following table lists the resource log categories you can collect for AKS. All logs are written to the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table.
+For reference, see a list of [all resource logs category types supported in Azure Monitor](../azure-monitor/essentials/resource-logs-schema.md). 
 
-
-| Category | Description |
+| Category                | Description |
 |:---|:---|
 | kube-apiserver          | Logs from the API server. |
 | kube-audit              | Audit log data for every audit event including get, list, create, update, delete, patch, and post. |
@@ -64,10 +64,8 @@ The following table lists the resource log categories you can collect for AKS. A
 | guard                   | Managed Azure Active Directory and Azure RBAC audits. For managed Azure AD, this includes token in and user info out. For Azure RBAC, this includes access reviews in and out. |
 | csi-azuredisk-controller | Logs from the Azure Disk CSI storage driver. |
 | csi-azurefile-controller | Logs from the Azure Files CSI storage driver. |
-| csi-snapshot-controller | Logs from the Azure CSI snapshot driver controller. |
+| csi-snapshot-controller | Logs from the Azure CSI driver snapshot controller. |
 | AllMetrics              | Includes all platform metrics. Sends these values to Log Analytics workspace where it can be evaluated with other data using log queries. |
-
-For reference, see a list of [all resource logs category types supported in Azure Monitor](../azure-monitor/essentials/resource-logs-schema.md). 
 
 ## Azure Monitor Logs tables
 
@@ -81,7 +79,7 @@ For a reference of all Azure Monitor Logs / Log Analytics tables, see the [Azure
 
 ## Activity log
 
-The following table lists a few example operations related to AKS that may be created in the [Activity log](../azure-monitor/essentials/activity-log.md). Use the Activity log to track information such as when a cluster is created or had its configuration change. You can view this information [in the portal](../azure-monitor/essentials/activity-log.md#view-the-activity-log) or by using [other methods](../azure-monitor/essentials/activity-log.md#other-methods-to-retrieve-activity-log-events). You can also use it to create an [Activity log alert]() to be proactively notified when an event occurs.
+The following table lists a few example operations related to AKS that may be created in the [Activity log](../azure-monitor/essentials/activity-log.md). Use the Activity log to track information such as when a cluster is created or had its configuration change. You can either view this information in the portal or create an Activity log alert to be proactively notified when an event occurs.
 
 | Operation | Description |
 |:---|:---|

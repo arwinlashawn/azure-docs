@@ -10,6 +10,7 @@ ms.topic: conceptual
 ms.subservice: sql-dw 
 ms.date: 05/11/2020
 ms.author: wiassaf
+ms.reviewer: wiassaf
 ---
 
 # Getting started with Visual Studio 2019

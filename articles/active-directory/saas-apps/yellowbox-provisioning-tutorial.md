@@ -1,11 +1,11 @@
 ---
-title: 'Tutorial: Configure Yellowbox for automatic user provisioning with Azure Active Directory'
+title: 'Tutorial: Configure Yellowbox for automatic user provisioning with Azure Active Directory | Microsoft Docs'
 description: Learn how to automatically provision and de-provision user accounts from Azure AD to Yellowbox.
 services: active-directory
 documentationcenter: ''
 author: twimmers
 writer: Thwimmer
-manager: jeedes
+manager: beatrizd
 
 ms.assetid: 0899c687-c36b-4b53-8fea-f762f0616521
 ms.service: active-directory
@@ -13,7 +13,7 @@ ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.devlang: na
 ms.topic: article
-ms.date: 11/21/2022
+ms.date: 03/02/2022
 ms.author: Thwimmer
 ---
 

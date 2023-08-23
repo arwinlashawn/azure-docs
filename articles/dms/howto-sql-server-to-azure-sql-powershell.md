@@ -1,16 +1,17 @@
 ---
-title: "PowerShell: Migrate SQL Server to SQL Database"
+title: "PowerShell: Migrate SQL Server to SQL Database" 
 titleSuffix: Azure Database Migration Service
 description: Learn to migrate a database from SQL Server to Azure SQL Database by using Azure PowerShell with the Azure Database Migration Service.
+services: database-migration
 author: croblesm
 ms.author: roblescarlos
+manager: craigg
 ms.reviewer: craigg
-ms.date: 02/20/2020
 ms.service: dms
+ms.workload: data-services
+ms.custom: "seo-lt-2019, devx-track-azurepowershell"
 ms.topic: how-to
-ms.custom:
-  - seo-lt-2019
-  - devx-track-azurepowershell
+ms.date: 02/20/2020
 ---
 
 # Migrate a SQL Server database to Azure SQL Database using Azure PowerShell
@@ -75,10 +76,10 @@ The following example creates a service named *MyDMS* in the resource group *MyD
 
 $vSubNet = Get-AzVirtualNetworkSubnetConfig -VirtualNetwork $vNet -Name MySubnet
 
-$service = New-AzDms -ResourceGroupName MyDMSResourceGroup `
+$service = New-AzDms -ResourceGroupName myResourceGroup `
   -ServiceName MyDMS `
   -Location EastUS `
-  -Sku GeneralPurpose_4vCores `  
+  -Sku Basic_2vCores `  
   -VirtualSubnetId $vSubNet.Id`
 ```
 
@@ -103,9 +104,6 @@ $sourceConnInfo = New-AzDmsConnInfo -ServerType SQL `
   -AuthType SqlAuthentication `
   -TrustServerCertificate:$true
 ```
-
-> [!NOTE]
-> If the migration ends with an error when providing source DataSource as public IP address or the DNS of SQL Server, then use the name of the Azure VM running the SQL Server.
 
 The next example shows creation of Connection Info for a server called SQLAzureTarget using sql authentication:
 
@@ -254,4 +252,4 @@ Remove-AzDms -ResourceGroupName myResourceGroup -ServiceName MyDMS
 
 ## Next step
 
-* Review the migration guidance in the Microsoft [Database Migration Guide](/data-migration/).
+* Review the migration guidance in the Microsoft [Database Migration Guide](https://datamigration.microsoft.com/).

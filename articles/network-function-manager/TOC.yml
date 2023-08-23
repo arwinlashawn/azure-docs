@@ -15,8 +15,6 @@
   items:
   - name: Deploy network functions
     href: deploy-functions.md
-  - name: Delete network functions
-    href: Delete-functions.md
 - name: Concepts
   expanded: true
   items:

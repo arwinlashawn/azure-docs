@@ -2,14 +2,13 @@
 title: View analytic information with the Analytics dashboard in Permissions Management
 description: How to use the Analytics dashboard in Permissions Management to view details about users, groups, active resources, active tasks, access keys, and serverless functions.
 services: active-directory
-author: jenniferf-skc
-manager: amycolannino
-ms.service: active-directory 
-ms.subservice: ciem
+author: kenwith
+manager: rkarlin
+ms.service: ciem
 ms.workload: identity
 ms.topic: how-to
 ms.date: 02/23/2022
-ms.author: jfields
+ms.author: kenwith
 ---
 
 # View analytic information with the Analytics dashboard

@@ -1,9 +1,9 @@
 ---
 title: Import SQL BACPAC files with templates
 description: Learn how to use Azure SQL Database extensions to import SQL BACPAC files with Azure Resource Manager templates (ARM templates).
-ms.date: 05/23/2023
+ms.date: 02/28/2022
 ms.topic: tutorial
-ms.custom: devx-track-arm-template
+
 #Customer intent: As a database administrator I want use ARM templates so that I can import a SQL BACPAC file.
 ---
 
@@ -87,12 +87,11 @@ The BACPAC file must be stored in an Azure Storage account before it can be impo
                              -Blob $bacpacFileName `
                              -Context $storageAccount.Context
 
-    Write-Host "The project name:        $projectName `
-      The location:            $location `
-      The storage account key: $storageAccountKey `
-      The BACPAC file URL:     https://$storageAccountName.blob.core.windows.net/$containerName/$bacpacFileName `
-      "
-
+    Write-Host "The project name:        $projectName`
+    	The location:            $location`
+    	The storage account key: $storageAccountKey`
+    	The BACPAC file URL:     https://$storageAccountName.blob.core.windows.net/$containerName/$bacpacFileName`
+    	"
     Write-Host "Press [ENTER] to continue ..."
     ```
 
@@ -167,7 +166,7 @@ The template used in this tutorial is stored in [GitHub](https://raw.githubuserc
 
         The following example shows the updated template:
 
-        :::image type="content" source="media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac-firewall.png" alt-text="Screenshot of the template with firewall definition.":::
+        :::image type="content" source="media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac-firewall.png" alt-text="Template with firewall definition.":::
 
     - Add a SQL Database extension resource to the database definition with the following JSON:
 
@@ -194,7 +193,7 @@ The template used in this tutorial is stored in [GitHub](https://raw.githubuserc
 
         The following example shows the updated template:
 
-        :::image type="content" source="media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac.png" alt-text="Screenshot of the template with SQL Database extension.":::
+        :::image type="content" source="media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac.png" alt-text="Template with SQL Database extension.":::
 
         To understand the resource definition, see the API version's [SQL Database extension reference](/azure/templates/microsoft.sql/servers/databases/extensions). The following are some important elements:
 
@@ -216,7 +215,7 @@ Use the project name and location that were used when you prepared the BACPAC fi
 1. Sign in to [Cloud Shell](https://shell.azure.com).
 1. Select **PowerShell** from the upper left corner.
 
-    :::image type="content" source="media/template-tutorial-deploy-sql-extensions-bacpac/cloud-shell-select.png" alt-text="Screenshot of Azure Cloud Shell in PowerShell with the option to upload a file.":::
+    :::image type="content" source="media/template-tutorial-deploy-sql-extensions-bacpac/cloud-shell-select.png" alt-text="Open Azure Cloud Shell in PowerShell and upload a file.":::
 
 1. Select **Upload/Download files** and upload your _azuredeploy.json_ file.
 1. To deploy the template, copy and paste the following script into the shell window.
@@ -248,7 +247,7 @@ For example, when you sign in to **Query editor** a message is displayed that th
 
 In the Azure portal, from the resource group select the database. Select **Query editor (preview)**, and enter the administrator credentials. You'll see two tables were imported into the database.
 
-:::image type="content" source="./media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac-query-editor.png" alt-text="Screenshot of the Query editor (preview) in Azure portal.":::
+![Query editor (preview)](./media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac-query-editor.png)
 
 ## Clean up resources
 

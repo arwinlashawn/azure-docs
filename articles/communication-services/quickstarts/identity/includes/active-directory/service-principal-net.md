@@ -51,12 +51,15 @@ private DefaultAzureCredential credential = new DefaultAzureCredential();
 Now we'll add code which uses the created credential, to issue a VoIP Access Token. We'll call this code later on.
 
 ```csharp
-public AccessToken CreateIdentityAndGetTokenAsync(Uri resourceEndpoint)
+public Response<AccessToken> CreateIdentityAndGetTokenAsync(Uri resourceEndpoint)
 {
     var client = new CommunicationIdentityClient(resourceEndpoint, this.credential);
-    var result = client.CreateUserAndToken(scopes: new[] { CommunicationTokenScope.VoIP });
-    var (user, token) = response.Value;
-    return token;
+    var identityResponse = client.CreateUser();
+    var identity = identityResponse.Value;
+
+    var tokenResponse = client.GetToken(identity, scopes: new[] { CommunicationTokenScope.VoIP });
+
+    return tokenResponse;
 }
 ```
 
@@ -94,8 +97,8 @@ static void Main(string[] args)
     Program instance = new();
 
     Console.WriteLine("Retrieving new Access Token, using Service Principals");
-    AccessToken response = instance.CreateIdentityAndGetTokenAsync(endpoint);
-    Console.WriteLine($"Retrieved Access Token: {response.Token}");
+    Response<AccessToken> response = instance.CreateIdentityAndGetTokenAsync(endpoint);
+    Console.WriteLine($"Retrieved Access Token: {response.Value.Token}");
 
     Console.WriteLine("Sending SMS using Service Principals");
 
@@ -122,8 +125,8 @@ class Program
                Program instance = new();
 
                Console.WriteLine("Retrieving new Access Token, using Service Principals");
-               AccessToken response = instance.CreateIdentityAndGetTokenAsync(endpoint);
-               Console.WriteLine($"Retrieved Access Token: {response.Token}");
+               Response<AccessToken> response = instance.CreateIdentityAndGetTokenAsync(endpoint);
+               Console.WriteLine($"Retrieved Access Token: {response.Value.Token}");
 
                Console.WriteLine("Sending SMS using Service Principals");
 
@@ -132,12 +135,15 @@ class Program
                Console.WriteLine($"Sms id: {result.MessageId}");
                Console.WriteLine($"Send Result Successful: {result.Successful}");
           }
-          public AccessToken CreateIdentityAndGetTokenAsync(Uri resourceEndpoint)
+          public Response<AccessToken> CreateIdentityAndGetTokenAsync(Uri resourceEndpoint)
           {
                var client = new CommunicationIdentityClient(resourceEndpoint, this.credential);
-               var result = client.CreateUserAndToken(scopes: new[] { CommunicationTokenScope.VoIP });
-               var (user, token) = response.Value;
-               return token;
+               var identityResponse = client.CreateUser();
+               var identity = identityResponse.Value;
+
+               var tokenResponse = client.GetToken(identity, scopes: new[] { CommunicationTokenScope.VoIP });
+
+               return tokenResponse;
           }
           public SmsSendResult SendSms(Uri resourceEndpoint, string from, string to, string message)
           {

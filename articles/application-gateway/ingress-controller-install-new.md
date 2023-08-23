@@ -4,9 +4,8 @@ description: This article provides information on how to deploy an Application G
 services: application-gateway
 author: greg-lindsay
 ms.service: application-gateway
-ms.custom: devx-track-linux
 ms.topic: how-to
-ms.date: 07/28/2023
+ms.date: 06/09/2022
 ms.author: greglin
 ---
 
@@ -14,9 +13,6 @@ ms.author: greglin
 
 The instructions below assume Application Gateway Ingress Controller (AGIC) will be
 installed in an environment with no pre-existing components.
-
-> [!TIP]
-> Also see [What is Application Gateway for Containers?](for-containers/overview.md) currently in public preview.
 
 ## Required Command Line Tools
 
@@ -50,9 +46,9 @@ Follow the steps below to create an Azure Active Directory (Azure AD) [service p
     The `appId` and `password` values from the JSON output will be used in the following steps
 
 
-1. Use the `appId` from the previous command's output to get the `id` of the new service principal:
+1. Use the `appId` from the previous command's output to get the `objectId` of the new service principal:
     ```azurecli
-    objectId=$(az ad sp show --id $appId --query "id" -o tsv)
+    objectId=$(az ad sp show --id $appId --query "objectId" -o tsv)
     ```
     The output of this command is `objectId`, which will be used in the Azure Resource Manager template below
 
@@ -83,8 +79,7 @@ This step will add the following components to your subscription:
     wget https://raw.githubusercontent.com/Azure/application-gateway-kubernetes-ingress/master/deploy/azuredeploy.json -O template.json
     ```
 
-1. Deploy the Azure Resource Manager template using the Azure CLI. The deployment might take up to 5 minutes.
-
+1. Deploy the Azure Resource Manager template using `az cli`. The deployment might take up to 5 minutes.
     ```azurecli
     resourceGroupName="MyResourceGroup"
     location="westus2"
@@ -110,7 +105,7 @@ This step will add the following components to your subscription:
 
 With the instructions in the previous section, we created and configured a new AKS cluster and an Application Gateway. We're now ready to deploy a sample app and an ingress controller to our new Kubernetes infrastructure.
 
-### Set up Kubernetes Credentials
+### Setup Kubernetes Credentials
 For the following steps, we need setup [kubectl](https://kubectl.docs.kubernetes.io/) command,
 which we'll use to connect to our new Kubernetes cluster. [Cloud Shell](https://shell.azure.com/) has `kubectl` already installed. We'll use `az` CLI to obtain credentials for Kubernetes.
 
@@ -148,10 +143,8 @@ To install Azure AD Pod Identity to your cluster:
      ```
 
 ### Install Helm
-[Helm](../aks/kubernetes-helm.md) is a package manager for Kubernetes. We'll use it to install the `application-gateway-kubernetes-ingress` package.
-
-> [!NOTE]
-> If you use [Cloud Shell](https://shell.azure.com/), you don't need to install Helm.  Azure Cloud Shell comes with Helm version 3. Skip the first step and just add the AGIC Helm repository.
+[Helm](../aks/kubernetes-helm.md) is a package manager for
+Kubernetes. We'll use it to install the `application-gateway-kubernetes-ingress` package:
 
 1. Install [Helm](../aks/kubernetes-helm.md) and run the following to add `application-gateway-kubernetes-ingress` helm package:
 
@@ -169,7 +162,7 @@ To install Azure AD Pod Identity to your cluster:
         helm init
         ```
 
-2. Add the AGIC Helm repository:
+1. Add the AGIC Helm repository:
     ```bash
     helm repo add application-gateway-kubernetes-ingress https://appgwingress.blob.core.windows.net/ingress-azure-helm-package/
     helm repo update
@@ -251,16 +244,13 @@ To install Azure AD Pod Identity to your cluster:
     sed -i "s|<applicationGatewayName>|${applicationGatewayName}|g" helm-config.yaml
     sed -i "s|<identityResourceId>|${identityResourceId}|g" helm-config.yaml
     sed -i "s|<identityClientId>|${identityClientId}|g" helm-config.yaml
+
+    # You can further modify the helm config to enable/disable features
+    nano helm-config.yaml
     ```
-    
-
-   > [!NOTE]
-   > **For deploying to Sovereign Clouds (e.g., Azure Government)**, the `appgw.environment` configuration parameter must be added and set to the appropriate value as documented below.
-
 
    Values:
      - `verbosityLevel`: Sets the verbosity level of the AGIC logging infrastructure. See [Logging Levels](https://github.com/Azure/application-gateway-kubernetes-ingress/blob/463a87213bbc3106af6fce0f4023477216d2ad78/docs/troubleshooting.md#logging-levels) for possible values.
-     - `appgw.environment`: Sets cloud environment. Possible values: `AZURECHINACLOUD`, `AZUREGERMANCLOUD`, `AZUREPUBLICCLOUD`, `AZUREUSGOVERNMENTCLOUD`
      - `appgw.subscriptionId`: The Azure Subscription ID in which Application Gateway resides. Example: `a123b234-a3b4-557d-b2df-a0bc12de1234`
      - `appgw.resourceGroup`: Name of the Azure Resource Group in which Application Gateway was created. Example: `app-gw-resource-group`
      - `appgw.name`: Name of the Application Gateway. Example: `applicationgatewayd0f0`
@@ -283,7 +273,7 @@ To install Azure AD Pod Identity to your cluster:
 1. Install the Application Gateway ingress controller package:
 
     ```bash
-    helm install -f helm-config.yaml --generate-name application-gateway-kubernetes-ingress/ingress-azure
+    helm install -f helm-config.yaml application-gateway-kubernetes-ingress/ingress-azure
     ```
 
 ## Install a Sample App
@@ -300,7 +290,7 @@ metadata:
     app: aspnetapp
 spec:
   containers:
-  - image: "mcr.microsoft.com/dotnet/samples:aspnetapp"
+  - image: "mcr.microsoft.com/dotnet/core/samples:aspnetapp"
     name: aspnetapp-image
     ports:
     - containerPort: 80
@@ -322,7 +312,7 @@ spec:
 
 ---
 
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: aspnetapp
@@ -334,11 +324,8 @@ spec:
       paths:
       - path: /
         backend:
-          service:
-            name: aspnetapp
-            port:
-              number: 80
-        pathType: Exact
+          serviceName: aspnetapp
+          servicePort: 80
 EOF
 ```
 
@@ -346,15 +333,15 @@ Alternatively you can:
 
 * Download the YAML file above:
 
-  ```bash
-  curl https://raw.githubusercontent.com/Azure/application-gateway-kubernetes-ingress/master/docs/examples/aspnetapp.yaml -o aspnetapp.yaml
-  ```
+```bash
+curl https://raw.githubusercontent.com/Azure/application-gateway-kubernetes-ingress/master/docs/examples/aspnetapp.yaml -o aspnetapp.yaml
+```
 
 * Apply the YAML file:
 
-  ```bash
-  kubectl apply -f aspnetapp.yaml
-  ```
+```bash
+kubectl apply -f aspnetapp.yaml
+```
 
 
 ## Other Examples

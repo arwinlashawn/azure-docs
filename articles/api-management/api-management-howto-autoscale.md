@@ -8,20 +8,18 @@ author: dlepow
 
 ms.service: api-management
 ms.topic: how-to
-ms.date: 03/30/2023
+ms.date: 02/02/2022
 ms.author: danlep
-ms.custom: engagement-fy23
 ---
 
 # Automatically scale an Azure API Management instance  
 
-An Azure API Management service instance can scale automatically based on a set of rules. This behavior can be enabled and configured through [Azure Monitor autoscale](../azure-monitor/autoscale/autoscale-overview.md#supported-services-for-autoscale) and is currently supported only in the **Standard** and **Premium** tiers of the Azure API Management service.
+Azure API Management service instance can scale automatically based on a set of rules. This behavior can be enabled and configured through [Azure Monitor autoscale](../azure-monitor/autoscale/autoscale-overview.md#supported-services-for-autoscale) and is supported only in **Standard** and **Premium** tiers of the Azure API Management service.
 
 The article walks through the process of configuring autoscale and suggests optimal configuration of autoscale rules.
 
 > [!NOTE]
-> * In service tiers that support multiple scale units, you can also [manually scale](upgrade-and-scale.md) your API Management instance.
-> * An API Management service in the **Consumption** tier scales automatically based on the traffic - without any additional configuration needed.
+> API Management service in the **Consumption** tier scales automatically based on the traffic - without any additional configuration needed.
 
 ## Prerequisites
 
@@ -29,8 +27,8 @@ To follow the steps from this article, you must:
 
 + Have an active Azure subscription.
 + Have an Azure API Management instance. For more information, see [Create an Azure API Management instance](get-started-create-service-instance.md).
-+ Understand the concept of [capacity](api-management-capacity.md) of an API Management instance.
-+ Understand [manual scaling](upgrade-and-scale.md) of an API Management instance, including cost consequences.
++ Understand the concept of [Capacity of an Azure API Management instance](api-management-capacity.md).
++ Understand [manual scaling process of an Azure API Management instance](upgrade-and-scale.md), including cost consequences.
 
 [!INCLUDE [premium-standard.md](../../includes/api-management-availability-premium-standard.md)]
 
@@ -38,78 +36,92 @@ To follow the steps from this article, you must:
 
 Certain limitations and consequences of scaling decisions need to be considered before configuring autoscale behavior.
 
-+ The pricing tier of your API Management instance determines the [maximum number of units](upgrade-and-scale.md#upgrade-and-scale) you may scale to. For example, the **Standard tier** can be scaled to 4 units. You can add any number of units to the **Premium** tier.
-+ The scaling process takes at least 20 minutes.
++ The pricing tier of your API Management instance determines the [maximum number of units](upgrade-and-scale.md#upgrade-and-scale) you may scale to. The **Standard tier** can be scaled to 4 units. You can add any number of units to the **Premium** tier.
++ The scaling process will take at least 20 minutes.
 + If the service is locked by another operation, the scaling request will fail and retry automatically.
 + If your service instance is deployed in multiple regions (locations), only units in the **Primary location** can be autoscaled with Azure Monitor autoscale. Units in other locations can only be scaled manually.
 + If your service instance is configured with [availability zones](zone-redundancy.md) in the **Primary location**, be aware of the number of zones when configuring autoscaling. The number of API Management units in autoscale rules and limits must be a multiple of the number of zones. 
 
-## Enable and configure autoscale for an API Management instance
+## Enable and configure autoscale for Azure API Management service
 
-Follow these steps to configure autoscale for an Azure API Management service:
+Follow the steps below to configure autoscale for an Azure API Management service:
 
-1. Sign in to the [Azure portal](https://portal.azure.com), and navigate to your API Management instance.
-1. In the left menu, select **Scale out (auto-scale)**, and then select **Custom autoscale**.
+1. Navigate to **Monitor** instance in the Azure portal.
 
-    :::image type="content" source="media/api-management-howto-autoscale/01.png" alt-text="Screenshot of scale-out options in the portal.":::
+    ![Azure Monitor](media/api-management-howto-autoscale/01.png)
 
-1. In the **Default** scale condition, select **Scale based on a metric**, and then select **Add a rule**.
+2. Select **Autoscale** from the menu on the left.
 
-    :::image type="content" source="media/api-management-howto-autoscale/04.png" alt-text="Screenshot of configuring the default scale condition in the portal.":::
+    ![Azure Monitor autoscale resource](media/api-management-howto-autoscale/02.png)
 
-1. Define a new scale-out rule.
+3. Locate your Azure API Management service based on the filters in dropdown menus.
+4. Select the desired Azure API Management service instance.
+5. In the newly opened section, click the **Enable autoscale** button.
 
-   For example, a scale-out rule could trigger addition of 1 API Management unit, when the average capacity metric over the previous 30 minutes exceeds 80%. The following table provides configuration for such a rule.
+    ![Azure Monitor autoscale enable](media/api-management-howto-autoscale/03.png)
+
+6. In the **Rules** section, click **+ Add a rule**.
+
+    ![Azure Monitor autoscale add rule](media/api-management-howto-autoscale/04.png)
+
+7. Define a new scale out rule.
+
+   For example, a scale out rule could trigger an addition of an Azure API Management unit, when the average capacity metric over the last 30 minutes exceeds 80%. The table below provides configuration for such a rule.
 
     | Parameter             | Value             | Notes                                                                                                                                                                                                                                                                           |
     |-----------------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Metric source         | Current resource  | Define the rule based on the current API Management resource metrics.                                                                                                                                                                                                     |
+    | Metric source         | Current resource  | Define the rule based on the current Azure API Management resource metrics.                                                                                                                                                                                                     |
     | *Criteria*            |                   |                                                                                                                                                                                                                                                                                 |
-    | Metric name           | Capacity          | Capacity metric is an API Management metric reflecting usage of resources by an Azure API Management instance.                                                                                                                                                            |
-    | Location | Select the primary location of the API Management instance | |
+    | Time aggregation      | Average           |                                                                                                                                                                                                                                                                                 |
+    | Metric name           | Capacity          | Capacity metric is an Azure API Management metric reflecting usage of resources of an Azure API Management instance.                                                                                                                                                            |
+    | Time grain statistic  | Average           |                                                                                                                                                                                                                                                                                 |
     | Operator              | Greater than      |                                                                                                                                                                                                                                                                                 |
-    | Metric threshold             | 80%               | The threshold for the averaged capacity metric.                                                                                                                                                                                                                                 |
-    | Duration (in minutes) | 30                | The timespan to average the capacity metric over is specific to usage patterns. The longer the duration, the smoother the reaction will be. Intermittent spikes will have less effect on the scale-out decision. However, it will also delay the scale-out trigger. |
-    | Time grain statistic  | Average           | |
-    |*Action*              |                   |                                                                                                                                                                                                                                                                                 |
+    | Threshold             | 80%               | The threshold for the averaged capacity metric.                                                                                                                                                                                                                                 |
+    | Duration (in minutes) | 30                | The timespan to average the capacity metric over is specific to usage patterns. The longer the time period is, the smoother the reaction will be - intermittent spikes will have less effect on the scale-out decision. However, it will also delay the scale-out trigger. |
+    | *Action*              |                   |                                                                                                                                                                                                                                                                                 |
     | Operation             | Increase count by |                                                                                                                                                                                                                                                                                 |
     | Instance count        | 1                 | Scale out the Azure API Management instance by 1 unit.                                                                                                                                                                                                                          |
-    | Cool down (minutes)   | 60                | It takes at least 20 minutes for the API Management service to scale out. In most cases, the cool down period of 60 minutes prevents from triggering many scale-outs.                                                                                                  |
+    | Cool down (minutes)   | 60                | It takes at least 20 minutes for the Azure API Management service to scale out. In most cases, the cool down period of 60 minutes prevents from triggering many scale-outs.                                                                                                  |
 
-1. Select **Add** to save the rule.
-1. To add another rule, select **Add a rule**.
+8. Click **Add** to save the rule.
 
-    This time, a scale-in rule needs to be defined. It will ensure resources aren't being wasted, when the usage of APIs decreases.
+    ![Azure Monitor scale out rule](media/api-management-howto-autoscale/05.png)
 
-1. Define a new scale-in rule.
+9. Click again on **+ Add a rule**.
 
-    For example, a scale-in rule could trigger a removal of 1 API Management unit when the average capacity metric over the previous 30 minutes has been lower than 35%. The following table provides configuration for such a rule.
+    This time, a scale in rule needs to be defined. It will ensure resources are not being wasted, when the usage of APIs decreases.
+
+10. Define a new scale in rule.
+
+    For example, a scale in rule could trigger a removal of an Azure API Management unit, when the average capacity metric over the last 30 minutes has been lower than 35%. The table below provides configuration for such a rule.
 
     | Parameter             | Value             | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
     |-----------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Metric source         | Current resource  | Define the rule based on the current API Management resource metrics.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+    | Metric source         | Current resource  | Define the rule based on the current Azure API Management resource metrics.                                                                                                                                                                                                                                                                                                                                                                                                                         |
     | *Criteria*            |                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
     | Time aggregation      | Average           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-    | Metric name           | Capacity          | Same metric as the one used for the scale-out rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-    | Location | Select the primary location of the API Management instance | |
+    | Metric name           | Capacity          | Same metric as the one used for the scale out rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+    | Time grain statistic  | Average           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
     | Operator              | Less than         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-    | Threshold             | 35%               | As with the scale-out rule, this value heavily depends on the usage patterns of the API Management instance. |
-    | Duration (in minutes) | 30                | Same value as the one used for the scale-out rule.      |
-    | Time grain statistic | Average                |       |
+    | Threshold             | 35%               | Similarly to the scale out rule, this value heavily depends on the usage patterns of the Azure API Management. |
+    | Duration (in minutes) | 30                | Same value as the one used for the scale out rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
     | *Action*              |                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-    | Operation             | Decrease count by | Opposite to what was used for the scale-out rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-    | Instance count        | 1                 | Same value as the one used for the scale-out rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-    | Cool down (minutes)   | 90                | Scale-in should be more conservative than a scale-out, so the cool down period should be longer.                                                                                                                                                                                                                                                                                                                                                                                                    |
+    | Operation             | Decrease count by | Opposite to what was used for the scale out rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+    | Instance count        | 1                 | Same value as the one used for the scale out rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+    | Cool down (minutes)   | 90                | Scale in should be more conservative than a scale out, so the cool down period should be longer.                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-1. Select **Add** to save the rule.
+11. Click **Add** to save the rule.
 
-1. In **Instance limits**, select the **Minimum**, **Maximum**, and **Default** number of API Management units.
-   > [!NOTE]
-   > API Management has a limit of units an instance can scale out to. The limit depends on the service tier.
-    
-    :::image type="content" source="media/api-management-howto-autoscale/07.png" alt-text="Screenshot showing how to set instance limits in the portal.":::
+    ![Azure Monitor scale in rule](media/api-management-howto-autoscale/06.png)
 
-1. Select **Save**. Your autoscale has been configured.
+12. Set the **maximum** number of Azure API Management units.
+
+    > [!NOTE]
+    > Azure API Management has a limit of units an instance can scale out to. The limit depends on a service tier.
+
+    ![Screenshot that highlights where to set the maximum number of Azure API Management units.](media/api-management-howto-autoscale/07.png)
+
+13. Click **Save**. Your autoscale has been configured.
 
 ## Next steps
 

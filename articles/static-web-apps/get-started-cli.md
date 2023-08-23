@@ -23,7 +23,6 @@ In this quickstart, you deploy a web application to Azure Static Web apps using 
 - [Azure](https://portal.azure.com) account.
   - If you don't have an Azure subscription, you can [create a free trial account](https://azure.microsoft.com/free).
 - [Azure CLI](/cli/azure/install-azure-cli) installed (version 2.29.0 or higher)
-- [A Git setup](https://www.git-scm.com/downloads). 
 
 [!INCLUDE [create repository from template](../../includes/static-web-apps-get-started-create-repo.md)]
 
@@ -131,21 +130,21 @@ Now that the repository is generated from the template, you can deploy the app a
 
     As you execute this command, the CLI starts the GitHub interactive log in experience. Look for a line in your console that resembles the following message.
 
-    > Go to `https://github.com/login/device` and enter the user code 329B-3945 to activate and retrieve your GitHub personal access token.
+    > Please navigate to `https://github.com/login/device` and enter the user code 329B-3945 to activate and retrieve your GitHub personal access token.
 
-1. Go to **https://github.com/login/device**.
+1. Navigate to **https://github.com/login/device**.
 
 1. Enter the user code as displayed your console's message.
 
-2. Select **Continue**.
+1. Select the **Continue** button.
 
-3. Select **Authorize AzureAppServiceCLI**.
+1. Select the **Authorize AzureAppServiceCLI** button.
 
 ## View the website
 
 There are two aspects to deploying a static app. The first operation creates the underlying Azure resources that make up your app. The second is a workflow that builds and publishes your application.
 
-Before you can go to your new static site, the deployment build must first finish running.
+Before you can navigate to your new static site, the deployment build must first finish running.
 
 1. Return to your console window and run the following command to list the URLs associated with your app.
 
@@ -173,7 +172,7 @@ Before you can go to your new static site, the deployment build must first finis
       --query "defaultHostname"
     ```
 
-    Copy the URL into your browser to go to your website.
+    Copy the URL into your browser to navigate to your website.
 
 ## Clean up resources
 

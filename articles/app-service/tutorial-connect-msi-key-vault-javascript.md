@@ -6,7 +6,7 @@ ms.topic: tutorial
 ms.date: 10/26/2021
 
 ms.reviewer: madsd 
-ms.custom: devx-track-azurecli, devx-track-js, AppServiceConnectivity
+ms.custom: devx-track-azurecli, devx-track-js
 ---
 
 # Tutorial: Secure Cognitive Service connection from JavaScript App Service using Key Vault

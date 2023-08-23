@@ -4,8 +4,8 @@ description: Learn about the ownership of responsibilities for the operation of 
 ms.service: azure-redhat-openshift
 ms.topic: article
 ms.date: 4/12/2021
-author: johnmarco
-ms.author: johnmarc
+author: sakthi-vetrivel
+ms.author: suvetriv
 keywords: aro, openshift, az aro, red hat, cli, RACI, support
 ---
 

@@ -1,18 +1,16 @@
 ---
-title: Linking to an existing Azure Native Dynatrace Service resource
+title: Linking to an existing Dynatrace for Azure resource - Azure partner solutions
 description: This article describes how to use the Azure portal to link to an instance of Dynatrace.
-
 ms.topic: quickstart
-ms.date: 02/02/2023
+author: flang-msft
+ms.author: franlanglois
+ms.date: 08/24/2022
 
 ---
 
 # Quickstart: Link to an existing Dynatrace environment
 
-In this quickstart, you link an Azure subscription to an existing Dynatrace environment. After linking to the Dynatrace environment, you can monitor the linked Azure subscription and the resources in that subscription using the Dynatrace environment.
-
-> [!NOTE]
-> You can only link Dynatrace environments that have been previously created via Dynatrace for Azure.
+In this quickstart, you link an Azure subscription to an existing Dynatrace environment. After you link to the Dynatrace environment, you can monitor the linked Azure subscription and the resources in that subscription using the Dynatrace environment.
 
 When you use the integrated experience for Dynatrace in the Azure portal, your billing and monitoring for the following entities is tracked in the portal.
 
@@ -22,7 +20,11 @@ When you use the integrated experience for Dynatrace in the Azure portal, your b
 - **Dynatrace environment** - the Dynatrace environment on Dynatrace SaaS. When you choose to link an existing environment, a new Dynatrace resource is created in Azure. The Dynatrace environment and the Dynatrace resource must reside in the same region.
 - **Marketplace SaaS resource** - the SaaS resource is used for billing purposes. The SaaS resource typically resides in a different Azure subscription from where the Dynatrace environment was first created.
 
-## Find Offer
+## Prerequisites
+
+Before you link the subscription to a Dynatrace environment, [complete pre-deployment configuration](dynatrace-how-to-configure-prereqs.md).
+
+### Find Offer
 
 1. Use the Azure portal to find Dynatrace.
 
@@ -63,7 +65,7 @@ When you use the integrated experience for Dynatrace in the Azure portal, your b
     > [!NOTE]
     > Linking requires that the environment and the Dynatrace resource reside in the   same Azure region. The user that is performing the linking action should have   administrator permissions on the Dynatrace environment being linked. If the   environment that you want to link to does not appear in the dropdown list, check if   any of these conditions are not satisfied.
 
-Select **Next: Metrics and logs** to configure metrics and logs.
+1. Select **Next: Metrics and logs** to configure metrics and logs.
 
 ### Configure metrics and logs
 
@@ -75,26 +77,33 @@ Select **Next: Metrics and logs** to configure metrics and logs.
 
     - **Azure resource logs** - These logs provide insight into operations that were taken on an Azure resource at the [data plane](../../azure-resource-manager/management/control-plane-and-data-plane.md). For example, getting a secret from a Key Vault is a data plane operation. Or, making a request to a database is also a data plane operation. The content of resource logs varies by the Azure service and resource type.
 
-1. To send Azure resource logs to Dynatrace, select **Send Azure resource logs for all defined resources**. The types of Azure resource logs are listed in [Azure Monitor Resource Log categories](../../azure-monitor/essentials/resource-logs-categories.md).
+1. To send subscription level logs to Dynatrace, select **Send subscription activity logs**. If this option is left unchecked, none of the subscription level logs are sent to Dynatrace.
 
-    When the checkbox for Azure resource logs is selected, by default, logs are forwarded for all resources. To filter the set of Azure resources sending logs to Dynatrace, use inclusion and exclusion rules and set the Azure resource tags:
+    To send Azure resource logs to Dynatrace, select **Send Azure resource logs for all defined resources**. The types of Azure resource logs are listed in [Azure Monitor Resource Log categories](../../azure-monitor/essentials/resource-logs-categories.md). To filter the set of Azure resources sending logs to Dynatrace, use inclusion and exclusion rules and set the Azure resource tags.
 
-    - All Azure resources with tags defined in include Rules send logs to Dynatrace.
-    - All Azure resources with tags defined in exclude rules don't send logs to Dynatrace.
-    - If there's a conflict between an inclusion and exclusion rule, the exclusion rule applies.
-  
-    The logs sent to Dynatrace are charged by Azure. For more information, see the [pricing of platform logs](https://azure.microsoft.com/pricing/details/monitor/) sent to Azure Marketplace partners.
+    Rules for sending resource logs are:
+
+    - When the checkbox for Azure resource logs is selected, by default, logs are forwarded for all resources.
+    - Azure resources with Include tags send logs to Dynatrace.
+    - Azure resources with Exclude tags don't send logs to Dynatrace.
+    - If there's a conflict between inclusion and exclusion rules, exclusion rule applies.
+
+    The logs sent to Dynatrace is charged by Azure. For more information, see the [pricing of platform logs](https://azure.microsoft.com/pricing/details/monitor/) sent to Azure Marketplace partners.
 
     Metrics for virtual machines and App Services can be collected by installing the Dynatrace OneAgent after the Dynatrace resource has been created and an existing Dynatrace environment has been linked to it.
 
-Once you have completed configuring metrics and logs, select **Next: Single sign-on**.
+1. Once you have completed configuring metrics and logs, select **Next: Single sign-on**.
 
 ### Configure single sign-on
 
-> [!NOTE]
-> You cannot set up single sign-on when linking the Dynatrace resource to an existing Dynatrace environment. You can do so after creating the Dynatrace resource. For more information, see [Reconfigure single sign-on](dynatrace-how-to-manage.md#reconfigure-single-sign-on).
+1. At this point, you see the next part of the form for **Single Sign-on**. If you're linking the Dynatrace resource to an existing Dynatrace environment, you cannot set up single sign-on at this step.
 
-Select **Next: Tags**.
+    > [!NOTE]
+    > You cannot set up single sign-on when linking the Dynatrace resource to an existing Dynatrace environment.
+
+1. Instead, you can set up single sign-on after creating the Dynatrace resource. For more information, see [Reconfigure single sign-on](dynatrace-how-to-manage.md#reconfigure-single-sign-on).
+
+1. Select **Next: Tags**.
 
 ### Add tags
 
@@ -102,7 +111,7 @@ Select **Next: Tags**.
 
    :::image type="content" source="media/dynatrace-link-to-existing/dynatrace-custom-tags.png" alt-text="Screenshot showing list of tags for a Dynatrace resource.":::
 
-When you've finished adding tags, select **Next: Review+Create.**
+1. When you've finished adding tags, select **Next: Review+Create.**
 
 ### Review and create
 
@@ -115,10 +124,3 @@ When you've finished adding tags, select **Next: Review+Create.**
 ## Next steps
 
 - [Manage the Dynatrace resource](dynatrace-how-to-manage.md)
-- Get started with Azure Native Dynatrace Service on
-
-    > [!div class="nextstepaction"]
-    > [Azure portal](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Dynatrace.Observability%2Fmonitors)
-
-    > [!div class="nextstepaction"]
-    > [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/dynatrace.dynatrace_portal_integration?tab=Overview)

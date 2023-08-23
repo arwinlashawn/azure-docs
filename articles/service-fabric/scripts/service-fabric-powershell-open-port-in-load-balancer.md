@@ -14,7 +14,7 @@ ms.workload: multiple
 ms.topic: sample
 ms.date: 05/18/2018
 ms.author: atsenthi
-ms.custom: mvc, devx-track-azurepowershell
+ms.custom: mvc
 ---
 
 # Open an application port in the Azure load balancer

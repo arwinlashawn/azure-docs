@@ -7,7 +7,8 @@ metadata:
   title: Azure Queue storage documentation
   description: Azure Queue storage is a service for storing large numbers of messages. Access messages from anywhere in the world via HTTP or HTTPS.
   services: storage
-  ms.service: azure-queue-storage
+  ms.service: storage
+  ms.subservice: queues
   ms.topic: landing-page
   ms.collection: collection
   author: normesta
@@ -50,15 +51,15 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Get started with Azure Queue storage using .NET
-            url: /azure/storage/queues/storage-quickstart-queues-dotnet?tabs=passwordless%2Croles-azure-portal%2Cenvironment-variable-windows%2Csign-in-azure-cli
+            url: storage-dotnet-how-to-use-queues.md
           - text: How to use Queue storage from Java
-            url: /azure/storage/queues/storage-quickstart-queues-java?tabs=powershell%2Cpasswordless%2Croles-azure-portal%2Cenvironment-variable-windows%2Csign-in-azure-cli
+            url: storage-java-how-to-use-queue-storage.md
           - text: How to use Queue storage from Node.js
-            url: /azure/storage/queues/storage-quickstart-queues-nodejs?tabs=passwordless%2Croles-azure-portal%2Cenvironment-variable-windows%2Csign-in-azure-cli
+            url: storage-nodejs-how-to-use-queues.md
           - text: How to use Queue Storage from C++
             url: storage-c-plus-plus-how-to-use-queues.md
           - text: How to use Queue storage from Python
-            url: /azure/storage/queues/storage-quickstart-queues-python?tabs=passwordless%2Croles-azure-portal%2Cenvironment-variable-windows%2Csign-in-azure-cli
+            url: storage-python-how-to-use-queue-storage.md
 
   # Card
   - title: Manage queues

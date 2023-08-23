@@ -7,7 +7,6 @@ ms.service: route-server
 ms.topic: how-to
 ms.date: 09/23/2021
 ms.author: halkazwini
-ms.custom: template-how-to
 ---
 
 # Troubleshooting Azure Route Server issues

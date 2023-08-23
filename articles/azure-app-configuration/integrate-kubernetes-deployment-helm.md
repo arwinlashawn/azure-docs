@@ -2,12 +2,13 @@
 title: Integrate Azure App Configuration with Kubernetes Deployment using Helm
 description: Learn how to use dynamic configurations in Kubernetes deployment with Helm.
 services: azure-app-configuration
-author: mcleanbyron
+author: shenmuxiaosen
+manager: zhenlan
 
 ms.service: azure-app-configuration
 ms.topic: tutorial
-ms.date: 03/27/2023
-ms.author: mcleans
+ms.date: 04/14/2020
+ms.author: shuawan
 
 #Customer intent: I want to use Azure App Configuration data in Kubernetes deployment with Helm.
 ---
@@ -30,20 +31,23 @@ This tutorial assumes basic understanding of managing Kubernetes with Helm. Lear
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/).
+- [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 - Install [Azure CLI](/cli/azure/install-azure-cli) (version 2.4.0 or later)
 - Install [Helm](https://helm.sh/docs/intro/install/) (version 2.14.0 or later)
-- An App Configuration store. [Create a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
 - A Kubernetes cluster.
 
-## Add key-values
+## Create an App Configuration store
 
-Add the following key-values to the App Configuration store and leave **Label** and **Content Type** with their default values. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
+[!INCLUDE [azure-app-configuration-create](../../includes/azure-app-configuration-create.md)]
 
-| Key | Value |
-|---|---|
-| *settings.color* | *White* |
-| *settings.message* | *Data from Azure App Configuration* |
+1. Select **Configuration Explorer** > **Create** to add the following key-value pairs:
+
+    | Key | Value |
+    |---|---|
+    | settings.color | White |
+    | settings.message | Data from Azure App Configuration |
+
+2. Leave **Label** and **Content Type** empty for now.
 
 ## Add a Key Vault reference to App Configuration
 

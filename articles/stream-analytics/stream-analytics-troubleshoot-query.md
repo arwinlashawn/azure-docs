@@ -1,8 +1,9 @@
 ---
 title: Troubleshoot Azure Stream Analytics queries
 description: This article describes techniques to troubleshoot your queries in Azure Stream Analytics jobs.
-author: ajetasin
-ms.author: ajetasi
+author: sidramadoss
+ms.author: sidram
+
 ms.service: stream-analytics
 ms.topic: troubleshooting
 ms.date: 03/31/2020

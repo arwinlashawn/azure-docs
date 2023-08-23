@@ -10,9 +10,10 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 01/29/2023
+ms.date: 10/11/2021
 ms.author: justinha
-ms.custom: fasttrack-edit, devx-track-linux
+ms.custom: fasttrack-edit
+
 ---
 # Join an Ubuntu Linux virtual machine to an Azure Active Directory Domain Services managed domain
 
@@ -54,7 +55,7 @@ Once the VM is deployed, follow the steps to connect to the VM using SSH.
 
 To make sure that the VM host name is correctly configured for the managed domain, edit the */etc/hosts* file and set the hostname:
 
-```bash
+```console
 sudo vi /etc/hosts
 ```
 
@@ -65,7 +66,7 @@ In the *hosts* file, update the *localhost* address. In the following example:
 
 Update these names with your own values:
 
-```config
+```console
 127.0.0.1 ubuntu.aaddscontoso.com ubuntu
 ```
 
@@ -77,7 +78,7 @@ The VM needs some additional packages to join the VM to the managed domain. To i
 
 During the Kerberos installation, the *krb5-user* package prompts for the realm name in ALL UPPERCASE. For example, if the name of your managed domain is *aaddscontoso.com*, enter *AADDSCONTOSO.COM* as the realm. The installation writes the `[realm]` and `[domain_realm]` sections in */etc/krb5.conf* configuration file. Make sure that you specify the realm an ALL UPPERCASE:
 
-```bash
+```console
 sudo apt-get update
 sudo apt-get install krb5-user samba sssd sssd-tools libnss-sss libpam-sss ntp ntpdate realmd adcli
 ```
@@ -88,13 +89,13 @@ For domain communication to work correctly, the date and time of your Ubuntu VM 
 
 1. Open the *ntp.conf* file with an editor:
 
-    ```bash
+    ```console
     sudo vi /etc/ntp.conf
     ```
 
 1. In the *ntp.conf* file, create a line to add your managed domain's DNS name. In the following example, an entry for *aaddscontoso.com* is added. Use your own DNS name:
 
-    ```config
+    ```console
     server aaddscontoso.com
     ```
 
@@ -108,7 +109,7 @@ For domain communication to work correctly, the date and time of your Ubuntu VM 
 
     Run the following commands to complete these steps. Use your own DNS name with the `ntpdate` command:
 
-    ```bash
+    ```console
     sudo systemctl stop ntp
     sudo ntpdate aaddscontoso.com
     sudo systemctl start ntp
@@ -120,7 +121,7 @@ Now that the required packages are installed on the VM and NTP is configured, jo
 
 1. Use the `realm discover` command to discover the managed domain. The following example discovers the realm *AADDSCONTOSO.COM*. Specify your own managed domain name in ALL UPPERCASE:
 
-    ```bash
+    ```console
     sudo realm discover AADDSCONTOSO.COM
     ```
 
@@ -134,13 +135,13 @@ Now that the required packages are installed on the VM and NTP is configured, jo
 
     Again, the managed domain name must be entered in ALL UPPERCASE. In the following example, the account named `contosoadmin@aaddscontoso.com` is used to initialize Kerberos. Enter your own user account that's a part of the managed domain:
 
-    ```bash
-    sudo kinit -V contosoadmin@AADDSCONTOSO.COM
+    ```console
+    kinit -V contosoadmin@AADDSCONTOSO.COM
     ```
 
 1. Finally, join the VM to the managed domain using the `realm join` command. Use the same user account that's a part of the managed domain that you specified in the previous `kinit` command, such as `contosoadmin@AADDSCONTOSO.COM`:
 
-    ```bash
+    ```console
     sudo realm join --verbose AADDSCONTOSO.COM -U 'contosoadmin@AADDSCONTOSO.COM' --install=/
     ```
 
@@ -154,7 +155,7 @@ If your VM can't successfully complete the domain-join process, make sure that t
 
 If you received the error *Unspecified GSS failure.  Minor code may provide more information (Server not found in Kerberos database)*, open the file */etc/krb5.conf* and add the following code in `[libdefaults]` section and try again:
 
-```config
+```console
 rdns=false
 ```
 
@@ -164,13 +165,13 @@ One of the packages installed in a previous step was for System Security Service
 
 1. Open the *sssd.conf* file with an editor:
 
-    ```bash
+    ```console
     sudo vi /etc/sssd/sssd.conf
     ```
 
 1. Comment out the line for *use_fully_qualified_names* as follows:
 
-    ```config
+    ```console
     # use_fully_qualified_names = True
     ```
 
@@ -178,7 +179,7 @@ One of the packages installed in a previous step was for System Security Service
 
 1. To apply the change, restart the SSSD service:
 
-    ```bash
+    ```console
     sudo systemctl restart sssd
     ```
 
@@ -192,13 +193,13 @@ By default, users can only sign in to a VM using SSH public key-based authentica
 
 1. Open the *sshd_conf* file with an editor:
 
-    ```bash
+    ```console
     sudo vi /etc/ssh/sshd_config
     ```
 
 1. Update the line for *PasswordAuthentication* to *yes*:
 
-    ```config
+    ```console
     PasswordAuthentication yes
     ```
 
@@ -206,7 +207,7 @@ By default, users can only sign in to a VM using SSH public key-based authentica
 
 1. To apply the changes and let users sign in using a password, restart the SSH service:
 
-    ```bash
+    ```console
     sudo systemctl restart ssh
     ```
 
@@ -214,15 +215,15 @@ By default, users can only sign in to a VM using SSH public key-based authentica
 
 To enable automatic creation of the home directory when a user first signs in, complete the following steps:
 
-1. Open the `/etc/pam.d/common-session` file in an editor:
+1. Open the */etc/pam.d/common-session* file in an editor:
 
-    ```bash
+    ```console
     sudo vi /etc/pam.d/common-session
     ```
 
 1. Add the following line in this file below the line `session optional pam_sss.so`:
 
-    ```config
+    ```console
     session required pam_mkhomedir.so skel=/etc/skel/ umask=0077
     ```
 
@@ -234,13 +235,13 @@ To grant members of the *AAD DC Administrators* group administrative privileges 
 
 1. Open the *sudoers* file for editing:
 
-    ```bash
+    ```console
     sudo visudo
     ```
 
 1. Add the following entry to the end of */etc/sudoers* file:
 
-    ```config
+    ```console
     # Add 'AAD DC Administrators' group members as admins.
     %AAD\ DC\ Administrators ALL=(ALL) NOPASSWD:ALL
     ```
@@ -253,29 +254,29 @@ To verify that the VM has been successfully joined to the managed domain, start 
 
 1. Create a new SSH connection from your console. Use a domain account that belongs to the managed domain using the `ssh -l` command, such as `contosoadmin@aaddscontoso.com` and then enter the address of your VM, such as *ubuntu.aaddscontoso.com*. If you use the Azure Cloud Shell, use the public IP address of the VM rather than the internal DNS name.
 
-    ```bash
-    sudo ssh -l contosoadmin@AADDSCONTOSO.com ubuntu.aaddscontoso.com
+    ```console
+    ssh -l contosoadmin@AADDSCONTOSO.com ubuntu.aaddscontoso.com
     ```
 
 1. When you've successfully connected to the VM, verify that the home directory was initialized correctly:
 
-    ```bash
-    sudo pwd
+    ```console
+    pwd
     ```
 
     You should be in the */home* directory with your own directory that matches the user account.
 
 1. Now check that the group memberships are being resolved correctly:
 
-    ```bash
-    sudo id
+    ```console
+    id
     ```
 
     You should see your group memberships from the managed domain.
 
 1. If you signed in to the VM as a member of the *AAD DC Administrators* group, check that you can correctly use the `sudo` command:
 
-    ```bash
+    ```console
     sudo apt-get update
     ```
 

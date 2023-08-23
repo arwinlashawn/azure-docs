@@ -2,7 +2,9 @@
 title: How to manually fix ServiceNow sync problems 
 description: Reset the connection to ServiceNow so alerts in Microsoft Azure can again call ServiceNow  
 ms.topic: conceptual
-ms.date: 06/19/2023
+author: nolavime
+ms.author: nolavime
+ms.date: 03/30/2022
 ms.reviewer: nolavime
 
 ---
@@ -13,21 +15,31 @@ Azure Monitor can connect to third-party IT Service Management (ITSM) providers.
 For security reasons, you may need to refresh the authentication token used for your connection with ServiceNow.
 Use the following synchronization process to reactivate the connection and refresh the token:
 
-1. In the Azure portal, select **All resources**, then find and select your Service Desk.
+1. Search for the solution in the top search banner, then select the relevant solutions
 
-   :::image type="content" source="media/itsmc-dashboard/select-service-desk.png" lightbox="media/itsmc-dashboard/select-service-desk.png" alt-text="Screenshot of the All resources page in the Azure portal. Only resources whose name includes the ServiceDes filter criteria are listed.":::
+    ![Screenshot that shows the top search banner and where to select the relevant solutions.](media/itsmc-resync-servicenow/solution-search-8-bit.png)
 
-1. In the Service Desk window, select **ITSM Connections** from the **Workspace Data Sources** section on the left pane.
+1. In solution screen, choose "Select All" in the subscription filter and then filter by "ServiceDesk"
 
-    :::image type="content" source="media/itsmc-resync-servicenow/select-itsm-connections.png" lightbox="media/itsmc-resync-servicenow/select-itsm-connections.png" alt-text="Screenshot of a Solution resource in the Azure portal. ITSM Connections on the left pane is highlighted.":::
+    ![Screenshot that shows where to choose Select All and where to filter by ServiceDesk.](media/itsmc-resync-servicenow/solutions-list-8-bit.png)
 
-1. Select each connector in the list to edit the connector as necessary.
+1. Select the solution of your ITSM connection.
+1. Select ITSM connection in the left banner.
 
-1. In the **Edit ITSM** window,
+    ![Screenshot that shows where to select ITSM Connections.](media/itsmc-resync-servicenow/itsm-connector-8-bit.png)
 
-    1. If this ITSM connector isn’t being used, delete the connector.
-    1. Make sure that all of the fields are configured correctly. See the instructions [here](./itsmc-overview.md) for the correct settings. 
-    1. Select **Sync**.
-    1. Select **Save**.
+1. Select each connector from the list. 
+    1. Click the Connector name in order to configure it
+    1. Delete any connectors no longer in use
 
-    :::image type="content" source="media/itsmc-resync-servicenow/edit-itsm-connector.png" lightbox="media/itsmc-resync-servicenow/edit-itsm-connector.png" alt-text="Screenshot of the Edit ITSM window in the Azure portal.":::
+    1. Update the fields according to [these definitions](./itsmc-connections.md) based on your partner type
+
+    1. Click on sync
+
+       ![Screenshot that highlights the Sync button.](media/itsmc-resync-servicenow/resync-8-bit-2.png)
+
+    1. Click on save
+
+        ![New connection](media/itsmc-resync-servicenow/save-8-bit.png)
+
+f.    Review the notifications to see if the process started.

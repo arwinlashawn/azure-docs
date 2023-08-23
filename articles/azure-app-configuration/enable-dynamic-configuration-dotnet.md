@@ -2,13 +2,14 @@
 title: '.NET Framework Tutorial: dynamic configuration in Azure App Configuration'
 description: In this tutorial, you learn how to dynamically update the configuration data for .NET Framework apps using Azure App Configuration. 
 services: azure-app-configuration
-author: mcleanbyron
+author: maud-lv
 ms.service: azure-app-configuration
 ms.devlang: csharp
-ms.custom: devx-track-csharp, devx-track-dotnet
+ms.custom: devx-track-csharp
 ms.topic: tutorial
-ms.date: 03/20/2023
-ms.author: mcleans
+ms.date: 07/24/2020
+ms.author: malev
+
 #Customer intent: I want to dynamically update my .NET Framework app to use the latest configuration data in App Configuration.
 ---
 # Tutorial: Use dynamic configuration in a .NET Framework app
@@ -23,18 +24,21 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create one for free](https://azure.microsoft.com/free/).
-- An App Configuration store. [Create a store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
+- Azure subscription - [create one for free](https://azure.microsoft.com/free/)
 - [Visual Studio](https://visualstudio.microsoft.com/vs)
 - [.NET Framework 4.7.2 or later](https://dotnet.microsoft.com/download/dotnet-framework)
 
-## Add a key-value
+## Create an App Configuration store
 
-Add the following key-value to the App Configuration store and leave **Label** and **Content Type** with their default values. For more information about how to add key-values to a store using the Azure portal or the CLI, go to [Create a key-value](./quickstart-azure-app-configuration-create.md#create-a-key-value).
+[!INCLUDE [azure-app-configuration-create](../../includes/azure-app-configuration-create.md)]
 
-| Key                        | Value                               |
-|----------------------------|-------------------------------------|
-| *TestApp:Settings:Message* | *Data from Azure App Configuration* |
+7. Select **Configuration explorer** > **+ Create** > **Key-value** to add the following key-value:
+
+    | Key                        | Value                               |
+    |----------------------------|-------------------------------------|
+    | *TestApp:Settings:Message* | *Data from Azure App Configuration* |
+
+    Leave **Label** and **Content Type** empty.
 
 ## Create a .NET Framework console app
 

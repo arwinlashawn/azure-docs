@@ -1,10 +1,10 @@
 ---
-title: Device Update for IoT Hub update manifest
+title: Device Update for IoT Hub update manifest | Microsoft Docs
 description: Learn how properties are sent from the Device Update service to the device during an update
 author: andrewbrownmsft
 ms.author: andbrown
 ms.date: 08/19/2022
-ms.topic: concept-article
+ms.topic: conceptual
 ms.service: iot-hub-device-update
 ---
 
@@ -39,8 +39,8 @@ Each manifest type has its own schema and schema version.
   },
   "compatibility": [
     {
-      "manufacturer": "Contoso",
-      "model": "Toaster"
+      "deviceManufacturer": "Contoso",
+      "deviceModel": "Toaster"
     }
   ],
   "instructions": {

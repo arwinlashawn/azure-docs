@@ -6,8 +6,7 @@ author: hirenshah1
 ms.author: hirshah
 ms.service: cloud-services
 ms.topic: troubleshooting
-ms.date: 02/21/2023
-ms.custom: compute-evergreen
+ms.date: 02/22/2021
 ---
 
 # Troubleshoot FabricInternalServerError or ServiceAllocationFailure when deploying a Cloud service (classic) to Azure

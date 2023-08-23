@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: service-fabric
-ms.custom: devx-track-extended-java
 services: service-fabric
 ms.date: 07/11/2022
 ---

@@ -1,9 +1,9 @@
 ---
 title: Java samples to illustrate connection pooling
 description: This article lists Java samples to illustrate connection pooling.
-author: SudheeshGH
-ms.author: sunaray
-ms.custom: devx-track-java, devx-track-extended-java
+author: savjani
+ms.author: pariks
+ms.custom: devx-track-java
 ms.service: mysql
 ms.subservice: single-server
 ms.topic: sample
@@ -13,8 +13,6 @@ ms.date: 06/20/2022
 # Java sample to illustrate connection pooling
 
 [!INCLUDE[applies-to-mysql-single-server](../includes/applies-to-mysql-single-server.md)]
-
-[!INCLUDE[azure-database-for-mysql-single-server-deprecation](../includes/azure-database-for-mysql-single-server-deprecation.md)]
 
 The below sample code illustrates connection pooling in Java.
 

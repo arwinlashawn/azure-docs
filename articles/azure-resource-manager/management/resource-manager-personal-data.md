@@ -2,7 +2,6 @@
 title: Personal data
 description: Learn how to manage personal data associated with Azure Resource Manager operations.
 ms.topic: conceptual
-ms.custom: devx-track-arm-template
 ms.date: 05/14/2018
 ---
 # Manage personal data associated with Azure Resource Manager

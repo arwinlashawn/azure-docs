@@ -130,7 +130,7 @@ sign ::= '+' | '-'
 
 /* In practice integer literals are limited in length to the precision of
 the corresponding EDM data type. */
-integer_literal ::= sign? digit+
+integer_literal ::= digit+
 
 float_literal ::=
     sign? whole_part fractional_part? exponent?

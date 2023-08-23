@@ -4,7 +4,8 @@ titleSuffix: Azure Storage
 description: In this quickstart, you use Azure PowerShell in object (Blob) storage. Then you use PowerShell to upload a blob to Azure Storage, download a blob, and list the blobs in a container.
 services: storage
 author: stevenmatthew
-ms.service: azure-storage
+ms.service: storage
+ms.subservice: blobs
 ms.topic: quickstart
 ms.date: 03/31/2022
 ms.author: shaas
@@ -23,7 +24,7 @@ You will also need the Storage Blob Data Contributor role to read, write, and de
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
-This quickstart requires the Azure PowerShell module Az version 0.7 or later. Run `Get-InstalledModule -Name Az -AllVersions | select Name,Version` to find the version. If you need to install or upgrade, see [Install Azure PowerShell module](/powershell/azure/install-azure-powershell).
+This quickstart requires the Azure PowerShell module Az version 0.7 or later. Run `Get-InstalledModule -Name Az -AllVersions | select Name,Version` to find the version. If you need to install or upgrade, see [Install Azure PowerShell module](/powershell/azure/install-az-ps).
 
 [!INCLUDE [storage-quickstart-tutorial-intro-include-powershell](../../../includes/storage-quickstart-tutorial-intro-include-powershell.md)]
 
@@ -144,7 +145,7 @@ In this quickstart, you transferred files between a local file system and Azure 
 > [Manage block blobs with PowerShell](blob-powershell.md)
 
 > [!div class="nextstepaction"]
-> [Azure PowerShell samples for Azure Blob storage](storage-samples-blobs-powershell.md?toc=/azure/storage/blobs/toc.json)
+> [Azure PowerShell samples for Azure Blob storage](storage-samples-blobs-powershell.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json)
 
 ### Microsoft Azure PowerShell Storage cmdlets reference
 
@@ -152,4 +153,4 @@ In this quickstart, you transferred files between a local file system and Azure 
 
 ### Microsoft Azure Storage Explorer
 
-- [Microsoft Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md?toc=/azure/storage/blobs/toc.json) is a free, standalone app from Microsoft that enables you to work visually with Azure Storage data on Windows, macOS, and Linux.
+- [Microsoft Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) is a free, standalone app from Microsoft that enables you to work visually with Azure Storage data on Windows, macOS, and Linux.

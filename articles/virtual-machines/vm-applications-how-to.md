@@ -8,7 +8,8 @@ ms.topic: how-to
 ms.workload: infrastructure
 ms.date: 02/03/2022
 ms.reviewer: amjads
-ms.custom: devx-track-azurepowershell, devx-track-azurecli
+ms.custom: 
+
 ---
 
 # Create and deploy VM Applications
@@ -16,6 +17,8 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 VM Applications are a resource type in Azure Compute Gallery (formerly known as Shared Image Gallery) that simplifies management, sharing and global distribution of applications for your virtual machines.
 
 
+> [!IMPORTANT]
+> Deploying VM applications in Azure Compute Gallery **do not currently support using Azure policies**.
 
 
 ## Prerequisites

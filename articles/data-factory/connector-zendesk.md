@@ -8,7 +8,7 @@ ms.service: data-factory
 ms.subservice: data-movement
 ms.topic: conceptual
 ms.custom: synapse
-ms.date: 04/12/2023
+ms.date: 02/28/2022
 ---
 
 #  Transform data in Zendesk (Preview) using Azure Data Factory or Synapse Analytics

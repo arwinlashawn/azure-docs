@@ -1,13 +1,13 @@
 ---
 title: Configure diagnostic settings and a workspace
 description: Learn how to configure diagnostic settings and a Log Analytics workspace to monitor Azure Data Factory.
-author: ukchrist
-ms.author: ulrichchrist
+author: joshuha-msft
+ms.author: joowen
 ms.reviewer: jburchel
 ms.service: data-factory
 ms.subservice: monitoring
 ms.topic: conceptual
-ms.date: 07/20/2023
+ms.date: 08/12/2022
 ---
 
 # Configure diagnostic settings and a workspace

@@ -1,10 +1,10 @@
 ---
 title: Azure Resource Graph sample queries for Azure Container Registry
 description: Sample Azure Resource Graph queries for Azure Container Registry showing use of resource types and tables to access Azure Container Registry related resources and properties.
+ms.date: 07/07/2022
 ms.topic: sample
-author: tejaswikolli-web
-ms.author: tejaswikolli
-ms.date: 10/11/2022
+author: dlepow
+ms.author: danlep
 ms.service: container-registry
 ms.custom: subject-resourcegraph-sample
 ---

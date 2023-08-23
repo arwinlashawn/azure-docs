@@ -2,9 +2,8 @@
 title: Grant permissions to users and client applications using CLI and REST API - Azure Health Data Services
 description: This article describes how to grant permissions to users and client applications using CLI and REST API.
 services: healthcare-apis
-author: mikaelweave
+author: ginalee-dotcom
 ms.service: healthcare-apis
-ms.custom: devx-track-azurecli
 ms.topic: tutorial
 ms.date: 06/06/2022
 ms.author: mikaelw

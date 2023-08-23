@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.author: rosemalcolm
 author: RoseHJM
 ms.date: 06/26/2020
-ms.custom: UpdateFrequency2
 ---
 
 # Manage Azure DevTest Labs formulas
@@ -121,7 +120,7 @@ To delete a formula, follow these steps:
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## Related blog posts
-* [Custom images or formulas?](./devtest-lab-comparing-vm-base-image-types.md)
+* [Custom images or formulas?](./devtest-lab-faq.yml)
 
 ## Next steps
 Once you have created a formula for use when creating a VM, the next step is to [add a VM to your lab](devtest-lab-add-vm.md).

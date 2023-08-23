@@ -4,8 +4,7 @@ description: This reference describes the JavaScript SDK for the Azure Web PubSu
 author: vicancy
 ms.author: lianwei
 ms.service: azure-web-pubsub
-ms.custom: devx-track-js
-ms.topic: conceptual
+ms.topic: conceptual 
 ms.date: 11/11/2021
 ---
 
@@ -42,7 +41,7 @@ You can use this library in your app server side to manage the WebSocket client 
 
 #### Currently supported environments
 
-- [LTS versions of Node.js](https://nodejs.dev/)
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
 
 #### Prerequisites
 
@@ -60,29 +59,19 @@ npm install @azure/web-pubsub
 ```js
 const { WebPubSubServiceClient } = require("@azure/web-pubsub");
 
-const serviceClient = new WebPubSubServiceClient(
-  "<ConnectionString>",
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<ConnectionString>", "<hubName>");
 ```
 
 You can also authenticate the `WebPubSubServiceClient` using an endpoint and an `AzureKeyCredential`:
 
 ```js
-const {
-  WebPubSubServiceClient,
-  AzureKeyCredential,
-} = require("@azure/web-pubsub");
+const { WebPubSubServiceClient, AzureKeyCredential } = require("@azure/web-pubsub");
 
 const key = new AzureKeyCredential("<Key>");
-const serviceClient = new WebPubSubServiceClient(
-  "<Endpoint>",
-  key,
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<Endpoint>", key, "<hubName>");
 ```
 
-Or authenticate the `WebPubSubServiceClient` using [Microsoft Entra ID][microsoft_entra_id_doc]
+Or authenticate the `WebPubSubServiceClient` using [Azure Active Directory][aad_doc]
 
 1. Install the `@azure/identity` dependency
 
@@ -93,17 +82,10 @@ npm install @azure/identity
 1. Update the source code to use `DefaultAzureCredential`:
 
 ```js
-const {
-  WebPubSubServiceClient,
-  AzureKeyCredential,
-} = require("@azure/web-pubsub");
+const { WebPubSubServiceClient, AzureKeyCredential } = require("@azure/web-pubsub");
 
 const key = new DefaultAzureCredential();
-const serviceClient = new WebPubSubServiceClient(
-  "<Endpoint>",
-  key,
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<Endpoint>", key, "<hubName>");
 ```
 
 ### Examples
@@ -113,10 +95,7 @@ const serviceClient = new WebPubSubServiceClient(
 ```js
 const { WebPubSubServiceClient } = require("@azure/web-pubsub");
 
-const serviceClient = new WebPubSubServiceClient(
-  "<ConnectionString>",
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<ConnectionString>", "<hubName>");
 
 // Get the access token for the WebSocket client connection to use
 let token = await serviceClient.getClientAccessToken();
@@ -132,10 +111,7 @@ token = await serviceClient.getClientAccessToken({ userId: "user1" });
 ```js
 const { WebPubSubServiceClient } = require("@azure/web-pubsub");
 
-const serviceClient = new WebPubSubServiceClient(
-  "<ConnectionString>",
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<ConnectionString>", "<hubName>");
 
 // Send a JSON message
 await serviceClient.sendToAll({ message: "Hello world!" });
@@ -153,10 +129,7 @@ await serviceClient.sendToAll(payload.buffer);
 ```js
 const { WebPubSubServiceClient } = require("@azure/web-pubsub");
 
-const serviceClient = new WebPubSubServiceClient(
-  "<ConnectionString>",
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<ConnectionString>", "<hubName>");
 
 const groupClient = serviceClient.group("<groupName>");
 
@@ -179,18 +152,13 @@ await groupClient.sendToAll(payload.buffer);
 ```js
 const { WebPubSubServiceClient } = require("@azure/web-pubsub");
 
-const serviceClient = new WebPubSubServiceClient(
-  "<ConnectionString>",
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<ConnectionString>", "<hubName>");
 
 // Send a JSON message
 await serviceClient.sendToUser("user1", { message: "Hello world!" });
 
 // Send a plain text message
-await serviceClient.sendToUser("user1", "Hi there!", {
-  contentType: "text/plain",
-});
+await serviceClient.sendToUser("user1", "Hi there!", { contentType: "text/plain" });
 
 // Send a binary message
 const payload = new Uint8Array(10);
@@ -203,10 +171,7 @@ await serviceClient.sendToUser("user1", payload.buffer);
 const { WebPubSubServiceClient } = require("@azure/web-pubsub");
 const WebSocket = require("ws");
 
-const serviceClient = new WebPubSubServiceClient(
-  "<ConnectionString>",
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<ConnectionString>", "<hubName>");
 
 const groupClient = serviceClient.group("<groupName>");
 
@@ -225,10 +190,7 @@ const { WebPubSubServiceClient } = require("@azure/web-pubsub");
 function onResponse(rawResponse: FullOperationResponse): void {
   console.log(rawResponse);
 }
-const serviceClient = new WebPubSubServiceClient(
-  "<ConnectionString>",
-  "<hubName>"
-);
+const serviceClient = new WebPubSubServiceClient("<ConnectionString>", "<hubName>");
 await serviceClient.sendToAll({ message: "Hello world!" }, { onResponse });
 ```
 
@@ -238,7 +200,7 @@ await serviceClient.sendToAll({ message: "Hello world!" }, { onResponse });
 
 You can set the following environment variable to get the debug logs when using this library.
 
-- Getting debug logs from the Azure Web PubSub client library
+- Getting debug logs from the SignalR client library
 
 ```bash
 export AZURE_LOG_LEVEL=verbose
@@ -268,7 +230,7 @@ When a WebSocket connection connects, the Web PubSub service transforms the conn
 
 #### Currently supported environments
 
-- [LTS versions of Node.js](https://nodejs.dev/)
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
 - [Express](https://expressjs.com/) version 4.x.x or higher
 
 #### Prerequisites
@@ -295,9 +257,7 @@ const app = express();
 app.use(handler.getMiddleware());
 
 app.listen(3000, () =>
-  console.log(
-    `Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`
-  )
+  console.log(`Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`)
 );
 ```
 
@@ -313,10 +273,10 @@ const handler = new WebPubSubEventHandler("chat", {
   handleConnect: (req, res) => {
     // auth the connection and set the userId of the connection
     res.success({
-      userId: "<userId>",
+      userId: "<userId>"
     });
   },
-  allowedEndpoints: ["https://<yourAllowedService>.webpubsub.azure.com"],
+  allowedEndpoints: ["https://<yourAllowedService>.webpubsub.azure.com"]
 });
 
 const app = express();
@@ -324,9 +284,7 @@ const app = express();
 app.use(handler.getMiddleware());
 
 app.listen(3000, () =>
-  console.log(
-    `Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`
-  )
+  console.log(`Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`)
 );
 ```
 
@@ -339,8 +297,8 @@ const { WebPubSubEventHandler } = require("@azure/web-pubsub-express");
 const handler = new WebPubSubEventHandler("chat", {
   allowedEndpoints: [
     "https://<yourAllowedService1>.webpubsub.azure.com",
-    "https://<yourAllowedService2>.webpubsub.azure.com",
-  ],
+    "https://<yourAllowedService2>.webpubsub.azure.com"
+  ]
 });
 
 const app = express();
@@ -348,9 +306,7 @@ const app = express();
 app.use(handler.getMiddleware());
 
 app.listen(3000, () =>
-  console.log(
-    `Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`
-  )
+  console.log(`Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`)
 );
 ```
 
@@ -361,7 +317,7 @@ const express = require("express");
 
 const { WebPubSubEventHandler } = require("@azure/web-pubsub-express");
 const handler = new WebPubSubEventHandler("chat", {
-  path: "/customPath1",
+  path: "customPath1"
 });
 
 const app = express();
@@ -370,9 +326,7 @@ app.use(handler.getMiddleware());
 
 app.listen(3000, () =>
   // Azure WebPubSub Upstream ready at http://localhost:3000/customPath1
-  console.log(
-    `Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`
-  )
+  console.log(`Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`)
 );
 ```
 
@@ -395,7 +349,7 @@ const handler = new WebPubSubEventHandler("chat", {
     // You can also set the state here
     res.setState("calledTime", calledTime);
     res.success();
-  },
+  }
 });
 
 const app = express();
@@ -403,9 +357,7 @@ const app = express();
 app.use(handler.getMiddleware());
 
 app.listen(3000, () =>
-  console.log(
-    `Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`
-  )
+  console.log(`Azure WebPubSub Upstream ready at http://localhost:3000${handler.path}`)
 );
 ```
 
@@ -415,7 +367,7 @@ app.listen(3000, () =>
 
 You can set the following environment variable to get the debug logs when using this library.
 
-- Getting debug logs from the Azure Web PubSub client library
+- Getting debug logs from the SignalR client library
 
 ```bash
 export AZURE_LOG_LEVEL=verbose
@@ -427,7 +379,6 @@ For more detailed instructions on how to enable logs, see [@azure/logger package
 
 Use **Live Trace** from the Web PubSub service portal to view the live traffic.
 
-[microsoft_entra_id_doc]: howto-authorize-from-application.md
 [azure_sub]: https://azure.microsoft.com/free/
 [samples_ref]: https://github.com/Azure/azure-webpubsub/tree/main/samples/javascript/
 

@@ -2,13 +2,12 @@
 title: Install a master target server for Linux VM failback with Azure Site Recovery
 description: Learn how to set up a Linux master target server for failback to an on-premises site during disaster recovery of VMware VMs to Azure using Azure Site Recovery.
 services: site-recovery
-author: ankitaduttaMSFT
+author: v-pgaddala
 manager: gaggupta
 ms.service: site-recovery
-ms.custom: devx-track-linux
 ms.topic: conceptual
-ms.author: ankitadutta
-ms.date: 08/01/2023
+ms.author: v-pgaddala
+ms.date: 05/27/2021
 ---
 
 
@@ -28,8 +27,8 @@ Post comments or questions at the end of this article or on the [Microsoft Q&A q
 ## Prerequisites
 
 * To choose the host on which to deploy the master target, determine if the failback is going to be to an existing on-premises virtual machine or to a new virtual machine. 
-  * For an existing virtual machine, the host of the master target should have access to the data stores of the virtual machine.
-  * If the on-premises virtual machine does not exist (in case of Alternate Location Recovery), the failback virtual machine is created on the same host as the master target. You can choose any ESXi host to install the master target.
+	* For an existing virtual machine, the host of the master target should have access to the data stores of the virtual machine.
+	* If the on-premises virtual machine does not exist (in case of Alternate Location Recovery), the failback virtual machine is created on the same host as the master target. You can choose any ESXi host to install the master target.
 * The master target should be on a network that can communicate with the process server and the configuration server.
 * The version of the master target must be equal to or earlier than the versions of the process server and the configuration server. For example, if the version of the configuration server is 9.4, the version of the master target can be 9.4 or 9.3 but not 9.5.
 * The master target can only be a VMware virtual machine and not a physical server.
@@ -49,9 +48,6 @@ Create the master target in accordance with the following sizing guidelines:
 ## Deploy the master target server
 
 ### Install Ubuntu 16.04.2 Minimal
-
->[!IMPORTANT]
->Ubuntu 16.04 (Xenial Xerus) has reached its end of life and is no longer supported by Canonical or the Ubuntu community. This means that no security updates or bug fixes will be provided for this version of Ubuntu. Continuing to use Ubuntu 16.04 may expose your system to potential security vulnerabilities or software compatibility issues. We strongly recommend upgrading to a supported version of Ubuntu, such as Ubuntu 18.04 or Ubuntu 20.04.
 
 Take the following the steps to install the Ubuntu 16.04.2 64-bit
 operating system.
@@ -184,10 +180,8 @@ Azure Site Recovery master target server requires a specific version of the Ubun
 > [!NOTE]
 > Make sure that you have Internet connectivity to download and install additional packages. If you don't have Internet connectivity, you need to manually find these Deb packages and install them.
 
- ```bash
-    sudo apt-get install -y multipath-tools lsscsi python-pyasn1 lvm2 kpartx
- ```
- 
+ `apt-get install -y multipath-tools lsscsi python-pyasn1 lvm2 kpartx`
+
 >[!NOTE]
 > From, version [9.42](https://support.microsoft.com/en-us/topic/update-rollup-55-for-azure-site-recovery-kb5003408-b19c8190-5f88-43ea-85b1-d9e0cc5ca7e8), Ubuntu 20.04 operating system is supported for Linux master target server.
 > If you wish to use the latest OS, upgrade the operating system to Ubuntu 20.04 before proceeding. To upgrade the operating system later, you can follow the instructions listed [here](#upgrade-os-of-master-target-server-from-ubuntu-1604-to-ubuntu-2004).
@@ -207,9 +201,7 @@ If your master target has Internet connectivity, you can use the following steps
 
 To download it using Linux, type:
 
-```bash
-   sudo wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz
-```
+`wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz`
 
 > [!WARNING]
 > Make sure that you download and unzip the installer in your home directory. If you unzip to **/usr/Local**, then the installation  fails.
@@ -228,22 +220,18 @@ To apply custom configuration changes, use the following steps as a ROOT user:
 
 1. Run the following command to untar the binary.
 
-    ```bash
-       sudo tar -xvf latestlinuxmobsvc.tar.gz
-    ```
+	`tar -xvf latestlinuxmobsvc.tar.gz`
+
     ![Screenshot of the command to run](./media/vmware-azure-install-linux-master-target/image16.png)
 
 2. Run the following command to give permission.
 
-    ```bash
-       sudo chmod 755 ./ApplyCustomChanges.sh
-    ```
+	`chmod 755 ./ApplyCustomChanges.sh`
+
 
 3. Run the following command to run the script.
-
-    ```bash
-       sudo ./ApplyCustomChanges.sh
-    ```
+	
+    `./ApplyCustomChanges.sh`
 
 > [!NOTE]
 > Run the script only once on the server. Then shut down the server. Restart the server after you add a disk, as described in the next section.
@@ -259,27 +247,25 @@ Use the following steps to create a retention disk:
     ![Multipath ID](./media/vmware-azure-install-linux-master-target/image27.png)
 
 3. Format the drive, and then create a file system on the new drive: **mkfs.ext4 /dev/mapper/\<Retention disk's multipath id>**.
-
+	
     ![File system](./media/vmware-azure-install-linux-master-target/image23-centos.png)
 
 4. After you create the file system, mount the retention disk.
 
-    ```bash
-    sudo mkdir /mnt/retention
-    sudo mount /dev/mapper/<Retention disk's multipath id> /mnt/retention
+    ```
+    mkdir /mnt/retention
+    mount /dev/mapper/<Retention disk's multipath id> /mnt/retention
     ```
 
 5. Create the **fstab** entry to mount the retention drive every time the system starts.
-    
-    ```bash
-       sudo vi /etc/fstab
-    ```
+	
+	`vi /etc/fstab`
+	
+	Select **Insert** to begin editing the file. Create a new line, and then insert the following text. Edit the disk multipath ID based on the highlighted multipath ID from the previous command.
 
-    Select **Insert** to begin editing the file. Create a new line, and then insert the following text. Edit the disk multipath ID based on the highlighted multipath ID from the previous command.
+	**/dev/mapper/\<Retention disks multipath id> /mnt/retention ext4 rw 0 0**
 
-    **/dev/mapper/\<Retention disks multipath id> /mnt/retention ext4 rw 0 0**
-
-    Select **Esc**, and then type **:wq** (write and quit) to close the editor window.
+	Select **Esc**, and then type **:wq** (write and quit) to close the editor window.
 
 ### Install the master target
 
@@ -292,32 +278,29 @@ Use the following steps to create a retention disk:
 
 1. Run the following command to install the master target.
 
-    ```bash
-    sudo ./install -q -d /usr/local/ASR -r MT -v VmWare
+    ```
+    ./install -q -d /usr/local/ASR -r MT -v VmWare
     ```
 
 2. Copy the passphrase from **C:\ProgramData\Microsoft Azure Site Recovery\private\connection.passphrase** on the configuration server. Then save it as **passphrase.txt** in the same local directory by running the following command:
 
-    ```bash
-       sudo echo <passphrase> >passphrase.txt
-    ```
+	`echo <passphrase> >passphrase.txt`
 
     Example: 
 
-    ```bash
-       sudo echo itUx70I47uxDuUVY >passphrase.txt`
-    ```
+    `echo itUx70I47uxDuUVY >passphrase.txt`
+	
 
 3. Note down the configuration server's IP address. Run the following command to register the server with the configuration server.
 
-    ```bash
-    sudo /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i <ConfigurationServer IP Address> -P passphrase.txt
+    ```
+	/usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i <ConfigurationServer IP Address> -P passphrase.txt
     ```
 
-    Example: 
-    
-    ```bash
-    sudo /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i 104.40.75.37 -P passphrase.txt
+	Example: 
+	
+    ```
+	/usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i 104.40.75.37 -P passphrase.txt
     ```
 
 Wait until the script finishes. If the master target registers successfully, the master target is listed on the **Site Recovery Infrastructure** page of the portal.
@@ -327,13 +310,13 @@ Wait until the script finishes. If the master target registers successfully, the
 
 1. Run the following command to install the master target. For the agent role, choose **master target**.
 
-    ```bash
-    sudo ./install
+    ```
+	./install
     ```
 
 2. Choose the default location for installation, and then select **Enter** to continue.
 
-    ![Choosing a default location for installation of master target](./media/vmware-azure-install-linux-master-target/image17.png)
+	![Choosing a default location for installation of master target](./media/vmware-azure-install-linux-master-target/image17.png)
 
 After the installation has finished, register the configuration server by using the command line.
 
@@ -341,8 +324,8 @@ After the installation has finished, register the configuration server by using 
 
 2. Run the following command to register the server with the configuration server.
 
-    ```bash
-    sudo /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh
+    ```
+	/usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh
     ```
 
      Wait until the script finishes. If the master target is registered successfully, the master target is listed on the **Site Recovery Infrastructure** page of the portal.
@@ -365,9 +348,8 @@ Running the installer will automatically detect that the agent is installed on t
 
 After the setup has been completed, check the version of the master target installed by using the following command:
 
-```bash
-   sudo cat /usr/local/.vx_version
-```
+`cat /usr/local/.vx_version`
+
 
 You will see that the **Version** field gives the version number of the master target.
 
@@ -389,16 +371,16 @@ From 9.42 version, ASR supports Linux master target server on Ubuntu 20.04. To u
 * The master target should not have any snapshots on the virtual machine. If there are snapshots, failback fails.
 
 * Due to some custom NIC configurations, the network interface is disabled during startup, and the master target agent cannot initialize. Make sure that the following properties are correctly set. Check these properties in the Ethernet card file's /etc/network/interfaces.
-    * auto eth0
-    * iface eth0 inet dhcp <br>
+	* auto eth0
+	* iface eth0 inet dhcp <br>
 
     Restart the networking service using the following command: <br>
 
-```bash
-   sudo systemctl restart networking
-```
+`sudo systemctl restart networking`
+
 
 ## Next steps
 After the installation and registration of the master target has finished, you can see the master target appear on the **master target** section in **Site Recovery Infrastructure**, under the configuration server overview.
 
 You can now proceed with [reprotection](vmware-azure-reprotect.md), followed by failback.
+

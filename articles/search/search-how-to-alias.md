@@ -2,11 +2,12 @@
 title: Create an index alias
 titleSuffix: Azure Cognitive Search
 description: Create an alias to define a secondary name that can be used to refer to an index for querying, indexing, and other operations.
-author: gmndrg
-ms.author: gimondra
+
+author: dereklegenzoff
+ms.author: delegenz
 ms.service: cognitive-search
 ms.topic: how-to
-ms.date: 04/04/2023
+ms.date: 03/01/2022
 ---
 
 # Create an index alias in Azure Cognitive Search
@@ -28,7 +29,7 @@ Instead of dropping and rebuilding your index, you can use index aliases. A typi
 
 ## Create an index alias
 
-You can create an alias using the preview REST API, the preview SDKs, or through the [Azure portal](https://portal.azure.com). An alias consists of the `name` of the alias and the name of the search index that the alias is mapped to. Only one index name can be specified in the `indexes` array.
+You can create an alias using the preview REST API, the preview SDKs, or through [Visual Studio Code](search-get-started-vs-code.md). An alias consists of the `name` of the alias and the name of the search index that the alias is mapped to. Only one index name can be specified in the `indexes` array.
 
 ### [**REST API**](#tab/rest)
 
@@ -42,32 +43,15 @@ POST /aliases?api-version=2021-04-30-preview
 }
 ```
 
-### [**Azure portal**](#tab/portal)
+### [**Visual Studio Code**](#tab/vscode)
 
-Follow the steps below to create an index alias in the Azure portal.
+To create an alias in Visual Studio Code:
+1. Follow the steps in the [Visual Studio Code Quickstart](search-get-started-vs-code.md) to install the [Azure Cognitive Search extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurecognitivesearch) and connect to your Azure Subscription.
+1. Navigate to your search service.
+1. Under your search service, right-click on **Aliases** and select **Create new alias**.
+1. Provide the name of your alias and the name of the search index you'd like to map it to and then save the file to create the alias.
 
-1. Navigate to your search service in the [Azure portal](https://portal.azure.com).
-1. Find and select **Aliases**.
-1. Select **+ Add Alias**.
-1. Give your index alias a name and select the search index you want to map the alias to. Then, select **Save**.
-
-:::image type="content" source="media/search-howto-alias/create-alias-portal.png" alt-text="Screenshot creating an alias in the Azure portal." border="true":::
-
-### [**.NET SDK**](#tab/sdk)
-
-
-In the preview [.NET SDK](https://www.nuget.org/packages/Azure.Search.Documents/11.5.0-beta.1) for Azure Cognitive Search, you can use the following syntax to create an index alias. 
-
-```csharp
-// Create a SearchIndexClient
-SearchIndexClient adminClient = new SearchIndexClient(serviceEndpoint, credential);
-
-// Create an index alias
-SearchAlias myAlias = new SearchAlias("my-alias", "hotel-quickstart-index");
-adminClient.CreateAlias(myAlias);
-```
-
-Index aliases are also supported in the latest preview SDKs for [Java](https://search.maven.org/artifact/com.azure/azure-search-documents/11.6.0-beta.1/jar), [Python](https://pypi.org/project/azure-search-documents/11.4.0b1/), and [JavaScript](https://www.npmjs.com/package/@azure/search-documents/v/11.3.0-beta.8).
+    ![Create an alias in VS Code](media/search-howto-alias/create-alias-vscode.png "Create an alias in VS Code")
 
 ---
 
@@ -88,12 +72,10 @@ POST /indexes/my-alias/docs/search?api-version=2021-04-30-preview
 }
 ```
 
-If you expect to make updates to a production index, specify an alias rather than the index name in your client-side application. Scenarios that require an index rebuild are outlined in [Drop and rebuild an index](search-howto-reindex.md).
+If you expect that you may need to make updates to your index definition for your production indexes, you should use an alias rather than the index name for requests in your client-side application. Scenarios that require you to create a new index are outlined under these [rebuild conditions](search-howto-reindex.md#rebuild-conditions).
 
 > [!NOTE]
-> You can only use an alias with [document operations](/rest/api/searchservice/document-operations) or to get and update an index definition. Aliases can't be used to delete an index, can't be used with the Analyze Text API, and can't be used as the `targetIndexName` on an indexer.
-> 
-> An update to an alias may take up to 10 seconds to propagate through the system so you should wait at least 10 seconds before performing any operation in the index that has been mapped or recently was mapped to the alias.
+> You can only use an alias with [document operations](/rest/api/searchservice/document-operations). Aliases can't be used to get or update an index definition, can't be used with the Analyze Text API, and can't be used as the `targetIndexName` on an indexer.
 
 ## Swap indexes
 

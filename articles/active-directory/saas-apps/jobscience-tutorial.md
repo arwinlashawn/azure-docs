@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Azure Active Directory integration with Jobscience'
+title: 'Tutorial: Azure Active Directory integration with Jobscience | Microsoft Docs'
 description: Learn how to configure single sign-on between Azure Active Directory and Jobscience.
 services: active-directory
 author: jeevansd
@@ -8,7 +8,7 @@ ms.service: active-directory
 ms.subservice: saas-app-tutorial
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 11/21/2022
+ms.date: 07/12/2017
 ms.author: jeedes
 ---
 # Tutorial: Azure Active Directory integration with Jobscience

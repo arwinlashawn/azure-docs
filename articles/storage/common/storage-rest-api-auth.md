@@ -3,15 +3,14 @@ title: Call REST API operations with Shared Key authorization
 titleSuffix: Discover how to call Azure Storage REST API operations with Shared Key authorization. Get detailed information about each step of the sample operation.
 description: Use the Azure Storage REST API to make a request to Blob storage using Shared Key authorization.
 services: storage
-author: pauljewellmsft
+author: tamram
 
-ms.service: azure-storage
+ms.service: storage
 ms.topic: how-to
 ms.date: 10/01/2019
-ms.author: pauljewell
+ms.author: tamram
 ms.reviewer: ozge
-ms.subservice: storage-common-concepts
-ms.devlang: csharp
+ms.subservice: common
 ms.custom: devx-track-csharp
 ---
 

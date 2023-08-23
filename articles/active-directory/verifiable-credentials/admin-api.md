@@ -24,29 +24,11 @@ The Microsoft Entra Verified ID Admin API enables you to manage all aspects of t
 
 ## Base URL
 
-The Admin API is server over HTTPS. All URLs referenced in the documentation have the following base: `https://verifiedid.did.msidentity.com`.
+The Admin API is server over HTTPS. All URLs referenced in the documentation have the following base: `https://verifiedid.did.msidentity.com`. 
 
 ## Authentication
 
-The API is protected through Azure Active Directory and uses OAuth2 bearer tokens. The access token can be for a user or for an application.
-
-### User bearer tokens
-
-The app registration needs to have the API Permission for `Verifiable Credentials Service Admin` and then when acquiring the access token the app should use scope `6a8b4b39-c021-437c-b060-5a14a3fd65f3/full_access`. The access token must be for a user with the [global administrator](../../active-directory/roles/permissions-reference.md#global-administrator) or the [authentication policy administrator](../../active-directory/roles/permissions-reference.md#authentication-policy-administrator) role. A user with role [global reader](../../active-directory/roles/permissions-reference.md#global-reader) can perform read-only API calls.
-
-### Application bearer tokens
-
-The `Verifiable Credentials Service Admin` service supports the following application permissions.
-
-| Permission | Description |
-| ---------- | ----------- |
-| VerifiableCredential.Authority.ReadWrite | Permission to read/write authority object(s) |
-| VerifiableCredential.Contract.ReadWrite | Permission to read/write contract object(s) |
-| VerifiableCredential.Credential.Search | Permission to search for a credential to revoke |
-| VerifiableCredential.Credential.Revoke | Permission to [revoke a previously issued credential](how-to-issuer-revoke.md) |
-| VerifiableCredential.Network.Read | Permission to read entries from the [Verified ID Network](vc-network-api.md) |
-
-The app registration needs to have the API Permission for `Verifiable Credentials Service Admin` and permissions required from the above table. When acquiring the access token, via the [client credentials flow](../../active-directory/develop/v2-oauth2-client-creds-grant-flow.md), the app should use scope `6a8b4b39-c021-437c-b060-5a14a3fd65f3/.default`.
+The API is protected through Azure Active Directory and uses OAuth2 bearer tokens. The app registration needs to have the API Permission for `Verifiable Credentials Service Admin` and then when acquiring the access token the app should use scope `6a8b4b39-c021-437c-b060-5a14a3fd65f3/full_access`. 
 
 ## Onboarding
 
@@ -77,14 +59,12 @@ Content-type: application/json
 
 {
     "id": "f5bf2fc6-7135-4d94-a6fe-c26e4543bc5a",
-    "verifiableCredentialServicePrincipalId": "90e10a26-94cd-49d6-8cd7-cacb10f00686",
-    "verifiableCredentialRequestServicePrincipalId": "870e10a26-94cd-49d6-8cd7-cacb10f00fe",
-    "verifiableCredentialAdminServicePrincipalId": "760e10a26-94cd-49d6-8cd7-cacb10f00ab",
+    "servicePrincipal": "90e10a26-94cd-49d6-8cd7-cacb10f00686",
     "status": "Enabled"
 }
 ```
 
-Repeatedly calling this API results in the exact same return message.
+Repeatedly calling this API will result in the exact same return message.
 
 ## Authorities
 
@@ -189,7 +169,7 @@ We support two different didModels. One is `ion` and the other supported method 
 | `recoveryKeys` | string array | URL to the recovery key  |
 | `encryptionKeys` | string array | URL to the encryption key |
 | `linkedDomainUrls` | string array | Domains linked to this DID |
-| `didDocumentStatus` | string | status of the DID, `published` when it's written to ION otherwise it is `submitted`|
+| `didDocumentStatus` | string | status of the DID, `published` when it's written to ION otherwise it will be `submitted`|
 
 #### Web
 
@@ -208,7 +188,7 @@ We support two different didModels. One is `ion` and the other supported method 
 | -------- | -------- | -------- |
 | `subscriptionId` | string | The Azure subscription this Key Vault resides |
 | `resourceGroup` | string | name of the resource group from this Key Vault |
-| `resourceName` | string | Key Vault name |
+| `resouceName` | string | Key Vault name |
 | `resourceUrl` | string | URL to this Key Vault |
 
 
@@ -305,7 +285,7 @@ Content-type: application/json
 
 ### Create authority
 
-This call creates a new **private key**, recovery key and update key, stores these keys in the specified Azure Key Vault and sets the permissions to this Key Vault for the verifiable credential service and a create new **DID** with corresponding DID Document and commits that to the ION network.
+This call creates a new **private key**, recovery key and update key, stores these in the specified Azure Key Vault and sets the permissions to this Key Vault for the verifiable credential service and a create new **DID** with corresponding DID Document and commits that to the ION network.
 
 #### HTTP request
 
@@ -418,7 +398,7 @@ Content-type: application/json
 
 ### Remarks
 
->You can create multiple authorities with their own DID and private keys, these will not be visible in the UI of the Azure portal. Currently we only support having 1 authority. We have not fully tested all scenarios with multiple created authorities. If you are trying this please let us know your experience.
+>You can create multiple authorities with their own DID and private keys, these will not be visible in the UI of the azure portal. Currently we only support having 1 authority. We have not fully tested all scenarios with multiple created authorities. If you are trying this please let us know your experience.
 
 ### Update authority
 
@@ -426,7 +406,7 @@ This method can be used to update the display name of this specific instance of 
 
 #### HTTP request
 
-`PATCH /v1.0/verifiableCredentials/authorities/:authorityId`
+`POST /v1.0/verifiableCredentials/authorities/:authorityId`
 
 Replace the value of `:authorityId` with the value of the authority ID you want to update.
 
@@ -496,7 +476,7 @@ Content-type: application/json
 Accepted
 ```
 
-The didDocumentStatus switches to `submitted` it will take a while before the change is committed to the ION network.
+The didDocumentStatus will switch to `submitted` it will take a while before the change is committed to the ION network.
 
 If you try to submit a change before the operation is completed, you'll get the following error message:
 
@@ -563,7 +543,7 @@ Although it is technically possible to publish multiple domains, we currently on
 
 ### Well-known DID configuration
 
-The `generateWellknownDidConfiguration` method generates the signed did-configuration.json file. The file must be uploaded to the `.well-known` folder in the root of the website hosted for the domain in the linked domain of this verifiable credential instance. Instructions can be found [here](how-to-dnsbind.md#verify-domain-ownership-and-distribute-did-configurationjson-file).
+The `generateWellknownDidConfiguration` method generates the signed did-configuration.json file. The file must be uploaded to the `.well-known` folder in the root of the website hosted for the domain in the linked domain of this verifiable credential instance. Instructions can be found [here](how-to-dnsbind.md#distribute-well-known-config).
 
 #### HTTP request
 
@@ -603,7 +583,7 @@ Content-type: application/json
 }
 ```
 
-Save this result with the file name did-configuration.json and upload this file to the correct folder and website. If you specify a domain not linked to this DID/DID Document, you receive an error:
+Save this result with the file name did-configuration.json and upload this file to the correct folder and website. If you specify a domain not linked to this DID/DID Document, you'll receive an error:
 
 ```
 HTTP/1.1 400 Bad Request
@@ -847,19 +827,19 @@ The response contains the following properties
 
 | Property | Type | Description |
 | -------- | -------- | -------- |
-|`attestations`| [attestations](#attestations-type)| describing supported inputs for the rules |
+|`attestations`| [attestions](#attestations-type)| describing supported inputs for the rules |
 |`validityInterval` | number | this value shows the lifespan of the credential |
 |`vc`| vcType array | types for this contract |
 |`customStatusEndpoint`| [customStatusEndpoint] (#customstatusendpoint-type) (optional) | status endpoint to include in the verifiable credential for this contract |
 
-If the property `customStatusEndpoint` property isn't specified, then the `anonymous` status endpoint is used.
+If the property `customStatusEndpoint` property isn't specified then the `anonymous` status endpoint is used.
 
 #### attestations type
 
 | Property | Type | Description |
 | -------- | -------- | -------- |
-|`idTokens`| [idTokenAttestation](#idtokenattestation-type) (array) (optional) | describes ID token inputs|
-|`idTokenHints`| [idTokenHintAttestation](#idtokenhintattestation-type) (array) (optional) | describes ID token hint inputs |
+|`idTokens`| [idTokenAttestation](#idtokenattestation-type) (array) (optional) | describes id token inputs|
+|`idTokenHints`| [idTokenHintAttestation](#idtokenhintattestation-type) (array) (optional) | describes id token hint inputs |
 |`presentations`| [verifiablePresentationAttestation](#verifiablepresentationattestation-type) (array) (optional) | describes verifiable presentations inputs |
 |`selfIssued`| [selfIssuedAttestation](#selfissuedattestation-type) (array) (optional) | describes self issued inputs |
 |`accessTokens`| [accessTokenAttestation](#accesstokenattestation-type) (array) (optional) | describes access token inputs |
@@ -986,8 +966,9 @@ example:
 
 | Property | Type | Description |
 | -------- | -------- | -------- |
-|`uri`| string (uri) | uri of the logo |
+|`url`| string (url) | url of the logo (optional if image is specified) |
 |`description` | string | the description of the logo |
+|`image` | string | the base-64 encoded image (optional if url is specified) |
 
 #### displayConsent type
 
@@ -1098,7 +1079,7 @@ example message:
 ### Create contract
 
 When creating a contract the name has to be unique in the tenant. In case you have created multiple authorities, the contract name has to be unique across all authorities.
-The name of the contract will be part of the contract URL, which is used in the issuance requests.
+The name of the contract will be part of the contract URL which is used in the issuance requests.
 
 #### HTTP request
 
@@ -1229,20 +1210,20 @@ You are able to [search](how-to-issuer-revoke.md) for verifiable credentials wit
   string claimvalue = "Bowen";
   string contractid = "ZjViZjJmYzYtNzEzNS00ZDk0LWE2ZmUtYzI2ZTQ1NDNiYzVhdGVzdDM";
   string output;
-
+		
   using (var sha256 = SHA256.Create())
   {
-    var input = contractid + claimvalue;
-    byte[] inputasbytes = Encoding.UTF8.GetBytes(input);
-    hashedsearchclaimvalue = Convert.ToBase64String(sha256.ComputeHash(inputasbytes));
+	var input = contractid + claimvalue;
+	byte[] inputasbytes = Encoding.UTF8.GetBytes(input);
+	hashedsearchclaimvalue = Convert.ToBase64String(sha256.ComputeHash(inputasbytes));
   }
 ```
 
-The following request shows how to add the calculated value to the filter parameter of the request. At this moment only the filter=indexclaimhash eq format is supported.
+The following request shows how to add the calculated value to the filter parameter of the request. At this moment only the filter=indexclaim eq format is supported.
 
 ### HTTP request
 
-`GET /v1.0/verifiableCredentials/authorities/:authorityId/contracts/:contractId/credentials?filter=indexclaimhash eq {hashedsearchclaimvalue}`
+`GET /v1.0/verifiableCredentials/authorities/:authorityId/contracts/:contractId/credentials?filter=indexclaim eq {hashedsearchclaimvalue}`
 
 #### Request headers
 

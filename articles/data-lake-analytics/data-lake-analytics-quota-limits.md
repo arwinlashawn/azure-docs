@@ -3,12 +3,10 @@ title: Adjust quotas and limits in Azure Data Lake Analytics
 description: Learn how to adjust and increase quotas and limits in Azure Data Lake Analytics (ADLA) accounts.
 ms.service: data-lake-analytics
 ms.topic: how-to
-ms.date: 01/20/2023
+ms.date: 03/15/2018
 ---
 
 # Adjust quotas and limits in Azure Data Lake Analytics
-
-[!INCLUDE [retirement-flag](includes/retirement-flag.md)]
 
 Learn how to adjust and increase the quota and limits in Azure Data Lake Analytics (ADLA) accounts. Knowing these limits will help you understand your U-SQL job behavior. All quota limits are soft, so you can increase the maximum limits by contacting Azure support.
 
@@ -16,7 +14,7 @@ Learn how to adjust and increase the quota and limits in Azure Data Lake Analyti
 
 **Maximum number of ADLA accounts per subscription per region:**  5
 
-If you try to create a sixth ADLA account, you'll get an error "You have reached the maximum number of Data Lake Analytics accounts allowed (5) in region under subscription name".
+If you try to create a sixth ADLA account, you will get an error "You have reached the maximum number of Data Lake Analytics accounts allowed (5) in region under subscription name".
 
 If you want to go beyond this limit, you can try these options:
 
@@ -46,7 +44,7 @@ This is the maximum number of jobs that can run concurrently in your account. Ab
 
 1. Sign on to the [Azure portal](https://portal.azure.com).
 2. Choose an existing ADLA account.
-3. Select **Properties**.
+3. Click **Properties**.
 4. Adjust the values for **Maximum AUs**, **Maximum number of running jobs**, and **Job submission limits** to suit your needs.
 
 ## Increase maximum quota limits
@@ -61,7 +59,7 @@ You can find more information about Azure limits in the [Azure service-specific 
 
 2. Select the issue type **Quota**.
 
-3. Select your **Subscription** (make sure it isn't a "trial" subscription).
+3. Select your **Subscription** (make sure it is not a "trial" subscription).
 
 4. Select quota type **Data Lake Analytics**.
 

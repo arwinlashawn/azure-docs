@@ -2,15 +2,18 @@
 title: View relative latencies to Azure regions from specific locations
 description: Learn how to view relative latencies across Internet providers to Azure regions from specific locations.
 services: network-watcher
-author: halkazwini
+documentationcenter: ''
+author: damendo
+
 ms.service: virtual-network
 ms.topic: how-to
+ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/20/2022
-ms.author: halkazwini
-ms.custom: devx-track-azurepowershell, engagement-fy23
----
+ms.date: 12/14/2017
+ms.author: damendo
+ms.custom: devx-track-azurepowershell
 
+---
 # View relative latency to Azure regions from specific locations
 
 > [!WARNING]

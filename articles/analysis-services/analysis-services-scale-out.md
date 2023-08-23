@@ -2,12 +2,13 @@
 title: Azure Analysis Services scale-out| Microsoft Docs
 description: Replicate Azure Analysis Services servers with scale-out. Client queries can then be distributed among multiple query replicas in a scale-out query pool.
 author: minewiskan
-ms.service: analysis-services
+ms.service: azure-analysis-services
 ms.topic: conceptual
 ms.date: 04/27/2021
 ms.author: owend
 ms.reviewer: minewiskan 
-ms.custom:
+ms.custom: devx-track-azurepowershell
+
 ---
 # Azure Analysis Services scale-out
 
@@ -143,7 +144,7 @@ Return status codes:
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
-Before using PowerShell, [install or update the latest Azure PowerShell module](/powershell/azure/install-azure-powershell). 
+Before using PowerShell, [install or update the latest Azure PowerShell module](/powershell/azure/install-az-ps). 
 
 To run sync, use [Sync-AzAnalysisServicesInstance](/powershell/module/az.analysisservices/sync-AzAnalysisServicesinstance).
 

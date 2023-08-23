@@ -1,7 +1,6 @@
 ---
 author: vhorne
 ms.service: application-gateway
-ms.custom: devx-track-azurepowershell
 ms.topic: include
 ms.date: 11/09/2018	
 ms.author: victorh

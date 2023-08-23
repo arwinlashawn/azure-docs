@@ -2,8 +2,7 @@
 title: Deployment modes
 description: Describes how to specify whether to use a complete or incremental deployment mode with Azure Resource Manager.
 ms.topic: conceptual
-ms.custom: devx-track-arm-template
-ms.date: 05/22/2023
+ms.date: 01/21/2022
 ---
 # Azure Resource Manager deployment modes
 

@@ -1,9 +1,8 @@
 ---
 title: Understand the lifecycle of a blueprint
 description: Learn about the lifecycle that a blueprint definition goes through and details about each stage, including updating and removing blueprint assignments.
-ms.date: 01/04/2023
+ms.date: 08/17/2021
 ms.topic: conceptual
-ms.author: jgao
 ---
 # Understand the lifecycle of an Azure Blueprint
 
@@ -25,8 +24,8 @@ To fully understand a blueprint and the stages, we'll cover a standard lifecycle
 
 ## Creating and editing a blueprint
 
-To create a blueprint, add artifacts to it, save the definition to the management group or subscription scope, and
-provide a unique name version. The blueprint is now in a **Draft** mode and can't yet
+When creating a blueprint, add artifacts to it, save to a management group or subscription, and
+provided a unique name and a unique version. The blueprint is now in a **Draft** mode and can't yet
 be assigned. While in the **Draft** mode, it can continue to be updated and changed.
 
 A never published blueprint in **Draft** mode displays a different icon on the **Blueprint

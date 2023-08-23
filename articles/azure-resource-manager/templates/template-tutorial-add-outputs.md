@@ -1,9 +1,11 @@
 ---
 title: Tutorial - add outputs to template
 description: Add outputs to your Azure Resource Manager template (ARM template) to simplify the syntax.
-ms.date: 07/28/2023
+author: mumian
+ms.date: 08/17/2022
 ms.topic: tutorial
-ms.custom: devx-track-arm-template
+ms.author: jgao
+ms.custom:
 ---
 
 # Tutorial: Add outputs to your ARM template
@@ -99,23 +101,23 @@ Now, let's look at the resource group and deployment history.
 1. Depending on the steps you did, you should have at least one and perhaps several storage accounts in the resource group.
 1. You should also have several successful deployments listed in the history. Select that link.
 
-   :::image type="content" source="./media/template-tutorial-add-outputs/select-deployments.png" alt-text="Screenshot of the Azure portal showing the deployments link.":::
+   ![Select deployments](./media/template-tutorial-add-outputs/select-deployments.png)
 
 1. You see all of your deployments in the history. Select the deployment called **addoutputs**.
 
-   :::image type="content" source="./media/template-tutorial-add-outputs/show-history.png" alt-text="Screenshot of the Azure portal showing the deployment history.":::
+   ![Show deployment history](./media/template-tutorial-add-outputs/show-history.png)
 
 1. You can review the inputs.
 
-   :::image type="content" source="./media/template-tutorial-add-outputs/show-inputs.png" alt-text="Screenshot of the Azure portal showing the deployment inputs.":::
+   ![Show inputs](./media/template-tutorial-add-outputs/show-inputs.png)
 
 1. You can review the outputs.
 
-   :::image type="content" source="./media/template-tutorial-add-outputs/show-outputs.png" alt-text="Screenshot of the Azure portal showing the deployment outputs.":::
+   ![Show outputs](./media/template-tutorial-add-outputs/show-outputs.png)
 
 1. You can review the template.
 
-   :::image type="content" source="./media/template-tutorial-add-outputs/show-template.png" alt-text="Screenshot of the Azure portal showing the deployment template.":::
+   ![Show template](./media/template-tutorial-add-outputs/show-template.png)
 
 ## Clean up resources
 

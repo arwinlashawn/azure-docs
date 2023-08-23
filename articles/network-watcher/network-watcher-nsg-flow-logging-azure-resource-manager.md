@@ -1,44 +1,49 @@
 ---
-title: Manage NSG flow logs - ARM template
-titleSuffix: Azure Network Watcher
-description: Learn how to create or delete Azure Network Watcher NSG flow logs using an Azure Resource Manager template (ARM template).
-author: halkazwini
+title: Network Watcher - Create NSG flow logs using an Azure Resource Manager template
+description: Use an Azure Resource Manager template and PowerShell to easily set up NSG Flow Logs.
+services: network-watcher
+documentationcenter: na
+author: damendo
+manager: twooley
+editor:
+tags: azure-resource-manager
+
 ms.service: network-watcher
 ms.topic: how-to
-ms.date: 06/01/2023
-ms.author: halkazwini
-ms.custom: template-how-to, fasttrack-edit, engagement-fy23, devx-track-arm-template, engagement-fy23
+ms.tgt_pltfrm: na
+ms.workload:  infrastructure-services
+ms.date: 01/07/2021
+ms.author: damendo
+ms.custom: fasttrack-edit, devx-track-azurepowershell
+
 ---
 
-# Manage NSG flow logs using an Azure Resource Manager template
+# Configure NSG Flow Logs from an Azure Resource Manager template
 
 > [!div class="op_single_selector"]
-> - [Azure portal](nsg-flow-logging.md)
+> - [Azure portal](network-watcher-nsg-flow-logging-portal.md)
 > - [PowerShell](network-watcher-nsg-flow-logging-powershell.md)
 > - [Azure CLI](network-watcher-nsg-flow-logging-cli.md)
 > - [REST API](network-watcher-nsg-flow-logging-rest.md)
-> - [ARM template](network-watcher-nsg-flow-logging-azure-resource-manager.md)
+> - [Azure Resource Manager](network-watcher-nsg-flow-logging-azure-resource-manager.md)
 
-Network security group flow logging is a feature of Azure Network Watcher that allows you to log information about IP traffic flowing through a network security group. For more information about network security group flow logging, see [NSG flow logs overview](network-watcher-nsg-flow-logging-overview.md).
 
-In this article, you learn how to manage NSG flow logs programmatically using an Azure Resource Manager template and Azure PowerShell. You can learn how to manage an NSG flow log using the [Azure portal](nsg-flow-logging.md), [PowerShell](network-watcher-nsg-flow-logging-powershell.md), [Azure CLI](network-watcher-nsg-flow-logging-cli.md), or [REST API](network-watcher-nsg-flow-logging-rest.md).
+[Azure Resource Manager](https://azure.microsoft.com/features/resource-manager/) is Azure's native and powerful way to manage your [infrastructure as code](/devops/deliver/what-is-infrastructure-as-code).
 
-An [Azure Resource Manager template](../azure-resource-manager/templates/overview.md) is a JavaScript Object Notation (JSON) file that defines the infrastructure and configuration for your project using declarative syntax.
+This article shows you how to enable [NSG Flow Logs](./network-watcher-nsg-flow-logging-overview.md) programmatically using an Azure Resource Manager template and Azure PowerShell. We start by providing an overview of the properties of the NSG Flow Log object, followed by a few sample templates. Then we the deploy template using a local PowerShell instance.
 
-## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+## NSG Flow Logs object
 
-## NSG flow logs object
-
-The NSG flow logs object with all parameters is shown in the following example. For a complete overview of the object properties, see [NSG flow logs template reference](/azure/templates/microsoft.network/networkwatchers/flowlogs).
+The NSG Flow Logs object with all parameters is shown below.
+For a complete overview of the properties, you may read the [NSG Flow Logs template reference](/azure/templates/microsoft.network/networkwatchers/flowlogs#retentionpolicyparameters).
 
 ```json
 {
   "name": "string",
   "type": "Microsoft.Network/networkWatchers/flowLogs",
   "location": "string",
-  "apiVersion": "2022-07-01",
+  "apiVersion": "2019-09-01",
   "properties": {
     "targetResourceId": "string",
     "storageId": "string",
@@ -63,33 +68,33 @@ The NSG flow logs object with all parameters is shown in the following example. 
 ```
 To create a Microsoft.Network/networkWatchers/flowLogs resource, add the above JSON to the resources section of your template.
 
-## Create your template
 
-To learn more about using Azure Resource Manager templates, see:
+## Creating your template
 
-- [Deploy resources with Resource Manager templates and Azure PowerShell](../azure-resource-manager/templates/deploy-powershell.md)
-- [Tutorial: Create and deploy your first Azure Resource Manager template](../azure-resource-manager/templates/template-tutorial-create-first-template.md?tabs=azure-powershell)
+If you are using Azure Resource Manager templates for the first time, you can learn more about them using the links below.
 
-The following examples present complete templates to enable NSG flow logs.
+* [Deploy resources with Resource Manager templates and Azure PowerShell](../azure-resource-manager/templates/deploy-powershell.md#deploy-local-template)
+* [Tutorial: Create and deploy your first Azure Resource Manager template](../azure-resource-manager/templates/template-tutorial-create-first-template.md?tabs=azure-powershell)
 
-#### Example 1
 
-Example 1 uses the simplest version of the ARM template with minimum parameters passed. The following template enables NSG flow logs on a target network security group and stores them in a given storage account.
+Below are two examples of complete templates to set up NSG Flow Logs.
+
+**Example 1**:  The simplest version of the above with minimum parameters passed. The below template enables NSG Flow Logs on a target NSG and stores them in a given storage account.
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "apiProfile": "2019-09-01",
   "resources": [
  {
-    "name": "myNSG-myresourcegroup-flowlog",
+    "name": "NetworkWatcher_centraluseuap/Microsoft.NetworkDalanDemoPerimeterNSG",
     "type": "Microsoft.Network/networkWatchers/FlowLogs/",
-    "location": "eastus",
-    "apiVersion": "2022-11-01",
+    "location": "centraluseuap",
+    "apiVersion": "2019-09-01",
     "properties": {
-      "targetResourceId": "/subscriptions/abcdef01-2345-6789-0abc-def012345678/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNSG",
-      "storageId": "/subscriptions/abcdef01-2345-6789-0abc-def012345678/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount",
+      "targetResourceId": "/subscriptions/56abfbd6-ec72-4ce9-831f-bc2b6f2c5505/resourceGroups/DalanDemo/providers/Microsoft.Network/networkSecurityGroups/PerimeterNSG",
+      "storageId": "/subscriptions/56abfbd6-ec72-4ce9-831f-bc2b6f2c5505/resourceGroups/MyCanaryFlowLog/providers/Microsoft.Storage/storageAccounts/storagev2ira",
       "enabled": true,
       "flowAnalyticsConfiguration": {},
       "retentionPolicy": {},
@@ -102,31 +107,31 @@ Example 1 uses the simplest version of the ARM template with minimum parameters 
 ```
 
 > [!NOTE]
-> * `targetResourceId` is the resource ID of the target network security group.
-> * `storageId` is the resource ID of the destination storage account.
+> * The name of resource has the format "Parent Resource_Child resource". Here, the parent resource is the regional Network Watcher instance (Format: NetworkWatcher_RegionName. Example: NetworkWatcher_centraluseuap)
+> * targetResourceId is the resource ID of the target NSG
+> * storageId is the resource ID of the destination storage account
 
-#### Example 2
-Example 2 uses the following template to enable NSG flow logs (version 2) with retention of 5 days and traffic analytics with a processing interval of 10 minutes.
+**Example 2**: The following templates enabling NSG Flow Logs (version 2) with a retention for 5 days. Enabling Traffic Analytics with a processing interval of 10 minutes.
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "apiProfile": "2019-09-01",
   "resources": [
     {
-      "name": "myNSG-myresourcegroup-flowlog",
+      "name": "NetworkWatcher_centraluseuap/Microsoft.NetworkDalanDemoPerimeterNSG",
       "type": "Microsoft.Network/networkWatchers/FlowLogs/",
-      "location": "eastus",
-      "apiVersion": "2022-11-01",
+      "location": "centraluseuap",
+      "apiVersion": "2019-09-01",
       "properties": {
-        "targetResourceId": "/subscriptions/abcdef01-2345-6789-0abc-def012345678/resourceGroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNSG",
-        "storageId": "/subscriptions/abcdef01-2345-6789-0abc-def012345678/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount",
+        "targetResourceId": "/subscriptions/56abfbd6-ec72-4ce9-831f-bc2b6f2c5505/resourceGroups/DalanDemo/providers/Microsoft.Network/networkSecurityGroups/PerimeterNSG",
+        "storageId": "/subscriptions/56abfbd6-ec72-4ce9-831f-bc2b6f2c5505/resourceGroups/MyCanaryFlowLog/providers/Microsoft.Storage/storageAccounts/storagev2ira",
         "enabled": true,
         "flowAnalyticsConfiguration": {
           "networkWatcherFlowAnalyticsConfiguration": {
             "enabled": true,
-            "workspaceResourceId": "/subscriptions/abcdef01-2345-6789-0abc-def012345678/resourceGroups/defaultresourcegroup-eus/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-abcdef01-2345-6789-0abc-def012345678-EUS",
+            "workspaceResourceId": "/subscriptions/56abfbd6-ec72-4ce9-831f-bc2b6f2c5505/resourceGroups/defaultresourcegroup-wcus/providers/Microsoft.OperationalInsights/workspaces/1c4f42e5-3a02-4146-ac9b-3051d8501db0",
             "trafficAnalyticsInterval": 10
           }
         },
@@ -144,14 +149,9 @@ Example 2 uses the following template to enable NSG flow logs (version 2) with r
 }
 ```
 
-> [!NOTE]
-> * `targetResourceId` is the resource ID of the target network security group.
-> * `storageId` is the resource ID of the destination storage account.
-> * `workspaceResourceId` is is the resource ID of the traffic analytics workspace.
+## Deploying your Azure Resource Manager template
 
-## Deploy your Azure Resource Manager template
-
-This tutorial assumes you have an existing Resource group and a network security group you can enable flow logging on.
+This tutorial assumes you have an existing Resource group and an NSG you can enable Flow logging on.
 You can save any of the above example templates locally as `azuredeploy.json`. Update the property values so that they point to valid resources in your subscription.
 
 To deploy the template, run the following command in PowerShell.
@@ -163,17 +163,19 @@ New-AzResourceGroupDeployment -Name EnableFlowLog -ResourceGroupName NetworkWatc
 ```
 
 > [!NOTE]
-> The previous commands deploys a resource to the **NetworkWatcherRG** resource group and not the resource group containing the network security group.
+> The above commands are deploying a resource to the NetworkWatcherRG resource group and not the resource group containing the NSG
 
-## Verify your deployment
 
-There are a couple of ways to check if your deployment has succeeded. Your PowerShell console should show "ProvisioningState" as "Succeeded". Additionally, you can visit the [Flow logs portal page](https://portal.azure.com/#blade/Microsoft_Azure_Network/NetworkWatcherMenuBlade/flowLogs) to confirm your changes. If there were issues with the deployment, see [Troubleshoot common Azure deployment errors with Azure Resource Manager](../azure-resource-manager/templates/common-deployment-errors.md).
+## Verifying your deployment
 
-## Delete your resource
+There are a couple of ways to check if your deployment has Succeeded. Your PowerShell console should show "ProvisioningState" as "Succeeded". Additionally, you can visit the [NSG Flow Logs portal page](https://portal.azure.com/#blade/Microsoft_Azure_Network/NetworkWatcherMenuBlade/flowLogs) to confirm your changes. If there were issues with the deployment, take a look at [Troubleshoot common Azure deployment errors with Azure Resource Manager](../azure-resource-manager/templates/common-deployment-errors.md).
 
-Azure enables resource deletion through the *Complete* deployment mode. To delete a flow logs resource, specify a deployment in Complete mode without including the resource you wish to delete. For more information, see [Complete deployment mode](../azure-resource-manager/templates/deployment-modes.md#complete-mode).
+## Deleting your resource
+Azure enables resource deletion through the "Complete" deployment mode. To delete a Flow Logs resource, specify a deployment in Complete mode without including the resource you wish to delete. Read more about the [Complete deployment mode](../azure-resource-manager/templates/deployment-modes.md#complete-mode)
 
 ## Next steps
 
-- To learn how to use Azure built-in policies to audit or deploy NSG flow logs, see [Manage NSG flow logs using Azure Policy](nsg-flow-logs-policy-portal.md).
-- To learn about traffic analytics, see [Traffic analytics](traffic-analytics.md).
+Learn how to visualize your NSG Flow data using:
+* [Microsoft Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+* [Open source tools](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)
+* [Azure Traffic Analytics](./traffic-analytics.md)

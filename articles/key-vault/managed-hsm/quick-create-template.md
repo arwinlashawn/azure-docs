@@ -4,42 +4,52 @@ description: Quickstart showing how to create Azure an Azure Key Vault Managed H
 services: key-vault
 author: msmbaldwin
 ms.author: mbaldwin
-ms.date: 03/21/2023
+ms.date: 09/15/2020
 ms.topic: quickstart
 ms.service: key-vault
 ms.subservice: managed-hsm
 tags: azure-resource-manager
-ms.custom: subject-armqs, devx-track-arm-template, devx-track-azurecli
+ms.custom: mvc, devx-track-azurecli, mode-other
 #Customer intent: As a security admin who is new to Azure, I want to create a managed HSM using an Azure Resource Manager template.
 ---
 
-# Quickstart: Create a Managed HSM using an ARM template
+# Quickstart: Create a Managed HSM using an Azure Resource Manager template
 
-This quickstart describes how to use an Azure Resource Manager template (ARM template) to create an Azure Key Vault managed HSM.  Managed HSM is a fully managed, highly available, single-tenant, standards-compliant cloud service that enables you to safeguards cryptographic keys for your cloud applications, using **FIPS 140-2 Level 3** validated HSMs.  
+Managed HSM is a fully managed, highly available, single-tenant, standards-compliant cloud service that enables you to safeguards cryptographic keys for your cloud applications, using **FIPS 140-2 Level 3** validated HSMs.  
 
-[!INCLUDE [About Azure Resource Manager](../../../includes/resource-manager-quickstart-introduction.md)]
-
-If your environment meets the prerequisites and you're familiar with using ARM templates, select the **Deploy to Azure** button. The template will open in the Azure portal.
-
-:::image type="content" source="../../media/template-deployments/deploy-to-azure.svg" alt-text="Screenshot of the Deploy to Azure button to deploy resources with a template." link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.keyvault%2Fmanaged-hsm-create%2Fazuredeploy.json":::
-
-## Prerequisites
+This quickstart focuses on the process of deploying a Resource Manager template to create a Managed HSM.  [Resource Manager template](../../azure-resource-manager/templates/overview.md) is a JavaScript Object Notation (JSON) file that defines the infrastructure and configuration for your project. The template uses declarative syntax, which lets you state what you intend to deploy without having to write the sequence of programming commands to create it. If you want to learn more about developing Resource Manager templates, see [Resource Manager documentation](../../azure-resource-manager/index.yml) and the [template reference](/azure/templates/microsoft.keyvault/allversions).
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-[!INCLUDE [Azure CLI prepare your environment](~/articles/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
+## Prerequisites
 
-## Review the template
+To complete the steps in this article, you must have the following items:
 
-The template used in this quickstart is from [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/managed-hsm-create):
+- A subscription to Microsoft Azure. If you don't have one, you can sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial).
+- The Azure CLI version 2.12.0 or later. Run `az --version` to find the version. If you need to install or upgrade, see [Install the Azure CLI]( /cli/azure/install-azure-cli)
 
-:::code language="json" source="~/quickstart-templates/quickstarts/microsoft.keyvault/managed-hsm-create/azuredeploy.json":::
 
-The Azure resource defined in the template is:
+[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-* **Microsoft.KeyVault/managedHSMs**: Create an Azure Key Vault Managed HSM.
+## Sign in to Azure
 
-## Deploy the template
+To sign in to Azure using the CLI, you can type:
+
+```azurecli
+az login
+```
+
+For more information on login options via the CLI, see [sign in with Azure CLI](/cli/azure/authenticate-azure-cli)
+
+## Create a Managed HSM
+
+The template used in this quickstart is from [Azure Quickstart templates](https://azure.microsoft.com/resources/templates/managed-hsm-create/).
+
+The Azure resource defined in the template:
+
+* **Microsoft.KeyVault/managedHSMs**: create an Azure Key Vault Managed HSM.
+
+More Azure Key Vault template samples can be found [here](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Keyvault).
 
 The template requires the object ID associated with your account. To find it, use the Azure CLI [az ad user show](/cli/azure/ad/user#az-ad-user-show) command, passing your email address to the `--id` parameter. You can limit the output to the object ID only with the `--query` parameter.
 
@@ -53,41 +63,24 @@ You may also need your tenant ID. To find it, use the Azure CLI [az ad user show
  az account show --query "tenantId"
  ```
 
-You can now deploy the ARM template:
-
 1. Select the following image to sign in to Azure and open a template. The template creates a Managed HSM.
 
-    :::image type="content" source="../../media/template-deployments/deploy-to-azure.svg" alt-text="Screenshot of the Deploy to Azure button to deploy resources with a template." link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.keyvault%2Fmanaged-hsm-create%2Fazuredeploy.json":::
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2F%2Fmaster%2Fquickstarts%2Fmicrosoft.keyvault%2Fmanaged-hsm-create%2Fazuredeploy.json"><img src="../media/deploy-to-azure.svg" alt="deploy to azure"/></a>
 
-1. Select or enter the following values.  Unless specified, use the default value to create the Managed HSM.
+2. Select or enter the following values.
+
+    Unless it is specified, use the default value to create the Managed HSM.
 
     - **Subscription**: Select an Azure subscription.
-    - **Resource group**: Select **Create new**, enter "myResourceGroup" as the name, and then select **OK**.
-    - **Location**: Select a location. For example, **East US 2**.
+    - **Resource group**: Select **Create new**, enter a unique name for the resource group, and then select **OK**.
+    - **Location**: Select a location. For example, **West US 3**.
     - **managedHSMName**: Enter a name for your Managed HSM.
-    - **Tenant ID**: The template function automatically retrieves your tenant ID; don't change the default value.  If there is no value, enter the Tenant ID that you retrieved above.
-    - **initialAdminObjectIds**: Enter the Object ID that you retrieved above.
+    - **Tenant ID**: The template function automatically retrieves your tenant ID; don't change the default value.  If there is no value, enter the Tenant ID that you retrieved in [Prerequisites](#prerequisites).
+    * **initialAdminObjectIds**: Enter the Object ID that you retrieved in [Prerequisites](#prerequisites).
 
-1. Select **Purchase**. After the Managed HSM has been deployed successfully, you get a notification:
+3. Select **Purchase**. After the Managed HSM has been deployed successfully, you get a notification:
 
 The Azure portal is used to deploy the template. In addition to the Azure portal, you can also use the Azure PowerShell, Azure CLI, and REST API. To learn other deployment methods, see [Deploy templates](../../azure-resource-manager/templates/deploy-powershell.md).
-
-## Validate the deployment
-
-You can verify that the managed HSM was created with the Azure CLI [az keyvault list](/cli/azure/keyvault#az-keyvault-list) command. You will find the output easier to read if you format the results as a table:
-
-```azurecli-interactive
-az keyvault list -o table
-```
-
-You should see the name of your newly created managed HSM.
-
-## Clean up resources
-
-[!INCLUDE [Delete resource group](../../../includes/cli-rg-delete.md)]
-
-> [!WARNING]
-> Deleting the resource group puts the Managed HSM into a soft-deleted state. The Managed HSM will continue to be billed until it is purged. See [Managed HSM soft-delete and purge protection](recovery.md)
 
 ## Next steps
 

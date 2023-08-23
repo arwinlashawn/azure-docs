@@ -5,9 +5,8 @@ services: firewall-manager
 author: vhorne
 ms.service: firewall-manager
 ms.topic: how-to
-ms.date: 11/17/2022
+ms.date: 08/26/2020
 ms.author: victorh
-ms.custom: FY23 content-maintenance
 ---
 
 # Use Azure Firewall policy to define a rule hierarchy
@@ -160,5 +159,5 @@ Security administrators can use base policy to enforce guardrails and block cert
 
 ## Next steps
 
-- [Learn more about Azure Firewall policy](policy-overview.md)
-- [Learn more about Azure network security](../networking/security/index.yml)
+Learn more about [Azure Firewall policy](policy-overview.md).
+

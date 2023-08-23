@@ -2,8 +2,7 @@
 title: Conditional deployment with templates
 description: Describes how to conditionally deploy a resource in an Azure Resource Manager template (ARM template).
 ms.topic: conceptual
-ms.custom: devx-track-arm-template
-ms.date: 06/22/2023
+ms.date: 01/19/2022
 ---
 
 # Conditional deployment in ARM templates
@@ -69,35 +68,28 @@ You can use conditional deployment to create a new resource or use an existing o
       ]
     }
   },
+  "functions": [],
   "resources": [
     {
       "condition": "[equals(parameters('newOrExisting'), 'new')]",
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2022-09-01",
+      "apiVersion": "2019-06-01",
       "name": "[parameters('storageAccountName')]",
       "location": "[parameters('location')]",
       "sku": {
-        "name": "Standard_LRS"
+        "name": "Standard_LRS",
+        "tier": "Standard"
       },
-      "kind": "StorageV2"
-    },
-    {
-      "condition": "[equals(parameters('newOrExisting'), 'existing')]",
-      "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2022-09-01",
-      "name": "[parameters('storageAccountName')]"
+      "kind": "StorageV2",
+      "properties": {
+        "accessTier": "Hot"
+      }
     }
-  ],
-  "outputs": {
-    "storageAccountId": {
-      "type": "string",
-      "value": "[if(equals(parameters('newOrExisting'), 'new'), resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')))]"
-    }
-  }
+  ]
 }
 ```
 
-When the parameter `newOrExisting` is set to **new**, the condition evaluates to true. The storage account is deployed. Otherwise the existing storage account is used.
+When the parameter `newOrExisting` is set to **new**, the condition evaluates to true. The storage account is deployed. However, when `newOrExisting` is set to **existing**, the condition evaluates to false and the storage account isn't deployed.
 
 For a complete example template that uses the `condition` element, see [VM with a new or existing Virtual Network, Storage, and Public IP](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.compute/vm-new-or-existing-conditions).
 
@@ -115,6 +107,6 @@ If you deploy a template with [complete mode](deployment-modes.md) and a resourc
 
 ## Next steps
 
-* For a Learn module that covers conditional deployment, see [Manage complex cloud deployments by using advanced ARM template features](/training/modules/manage-deployments-advanced-arm-template-features/).
+* For a Learn module that covers conditional deployment, see [Manage complex cloud deployments by using advanced ARM template features](/learn/modules/manage-deployments-advanced-arm-template-features/).
 * For recommendations about creating templates, see [ARM template best practices](./best-practices.md).
 * To create multiple instances of a resource, see [Resource iteration in ARM templates](copy-resources.md).

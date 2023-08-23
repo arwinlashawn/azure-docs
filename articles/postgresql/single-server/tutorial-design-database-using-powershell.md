@@ -15,8 +15,6 @@ ms.date: 06/24/2022
 
 [!INCLUDE [applies-to-postgresql-single-server](../includes/applies-to-postgresql-single-server.md)]
 
-[!INCLUDE [azure-database-for-postgresql-single-server-deprecation](../includes/azure-database-for-postgresql-single-server-deprecation.md)]
-
 Azure Database for PostgreSQL is a relational database service in the Microsoft cloud based on PostgreSQL
 Community Edition database engine. In this tutorial, you use PowerShell and other utilities to learn
 how to:
@@ -39,7 +37,7 @@ If you choose to use PowerShell locally, this article requires that you install 
 module and connect to your Azure account using the
 [Connect-AzAccount](/powershell/module/az.accounts/connect-azaccount)
 cmdlet. For more information about installing the Az PowerShell module, see
-[Install Azure PowerShell](/powershell/azure/install-azure-powershell).
+[Install Azure PowerShell](/powershell/azure/install-az-ps).
 
 > [!IMPORTANT]
 > While the Az.PostgreSql PowerShell module is in preview, you must install it separately from the Az

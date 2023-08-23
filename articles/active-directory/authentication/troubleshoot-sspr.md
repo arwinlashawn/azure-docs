@@ -1,12 +1,12 @@
 ---
-title: Troubleshoot self-service password reset
+title: Troubleshoot self-service password reset - Azure Active Directory
 description: Learn how to troubleshoot common problems and resolution steps for self-service password reset in Azure Active Directory
 
 services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: troubleshooting
-ms.date: 01/29/2023
+ms.date: 08/17/2022
 
 ms.author: justinha
 author: justinha
@@ -41,7 +41,7 @@ Many elements of the UI are hidden until they're needed. Make sure the option is
 
 On-premises password writeback is only visible if you've downloaded Azure AD Connect and have configured the feature.
 
-For more information, see [Getting started with Azure AD Connect](../hybrid/connect/how-to-connect-install-express.md).
+For more information, see [Getting started with Azure AD Connect](../hybrid/how-to-connect-install-express.md).
 
 ## SSPR reporting
 

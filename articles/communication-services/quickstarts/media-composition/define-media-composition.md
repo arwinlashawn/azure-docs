@@ -7,7 +7,7 @@ manager: alexokun
 services: azure-communication-services
 
 ms.author: peiliu
-ms.date: 12/06/2022
+ms.date: 7/15/2022
 ms.topic: quickstart
 ms.service: azure-communication-services
 ---
@@ -25,7 +25,7 @@ Azure Communication Services Media Composition is made up of three parts: inputs
 To retrieve the media sources that will be used in the layout composition, you'll need to define inputs. Inputs can be either multi-source or single source.
 
 ### Multi-source inputs
-ACS Group Calls and ACS Rooms are typically made up of multiple participants. We define these as multi-source inputs. They can be used in layouts as a single input or destructured to reference a single participant.
+Teams meetings, ACS calls and ACS Rooms are usually made up of multiple individuals. We define these as multi-source inputs. They can be used in layouts as a single input or destructured to reference a single participant.
 
 ACS Group Call json:
 ```json
@@ -39,35 +39,47 @@ ACS Group Call json:
 }
 ```
 
+Teams Meeting Input json:
+```json
+{
+  "inputs": {
+    "teamsMeetingInput": {
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
+    }
+  }
+}
+```
+
 ACS Rooms Input json:
 ```json
 {
   "inputs": {
     "roomCallInput": {
       "kind": "room",
-      "id": "0294781882919201"
+      "id": "050298"
     }
   }
 }
 ```
 
 ### Single source inputs
-Unlike multi-source inputs, single source inputs reference a single media source. If the single source input is from a multi-source input such as an ACS group call or rooms, it will reference the multi-source input's ID in the `call` property. The following are examples of single source inputs:
+Unlike multi-source inputs, single source inputs reference a single media source. If the single source input is from a multi-source input such as an ACS group call or Teams meeting, it will reference the multi-source input's ID in the `call` property. The following are examples of single source inputs:
 
 Participant json:
 ```json
 {
   "inputs": {
-    "groupCallInput": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+    "teamsMeetingInput": {
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     },
     "participantInput": {
       "kind": "participant",
-      "call": "groupCallInput",
+      "call": "teamsMeetingInput",
       "id": {
-        "communicationUser": {
-          "userId": "8:acs:c3015709-b45a-4c9d-be36-26a9a108cd88_00000030-45lk-9dp0-04c8-3ed0023d0ds"
+        "microsoftTeamsUser": {
+          "id": "f3ba9014-6dca-4456-8ec0-fa03cfa2b7b7"
         }
       }
     }
@@ -79,13 +91,13 @@ Active Presenter json:
 ```json
 {
   "inputs": {
-    "groupCallInput": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+    "teamsMeetingInput": {
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     },
     "activePresenterInput": {
       "kind": "activePresenter",
-      "call": "groupCallInput"
+      "call": "teamsMeetingInput"
     }
   }
 }
@@ -95,13 +107,13 @@ Dominant Speaker json:
 ```json
 {
   "inputs": {
-    "groupCallInput": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+    "teamsMeetingInput": {
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     },
     "dominantSpeakerInput": {
       "kind": "dominantSpeaker",
-      "call": "groupCallInput"
+      "call": "teamsMeetingInput"
     }
   }
 }
@@ -127,8 +139,8 @@ Sample grid layout json:
   },
   "inputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     },
     "active": {
       "kind": "dominantSpeaker",
@@ -137,35 +149,38 @@ Sample grid layout json:
     "jill": {
       "kind": "participant",
       "call": "meeting",
+      "placeholderImageUri": "https://imageendpoint",
       "id": {
-        "communicationUser": {
-          "userId": "8:acs:5110fbea-014a-45aa-a839-d6dc967b4175_00000030-45lk-9dp0-04c8-3ed0023d0ds"
+        "microsoftTeamsUser": {
+          "id": "f3ba9014-6dca-4456-8ec0-fa03cfa2b7f4"
         }
       }
     },
     "jon": {
       "kind": "participant",
       "call": "meeting",
+      "placeholderImageUri": "https://imageendpoint",
       "id": {
-        "communicationUser": {
-          "userId": "8:acs:5110fbea-014a-45aa-a839-d6dc967b4175_00000090-20e2-430d-9c34-0e4b72c98636"
+        "microsoftTeamsUser": {
+          "id": "36f49257-c7de-4d64-97f5-e507bdb3323e"
         }
       }
     },
     "janet": {
       "kind": "participant",
       "call": "meeting",
-       "id": {
-        "communicationUser": {
-          "userId": "8:acs:5110fbea-014a-45aa-a839-d6dc967b4175_00000030-b1a5-4047-b238-e515602e9b94"
+      "placeholderImageUri": "https://imageendpoint",
+      "id": {
+        "microsoftTeamsUser": {
+          "id": "e94d0030-ac38-4111-a87f-07884b565b14"
         }
       }
     }
   },
   "outputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     }
   }
 }
@@ -184,17 +199,18 @@ Sample auto grid layout json:
   "layout": {
     "kind": "autoGrid",
     "inputIds": ["meeting"],
+    "highlightDominantSpeaker": true
   },
   "inputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     }
   },
   "outputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     }
   }
 }
@@ -216,24 +232,26 @@ Sample presentation layout json:
   },
   "inputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     },
     "presenter": {
       "kind": "participant",
       "call": "meeting",
+      "placeholderImageUri": "https://imageendpoint",
       "id": {
-        "communicationUser": {
-          "userId": "8:acs:5110fbea-014a-45aa-a839-d6dc967b4175_00000090-20e2-430d-9c34-0e4b72c98636"
+        "microsoftTeamsUser": {
+          "id": "f3ba9014-6dca-4456-8ec0-fa03cfa2b7f4"
         }
       }
     }
   },
   "outputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
-    },
+      "teamsMeeting": {
+        "teamsJoinUrl": "https://teamsjoinurl"
+      }
+    }
   }
 }
 ```
@@ -256,32 +274,34 @@ Sample presenter layout json:
   },
   "inputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     },
     "presenter": {
       "kind": "participant",
       "call": "meeting",
+      "placeholderImageUri": "https://imageendpoint",
       "id": {
-        "communicationUser": {
-          "userId": "8:acs:5110fbea-014a-45aa-a839-d6dc967b4175_00000090-20e2-430d-9c34-0e4b72c98636"
+        "microsoftTeamsUser": {
+          "id": "f3ba9014-6dca-4456-8ec0-fa03cfa2b7f4"
         }
       }
     },
     "support": {
       "kind": "participant",
       "call": "meeting",
-       "id": {
-        "communicationUser": {
-          "userId": "8:acs:5110fbea-014a-45aa-a839-d6dc967b4175_00000030-b1a5-4047-b238-e515602e9b94"
+      "placeholderImageUri": "https://imageendpoint",
+      "id": {
+        "microsoftTeamsUser": {
+          "id": "36f49257-c7de-4d64-97f5-e507bdb3323e"
         }
       }
     }
   },
   "outputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl"
     }
   }
 }
@@ -328,19 +348,21 @@ If none of the pre-defined layouts fit your needs, then you can use custom layou
     }
   },
   "inputs": {
-    "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
-    },
     "active": {
       "kind": "dominantSpeaker",
       "call": "meeting"
+    },
+    "meeting": {
+      "teamsMeeting": {
+        "teamsJoinUrl": "https://teamsjoinurl"
+        }
     }
   },
   "outputs": {
     "meeting": {
-      "kind": "groupCall",
-      "id": "d9e13117-4679-47a5-8cd5-1c3fdbbe6a6e"
+      "teamsMeeting": {
+        "teamsJoinUrl": "https://teamsjoinurl"
+      }
     }
   }
 }
@@ -364,11 +386,23 @@ ACS Group Call json:
 }
 ```
 
-ACS Rooms Output json:
+Teams Meeting Input json:
 ```json
 {
   "outputs": {
-    "roomOutput": {
+    "teamsMeetingOutput": {
+      "kind": "teamsMeeting",
+      "teamsJoinUrl": "https://teamsjoinurl",
+    }
+  }
+}
+```
+
+ACS Rooms Input json:
+```json
+{
+  "inputs": {
+    "roomCallInput": {
       "kind": "room",
       "id": "ROOM_ID"
     }

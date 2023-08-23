@@ -4,7 +4,7 @@ description: Learn how to record data from devices configured for external synch
 author: tesych
 ms.author: tesych
 ms.reviewer: jawirth
-ms.service: azure-kinect-developer-kit
+ms.prod: kinect-dk
 ms.date: 06/26/2019
 ms.topic: conceptual
 keywords: Kinect, sensor, viewer, external sync, phase delay, depth, RGB, camera, audio cable, recorder

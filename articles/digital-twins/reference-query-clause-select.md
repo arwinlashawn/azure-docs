@@ -80,7 +80,13 @@ For the following examples, consider a twin graph that contains the following da
 
 Here's a diagram illustrating this scenario:
 
-:::image type="content" source="media/reference-query-clause-select/projections-graph.png" alt-text="Diagram showing the sample graph described above.":::
+:::row:::
+    :::column:::
+        :::image type="content" source="media/reference-query-clause-select/projections-graph.png" alt-text="Diagram showing the sample graph described above.":::
+    :::column-end:::
+    :::column:::
+    :::column-end:::
+:::row-end:::
 
 #### Project collection example
 

@@ -5,17 +5,16 @@ services: active-directory-b2c
 ms.service: active-directory
 ms.subservice: B2C
 ms.topic: how-to
-ms.date: 12/20/2022
-author: garrodonnell
-ms.author: godonnell
+ms.date: 11/09/2021
+
+ms.author: kengaderdus
+author: kengaderdus
 manager: CelesteDG
-ms.custom: it-pro, b2c-support, build-2023
+ms.custom: "it-pro"
 zone_pivot_groups: b2c-policy-type
 ---
 
 # Add an API connector to a sign-up user flow
-
-[!INCLUDE [active-directory-b2c-choose-user-flow-or-custom-policy](../../includes/active-directory-b2c-choose-user-flow-or-custom-policy.md)]
 
 As a developer or IT administrator, you can use API connectors to integrate your sign-up user flows with REST APIs to customize the sign-up experience and integrate with external systems. At the end of this walkthrough, you'll be able to create an Azure AD B2C user flow that interacts with [REST API services](api-connectors-overview.md) to modify your sign-up experiences. 
 
@@ -144,8 +143,9 @@ Content-type: application/json
      }
  ],
  "displayName": "John Smith",
+ "objectId": "11111111-0000-0000-0000-000000000000",
  "givenName":"John",
- "surname":"Smith",
+ "lastName":"Smith",
  "step": "PostFederationSignup",
  "client_id":"<guid>",
  "ui_locales":"en-US"
@@ -197,6 +197,7 @@ Content-type: application/json
      }
  ],
  "displayName": "John Smith",
+ "objectId": "11111111-0000-0000-0000-000000000000",
  "givenName":"John",
  "surname":"Smith",
  "jobTitle":"Supplier",
@@ -329,7 +330,7 @@ Content-type: application/json
 {
     "version": "1.0.0",
     "action": "ShowBlockPage",
-    "userMessage": "There was a problem with your request. You are not able to sign up at this time. Please contact your system administrator",
+    "userMessage": "There was a problem with your request. You are not able to sign up at this time.",
 }
 
 ```

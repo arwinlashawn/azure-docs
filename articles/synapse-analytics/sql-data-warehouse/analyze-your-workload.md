@@ -8,6 +8,7 @@ ms.topic: conceptual
 ms.subservice: sql-dw 
 ms.date: 11/03/2021
 ms.author: wiassaf
+ms.reviewer: wiassaf
 ms.custom: azure-synapse
 ---
 

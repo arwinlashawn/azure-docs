@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: container-instances
-ms.custom: devx-track-linux
 services: container-instances
 ms.date: 06/17/2022
 ---
@@ -67,7 +66,7 @@ The deployment includes a `command` property defining a starting command that ru
 
 First, it starts a shell session and runs a `node` command to start the web app. It also starts a command to sleep for 240 seconds, after which it creates a file called `ready` within the `/tmp` directory:
 
-```bash
+```console
 node /usr/src/app/index.js & (sleep 240; touch /tmp/ready); wait
 ```
 
@@ -99,7 +98,7 @@ These events can be viewed from the Azure portal or Azure CLI. For example, the 
 
 After starting the container, you can verify that it's not accessible initially. After provisioning, get the IP address of the container group:
 
-```azurecli-interactive
+```azurecli
 az container show --resource-group myResourceGroup --name readinesstest --query "ipAddress.ip" --out tsv
 ```
 
@@ -110,10 +109,8 @@ wget <ipAddress>
 ```
 
 Output shows the site isn't accessible initially:
-```bash
-wget 192.0.2.1
 ```
-```output
+$ wget 192.0.2.1
 --2019-10-15 16:46:02--  http://192.0.2.1/
 Connecting to 192.0.2.1... connected.
 HTTP request sent, awaiting response... 
@@ -121,10 +118,8 @@ HTTP request sent, awaiting response...
 
 After 240 seconds, the readiness command succeeds, signaling the container is ready. Now, when you run the `wget` command, it succeeds:
 
-```bash
-wget 192.0.2.1
 ```
-```output
+$ wget 192.0.2.1
 --2019-10-15 16:46:02--  http://192.0.2.1/
 Connecting to 192.0.2.1... connected.
 HTTP request sent, awaiting response...200 OK

@@ -2,12 +2,11 @@
 title: Move Azure VMs to availability zones in another region with Azure Resource Mover
 description: Learn how to move Azure VMs to availability zones with Azure Resource Mover.
 manager: evansma
-author: ankitaduttaMSFT 
-ms.service: resource-mover
+author: rayne-wiselman 
+ms.service: resource-move
 ms.topic: how-to
-ms.date: 02/10/2023
-ms.author: ankitadutta
-
+ms.date: 09/10/2020
+ms.author: raynew
 #Customer intent: As an Azure admin,  I want to move Azure VMs to a different Azure region.
 
 ---
@@ -20,6 +19,10 @@ In this article, learn how to move Azure VMs (and related network/storage resour
 - A single instance VM to an availability zone/availability set in the target region.
 - A VM in an availability set to an availability zone/availability set in the target region.
 - A VM in a source region availability zone to an availability zone in the target region.
+
+
+> [!IMPORTANT]
+> Azure Resource Mover is currently in public preview.
 
 If you want to move VMs to a different availability zone in the same region, [review this article](../site-recovery/azure-to-azure-how-to-enable-zone-to-zone-disaster-recovery.md).
 
@@ -89,13 +92,13 @@ After clicking the notification, resources appear on the **Across regions** page
 
 ## Resolve dependencies
 
-1. Dependencies are auto-validated at the beginning when you add the resources. In case initial auto validation does not resolves the issue, the **Validate dependencies** ribbon appears. Select the ribbon to validate manually.
+1. If resources show a *Validate dependencies* message in the **Issues** column, click the **Validate dependencies** button. The validation process beings.
 2. If dependencies are found, click **Add dependencies**. 
 3. In **Add dependencies**, select the dependent resources > **Add dependencies**. Monitor progress in the notifications.
 
     ![Button to add dependencies](./media/move-region-availability-zone/add-dependencies.png)
 
-3. Add additional dependencies if needed. Dependency validation happens automatically in the background. 
+3. Add additional dependencies if needed, and validate dependencies again. 
 
     ![Page to add additional dependencies](./media/move-region-availability-zone/add-additional-dependencies.png)
 

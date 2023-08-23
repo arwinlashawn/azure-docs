@@ -7,7 +7,7 @@ ms.author: spelluru
 ms.date: 08/24/2022
 ms.topic: quickstart
 ms.tgt_pltfrm: dotnet
-ms.custom: subject-bicepqs, mode-arm, devx-track-bicep
+ms.custom: subject-bicepqs, mode-arm
 ---
 
 # Quickstart: Create a Service Bus namespace and a queue using a Bicep file

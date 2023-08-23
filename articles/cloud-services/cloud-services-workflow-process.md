@@ -3,11 +3,11 @@ title: Workflow of Windows Azure VM Architecture | Microsoft Docs
 description: This article provides overview of the workflow processes when you deploy a service.
 ms.topic: article
 ms.service: cloud-services
-ms.date: 02/21/2023
+ms.date: 10/14/2020
 author: hirenshah1
 ms.author: hirshah
 ms.reviewer: mimckitt
-ms.custom: compute-evergreen
+ms.custom: 
 ---
 
 # Workflow of Windows Azure classic VM Architecture 

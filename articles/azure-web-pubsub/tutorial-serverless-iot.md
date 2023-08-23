@@ -4,7 +4,6 @@ description: A tutorial to walk through how to use Azure Web PubSub service and 
 author: vicancy
 ms.author: lianwei
 ms.service: azure-web-pubsub
-ms.custom: devx-track-azurecli
 ms.topic: tutorial 
 ms.date: 06/30/2022
 ---
@@ -38,9 +37,7 @@ In this tutorial, you learn how to:
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## Create an IoT hub
-
-[!INCLUDE [iot-hub-include-create-hub-cli](../../includes/iot-hub-include-create-hub-cli.md)]
+[!INCLUDE [iot-hub-include-create-hub](../../includes/iot-hub-include-create-hub-quickstart.md)]
 
 ## Create a Web PubSub instance
 

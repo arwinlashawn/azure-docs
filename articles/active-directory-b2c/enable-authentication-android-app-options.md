@@ -7,7 +7,7 @@ manager: CelesteDG
 ms.service: active-directory
 ms.workload: identity
 ms.topic: reference
-ms.date: 10/06/2022
+ms.date: 11/11/2021
 ms.author: kengaderdus
 ms.subservice: B2C
 ms.custom: "b2c-support"
@@ -162,14 +162,8 @@ b2cApp.acquireToken(parameters);
 #### [Kotlin](#tab/kotlin)
 
 ```kotlin
-val extraQueryParameters: MutableList<Map.Entry<String, String>> = ArrayList()
-
-val mapEntry   = object : Map.Entry<String, String> {
-      override val key: String = "ui_locales"
-      override val value: String = "en-us"
-    }   
-    
-extraQueryParameters.add(mapEntry )
+val extraQueryParameters: MutableList<Pair<String, String>> = ArrayList()
+extraQueryParameters.add(Pair("ui_locales", "en-us"))
 
 val parameters = AcquireTokenParameters.Builder()
     .startAuthorizationFromActivity(activity)
@@ -179,6 +173,7 @@ val parameters = AcquireTokenParameters.Builder()
 
 b2cApp!!.acquireToken(parameters)
 ```
+
 #### [Java](#tab/java)
 
 ```java

@@ -5,7 +5,6 @@ ms.topic: sample
 ms.author: tomcassidy
 author: tomvcassidy
 ms.service: service-fabric
-ms.custom: devx-track-azurepowershell
 services: service-fabric
 ms.date: 07/11/2022
 ---

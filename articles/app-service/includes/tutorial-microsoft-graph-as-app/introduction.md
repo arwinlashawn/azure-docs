@@ -3,14 +3,14 @@ services: microsoft-graph, app-service-web
 author: rwike77
 manager: CelesteDG
 
-ms.service: app-service
+ms.service: app-service-web
 ms.topic: include
 ms.workload: identity
 ms.date: 08/19/2022
 ms.author: ryanwi
 ms.reviewer: stsoneff
-ms.custom: azureday1
-ms.subservice: web-apps
+ms.devlang: 
+ms.custom: azureday1, devx-track-azurepowershell
 ---
 
 Learn how to access Microsoft Graph from a web app running on Azure App Service.
@@ -53,38 +53,32 @@ When accessing the Microsoft Graph, the managed identity needs to have proper pe
     # [PowerShell](#tab/azure-powershell)
     
     ```powershell
-    # Install the module.
-    # Install-Module Microsoft.Graph -Scope CurrentUser
+    # Install the module. (You need admin on the machine.)
+    # Install-Module AzureAD.
     
-    # The tenant ID
-    $TenantId = "11111111-1111-1111-1111-111111111111"
+    # Your tenant ID (in the Azure portal, under Azure Active Directory > Overview).
+    $TenantID="<tenant-id>"
+    $resourceGroup = "securewebappresourcegroup"
+    $webAppName="SecureWebApp-20201102125811"
     
-    # The name of your web app, which has a managed identity.
-    $webAppName = "SecureWebApp-20201106120003" 
-    $resourceGroupName = "SecureWebApp-20201106120003ResourceGroup"
+    # Get the ID of the managed identity for the web app.
+    $spID = (Get-AzWebApp -ResourceGroupName $resourceGroup -Name $webAppName).identity.principalid
     
-    # The name of the app role that the managed identity should be assigned to.
-    $appRoleName = "User.Read.All"
+    # Check the Microsoft Graph documentation for the permission you need for the operation.
+    $PermissionName = "User.Read.All"
     
-    # Get the web app's managed identity's object ID.
-    Connect-AzAccount -Tenant $TenantId
-    $managedIdentityObjectId = (Get-AzWebApp -ResourceGroupName $resourceGroupName -Name $webAppName).identity.principalid
+    Connect-AzureAD -TenantId $TenantID
     
-    Connect-MgGraph -TenantId $TenantId -Scopes 'Application.Read.All','AppRoleAssignment.ReadWrite.All'
+    # Get the service principal for Microsoft Graph.
+    # First result should be AppId 00000003-0000-0000-c000-000000000000
+    $GraphServicePrincipal = Get-AzureADServicePrincipal -SearchString "Microsoft Graph" | Select-Object -first 1
     
-    # Get Microsoft Graph app's service principal and app role.
-    $serverApplicationName = "Microsoft Graph"
-    $serverServicePrincipal = (Get-MgServicePrincipal -Filter "DisplayName eq '$serverApplicationName'")
-    $serverServicePrincipalObjectId = $serverServicePrincipal.Id
+    # Assign permissions to the managed identity service principal.
+    $AppRole = $GraphServicePrincipal.AppRoles | `
+    Where-Object {$_.Value -eq $PermissionName -and $_.AllowedMemberTypes -contains "Application"}
     
-    $appRoleId = ($serverServicePrincipal.AppRoles | Where-Object {$_.Value -eq $appRoleName }).Id
-    
-    # Assign the managed identity access to the app role.
-    New-MgServicePrincipalAppRoleAssignment `
-        -ServicePrincipalId $managedIdentityObjectId `
-        -PrincipalId $managedIdentityObjectId `
-        -ResourceId $serverServicePrincipalObjectId `
-        -AppRoleId $appRoleId
+    New-AzureAdServiceAppRoleAssignment -ObjectId $spID -PrincipalId $spID `
+    -ResourceId $GraphServicePrincipal.ObjectId -Id $AppRole.Id
     ```
 
     # [Azure CLI](#tab/azure-cli)

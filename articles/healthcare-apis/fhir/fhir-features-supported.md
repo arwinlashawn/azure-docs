@@ -2,12 +2,12 @@
 title: Supported FHIR features in FHIR service 
 description: This article explains which features of the FHIR specification that are implemented in Azure Health Data Services
 services: healthcare-apis
-author: expekesheth
+author: mikaelweave
 ms.service: healthcare-apis
 ms.subservice: fhir
 ms.topic: reference
 ms.date: 06/06/2022
-ms.author: kesheth
+ms.author: mikaelw
 ---
 
 # Supported FHIR Features

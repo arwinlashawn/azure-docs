@@ -1,5 +1,5 @@
 ---
-title: Search for assets 
+title: Search for assets  (preview)
 titleSuffix: Azure Machine Learning
 description: Find your Azure Machine Learning assets with search
 services: machine-learning
@@ -8,11 +8,11 @@ ms.subservice: core
 ms.author: sagopal
 author: saachigopal
 ms.reviewer: sgilley
-ms.date: 1/12/2023
+ms.date: 07/14/2022
 ms.topic: how-to
 ---
 
-# Search for Azure Machine Learning assets
+# Search for Azure Machine Learning assets (preview)
 
 Use the search bar to find machine learning assets across all workspaces, resource groups, and subscriptions in your organization. Your search text will be used to find assets such as:
 
@@ -21,6 +21,11 @@ Use the search bar to find machine learning assets across all workspaces, resour
 * Components
 * Environments
 * Data
+
+> [!IMPORTANT]
+> The search  functionality is currently in public preview.
+> The preview version is provided without a service level agreement.
+> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Free text search
 

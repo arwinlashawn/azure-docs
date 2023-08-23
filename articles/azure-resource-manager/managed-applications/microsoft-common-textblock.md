@@ -1,8 +1,12 @@
 ---
 title: TextBlock UI element
 description: Describes the Microsoft.Common.TextBlock UI element for Azure portal. Use to add text to the interface.
+author: davidsmatlak
+
 ms.topic: conceptual
 ms.date: 06/27/2018
+ms.author: davidsmatlak
+
 ---
 
 # Microsoft.Common.TextBlock UI element
@@ -11,7 +15,7 @@ A control that can be used to add text to the portal interface.
 
 ## UI sample
 
-:::image type="content" source="./media/managed-application-elements/microsoft-common-textblock.png" alt-text="Screenshot of Microsoft.Common.TextBlock UI element in a portal interface.":::
+![Microsoft.Common.TextBox](./media/managed-application-elements/microsoft-common-textblock.png)
 
 ## Schema
 

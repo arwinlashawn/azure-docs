@@ -3,7 +3,7 @@ author: kgremban
 ms.author: kgremban
 ms.service: iot-hub
 ms.topic: include
-ms.date: 12/20/2022
+ms.date: 10/26/2018
 ---
 > [!div class="op_single_selector"]
 > * [Azure portal](../articles/iot-hub/iot-hub-create-through-portal.md)
@@ -12,6 +12,7 @@ ms.date: 12/20/2022
 > * [Azure CLI](../articles/iot-hub/iot-hub-create-using-cli.md)
 > * [PowerShell with template](../articles/iot-hub/iot-hub-rm-template-powershell.md)
 > * [C# with REST](../articles/iot-hub/iot-hub-rm-rest.md)
+> * [C# with template](../articles/iot-hub/iot-hub-rm-template.md)
 > 
 > 
 

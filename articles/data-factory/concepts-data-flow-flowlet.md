@@ -2,13 +2,13 @@
 title: Flowlets in mapping data flows
 titleSuffix: Azure Data Factory & Azure Synapse
 description: Learn the concepts of Flowlets in mapping data flow
-author: kromerm
-ms.author: makromer
+author: joshuha-msft
+ms.author: joowen
 ms.service: data-factory
 ms.subservice: data-flows
 ms.custom: synapse
 ms.topic: conceptual
-ms.date: 01/11/2023
+ms.date: 11/11/2021
 ---
 
 # Flowlets in mapping data flow

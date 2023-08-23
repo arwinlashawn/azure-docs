@@ -8,7 +8,6 @@ ms.date: 07/15/2022
 ms.topic: conceptual
 ms.service: cost-management-billing
 ms.subservice: cost-management
-ms.custom: devx-track-arm-template
 ms.reviewer: adwise
 ---
 

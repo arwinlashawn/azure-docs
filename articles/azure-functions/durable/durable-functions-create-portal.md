@@ -5,7 +5,6 @@ ms.topic: conceptual
 ms.date: 04/10/2020
 ms.reviewer: azfuncdf
 ms.devlang: csharp, javascript
-ms.custom: devx-track-js
 ---
 
 # Create Durable Functions using the Azure portal

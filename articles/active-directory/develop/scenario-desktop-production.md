@@ -2,7 +2,7 @@
 title: Move desktop app calling web APIs to production
 description: Learn how to move a desktop app that calls web APIs to production
 services: active-directory
-author: OwenRichards1
+author: jmprieur
 manager: CelesteDG
 
 ms.service: active-directory
@@ -10,8 +10,7 @@ ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
 ms.date: 10/30/2019
-ms.author: owenrichards
-ms.reviewer: jmprieur
+ms.author: jmprieur
 ms.custom: aaddev
 #Customer intent: As an application developer, I want to know how to write a desktop app that calls web APIs by using the Microsoft identity platform.
 ---
@@ -22,7 +21,7 @@ In this article, you learn how to move your desktop app that calls web APIs to p
 
 ## Handle errors in desktop applications
 
-In the different flows, you've learned how to handle the errors for the silent flows, as shown in the code snippets. You've also seen that there are cases where interaction is needed, as in incremental consent and Conditional Access.
+In the different flows, you've learned how to handle the errors for the silent flows, as shown in the code snippets. You've also seen that there are cases where interaction is needed, as in incremental consent and conditional access.
 
 ## Have the user consent upfront for several resources
 
@@ -103,7 +102,7 @@ AcquireTokenSilent(scopesForVendorApi, accounts.FirstOrDefault()).ExecuteAsync()
 
 For Microsoft personal account users, reprompting for consent on each native client (desktop or mobile app) call to authorize is the intended behavior. Native client identity is inherently insecure, which is contrary to confidential client application identity. Confidential client applications exchange a secret with the Microsoft Identity platform to prove their identity. The Microsoft identity platform chose to mitigate this insecurity for consumer services by prompting the user for consent each time the application is authorized.
 
-[!INCLUDE [Common steps to move to production](./includes/scenarios/scenarios-production.md)]
+[!INCLUDE [Common steps to move to production](../../../includes/active-directory-develop-scenarios-production.md)]
 
 ## Next steps
 

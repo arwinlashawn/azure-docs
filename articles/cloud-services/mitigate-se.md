@@ -11,9 +11,8 @@ ms.service: cloud-services
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.topic: article
-ms.date: 02/21/2023
+ms.date: 07/12/2022
 ms.author: cynthn
-ms.custom: compute-evergreen
 ---
 
 

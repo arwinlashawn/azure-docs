@@ -5,7 +5,7 @@ services: automation
 ms.subservice: process-automation
 ms.date: 03/16/2018
 ms.topic: conceptual 
-ms.custom:
+ms.custom: devx-track-azurepowershell
 ---
 # Migrate from Orchestrator to Azure Automation (Beta)
 

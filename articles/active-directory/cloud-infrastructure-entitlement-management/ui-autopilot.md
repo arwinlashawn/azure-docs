@@ -2,19 +2,18 @@
 title: View rules in the Autopilot dashboard in Permissions Management
 description: How to view rules in the Autopilot dashboard in Permissions Management.
 services: active-directory
-author: jenniferf-skc
-manager: amycolannino
-ms.service: active-directory 
-ms.subservice: ciem
+author: kenwith
+manager: rkarlin
+ms.service: ciem
 ms.workload: identity
 ms.topic: overview
-ms.date: 02/16/2023
-ms.author: jfields
+ms.date: 02/23/2022
+ms.author: kenwith
 ---
 
 # View rules in the Autopilot dashboard
 
-The **Autopilot** dashboard in Permissions Management provides a table of information about Autopilot rules for administrators. Creating Autopilot rules allows you to automate right-sizing policies so you can automatically remove unused roles and permissions assigned to identities in your authorization system.
+The **Autopilot** dashboard in Permissions Management provides a table of information about **Autopilot rules** for administrators.
 
 
 > [!NOTE]
@@ -30,13 +29,13 @@ The **Autopilot** dashboard in Permissions Management provides a table of inform
     The following information displays in the **Autopilot Rules** table:
 
     - **Rule Name**: The name of the rule.
-    - **State**: The status of the rule: idle (not in use) or active (in use).
-    - **Rule Type**: The type of rule that's applied.
+    - **State**: The status of the rule: idle (not being use) or active (being used).
+    - **Rule Type**: The type of rule being applied.
     - **Mode**: The status of the mode: on-demand or not.
     - **Last Generated**: The date and time the rule was last generated.
     - **Created By**: The email address of the user who created the rule.
     - **Last Modified**: The date and time the rule was last modified.
-    - **Subscription**: Provides an **On** or **Off** subscription that allows you to receive email notifications when recommendations are generated, applied, or unapplied.
+    - **Subscription**: Provides an **On** or **Off** subscription that allows you to receive email notifications when recommendations have been generated, applied, or unapplied.
 
 ## View other available options for rules
 
@@ -48,7 +47,7 @@ The **Autopilot** dashboard in Permissions Management provides a table of inform
     - **Delete Rule**: Select to delete the rule. Only the user who created the selected rule can delete the rule.
     - **Generate Recommendations**: Creates recommendations for each user and the authorization system. Only the user who created the selected rule can create recommendations.
     - **View Recommendations**: Displays the recommendations for each user and authorization system.
-    - **Notification Settings**: Displays the users subscribed to this rule. Only the user who created the selected rule can add other users to receive notifications.
+    - **Notification Settings**: Displays the users subscribed to this rule. Only the user who created the selected rule can add other users to be notified.
 
 You can also select:
 

@@ -3,15 +3,16 @@ title: Tutorial - Configure Enrollment over Secure Transport Server (EST) for Az
 description: This tutorial shows you how to set up an Enrollment over Secure Transport (EST) server for Azure IoT Edge.
 author: PatAltimore
 ms.author: patricka
-ms.date: 03/16/2023
+ms.date: 07/06/2022
 ms.topic: tutorial
 ms.service: iot-edge
 services: iot-edge
+monikerRange: ">=iotedge-2020-11"
 ---
 
 # Tutorial: Configure Enrollment over Secure Transport Server for Azure IoT Edge
 
-[!INCLUDE [iot-edge-version-1.4](includes/iot-edge-version-1.4.md)]
+[!INCLUDE [iot-edge-version-202011](../../includes/iot-edge-version-202011.md)]
 
 With Azure IoT Edge, you can configure your devices to use an Enrollment over Secure Transport (EST) server to manage x509 certificates.
 
@@ -81,12 +82,10 @@ The Dockerfile uses Ubuntu 18.04, a [Cisco library called `libest`](https://gith
     # Setting the root CA expiration to 20 years
     RUN sed -i "s|-days 365|-days 7300 |g" ./createCA.sh
      
-    ## If you want to host your EST server remotely (for example, an Azure Container Instance),
-    ## change myestserver.westus.azurecontainer.io to the fully qualified DNS name of your EST server
-    ## OR, change the IP address
-    ## and uncomment the corresponding line.
-    # RUN sed -i "s|DNS.2 = ip6-localhost|DNS.2 = myestserver.westus.azurecontainer.io|g" ./ext.cnf
-    # RUN sed -i "s|IP.2 = ::1|IP.2 = <YOUR EST SERVER IP ADDRESS>|g" ./ext.cnf
+    ## If you want to host your EST server in the cloud (for example, an Azure Container Instance),
+    ## change myestserver.westus.azurecontainer.io to the fully qualified DNS name of your EST server 
+    ## and uncomment the next line.
+    # RUN sed -i "s|ip6-localhost|myestserver.westus.azurecontainer.io |g" ./ext.cnf
      
     # Set EST server certificate to be valid for 10 years
     RUN sed -i "s|-keyout \$EST_SERVER_PRIVKEY -subj|-keyout \$EST_SERVER_PRIVKEY -days 7300 -subj |g" ./createCA.sh
@@ -131,32 +130,27 @@ The Dockerfile uses Ubuntu 18.04, a [Cisco library called `libest`](https://gith
 
 Each device requires the Certificate Authority (CA) certificate that is associated to a device identity certificate.
 
-1. On the IoT Edge device, create the `/var/aziot/certs` directory if it doesn't exist then change directory to it.
+1. On the IoT Edge device, create the `/var/secrets` directory if it doesn't exist then change directory to it.
 
     ```bash
-   # If the certificate directory doen't exist, create, set ownership, and set permissions
-   sudo mkdir -p /var/aziot/certs
-   sudo chown aziotcs:aziotcs /var/aziot/certs
-   sudo chmod 755 /var/aziot/certs
+    # Create the /var/secrets directory if it doesn't exist
+    sudo mkdir /var/secrets
 
-    # Change directory to /var/aziot/certs
-    cd /var/aziot/certs
+    # Change directory to /var/secrets
+    cd /var/secrets
     ```
 
-1. Retrieve the CA certificate from the EST server into the `/var/aziot/certs` directory and name it `cacert.crt.pem`.
+1. Retrieve the CA certificate from the EST server into the `/var/secrets` directory and name it `cacert.crt.pem`.
 
     ```bash
     openssl s_client -showcerts -verify 5 -connect localhost:8085 < /dev/null | sudo awk '/BEGIN/,/END/{ if(/BEGIN/){a++}; out="cert"a".pem"; print >out}' && sudo cp cert2.pem cacert.crt.pem
     ```
 
-1. Certificates should be owned by the key service user **aziotcs**. Set the ownership to **aziotcs** for all the certificate files and set permissions. For more information about certificate ownership and permissions, see [Permission requirements](how-to-manage-device-certificates.md#permission-requirements).
+1. Certificates should be owned by the key service user **aziotks**. Set the ownership to **aziotks** for all the certificate files.
 
-   ```bash
-   # Give aziotcs ownership to certificates
-   sudo chown -R aziotcs:aziotcs /var/aziot/certs
-   # Read and write for aziotcs, read-only for others
-   sudo find /var/aziot/certs -type f -name "*.*" -exec chmod 644 {} \;
-   ```
+    ```bash
+    sudo chown aziotks:aziotks /var/secrets/*.pem
+    ```
 
 ## Provision IoT Edge device using DPS
 
@@ -165,7 +159,7 @@ Using Device Provisioning Service allows you to automatically issue and renew ce
 ### Upload CA certificate to DPS
 
 1. If you don't have a Device Provisioning Service linked to IoT Hub, see [Quickstart: Set up the IoT Hub Device Provisioning Service with the Azure portal](../iot-dps/quick-setup-auto-provision.md).
-1. Transfer the `cacert.crt.pem` file from your device to a computer with access to the Azure portal such as your development computer. An easy way to transfer the certificate is to remotely connect to your device, display the certificate using the command `cat /var/aziot/certs/cacert.crt.pem`, copy the entire output, and paste the contents to a new file on your development computer.
+1. Transfer the `cacert.crt.pem` file from your device to a computer with access to the Azure portal such as your development computer. An easy way to transfer the certificate is to remotely connect to your device, display the certificate using the command `cat /var/secrets/cacert.crt.pem`, copy the entire output, and paste the contents to a new file on your development computer.
 1. In the [Azure portal](https://portal.azure.com), navigate to your instance of IoT Hub Device Provisioning Service.
 1. Under **Settings**, select **Certificates**, then **+Add**.
 
@@ -226,10 +220,7 @@ On the IoT Edge device, update the IoT Edge configuration file to use device cer
     [provisioning.attestation]
     method = "x509"
     registration_id = "myiotedgedevice"
-
-    [provisioning.attestation.identity_cert]
-    method = "est"
-    common_name = "myiotedgedevice"
+    identity_cert = { method = "est", common_name = "myiotedgedevice" }
 
     # Auto renewal settings for the identity cert
     # Available only from IoT Edge 1.3 and above
@@ -242,7 +233,7 @@ On the IoT Edge device, update the IoT Edge configuration file to use device cer
     # Optional if the EST server's TLS certificate is already trusted by the system's CA certificates.
     [cert_issuance.est]
         trusted_certs = [
-            "file:///var/aziot/certs/cacert.crt.pem",
+            "file:///var/secrets/cacert.crt.pem",
         ]
 
     # The default username and password for libest
@@ -325,7 +316,7 @@ The following are optional other ways you can test certificate renewal. These ch
 
 You can keep the resources and configurations that you created in this tutorial and reuse them. Otherwise, you can delete the local configurations and the Azure resources that you used in this article to avoid charges.
 
-[!INCLUDE [iot-edge-clean-up-cloud-resources](includes/iot-edge-clean-up-cloud-resources.md)]
+[!INCLUDE [iot-edge-clean-up-cloud-resources](../../includes/iot-edge-clean-up-cloud-resources.md)]
 
 ## Next steps
 

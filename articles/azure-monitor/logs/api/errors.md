@@ -1,18 +1,18 @@
 ---
-title: Azure Monitor Log Analytics API errors
+title: Errors
 description: This section contains a non-exhaustive list of known common errors that can occur in the Azure Monitor Log Analytics API, their causes, and possible solutions.
+author: AbbyMSFT
+ms.author: abbyweisberg
 ms.date: 11/29/2021
-author: guywi-ms
-ms.author: guywild
 ms.topic: article
 ---
-# Azure Monitor Log Analytics API errors
+# Azure Monitor Log Analytics API Errors
 
-This section contains a non-exhaustive list of known common errors, their causes, and possible solutions. It also contains successful responses, which often indicate an issue with the request (such as a missing header) or otherwise unexpected behavior.
+This section contains a non-exhaustive list of known common errors, their causes, and possible solutions. It also contains successful responses which often indicate an issue with the request (such as a missing header) or otherwise unexpected behavior.
 
-## Query syntax error
+## Query Syntax Error
 
-400 response:
+Code: 400 Response:
 
 ```
     {
@@ -27,11 +27,11 @@ This section contains a non-exhaustive list of known common errors, their causes
     }
 ```
 
-The query string is malformed. Check for extra spaces, punctuation, or spelling errors.
+Details: The query string is malformed. Check for extra spaces, punctuation, or spelling errors.
 
-## No authentication provided
+## No Authentication Provided
 
-401 response:
+Code: 401 Response:
 
 ```
     {
@@ -42,11 +42,11 @@ The query string is malformed. Check for extra spaces, punctuation, or spelling 
     }
 ```
 
-Include a form of authentication with your request, such as the header `"Authorization: Bearer \<token\>"`.
+Details: Include a form of authentication with your request, such as the header "Authorization: Bearer \<token\>"
 
-## Invalid authentication token
+## Invalid Authentication Token
 
-403 response:
+Code: 403 Response:
 
 ```
     {
@@ -57,11 +57,11 @@ Include a form of authentication with your request, such as the header `"Authori
     }
 ```
 
-The token is malformed or otherwise invalid. This error can occur if you manually copy and paste the token and add or cut characters to the payload. Verify that the token is exactly as received from Azure Active Directory (Azure AD).
+Details: the token is malformed or otherwise invalid. This can occur if you manually copy-paste the token and add or cut characters to the payload. Verify that the token is exactly as received from Azure AD.
 
-## Invalid token audience
+## Invalid Token Audience
 
-403 response:
+Code: 403 Response:
 
 ```
     {
@@ -72,11 +72,11 @@ The token is malformed or otherwise invalid. This error can occur if you manuall
     }
 ```
 
-This error occurs if you try to use the client credentials OAuth2 flow to obtain a token for the API and then use that token via the Azure Resource Manager endpoint. Use one of the indicated URLs as the resource in your token request if you want to use the Azure Resource Manager endpoint. Alternatively, you can use the direct API endpoint with a different OAuth2 flow for authorization.
+Details: this occurs if you try to use the client credentials OAuth2 flow to obtain a token for the API and then use that token via the ARM endpoint. Use one of the indicated URLs as the resource in your token request if you want to use the ARM endpoint. Alternatively, you can use the direct API endpoint with a different OAuth2 flow for authorization.
 
-## Client credentials to direct API
+## Client Credentials to Direct API
 
-403 response:
+Code: 403 Response:
 
 ```
     {
@@ -91,11 +91,11 @@ This error occurs if you try to use the client credentials OAuth2 flow to obtain
     }
 ```
 
-This error can occur if you try to use client credentials via the direct API endpoint. If you're using the direct API endpoint, use a different OAuth2 flow for authorization. If you must use client credentials, use the Azure Resource Manager API endpoint.
+Details: This error can occur if you try to use client credentials via the direct API endpoint. If you are using the direct API endpoint, use a different OAuth2 flow for authorization. If you must use client credentials, use the ARM API endpoint.
 
-## Insufficient permissions
+## Insufficient Permissions
 
-403 response:
+Code: 403 Response:
 
 ```
     {
@@ -106,14 +106,15 @@ This error can occur if you try to use client credentials via the direct API end
     }
 ```
 
-The token you've presented for authorization belongs to a user who doesn't have sufficient access to this privilege. Verify that your workspace GUID and your token request are correct. If necessary, grant IAM privileges in your workspace to the Azure AD application you created as Contributor.
+Details: The token you have presented for authorization belongs to a user who does not have sufficient access to this privilege. Verify your workspace GUID and your token request are correct, and if necessary grant IAM privileges in your workspace to the Azure AD Application you created as Contributor.
 
 > [!NOTE]
-> When you use Azure AD authentication, it might take up to 60 minutes for the Application Insights REST API to recognize new role-based access control permissions. While permissions are propagating, REST API calls might fail with error code 403.
+> When using Azure AD authentication, it may take up to 60 minutes for the Azure Application Insights REST API to recognize new 
+> role-based access control (RBAC) permissions. While permissions are propagating, REST API calls may fail with error code 403. 
 
-## Bad authorization code
+## Bad Authorization Code
 
-403 response:
+Code: 403 Response:
 
 ```
     {
@@ -126,11 +127,11 @@ The token you've presented for authorization belongs to a user who doesn't have 
     }
 ```
 
-The authorization code submitted in the token request was either stale or previously used. Reauthorize via the Azure AD authorize endpoint to get a new code.
+Details: The authorization code submitted in the token request was either stale or previously used. Reauthorize via the Azure AD authorize endpoint to get a new code.
 
-## Path not found
+## Path Not Found
 
-404 response:
+Code: 404 Response:
 
 ```
     {
@@ -141,16 +142,12 @@ The authorization code submitted in the token request was either stale or previo
     }
 ```
 
-The requested query path doesn't exist. Verify the URL spelling of the endpoint you're hitting and that you're using a supported HTTP verb.
+Details: the requested query path does not exist. Verify the URL spelling of the endpoint you are hitting, and that you are using a supported HTTP verb.
 
 ## Missing JSON or Content-Type
 
-200 response: Empty body
+Code: 200 Response: empty body. Details: If you send a POST request that is missing either JSON body or the "Content-Type: application/json" header, we will return an empty 200 response.
 
-If you send a POST request that's missing either JSON body or the `"Content-Type: application/json"` header, we return an empty 200 response.
+## No Data in Workspace
 
-## No data in workspace
-
-204 response: Empty body
-
-If a workspace has no data in it, we return 204 No Content.
+Code: 204 Response: empty body. Details: If a workspace has no data in it, we return a 204 No Content.

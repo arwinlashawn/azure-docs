@@ -4,8 +4,7 @@ description: Describes how to set up network mapping for disaster recovery of Hy
 ms.service: site-recovery
 ms.topic: conceptual
 ms.date: 11/14/2019
-ms.author: ankitadutta
-author: ankitaduttaMSFT
+
 ---
 
 

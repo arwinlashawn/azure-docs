@@ -13,8 +13,6 @@ ms.date: 06/24/2022
 
 [!INCLUDE [applies-to-postgresql-single-server](../includes/applies-to-postgresql-single-server.md)]
 
-[!INCLUDE [azure-database-for-postgresql-single-server-deprecation](../includes/azure-database-for-postgresql-single-server-deprecation.md)]
-
 This article describes how you can create users within an Azure Database for PostgreSQL server.
 
 If you would like to learn about how to create and manage Azure subscription users and their privileges, you can visit the [Azure role-based access control (Azure RBAC) article](../../role-based-access-control/built-in-roles.md) or review [how to customize roles](../../role-based-access-control/custom-roles.md).
@@ -47,7 +45,7 @@ The server admin user account can be used to create additional users and grant t
 3. Edit and run the following SQL code. Replace your new user name for the placeholder value <new_user>, and replace the placeholder password with your own strong password.
 
    ```sql
-   CREATE USER <new_user> CREATEDB CREATEROLE PASSWORD '<StrongPassword!>';
+   CREATE ROLE <new_user> WITH LOGIN NOSUPERUSER INHERIT CREATEDB CREATEROLE NOREPLICATION PASSWORD '<StrongPassword!>';
 
    GRANT azure_pg_admin TO <new_user>;
    ```
@@ -66,7 +64,7 @@ The server admin user account can be used to create additional users and grant t
    ```sql
    CREATE DATABASE <newdb>;
 
-   CREATE USER <db_user> PASSWORD '<StrongPassword!>';
+   CREATE ROLE <db_user> WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD '<StrongPassword!>';
 
    GRANT CONNECT ON DATABASE <newdb> TO <db_user>;
    ```

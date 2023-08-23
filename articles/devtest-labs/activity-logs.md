@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.author: rosemalcolm
 author: RoseHJM
 ms.date: 07/10/2020
-ms.custom: UpdateFrequency2
 ---
 
 # View activity logs for labs in Azure DevTest Labs 

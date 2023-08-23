@@ -1,20 +1,21 @@
 ---
 title: Encrypt disks for Azure scale sets with Azure CLI
-description: Learn how to use Azure CLI to encrypt VM instances and attached disks in a Windows Virtual Machine Scale Set
+description: Learn how to use Azure CLI to encrypt VM instances and attached disks in a Windows virtual machine scale set
 author: ju-shim
 ms.author: jushiman
 ms.topic: tutorial
 ms.service: virtual-machine-scale-sets
 ms.subservice: disks
-ms.date: 11/22/2022
+ms.date: 10/15/2019
 ms.reviewer: mimckitt
-ms.custom: mimckitt, devx-track-azurecli, devx-track-linux
+ms.custom: mimckitt, devx-track-azurecli
+
 ---
-# Encrypt OS and attached data disks in a Virtual Machine Scale Set with the Azure CLI
+# Encrypt OS and attached data disks in a virtual machine scale set with the Azure CLI
 
-The Azure CLI is used to create and manage Azure resources from the command line or in scripts. This quickstart shows you how to use the Azure CLI to create and encrypt a Virtual Machine Scale Set. For more information on applying Azure Disk encryption to a Virtual Machine Scale Set, see [Azure Disk Encryption for Virtual Machine Scale Sets](disk-encryption-overview.md).
+The Azure CLI is used to create and manage Azure resources from the command line or in scripts. This quickstart shows you how to use the Azure CLI to create and encrypt a virtual machine scale set. For more information on applying Azure Disk encryption to a virtual machine scale set, see [Azure Disk Encryption for Virtual Machine Scale Sets](disk-encryption-overview.md).
 
-[!INCLUDE [azure-cli-prepare-your-environment.md](~/articles/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
+[!INCLUDE [azure-cli-prepare-your-environment.md](../../includes/azure-cli-prepare-your-environment.md)]
 
 - This article requires version 2.0.31 or later of the Azure CLI. If using Azure Cloud Shell, the latest version is already installed.
 
@@ -26,19 +27,14 @@ Before you can create a scale set, create a resource group with [az group create
 az group create --name myResourceGroup --location eastus
 ```
 
-Now create a Virtual Machine Scale Set with [az vmss create](/cli/azure/vmss). The following example creates a scale set named *myScaleSet* that is set to automatically update as changes are applied, and generates SSH keys if they don't exist in *~/.ssh/id_rsa*. A 32-Gb data disk is attached to each VM instance, and the Azure [Custom Script Extension](../virtual-machines/extensions/custom-script-linux.md) is used to prepare the data disks with [az vmss extension set](/cli/azure/vmss/extension):
-
-> [!IMPORTANT]
-> Make sure to select supported Operating System with ADE.
-> [Supported OS for ADE](/azure/virtual-machines/linux/disk-encryption-overview#supported-operating-systems).
+Now create a virtual machine scale set with [az vmss create](/cli/azure/vmss). The following example creates a scale set named *myScaleSet* that is set to automatically update as changes are applied, and generates SSH keys if they don't exist in *~/.ssh/id_rsa*. A 32-Gb data disk is attached to each VM instance, and the Azure [Custom Script Extension](../virtual-machines/extensions/custom-script-linux.md) is used to prepare the data disks with [az vmss extension set](/cli/azure/vmss/extension):
 
 ```azurecli-interactive
 # Create a scale set with attached data disk
 az vmss create \
   --resource-group myResourceGroup \
   --name myScaleSet \
-  --orchestration-mode Flexible \
-  --image <SKU Linux Image> \
+  --image UbuntuLTS \
   --upgrade-policy-mode automatic \
   --admin-username azureuser \
   --generate-ssh-keys \
@@ -106,7 +102,7 @@ As the scale set is upgrade policy on the scale set created in an earlier step i
 
 ### Enable encryption using KEK to wrap the key
 
-You can also use a Key Encryption Key for added security when encrypting the Virtual Machine Scale Set.
+You can also use a Key Encryption Key for added security when encrypting the virtual machine scale set.
 
 ```azurecli-interactive
 # Get the resource ID of the Key Vault
@@ -138,7 +134,7 @@ az vmss encryption show --resource-group myResourceGroup --name myScaleSet
 
 When VM instances are encrypted, the status code reports *EncryptionState/encrypted*, as shown in the following example output:
 
-```output
+```console
 [
   {
     "disks": [
@@ -173,6 +169,6 @@ az vmss encryption disable --resource-group myResourceGroup --name myScaleSet
 
 ## Next steps
 
-- In this article, you used the Azure CLI to encrypt a Virtual Machine Scale Set. You can also use [Azure PowerShell](disk-encryption-powershell.md) or [Azure Resource Manager templates](disk-encryption-azure-resource-manager.md).
+- In this article, you used the Azure CLI to encrypt a virtual machine scale set. You can also use [Azure PowerShell](disk-encryption-powershell.md) or [Azure Resource Manager templates](disk-encryption-azure-resource-manager.md).
 - If you wish to have Azure Disk Encryption applied after another extension is provisioned, you can use [extension sequencing](virtual-machine-scale-sets-extension-sequencing.md). 
-- An end-to-end batch file example for Linux scale set data disk encryption can be found [here](https://gist.githubusercontent.com/ejarvi/7766dad1475d5f7078544ffbb449f29b/raw/03e5d990b798f62cf188706221ba6c0c7c2efb3f/enable-linux-vmss.bat). This example creates a resource group, Linux scale set, mounts a 5-GB data disk, and encrypts the Virtual Machine Scale Set.
+- An end-to-end batch file example for Linux scale set data disk encryption can be found [here](https://gist.githubusercontent.com/ejarvi/7766dad1475d5f7078544ffbb449f29b/raw/03e5d990b798f62cf188706221ba6c0c7c2efb3f/enable-linux-vmss.bat). This example creates a resource group, Linux scale set, mounts a 5-GB data disk, and encrypts the virtual machine scale set.

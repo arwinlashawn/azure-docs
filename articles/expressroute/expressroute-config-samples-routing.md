@@ -3,9 +3,10 @@ title: 'Azure ExpressRoute: Router configuration samples'
 description: Use these interface and routing configuration samples for Cisco IOS-XE and Juniper MX series routers as examples to work with Azure ExpressRoute.
 services: expressroute
 author: duongau
+
 ms.service: expressroute
 ms.topic: article
-ms.date: 06/30/2023
+ms.date: 04/27/2021
 ms.author: duau
 
 ---
@@ -15,23 +16,25 @@ This page provides interface and routing configuration samples for Cisco IOS-XE 
 > [!IMPORTANT]
 > Samples on this page are purely for guidance. You must work with your vendor's sales/technical team and your networking team to find appropriate configurations to meet your needs. Microsoft won't support issues related to configurations listed in this page. Contact your device vendor for support issues.
 > 
+> 
 
 ## MTU and TCP MSS settings on router interfaces
-The maximum transmission unit (MTU) for the ExpressRoute interface is 1500, which is the typical default MTU for an Ethernet interface on a router. Unless your router has a different MTU by default, there's no need to specify a value on the router interface.
+The maximum transmission unit (MTU) for the ExpressRoute interface is 1500, which is the typical default MTU for an Ethernet interface on a router. Unless your router has a different MTU by default, there is no need to specify a value on the router interface.
 
-Unlike an Azure VPN gateway, the TCP maximum segment size (MSS) for an ExpressRoute circuit doesn't need to be specified.
+Unlike an Azure VPN gateway, the TCP maximum segment size (MSS) for an ExpressRoute circuit does not need to be specified.
 
 The router configuration samples in this article apply to all peerings. Review [ExpressRoute peerings](expressroute-circuit-peerings.md) and [ExpressRoute routing requirements](expressroute-routing.md) for more details on routing.
+
 
 ## Cisco IOS-XE based routers
 The samples in this section apply to any router running the IOS-XE OS family.
 
 ### Configure interfaces and subinterfaces
-You need one subinterface per peering in every router that you connect to Microsoft. A subinterface can be identified with a VLAN ID or a stacked pair of VLAN IDs and an IP address.
+You'll need one subinterface per peering in every router that you connect to Microsoft. A subinterface can be identified with a VLAN ID or a stacked pair of VLAN IDs and an IP address.
 
 **Dot1Q interface definition**
 
-This sample provides the subinterface definition for a subinterface with a single VLAN ID. The VLAN ID is unique per peering. The last octet of your IPv4 address is always an odd number.
+This sample provides the subinterface definition for a subinterface with a single VLAN ID. The VLAN ID is unique per peering. The last octet of your IPv4 address will always be an odd number.
 
 ```console
 interface GigabitEthernet<Interface_Number>.<Number>
@@ -41,7 +44,7 @@ interface GigabitEthernet<Interface_Number>.<Number>
 
 **QinQ interface definition**
 
-This sample provides the subinterface definition for a subinterface with two VLAN IDs. The outer VLAN ID (s-tag), if used, remains the same across all peerings. The inner VLAN ID (c-tag) is unique per peering. The last octet of your IPv4 address is always an odd number.
+This sample provides the subinterface definition for a subinterface with two VLAN IDs. The outer VLAN ID (s-tag), if used, remains the same across all peerings. The inner VLAN ID (c-tag) is unique per peering. The last octet of your IPv4 address will always be an odd number.
 
 ```console
 interface GigabitEthernet<Interface_Number>.<Number>
@@ -50,7 +53,7 @@ interface GigabitEthernet<Interface_Number>.<Number>
 ```
 
 ### Set up eBGP sessions
-You must set up a BGP session with Microsoft for every peering. Set up a BGP session by using the following sample. If the IPv4 address that you used for your subinterface was a.b.c.d, then the IP address of the BGP neighbor (Microsoft) is a.b.c.d+1. The last octet of the BGP neighbor's IPv4 address is always an even number.
+You must set up a BGP session with Microsoft for every peering. Set up a BGP session by using the following sample. If the IPv4 address that you used for your subinterface was a.b.c.d, then the IP address of the BGP neighbor (Microsoft) will be a.b.c.d+1. The last octet of the BGP neighbor's IPv4 address will always be an even number.
 
 ```console
 router bgp <Customer_ASN>
@@ -99,7 +102,7 @@ route-map <MS_Prefixes_Inbound> permit 10
 
 ### Configure BFD
 
-You configure BFD in two places: one at the interface level and another at BGP level. The example here's for the QinQ interface. 
+You'll configure BFD in two places: one at the interface level and another at BGP level. The example here is for the QinQ interface. 
 
 ```console
 interface GigabitEthernet<Interface_Number>.<Number>
@@ -126,7 +129,7 @@ The samples in this section apply to any Juniper MX series router.
 
 **Dot1Q interface definition**
 
-This sample provides the subinterface definition for a subinterface with a single VLAN ID. The VLAN ID is unique per peering. The last octet of your IPv4 address is always an odd number.
+This sample provides the subinterface definition for a subinterface with a single VLAN ID. The VLAN ID is unique per peering. The last octet of your IPv4 address will always be an odd number.
 
 ```console
     interfaces {
@@ -145,7 +148,7 @@ This sample provides the subinterface definition for a subinterface with a singl
 
 **QinQ interface definition**
 
-This sample provides the subinterface definition for a subinterface with two VLAN IDs. The outer VLAN ID (s-tag), if used, remains the same across all peerings. The inner VLAN ID (c-tag) is unique per peering. The last octet of your IPv4 address is always an odd number.
+This sample provides the subinterface definition for a subinterface with two VLAN IDs. The outer VLAN ID (s-tag), if used, remains the same across all peerings. The inner VLAN ID (c-tag) is unique per peering. The last octet of your IPv4 address will always be an odd number.
 
 ```console
     interfaces {
@@ -162,7 +165,7 @@ This sample provides the subinterface definition for a subinterface with two VLA
 ```
 
 ### Set up eBGP sessions
-You must set up a BGP session with Microsoft for every peering. Set up a BGP session by using the following sample. If the IPv4 address that you used for your subinterface was a.b.c.d, then the IP address of the BGP neighbor (Microsoft) is a.b.c.d+1. The last octet of the BGP neighbor's IPv4 address is always an even number.
+You must set up a BGP session with Microsoft for every peering. Set up a BGP session by using the following sample. If the IPv4 address that you used for your subinterface was a.b.c.d, then the IP address of the BGP neighbor (Microsoft) will be a.b.c.d+1. The last octet of the BGP neighbor's IPv4 address will always be an even number.
 
 ```console
     routing-options {
@@ -280,8 +283,7 @@ For MACSec configuration, Connectivity Association Key (CAK) and Connectivity As
 ```
 
 ## Next steps
-
-For more information about ExpressRoute, see the [ExpressRoute FAQ](expressroute-faqs.md).
+See the [ExpressRoute FAQ](expressroute-faqs.md) for more details.
 
 
 

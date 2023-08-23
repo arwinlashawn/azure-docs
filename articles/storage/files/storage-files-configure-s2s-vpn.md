@@ -1,11 +1,12 @@
 ---
-title: Configure a Site-to-Site (S2S) VPN for use with Azure Files
+title: Configure a Site-to-Site (S2S) VPN for use with Azure Files | Microsoft Docs
 description: How to configure a Site-to-Site (S2S) VPN for use with Azure Files
 author: khdownie
-ms.service: azure-file-storage
+ms.service: storage
 ms.topic: how-to
 ms.date: 10/19/2019
 ms.author: kendownie
+ms.subservice: files
 ---
 
 # Configure a Site-to-Site VPN for use with Azure Files

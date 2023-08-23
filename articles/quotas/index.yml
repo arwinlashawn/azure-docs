@@ -4,12 +4,12 @@ title: Azure Quotas documentation
 summary: Azure Quotas lets you view and manage quotas for many of the Azure resources you use in your subscriptions.
 metadata:
   title: Azure Quotas documentation
-  description: Azure Quotas lets you view and manage quotas for many of the Azure resources you use in your subscriptions.
+  description: Azure Quotas summary TK
   services: Azure Quotas
   ms.topic: landing-page
   ms.service: azure-quotas
   ms.collection: collection
-  ms.date: 08/17/2023
+  ms.date: 07/22/2022
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -48,7 +48,13 @@ landingContent:
           - text: Azure PowerShell
             url: /powershell/module/az.quota/
           - text: Azure REST API
-            url: /rest/api/quota
+            url: /rest/api/reserved-vm-instances/quotaapi
+      - linkListType: learn
+        links:
+          - text: Use the Quota REST API
+            url: https://techcommunity.microsoft.com/t5/azure-governance-and-management/using-the-new-quota-rest-api/ba-p/2183670
+          - text: Automate quota management with the REST API
+            url: https://azure.microsoft.com/blog/automating-quota-management-with-azure-quota-rest-api/
 
   # Card 
   - title: Get started
@@ -58,3 +64,4 @@ landingContent:
           - text: Request a quota increase in the portal
             url: quickstart-increase-quota-portal.md
 
+  

@@ -7,7 +7,7 @@ ms.reviewer: jburchel
 ms.service: data-factory
 ms.subservice: v1
 ms.topic: conceptual
-ms.date: 04/12/2023
+ms.date: 10/22/2021
 ms.custom: devx-track-csharp
 ---
 
@@ -956,12 +956,12 @@ After you process data, you can consume it with online tools such as Power BI. H
 * [Azure and Power BI: Basic overview](https://powerbi.microsoft.com/documentation/powerbi-azure-and-power-bi/)
 
 ## References
-* [Azure Data Factory](../index.yml)
+* [Azure Data Factory](/azure/data-factory/)
 
   * [Introduction to the Data Factory service](data-factory-introduction.md)
   * [Get started with Data Factory](data-factory-build-your-first-pipeline.md)
   * [Use custom activities in a Data Factory pipeline](data-factory-use-custom-activities.md)
-* [Azure Batch](../../batch/index.yml)
+* [Azure Batch](/azure/batch/)
 
   * [Basics of Batch](/azure/azure-sql/database/sql-database-paas-overview)
   * [Overview of Batch features](../../batch/batch-service-workflow-features.md))

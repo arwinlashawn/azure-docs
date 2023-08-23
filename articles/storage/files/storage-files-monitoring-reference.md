@@ -1,12 +1,13 @@
 ---
-title: Azure Files monitoring data reference
+title: Azure Files monitoring data reference | Microsoft Docs
 description: Log and metrics reference for monitoring data from Azure Files.
-author: khdownie
+author: normesta
 services: storage
-ms.service: azure-file-storage
+ms.service: storage
 ms.topic: reference
-ms.date: 07/31/2023
-ms.author: kendownie
+ms.date: 10/02/2020
+ms.author: normesta
+ms.subservice: files
 ms.custom: monitoring
 ---
 
@@ -27,7 +28,7 @@ The following tables list the platform metrics collected for Azure Files.
 
 ### Capacity metrics
 
-Capacity metrics values are refreshed daily (up to 24 hours). The time grain defines the time interval for which metrics values are presented. The supported time grain for all capacity metrics is one hour (PT1H).
+Capacity metrics values are refreshed daily (up to 24 Hours). The time grain defines the time interval for which metrics values are presented. The supported time grain for all capacity metrics is one hour (PT1H).
 
 Azure Files provides the following capacity metrics in Azure Monitor.
 
@@ -37,19 +38,17 @@ Azure Files provides the following capacity metrics in Azure Monitor.
 
 #### Azure Files
 
-This table shows [supported metrics for Azure Files](/azure/azure-monitor/reference/supported-metrics/microsoft-storage-storageaccounts-fileservices-metrics).
+This table shows [Azure Files metrics](../../azure-monitor/essentials/metrics-supported.md#microsoftstoragestorageaccountsfileservices).
 
 | Metric | Description |
 | ------------------- | ----------------- |
 | FileCapacity | The amount of File storage used by the storage account. <br/><br/> Unit: Bytes <br/> Aggregation Type: Average <br/> Dimensions: FileShare, Tier <br/> Value example: 1024 |
-| FileCount | The number of files in the storage account. <br/><br/> Unit: Count <br/> Aggregation Type: Average <br/> Dimensions: FileShare, Tier <br/> Value example: 1024 |
+| FileCount   | The number of files in the storage account. <br/><br/> Unit: Count <br/> Aggregation Type: Average <br/> Dimensions: FileShare, Tier <br/> Value example: 1024 |
 | FileShareCapacityQuota | The upper limit on the amount of storage that can be used by Azure Files Service in bytes. <br/><br/> Unit: Bytes <br/> Aggregation Type: Average <br/> Value example: 1024|
 | FileShareCount | The number of file shares in the storage account. <br/><br/> Unit: Count <br/> Aggregation Type: Average <br/> Value example: 1024 |
 | FileShareProvisionedIOPS | The number of provisioned IOPS on a file share. This metric is applicable to premium file storage only. <br/><br/> Unit: CountPerSecond <br/> Aggregation Type: Average |
-| FileShareSnapshotCount | The number of snapshots present on the share in storage account's Azure Files service. <br/><br/> Unit: Count <br/> Aggregation Type: Average | 
-| FileShareSnapshotSize | The amount of storage used by the snapshots in storage account's Azure Files service. <br/><br/> Unit: Bytes <br/> Aggregation Type: Average |
-| FileShareMaxUsedIOPS | The maximum number of used IOPS at the lowest time granularity of 1-minute for the premium file share in the premium files storage account. <br/><br/> Unit: CountPerSecond  <br/> Aggregation Type: Max |
-| FileShareMaxUsedBandwidthMiBps | The maximum number of used bandwidth in MiB/s at the lowest time granularity of 1-minute for the premium file share in the premium files storage account. <br/><br/> Unit: CountPerSecond <br/> Aggregation Type: Max |
+| FileShareSnapshotCount | The number of snapshots present on the share in storage account's Azure Files service. <br/><br/> Unit:Count <br/> Aggregation Type: Average | 
+|FileShareSnapshotSize|The amount of storage used by the snapshots in storage account's Azure Files service. <br/><br/> Unit: Bytes <br/> Aggregation Type: Average|
 
 ### Transaction metrics
 

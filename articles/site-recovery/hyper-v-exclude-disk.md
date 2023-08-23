@@ -1,11 +1,10 @@
 ---
 title: Exclude Hyper-V VM disks from disaster recovery to Azure with Azure Site Recovery 
 description: How to exclude Hyper-V VM disks from replication to Azure with Azure Site Recovery.
-author: ankitaduttaMSFT
+author: v-pgaddala
 manager: rochakm
-ms.service: site-recovery
 ms.topic: conceptual
-ms.author: ankitadutta
+ms.author: v-pgaddala
 ms.date: 11/12/2019
 ---
 

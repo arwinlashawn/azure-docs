@@ -1,8 +1,8 @@
 ---
 title: Identify queries running beyond workload group query execution timeout
 description: Identify queries that are running beyond the workload groups query execution timeout value.   
-author: WilliamDAssafMSFT 
-ms.author: wiassaf 
+author: kedodd
+ms.author: kedodd
 manager: craigg
 ms.service: synapse-analytics
 ms.topic: how-to  

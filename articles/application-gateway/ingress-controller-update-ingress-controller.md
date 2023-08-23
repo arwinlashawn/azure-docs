@@ -4,9 +4,8 @@ description: This article provides information on how to upgrade an Application 
 services: application-gateway
 author: greg-lindsay
 ms.service: application-gateway
-ms.custom: devx-track-linux
 ms.topic: how-to
-ms.date: 07/23/2023
+ms.date: 06/09/2022
 ms.author: greglin
 ---
 
@@ -14,9 +13,6 @@ ms.author: greglin
 
 The Azure Application Gateway Ingress Controller for Kubernetes (AGIC) can be upgraded
 using a Helm repository hosted on Azure Storage.
-
-> [!TIP]
-> Also see [What is Application Gateway for Containers?](for-containers/overview.md) currently in public preview.
 
 Before beginning the upgrade procedure, ensure that you've added the required repository:
 
@@ -50,7 +46,7 @@ Before beginning the upgrade procedure, ensure that you've added the required re
 
     Sample response:
 
-    ```output
+    ```bash
     NAME                                                    CHART VERSION   APP VERSION     DESCRIPTION
     application-gateway-kubernetes-ingress/ingress-azure    0.7.0-rc1       0.7.0-rc1       Use Azure Application Gateway as the ingress for an Azure...
     application-gateway-kubernetes-ingress/ingress-azure    0.6.0           0.6.0           Use Azure Application Gateway as the ingress for an Azure...
@@ -66,7 +62,7 @@ Before beginning the upgrade procedure, ensure that you've added the required re
 
     Sample response:
 
-    ```output
+    ```bash
     NAME            REVISION        UPDATED                         STATUS  CHART                   APP VERSION     NAMESPACE
     odd-billygoat   22              Fri Jun 21 15:56:06 2019        FAILED  ingress-azure-0.7.0-rc1 0.7.0-rc1       default
     ```
@@ -94,7 +90,7 @@ If the Helm deployment fails, you can roll back to a previous release.
 
     Sample output:
 
-    ```output
+    ```bash
     REVISION        UPDATED                         STATUS          CHART                   DESCRIPTION
     1               Mon Jun 17 13:49:42 2019        DEPLOYED        ingress-azure-0.6.0     Install complete
     2               Fri Jun 21 15:56:06 2019        FAILED          ingress-azure-xx        xxxx

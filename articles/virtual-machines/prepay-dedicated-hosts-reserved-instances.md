@@ -3,10 +3,11 @@ title: Prepay for Azure Dedicated Hosts to save money
 description: Learn how to buy Azure Dedicated Hosts Reserved Instances to save on your compute costs.
 services: virtual-machines
 author: yashar
-ms.service: azure-dedicated-host
+ms.service: virtual-machines
+ms.subservice: dedicated-hosts
 ms.topic: conceptual
 ms.workload: infrastructure-services
-ms.date: 06/05/2023
+ms.date: 02/28/2020
 ms.author: banders
 ms.reviewer: mattmcinnes
 ---

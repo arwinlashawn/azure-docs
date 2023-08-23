@@ -2,11 +2,11 @@
 title: Rewrite URL and query string with Azure Application Gateway - Azure portal
 description: Learn how to use the Azure portal to configure an Azure Application Gateway to rewrite URL and query string
 services: application-gateway
-author: greg-lindsay
+author: azhar2005
 ms.service: application-gateway
 ms.topic: how-to
 ms.date: 4/05/2021
-ms.author: greglin
+ms.author: azhussai
 ---
 
 # Rewrite URL with Azure Application Gateway - Azure portal

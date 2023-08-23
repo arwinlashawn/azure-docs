@@ -2,14 +2,14 @@
 title: Azure ADAL to MSAL migration videos
 description: Videos that help you migrate from the Azure Active Directory developer platform to the Microsoft identity platform
 services: active-directory
-author: davidmu1
+author: mmacy
 manager: CelesteDG
 ms.service: active-directory
 ms.subservice: azuread-dev
 ms.topic: conceptual
 ms.workload: identity
 ms.date: 02/12/2020
-ms.author: davidmu
+ms.author: marsma
 ms.custom: aaddev
 ms.reviewer: celested
 ROBOTS: NOINDEX
@@ -21,7 +21,7 @@ Learn about the new Microsoft identity platform and how to migrate to it from th
 
 ## Migrate from v1.0 to v2.0
 
-**Learn about migrating to the latest version of the Microsoft identity platform**
+**Learn about migrating to the the latest version of the Microsoft identity platform**
 
 :::row:::
     :::column:::

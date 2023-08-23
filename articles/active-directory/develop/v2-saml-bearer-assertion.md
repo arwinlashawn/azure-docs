@@ -2,14 +2,14 @@
 title: Exchange a SAML token issued by Active Directory Federation Services (AD FS) for a Microsoft Graph access token
 description: Learn how to fetch data from Microsoft Graph without prompting an AD FS-federated user for credentials by using the SAML bearer assertion flow.
 services: active-directory
-author: OwenRichards1
+author: mmacy
 manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: how-to
 ms.date: 01/11/2022
-ms.author: owenrichards
+ms.author: marsma
 ms.reviewer: nickludwig, jelledruyts, paulgarn
 ---
 

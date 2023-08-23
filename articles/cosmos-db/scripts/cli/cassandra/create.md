@@ -5,21 +5,20 @@ author: seesharprun
 ms.author: sidandrews
 ms.reviewer: mjbrown
 ms.service: cosmos-db
-ms.subservice: apache-cassandra
-ms.custom: ignite-2022, devx-track-azurecli
+ms.subservice: cosmosdb-cassandra
 ms.topic: sample
 ms.date: 02/21/2022
 ---
 
-# Create an Azure Cosmos DB Cassandra API account, keyspace and table using Azure CLI
+# Create an Azure Cosmos Cassandra API account, keyspace and table using Azure CLI
 
-[!INCLUDE[Cassandra](../../../includes/appliesto-cassandra.md)]
+[!INCLUDE [appliesto-cassandra-api](../../../includes/appliesto-cassandra-api.md)]
 
-The script in this article demonstrates creating an Azure Cosmos DB account, keyspace, and table for API for Cassandra.
+The script in this article demonstrates creating an Azure Cosmos DB account, keyspace, and table for Cassandra API.
 
 [!INCLUDE [quickstarts-free-trial-note](../../../../../includes/quickstarts-free-trial-note.md)]
 
-[!INCLUDE [azure-cli-prepare-your-environment.md](~/articles/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
+[!INCLUDE [azure-cli-prepare-your-environment.md](../../../../../includes/azure-cli-prepare-your-environment.md)]
 
 - This article requires Azure CLI version 2.12.1 or later. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli). If using Azure Cloud Shell, the latest version is already installed.
 
@@ -47,8 +46,8 @@ This script uses the following commands. Each command in the table links to comm
 |---|---|
 | [az group create](/cli/azure/group#az-group-create) | Creates a resource group in which all resources are stored. |
 | [az cosmosdb create](/cli/azure/cosmosdb#az-cosmosdb-create) | Creates an Azure Cosmos DB account. |
-| [az cosmosdb cassandra keyspace create](/cli/azure/cosmosdb/cassandra/keyspace#az-cosmosdb-cassandra-keyspace-create) | Creates an Azure Cosmos DB Cassandra keyspace. |
-| [az cosmosdb cassandra table create](/cli/azure/cosmosdb/cassandra/table#az-cosmosdb-cassandra-table-create) | Creates an Azure Cosmos DB Cassandra table. |
+| [az cosmosdb cassandra keyspace create](/cli/azure/cosmosdb/cassandra/keyspace#az-cosmosdb-cassandra-keyspace-create) | Creates an Azure Cosmos Cassandra keyspace. |
+| [az cosmosdb cassandra table create](/cli/azure/cosmosdb/cassandra/table#az-cosmosdb-cassandra-table-create) | Creates an Azure Cosmos Cassandra table. |
 | [az group delete](/cli/azure/resource#az-resource-delete) | Deletes a resource group including all nested resources. |
 
 ## Next steps

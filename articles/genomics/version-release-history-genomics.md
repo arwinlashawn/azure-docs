@@ -7,7 +7,6 @@ author: vigunase
 manager: cgronlun
 ms.author: vigunase
 ms.service: genomics
-ms.custom: devx-track-python
 ms.topic: conceptual
 ms.date: 01/11/2019
 ---

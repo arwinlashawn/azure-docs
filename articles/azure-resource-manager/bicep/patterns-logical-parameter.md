@@ -4,8 +4,7 @@ description: Describes the logical parameter pattern.
 author: johndowns
 ms.author: jodowns
 ms.topic: conceptual
-ms.custom: devx-track-bicep
-ms.date: 06/23/2023
+ms.date: 12/01/2021
 ---
 # Logical parameter pattern
 

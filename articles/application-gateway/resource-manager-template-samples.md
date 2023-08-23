@@ -5,7 +5,6 @@ description: This article has links to Azure Resource Manager template examples 
 services: application-gateway
 author: greg-lindsay
 ms.service: application-gateway
-ms.custom: devx-track-arm-template
 ms.topic: sample
 ms.date: 11/16/2019
 ms.author: greglin

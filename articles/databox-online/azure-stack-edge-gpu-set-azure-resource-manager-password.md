@@ -6,7 +6,6 @@ author: alkohli
 
 ms.service: databox
 ms.subservice: edge
-ms.custom: devx-track-azurepowershell, devx-track-arm-template
 ms.topic: how-to
 ms.date: 02/21/2021
 ms.author: alkohli

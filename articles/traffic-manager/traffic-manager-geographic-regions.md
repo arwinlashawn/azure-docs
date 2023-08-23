@@ -1,15 +1,16 @@
 ---
 title: Country/Region hierarchy used by geographic routing - Azure Traffic Manager
-description: This article lists Country/Region hierarchy used by Azure Traffic Manager Geographic routing type.
+description: This article lists Country/Region hierarchy used by Azure Traffic Manager Geographic routing type
 services: traffic-manager
+documentationcenter: ''
 author: greg-lindsay
-manager: kumud
+manager: twooley
 ms.service: traffic-manager
-ms.topic: conceptual
+ms.topic: article
+ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/27/2023
+ms.date: 03/22/2017
 ms.author: greglin
-ms.custom: template-concept
 ---
 
 # Country/Region hierarchy used by Azure Traffic Manager for geographic traffic routing method
@@ -157,7 +158,7 @@ This article lists the countries and regions used by the **Geographic**  traffic
 
 		- SA(Saudi Arabia)
 
-		- TR(Türkiye)
+		- TR(Turkey)
 
 		- YE(Yemen)
 

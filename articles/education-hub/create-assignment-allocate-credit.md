@@ -6,6 +6,7 @@ ms.author: v-denrea
 ms.topic: overview
 ms.date: 06/30/2020
 ms.service: azure-education
+ms.subservice: education-hub
 ---
 
 # Create an assignment and allocate credit

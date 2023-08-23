@@ -7,7 +7,7 @@ ms.topic: reference
 ms.subservice: spark
 ms.date: 08/03/2022
 ms.author: dacoelho 
-ms.reviewer: wiassaf
+ms.reviewer: martinle
 ---
 
 # The need for optimize write on Apache Spark
@@ -19,7 +19,8 @@ Optimize Write is a Delta Lake on Synapse feature that reduces the number of fil
 This feature achieves the file size by using an extra data shuffle phase over partitions, causing an extra processing cost while writing the data. The small write penalty should be outweighed by read efficiency on the tables.
 
 > [!NOTE]
-> - It is available on Synapse Pools for Apache Spark versions above 3.1.
+> - Optimize write is available as a Preview feature. 
+> - It is available on Synapse Pools for Apache Spark versions 3.1 and 3.2.
 
 ## Benefits of Optimize Writes
 
@@ -47,7 +48,7 @@ This feature achieves the file size by using an extra data shuffle phase over pa
 
 ## How to enable and disable the optimize write feature
 
-The optimize write feature is disabled by default. In Spark 3.3 Pool, it is enabled by default for partitioned tables.
+The optimize write feature is disabled by default.
 
 Once the configuration is set for the pool or session, all Spark write patterns will use the functionality.
 

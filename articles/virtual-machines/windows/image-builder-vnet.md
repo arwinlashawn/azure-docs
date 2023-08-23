@@ -3,8 +3,8 @@ title: Create a Windows VM with Azure VM Image Builder by using an existing virt
 description: Use Azure VM Image Builder to create a basic, customized Windows image that has access to existing resources on a virtual network.
 author: kof-f
 ms.author: kofiforson
-ms.reviewer: erd
-ms.date: 03/27/2023
+ms.reviewer: cynthn
+ms.date: 03/02/2021
 ms.topic: how-to
 ms.service: virtual-machines
 ms.subservice: image-builder
@@ -195,10 +195,9 @@ Submit the image configuration to Azure VM Image Builder.
 
 ```powershell-interactive
 New-AzResourceGroupDeployment -ResourceGroupName $imageResourceGroup -TemplateFile $templateFilePath -api-version "2020-02-14" -imageTemplateName $imageTemplateName -svclocation $location
-```
 
-> [!NOTE]
-> This will take a minute, as validation is run in regards to security, dependenciec, etc.
+# note this will take minute, as validation is run (security / dependencies etc.)
+```
 
 Start the image build.
 

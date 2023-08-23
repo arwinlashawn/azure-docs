@@ -2,15 +2,15 @@
 title: "Quickstart: Sign in users in JavaScript single-page apps (SPA) with auth code"
 description: In this quickstart, learn how a JavaScript single-page application (SPA) can sign in users of personal accounts, work accounts, and school accounts by using the authorization code flow.
 services: active-directory
-author: OwenRichards1
+author: mmacy
 manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
-ms.topic: conceptual
+ms.topic: portal
 ms.workload: identity
 ms.date: 11/12/2021
 ROBOTS: NOINDEX
-ms.author: owenrichards
+ms.author: marsma
 ms.custom: aaddev, "scenarios:getting-started", "languages:JavaScript", devx-track-js, mode-other
 #Customer intent: As an app developer, I want to learn how to get access tokens and refresh tokens by using the Microsoft identity platform so that my JavaScript app can sign in users of personal accounts, work accounts, and school accounts.
 ---
@@ -20,7 +20,7 @@ ms.custom: aaddev, "scenarios:getting-started", "languages:JavaScript", devx-tra
 > [!div renderon="docs"]
 > Welcome! This probably isn't the page you were expecting. While we work on a fix, this link should take you to the right article:
 >
-> > [Quickstart: Sign in users in single-page apps (SPA) via the authorization code flow with Proof Key for Code Exchange (PKCE) using JavaScript](quickstart-single-page-app-javascript-sign-in.md)
+> > [Quickstart: JavaScript single-page app with user sign-in](single-page-app-quickstart.md?pivots=devlang-javascript)
 > 
 > We apologize for the inconvenience and appreciate your patience while we work to get this resolved.
 

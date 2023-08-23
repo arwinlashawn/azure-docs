@@ -5,7 +5,7 @@ author: ekpgh
 ms.service: hpc-cache
 ms.topic: how-to
 ms.date: 06/01/2022
-ms.author: rohogue
+ms.author: v-erinkelly
 ---
 
 # Pre-load files in Azure HPC Cache
